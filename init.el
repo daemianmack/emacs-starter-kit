@@ -75,4 +75,12 @@
 (if (file-exists-p user-specific-dir)
   (mapc #'load (directory-files user-specific-dir nil ".*el$")))
 
+
+
+;; My additions
+
+;; Copy vim's "set scroll-off=10" setting
+(require 'smooth-scrolling)
+
+
 ;;; init.el ends here
