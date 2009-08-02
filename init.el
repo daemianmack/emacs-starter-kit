@@ -90,4 +90,35 @@
 (require 'smooth-scrolling)
 
 
+;; Provide a python compile.
+(defun my-compile ()
+  "Use compile to run python programs"
+    (interactive)
+      (compile (concat "python " (buffer-name))))
+(setq compilation-scroll-output t)
+;; This should be in a python-mode hook function.
+(local-set-key "\C-c\C-c" 'my-compile)
+
+
+;; Move auto-save and backup files elsewhere.
+(defvar user-temporary-file-directory
+  (concat temporary-file-directory user-login-name "/"))
+
+(make-directory user-temporary-file-directory t)
+
+(setq backup-by-copying t)
+
+(setq backup-directory-alist
+      `(("." . ,user-temporary-file-directory)
+        
+        (,tramp-file-name-regexp nil)))
+
+(setq auto-save-list-file-prefix
+      (concat user-temporary-file-directory ".auto-saves-"))
+
+(setq auto-save-file-name-transforms
+      `((".*" ,user-temporary-file-directory t)))
+
+
+
 ;;; init.el ends here
