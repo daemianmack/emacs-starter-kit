@@ -87,14 +87,13 @@
 
 
 ;; Start server.
-(setq server-name "asdf") 
 (server-start)
 ;; Let C-xk kill buffers as normal even when there's a client listening.
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
 
 ;; Copy vim's "set scroll-off=10" setting.
-(require 'smooth-scrolling)
+;; (require 'smooth-scrolling)
 
 
 ;; Provide a python compile.
