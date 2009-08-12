@@ -126,5 +126,17 @@
       `((".*" ,user-temporary-file-directory t)))
 
 
+;; highlight-symbol mode
+(require 'highlight-symbol)
+
+(defface highlight-symbol-face
+  '((((class color) (background light))
+     (:background "gray10"))
+    (((class color) (background dark))
+     (:background "gray90")))
+  "*Face used by `highlight-symbol-mode'."
+  :group 'highlight-symbol)
+
+
 
 ;;; init.el ends here
