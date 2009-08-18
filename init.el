@@ -108,16 +108,13 @@
 
 ;; Move auto-save and backup files elsewhere.
 (defvar user-temporary-file-directory
-  (concat temporary-file-directory user-login-name "/"))
+  (setq temporary-file-directory "~/.emacs.d/.autosaves"))
 
 (make-directory user-temporary-file-directory t)
-
 (setq backup-by-copying t)
-
 (setq backup-directory-alist
       `(("." . ,user-temporary-file-directory)
-        
-        (,tramp-file-name-regexp nil)))
+                (,tramp-file-name-regexp nil)))
 
 (setq auto-save-list-file-prefix
       (concat user-temporary-file-directory ".auto-saves-"))
