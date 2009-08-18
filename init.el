@@ -135,5 +135,8 @@
   :group 'highlight-symbol)
 
 
+(require 'nav)
+(require 'python-mode)
+
 
 ;;; init.el ends here
