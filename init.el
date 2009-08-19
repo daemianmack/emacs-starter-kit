@@ -138,5 +138,30 @@
 (require 'nav)
 (require 'python-mode)
 
+;; mozilla-emacs key bindings
+(add-to-list 'load-path "/home/rternosky/.emacs.d")
+(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+(add-hook 'javascript-mode-hook 'javascript-custom-setup)
+
+(defun javascript-custom-setup ()
+  (moz-minor-mode 1))
+
+(add-hook 'javascript-mode-hook 'javascript-custom-setup)
+(defun javascript-custom-setup ()
+  (moz-minor-mode 1))
+
+(add-hook 'python-mode-hook 'moz-minor-mode)
+(add-hook 'nxml-mode-hook 'moz-minor-mode)
+
+
+;; bind CTRL-X P to Mozilla refresh browser
+(global-set-key (kbd "C-x p")
+                (lambda ()
+                  (save-buffer)
+                  (interactive)
+                  (comint-send-string (inferior-moz-process)
+                                      "BrowserReload();")))
+
+ 
 
 ;;; init.el ends here
