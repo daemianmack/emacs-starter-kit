@@ -139,7 +139,7 @@
 (require 'python-mode)
 
 ;; mozilla-emacs key bindings
-(add-to-list 'load-path "/home/rternosky/.emacs.d")
+
 (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
 (add-hook 'javascript-mode-hook 'javascript-custom-setup)
 
