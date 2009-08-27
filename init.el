@@ -78,6 +78,13 @@
 
 
 ;; My additions
+;; For tramp with sudo.
+(setq tramp-default-method "ssh")
+;; For tramp with sudo with my bash config, the prompt of which terminates
+;; in a newline. Tell tramp how to detect the end of my prompt.
+(setq shell-prompt-pattern "
+")
+
 ;; Save point position when page-down- or page-uping.
 (setq scroll-preserve-screen-position t)
 
@@ -162,6 +169,5 @@
                   (comint-send-string (inferior-moz-process)
                                       "BrowserReload();")))
 
- 
 
 ;;; init.el ends here
