@@ -4,7 +4,13 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(gud-gdb-command-name "gdb --annotate=1")
- '(large-file-warning-threshold nil))
+ '(large-file-warning-threshold nil)
+ '(uniquify-ask-about-buffer-names-p nil)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(uniquify-ignore-buffers-re nil)
+ '(uniquify-min-dir-content 3)
+ '(uniquify-separator nil)
+ '(uniquify-trailing-separator-p nil))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
