@@ -29,6 +29,8 @@
               (if (file-exists-p (concat buffer-file-name "c"))
                   (delete-file (concat buffer-file-name "c"))))))
 
+(define-key emacs-lisp-mode-map (kbd "M-.") 'find-function-at-point)
+
 ;;; Clojure
 
 (eval-after-load 'find-file-in-project
@@ -40,11 +42,10 @@
   (interactive (list
                 (ido-read-directory-name
                  "Project root: "
-                 (locate-dominating-file default-directory "pom.xml"))))
+                 (locate-dominating-file default-directory "src"))))
+  (require 'swank-clojure)
   (when (get-buffer "*inferior-lisp*")
     (kill-buffer "*inferior-lisp*"))
-  (defvar swank-clojure-extra-vm-args nil)
-  (defvar slime-lisp-implementations nil)
   (add-to-list 'swank-clojure-extra-vm-args
                (format "-Dclojure.compile.path=%s"
                        (expand-file-name "target/classes/" path)))

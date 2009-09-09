@@ -4,9 +4,7 @@
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (turn-off-tool-bar)
   (tooltip-mode -1)
-  (turn-off-tool-bar)
   (blink-cursor-mode -1))
 
 (add-hook 'before-make-frame-hook 'turn-off-tool-bar)
@@ -50,9 +48,6 @@
 ;; Enable syntax highlighting for older Emacsen that have it off
 (global-font-lock-mode t)
 
-;; You really don't need this; trust me.
-(menu-bar-mode -1)
-
 ;; Save a list of recent files visited.
 (recentf-mode 1)
 
@@ -65,7 +60,7 @@
   (setq ido-enable-prefix nil
         ido-enable-flex-matching t
         ido-create-new-buffer 'always
-        ido-use-filename-at-point t
+        ido-use-filename-at-point 'guess
         ido-max-prospects 10))
 
 (set-default 'indent-tabs-mode nil)
@@ -120,9 +115,13 @@
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")))
 
-(eval-after-load 'nxhtml
+(eval-after-load 'mumamo
   '(eval-after-load 'zenburn
      '(set-face-background 'mumamo-background-chunk-submode "gray22")))
+
+;; make emacs use the clipboard
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 (provide 'starter-kit-misc)
 ;;; starter-kit-misc.el ends here

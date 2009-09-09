@@ -7,8 +7,8 @@
                                    'inf-ruby
                                    'js2-mode
                                    'css-mode
-                                   ;; 'nxml
                                    'gist
+                                   'nxml-mode
                                    'paredit)
   "Libraries that should be installed by default.")
 
