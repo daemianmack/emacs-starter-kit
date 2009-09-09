@@ -78,6 +78,8 @@
 
 
 ;; My additions
+(require 'sqlplus)
+
 ;; For tramp with sudo.
 (setq tramp-default-method "ssh")
 ;; For tramp with sudo with my bash config, the prompt of which terminates
