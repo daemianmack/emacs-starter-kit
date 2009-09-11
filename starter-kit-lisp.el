@@ -76,7 +76,7 @@
   (add-hook
    (intern (concat (symbol-name x) "-mode-hook"))
    (lambda ()
-     (paredit-mode +1)
+     (paredit-mode -1)
      (idle-highlight +1)
      (run-coding-hook))))
 
