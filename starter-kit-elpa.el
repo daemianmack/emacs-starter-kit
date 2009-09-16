@@ -42,6 +42,8 @@ just have to assume it's online."
 
 ;; Workaround for an ELPA bug that people are reporting but I've been
 ;; unable to reproduce:
-(autoload 'paredit-mode "paredit")
+;; Workaround for a motherfucker of a bug that I certainly the fuck
+;; can reproduce from my work keyboard
+;; (autoload 'paredit-mode "paredit")
 
 (provide 'starter-kit-elpa)
