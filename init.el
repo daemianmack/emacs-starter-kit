@@ -87,6 +87,11 @@
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
+
+(setq py-python-command-args '("-colors" "Linux"))
+(setq ipython-command "/usr/bin/ipython")
+(require 'ipython)
+
 (require 'sqlplus)
 
 ;; For tramp with sudo.
