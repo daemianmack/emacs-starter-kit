@@ -5,6 +5,7 @@
   ;; If there is more than one, they won't work right.
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
+ '(nav-bookmark-list (quote ("~/src/git/cloud-ui/quote" "~/.emacs.d" "/tmp" "/")))
  '(uniquify-ask-about-buffer-names-p nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(uniquify-ignore-buffers-re nil)
