@@ -121,7 +121,7 @@
 
 ;; make emacs use the clipboard
 (setq x-select-enable-clipboard t)
-(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+;; (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 (provide 'starter-kit-misc)
 ;;; starter-kit-misc.el ends here
