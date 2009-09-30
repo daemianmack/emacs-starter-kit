@@ -185,5 +185,8 @@
                   (comint-send-string (inferior-moz-process)
                                       "BrowserReload();")))
 
+;; Restore a sane and non-eyeball-murdering background color for
+;; certain modes.
+(set-face-background mumamo-background-chunk-submode1 nil)
 
 ;;; init.el ends here
