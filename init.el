@@ -96,6 +96,9 @@
 
 ;; For tramp with sudo.
 (setq tramp-default-method "ssh")
+;; On startup, don't check recent-file readability. If I've used tramp
+;; and sudo: to edit a file, emacs init will hang otherwise.
+(recentf-mode 1)
 ;; For tramp with sudo with my bash config, the prompt of which terminates
 ;; in a newline. Tell tramp how to detect the end of my prompt.
 (setq shell-prompt-pattern "
