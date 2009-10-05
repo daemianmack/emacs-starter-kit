@@ -48,6 +48,19 @@
 (require 'starter-kit-elpa)
 
 (load "elpa-to-submit/nxhtml/autostart")
+;; Let's see if autoloading nxhtml this way makes it a bit nicer.
+;; (load "elpa-to-submit/nxhtml/autostart")
+(mapc (lambda (list)
+        (mapc (lambda (pair)
+                (if (or (eq (cdr pair)
+                            'html-mode)
+                        (eq (cdr pair)
+                            'php-mode))
+                    (setcdr pair (lambda ()
+                                   (require 'nxhtml-mode "elpa-to-submit/nxhtml/autostart")
+                                   (nxhtml-mumamo-mode)))))
+              list))
+      (list auto-mode-alist magic-mode-alist))
 
 ;; Load up starter kit customizations
 
