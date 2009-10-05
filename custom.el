@@ -5,6 +5,7 @@
   ;; If there is more than one, they won't work right.
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
+ '(list-matching-lines-face (quote default))
  '(nav-bookmark-list (quote ("~/src/git/cloud-ui/quote" "~/.emacs.d" "/tmp" "/")))
  '(nav-default-width 30)
  '(nav-follow t)
@@ -32,8 +33,10 @@
  '(header-line ((default (:background "brightblue")) (((type tty)) nil)))
  '(hi-blue-b ((((min-colors 88)) (:foreground "brightblue" :weight bold))))
  '(highlight ((((class color) (min-colors 88) (background light)) (:background "darkseagreen2" :foreground "black"))))
+ '(isearch ((((class color) (min-colors 88) (background light)) (:background "green" :foreground "black" :box (:line-width 2 :color "blue" :style released-button) :weight extra-bold))))
  '(italic ((((supports :underline t)) (:underline nil))))
  '(link ((((class color) (min-colors 88) (background light)) (:foreground "brightblue" :underline t))))
+ '(match ((nil (:background "black" :foreground "white" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "brightblue"))))
  '(mode-line ((((class color) (min-colors 88)) (:background "blue" :foreground "white" :box (:line-width -1 :style released-button)))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))
