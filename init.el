@@ -205,8 +205,11 @@
 ;; certain modes.
 (set-face-background mumamo-background-chunk-submode1 nil)
 
+
+(require 'breadcrumb)
+
 ;; bookmark.el
-(global-set-key [(control x) (j)]         'bc-set)            ;; Set bookmark.
+(global-set-key [(control x) (j)]       'bc-set)            ;; Set bookmark.
 (global-set-key [(meta j)]              'bc-previous)       ;; M-j for jump to previous
 (global-set-key [(shift meta j)]        'bc-next)           ;; Shift-M-j for jump to next
 (global-set-key [(meta up)]             'bc-local-previous) ;; M-up-arrow for local previous
