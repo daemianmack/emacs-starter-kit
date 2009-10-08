@@ -217,4 +217,13 @@
 (global-set-key [(control c)(j)]        'bc-goto-current)   ;; C-c j for jump to current bookmark
 (global-set-key [(control x)(meta j)]   'bc-list)           ;; C-x M-j for the bookmark menu list
 
+;; When I'm working from an OSX keyboard, make the delete key work the
+;; way I'm used to everywhere else. That is, delete backward, and
+;; delete backward a word if I hold down Alt.
+(defun darwinize ()
+  (interactive)
+  (normal-erase-is-backspace-mode 1)
+  (global-set-key (kbd "C-M-d") (quote backward-kill-word))
+  )
+
 ;;; init.el ends here
