@@ -231,6 +231,13 @@
   (global-set-key (kbd "C-M-d") (quote backward-kill-word))
   )
 
+
+(require 'yasnippet)
+(setq yas/root-directory "~/.emacs.d/elpa-to-submit/snippets")
+(yas/load-directory yas/root-directory)
+;; To globally enable the minor mode in *all* buffers
+(yas/global-mode)
+
 ;; Unbind quit key. I never use it on purpose.
 (global-unset-key "\C-x\C-c")
 ;; I do, however, kill the hell out of some buffers. If I add a C- to the second keystroke, kill without confirmation.

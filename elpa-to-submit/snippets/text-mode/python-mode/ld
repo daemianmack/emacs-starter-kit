@@ -1,0 +1,3 @@
+# name: logger.debug
+# --
+logger.debug('$1 (values for ${2:enumerate})' % ($2),)$0
