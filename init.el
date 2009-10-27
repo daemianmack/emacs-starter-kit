@@ -140,7 +140,7 @@
 (defun my-compile ()
   "Use compile to run python programs"
     (interactive)
-      (compile (concat "python " (buffer-name))))
+      (compile (concat "python " (buffer-file-name))))
 (setq compilation-scroll-output t)
 ;; This should be in a python-mode hook function.
 (local-set-key "\C-c\C-c" 'my-compile)
