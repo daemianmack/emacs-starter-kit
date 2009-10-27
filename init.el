@@ -145,6 +145,10 @@
 ;; This should be in a python-mode hook function.
 (local-set-key "\C-c\C-c" 'my-compile)
 
+(defun my-kill-buffer ()
+  "Just kill the current buffer without asking, unless of course it's a modified file"
+  (interactive)
+  (kill-buffer (current-buffer)))
 
 ;; Move auto-save and backup files elsewhere.
 (defvar user-temporary-file-directory
@@ -226,5 +230,10 @@
   (normal-erase-is-backspace-mode 1)
   (global-set-key (kbd "C-M-d") (quote backward-kill-word))
   )
+
+;; Unbind quit key. I never use it on purpose.
+(global-unset-key "\C-x\C-c")
+;; I do, however, kill the hell out of some buffers. If I add a C- to the second keystroke, kill without confirmation.
+(global-set-key "\C-x\C-k" 'my-kill-buffer)
 
 ;;; init.el ends here
