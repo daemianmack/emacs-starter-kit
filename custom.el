@@ -13,6 +13,8 @@
  '(nav-quickfile-list (quote ("~/dotfiles/.bashrc" "" "")))
  '(nav-quickjump-show nil)
  '(nav-widths-percentile 99)
+ '(recentf-max-saved-items 100)
+ '(recentf-save-file "~/.emacs.d/.recentf")
  '(uniquify-ask-about-buffer-names-p nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(uniquify-ignore-buffers-re nil)

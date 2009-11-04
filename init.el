@@ -97,6 +97,8 @@
 ;; My additions
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq bookmark-default-file (concat dotfiles-dir ".emacs.bmk"))
+
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
@@ -119,7 +121,6 @@
 
 ;; Save point position when page-down- or page-uping.
 (setq scroll-preserve-screen-position t)
-
 
 ;; Controls how many non-permanent entries are shown in the recent-files list. The default is 15. 
 (setq recent-files-number-of-entries 100)
@@ -242,5 +243,12 @@
 (global-unset-key "\C-x\C-c")
 ;; I do, however, kill the hell out of some buffers. If I add a C- to the second keystroke, kill without confirmation.
 (global-set-key "\C-x\C-k" 'my-kill-buffer)
+
+(defun recentf-ido-find-file ()
+  "Find a recent file using Ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
 
 ;;; init.el ends here
