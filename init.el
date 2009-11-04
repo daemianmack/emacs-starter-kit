@@ -210,6 +210,7 @@
 ;; Restore a sane and non-eyeball-murdering background color for
 ;; certain modes.
 (set-face-background mumamo-background-chunk-submode1 nil)
+(set-face-background mumamo-background-chunk-major nil)
 
 
 (require 'breadcrumb)
@@ -228,10 +229,9 @@
 ;; delete backward a word if I hold down Alt.
 (defun darwinize ()
   (interactive)
-  (normal-erase-is-backspace-mode 1)
+
   (global-set-key (kbd "C-M-d") (quote backward-kill-word))
   )
-
 
 (require 'yasnippet)
 (setq yas/root-directory "~/.emacs.d/elpa-to-submit/snippets")
@@ -250,5 +250,17 @@
   (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
     (when file
       (find-file file))))
+
+;; oddly this is now necessary directly on kimjung...
+(global-set-key (kbd "C-M-d") (quote backward-kill-word))
+
+;; when is this necessary?
+;; from hackintosh to kimjun under screen/screen and term xterm-256color
+;; global--key [(control d)]       'delete-char)            ;; s
+(normal-erase-is-backspace-mode)
+;; Run shellhist, which preserves command history in eshell within
+;; applications (e.g., python console or mysql prompt).
+(require 'eshell)
+(add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
 
 ;;; init.el ends here
