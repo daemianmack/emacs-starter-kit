@@ -263,4 +263,12 @@
 (require 'eshell)
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
 
+(require 'cycbuf)
+;; Shift+tab to cycle to most-recently-visited buffer in ring.
+;; Alt+Shift+tab to pop backwards through ring.
+;; Why Alt+Shift+tab is detected as C-M-y, I really don't know.
+(global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
+(global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
+
+
 ;;; init.el ends here
