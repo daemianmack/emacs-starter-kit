@@ -125,7 +125,8 @@
 ;; Controls how many non-permanent entries are shown in the recent-files list. The default is 15. 
 (setq recent-files-number-of-entries 100)
 (setq recentf-max-menu-items 100)
-
+;; Obvious.
+(setq recentf-exclude (append recentf-exclude '(".ftp:.*" ".sudo:.*" "~$" "/.autosaves/")))
 
 ;; Start server.
 (server-start)
