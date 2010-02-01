@@ -258,7 +258,11 @@
 ;; when is this necessary?
 ;; from hackintosh to kimjun under screen/screen and term xterm-256color
 ;; global--key [(control d)]       'delete-char)            ;; s
-(normal-erase-is-backspace-mode)
+
+;; Now that I do most of my work from an OSX keyboard, I don't need to
+;; run this toggle at startup usually.
+;; (normal-erase-is-backspace-mode)
+
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
 (require 'eshell)
