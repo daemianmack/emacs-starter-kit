@@ -125,7 +125,8 @@
 ;; Controls how many non-permanent entries are shown in the recent-files list. The default is 15. 
 (setq recent-files-number-of-entries 100)
 (setq recentf-max-menu-items 100)
-
+;; Obvious.
+(setq recentf-exclude (append recentf-exclude '(".ftp:.*" ".sudo:.*" "~$" "/.autosaves/")))
 
 ;; Start server.
 (server-start)
@@ -179,6 +180,19 @@
   "*Face used by `highlight-symbol-mode'."
   :group 'highlight-symbol)
 
+;; paren matching
+(setq show-paren-delay 0)           ; how long to wait?
+(show-paren-mode t)                 ; turn paren-mode on
+(setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
+
+(set-face-background 'show-paren-match-face "#111111")
+(set-face-attribute 'show-paren-match-face nil 
+        :weight 'bold :underline nil :overline nil :slant 'normal)
+
+(set-face-foreground 'show-paren-mismatch-face "white")
+(set-face-background 'show-paren-mismatch-face "red")
+(set-face-attribute 'show-paren-mismatch-face nil 
+                    :weight 'bold :underline nil :overline nil :slant 'normal);;; init.el ends here
 
 (require 'nav)
 (require 'python-mode)
@@ -257,12 +271,15 @@
 ;; when is this necessary?
 ;; from hackintosh to kimjun under screen/screen and term xterm-256color
 ;; global--key [(control d)]       'delete-char)            ;; s
-(normal-erase-is-backspace-mode)
+
+;; Now that I do most of my work from an OSX keyboard, I don't need to
+;; run this toggle at startup usually.
+;; (normal-erase-is-backspace-mode)
+
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
 (require 'eshell)
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
-
 
 (defun my-forward-paragraph ()
   (interactive)
@@ -275,6 +292,13 @@
   (backward-paragraph)
   (recenter))
 (global-set-key (kbd "M-{") (quote my-backward-paragraph))
+
+(require 'cycbuf)
+;; Shift+tab to cycle to most-recently-visited buffer in ring.
+;; Alt+Shift+tab to pop backwards through ring.
+;; Why Alt+Shift+tab is detected as C-M-y, I really don't know.
+(global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
+(global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
 
 
 ;;; init.el ends here
