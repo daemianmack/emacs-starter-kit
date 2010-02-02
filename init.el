@@ -281,6 +281,18 @@
 (require 'eshell)
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
 
+(defun my-forward-paragraph ()
+  (interactive)
+  (forward-paragraph)
+  (recenter))
+(global-set-key (kbd "M-}") (quote my-forward-paragraph))
+
+(defun my-backward-paragraph ()
+  (interactive)
+  (backward-paragraph)
+  (recenter))
+(global-set-key (kbd "M-{") (quote my-backward-paragraph))
+
 (require 'cycbuf)
 ;; Shift+tab to cycle to most-recently-visited buffer in ring.
 ;; Alt+Shift+tab to pop backwards through ring.
@@ -288,4 +300,5 @@
 (global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
 (global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
 
+;;; init.el ends here
 (put 'downcase-region 'disabled nil)
