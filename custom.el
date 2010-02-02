@@ -38,6 +38,7 @@
  '(highlight ((((class color) (min-colors 88) (background light)) (:background "darkseagreen2" :foreground "black"))))
  '(isearch ((((class color) (min-colors 88) (background light)) (:background "green" :foreground "black" :box (:line-width 2 :color "blue" :style released-button) :weight extra-bold))))
  '(italic ((((supports :underline t)) (:underline nil))))
+ '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "blue" :foreground "white" :weight bold))))
  '(link ((((class color) (min-colors 88) (background light)) (:foreground "brightblue" :underline t))))
  '(match ((t (:background "blue" :foreground "white" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "brightblue"))))
