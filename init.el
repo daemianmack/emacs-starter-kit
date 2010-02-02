@@ -288,5 +288,4 @@
 (global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
 (global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
 
-
-;;; init.el ends here
+(put 'downcase-region 'disabled nil)
