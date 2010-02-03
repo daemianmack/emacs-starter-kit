@@ -186,8 +186,9 @@
 (setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
 
 (set-face-background 'show-paren-match-face "#111111")
+(set-face-foreground 'show-paren-match-face "#875fff")
 (set-face-attribute 'show-paren-match-face nil 
-        :weight 'bold :underline nil :overline nil :slant 'normal)
+        :weight 'normal :underline nil :overline nil :slant 'normal)
 
 (set-face-foreground 'show-paren-mismatch-face "white")
 (set-face-background 'show-paren-mismatch-face "red")
@@ -225,6 +226,7 @@
 ;; certain modes.
 (set-face-background mumamo-background-chunk-submode1 nil)
 (set-face-background mumamo-background-chunk-major nil)
+(set-face-background magit-item-highlight 'color-233)
 
 
 (require 'breadcrumb)
