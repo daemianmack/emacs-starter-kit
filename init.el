@@ -227,7 +227,7 @@
 ;; certain modes.
 (set-face-background mumamo-background-chunk-submode1 nil)
 (set-face-background mumamo-background-chunk-major nil)
-(set-face-background magit-item-highlight 'color-233)
+;;(set-face-background magit-item-highlight 'color-233)
 
 
 (require 'breadcrumb)
