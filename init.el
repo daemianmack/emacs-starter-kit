@@ -63,6 +63,7 @@
               list))
       (list auto-mode-alist magic-mode-alist))
 
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;; Load up starter kit customizations
 
 (require 'starter-kit-defuns)
@@ -227,11 +228,10 @@
                   (comint-send-string (inferior-moz-process)
                                       "BrowserReload();")))
 
-;; Restore a sane and non-eyeball-murdering background color for
-;; certain modes.
-(set-face-background mumamo-background-chunk-submode1 nil)
-(set-face-background mumamo-background-chunk-major nil)
-;; This causes emacs-launch errors for some reason.
+;; Restore a sane and non-eyeball-murdering background color for certain modes.
+;; I want these in place but they're causing errors on launch. Figure out why.
+;;(set-face-background mumamo-background-chunk-submode nil)
+;;(set-face-background mumamo-background-chunk-major nil)
 ;;(set-face-background magit-item-highlight 'color-233)
 
 
@@ -261,7 +261,7 @@
 ;; To globally enable the minor mode in *all* buffers
 (yas/global-mode)
 
-;; Rebing quit key. I rarely use it on purpose. Make it harder to hit.
+;; Rebind quit key and make it harder to hit. I rarely use it on purpose.
 (global-unset-key "\C-x\C-c")
 (global-set-key "\C-x\M-c" 'save-buffers-kill-emacs)
 ;; I do, however, kill the hell out of some buffers. If I add a C- to the second keystroke, kill without confirmation.
