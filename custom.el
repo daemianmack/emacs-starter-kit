@@ -41,7 +41,7 @@
  '(italic ((((supports :underline t)) (:underline nil))))
  '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "blue" :foreground "white" :weight bold))))
  '(link ((((class color) (min-colors 88) (background light)) (:foreground "brightblue" :underline t))))
- '(match ((t (:background "blue" :foreground "white" :weight bold))))
+ '(match ((nil (:background "black" :foreground "white" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "brightblue"))))
  '(mode-line ((((class color) (min-colors 88)) (:background "blue" :foreground "white" :box (:line-width -1 :style released-button)))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))

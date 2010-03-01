@@ -79,6 +79,9 @@
 (regen-autoloads)
 (load custom-file 'noerror)
 
+;; Disable auto-fill-mode.
+(auto-fill-mode nil)
+
 ;; Work around a bug on OS X where system-name is FQDN
 (if (eq system-type 'darwin)
     (setq system-name (car (split-string system-name "\\."))))
@@ -215,6 +218,7 @@
 (add-hook 'python-mode-hook 'moz-minor-mode)
 (add-hook 'nxml-mode-hook 'moz-minor-mode)
 
+(add-hook 'text-mode-hook 'turn-off-auto-fill)
 
 ;; bind CTRL-X P to Mozilla refresh browser
 (global-set-key (kbd "C-x p")
@@ -224,10 +228,8 @@
                   (comint-send-string (inferior-moz-process)
                                       "BrowserReload();")))
 
-;; Restore a sane and non-eyeball-murdering background color for
-;; certain modes.
-;; I want these in place but they're causing errors on launch. Figure
-;; out why.
+;; Restore a sane and non-eyeball-murdering background color for certain modes.
+;; I want these in place but they're causing errors on launch. Figure out why.
 ;;(set-face-background mumamo-background-chunk-submode nil)
 ;;(set-face-background mumamo-background-chunk-major nil)
 ;;(set-face-background magit-item-highlight 'color-233)
@@ -281,12 +283,22 @@
 
 ;; Now that I do most of my work from an OSX keyboard, I don't need to
 ;; run this toggle at startup usually.
-;; (normal-erase-is-backspace-mode)
+(normal-erase-is-backspace-mode)
 
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
 (require 'eshell)
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
+(defun m-eshell-hook ()
+; define control p, control n and the up/down arrow
+(define-key eshell-mode-map [(control p)] 'eshell-previous-matching-input-from-input)
+(define-key eshell-mode-map [(control n)] 'eshell-next-matching-input-from-input)
+
+(define-key eshell-mode-map [up] 'eshell-previous-matching-input-from-input)
+(define-key eshell-mode-map [down] 'eshell-next-matching-input-from-input)
+
+(add-hook 'eshell-mode-hook 'm-eshell-hook))
+
 
 (defun my-forward-paragraph ()
   (interactive)
