@@ -48,5 +48,6 @@
  '(mode-line-inactive ((default (:foreground "brightblack")) (nil nil)))
  '(region ((((class color) (min-colors 88) (background light)) (:background "brightblack"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
+ '(trailing-whitespace ((((class color) (background dark)) (:background "color-234"))))
  '(underline ((((supports :underline t)) (:underline nil))))
  '(vertical-border ((((type tty)) (:background "black" :foreground "brightblack")))))
