@@ -200,6 +200,10 @@
 (set-face-attribute 'show-paren-mismatch-face nil 
                     :weight 'bold :underline nil :overline nil :slant 'normal);;; init.el ends here
 
+(set-face-foreground 'yas/field-highlight-face "#ffffff")
+(set-face-background 'yas/field-highlight-face "color-56")
+(set-face-foreground 'yas/field-debug-face "#222222")
+
 (require 'nav)
 (require 'python-mode)
 
