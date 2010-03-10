@@ -38,6 +38,7 @@
 (require 'uniquify)
 (require 'ansi-color)
 (require 'recentf)
+(require 'dot-mode)
 
 ;; backport some functionality to Emacs 22 if needed
 (require 'dominating-file)
@@ -322,6 +323,9 @@
 ;; Why Alt+Shift+tab is detected as C-M-y, I really don't know.
 (global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
 (global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
+
+;; Built-in keybinding for dot-mode-execute (C-.) isn't detected for me.
+(global-set-key (kbd "C-M-r") 'dot-mode-execute)
 
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
