@@ -288,7 +288,8 @@
 
 ;; Now that I do most of my work from an OSX keyboard, I don't need to
 ;; run this toggle at startup usually.
-(normal-erase-is-backspace-mode)
+;; not needed: work hackintosh with mac keyboard on iterm
+;; (normal-erase-is-backspace-mode)
 
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
