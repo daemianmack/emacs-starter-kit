@@ -201,10 +201,6 @@
 (set-face-attribute 'show-paren-mismatch-face nil 
                     :weight 'bold :underline nil :overline nil :slant 'normal);;; init.el ends here
 
-(set-face-foreground 'yas/field-highlight-face "#ffffff")
-(set-face-background 'yas/field-highlight-face "color-56")
-(set-face-foreground 'yas/field-debug-face "#222222")
-
 (require 'nav)
 (require 'python-mode)
 
@@ -237,7 +233,8 @@
 ;; I want these in place but they're causing errors on launch. Figure out why.
 ;;(set-face-background mumamo-background-chunk-submode nil)
 ;;(set-face-background mumamo-background-chunk-major nil)
-;;(set-face-background magit-item-highlight 'color-233)
+(require 'magit)
+(set-face-background 'magit-item-highlight "color-233")
 
 
 (require 'breadcrumb)
@@ -261,6 +258,10 @@
   )
 
 (require 'yasnippet)
+(set-face-foreground 'yas/field-highlight-face "#ffffff")
+(set-face-background 'yas/field-highlight-face "color-56")
+(set-face-foreground 'yas/field-debug-face "#222222")
+
 (setq yas/root-directory "~/.emacs.d/elpa-to-submit/snippets")
 (yas/load-directory yas/root-directory)
 ;; To globally enable the minor mode in *all* buffers
