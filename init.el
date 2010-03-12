@@ -237,7 +237,8 @@
 ;; I want these in place but they're causing errors on launch. Figure out why.
 ;;(set-face-background mumamo-background-chunk-submode nil)
 ;;(set-face-background mumamo-background-chunk-major nil)
-;;(set-face-background magit-item-highlight 'color-233)
+(require 'magit)
+(set-face-background 'magit-item-highlight "color-233")
 
 
 (require 'breadcrumb)
