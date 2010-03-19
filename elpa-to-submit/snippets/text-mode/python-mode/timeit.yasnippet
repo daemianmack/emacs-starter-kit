@@ -1,0 +1,10 @@
+import timeit
+
+t = timeit.Timer("""
+$1
+""","""
+$2
+""").timeit(1)
+
+print t
+$0

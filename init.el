@@ -1,3 +1,4 @@
+
 ;;; init.el --- Where all the magic begins
 ;;
 ;; Part of the Emacs Starter Kit
@@ -37,6 +38,7 @@
 (require 'uniquify)
 (require 'ansi-color)
 (require 'recentf)
+(require 'dot-mode)
 
 ;; backport some functionality to Emacs 22 if needed
 (require 'dominating-file)
@@ -62,6 +64,7 @@
               list))
       (list auto-mode-alist magic-mode-alist))
 
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;; Load up starter kit customizations
 
 (require 'starter-kit-defuns)
@@ -76,6 +79,9 @@
 
 (regen-autoloads)
 (load custom-file 'noerror)
+
+;; Disable auto-fill-mode.
+(auto-fill-mode nil)
 
 ;; Work around a bug on OS X where system-name is FQDN
 (if (eq system-type 'darwin)
@@ -125,7 +131,8 @@
 ;; Controls how many non-permanent entries are shown in the recent-files list. The default is 15. 
 (setq recent-files-number-of-entries 100)
 (setq recentf-max-menu-items 100)
-
+;; Obvious.
+(setq recentf-exclude (append recentf-exclude '(".ftp:.*" ".sudo:.*" "~$" "/.autosaves/")))
 
 ;; Start server.
 (server-start)
@@ -181,6 +188,20 @@
   "*Face used by `highlight-symbol-mode'."
   :group 'highlight-symbol)
 
+;; paren matching
+(setq show-paren-delay 0)           ; how long to wait?
+(show-paren-mode t)                 ; turn paren-mode on
+(setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
+
+(set-face-background 'show-paren-match-face "#111111")
+(set-face-foreground 'show-paren-match-face "#875fff")
+(set-face-attribute 'show-paren-match-face nil 
+        :weight 'normal :underline nil :overline nil :slant 'normal)
+
+(set-face-foreground 'show-paren-mismatch-face "white")
+(set-face-background 'show-paren-mismatch-face "red")
+(set-face-attribute 'show-paren-mismatch-face nil 
+                    :weight 'bold :underline nil :overline nil :slant 'normal);;; init.el ends here
 
 (require 'nav)
 (require 'python-mode)
@@ -200,6 +221,7 @@
 (add-hook 'python-mode-hook 'moz-minor-mode)
 (add-hook 'nxml-mode-hook 'moz-minor-mode)
 
+(add-hook 'text-mode-hook 'turn-off-auto-fill)
 
 ;; bind CTRL-X P to Mozilla refresh browser
 (global-set-key (kbd "C-x p")
@@ -209,10 +231,12 @@
                   (comint-send-string (inferior-moz-process)
                                       "BrowserReload();")))
 
-;; Restore a sane and non-eyeball-murdering background color for
-;; certain modes.
-(set-face-background mumamo-background-chunk-submode1 nil)
-(set-face-background mumamo-background-chunk-major nil)
+;; Restore a sane and non-eyeball-murdering background color for certain modes.
+;; I want these in place but they're causing errors on launch. Figure out why.
+;;(set-face-background mumamo-background-chunk-submode nil)
+;;(set-face-background mumamo-background-chunk-major nil)
+(require 'magit)
+(set-face-background 'magit-item-highlight "color-233")
 
 
 (require 'breadcrumb)
@@ -236,13 +260,18 @@
   )
 
 (require 'yasnippet)
+(set-face-foreground 'yas/field-highlight-face "#ffffff")
+(set-face-background 'yas/field-highlight-face "color-56")
+(set-face-foreground 'yas/field-debug-face "#222222")
+
 (setq yas/root-directory "~/.emacs.d/elpa-to-submit/snippets")
 (yas/load-directory yas/root-directory)
 ;; To globally enable the minor mode in *all* buffers
 (yas/global-mode)
 
-;; Unbind quit key. I never use it on purpose.
+;; Rebind quit key and make it harder to hit. I rarely use it on purpose.
 (global-unset-key "\C-x\C-c")
+(global-set-key "\C-x\M-c" 'save-buffers-kill-emacs)
 ;; I do, however, kill the hell out of some buffers. If I add a C- to the second keystroke, kill without confirmation.
 (global-set-key "\C-x\C-k" 'my-kill-buffer)
 
@@ -259,10 +288,72 @@
 ;; when is this necessary?
 ;; from hackintosh to kimjun under screen/screen and term xterm-256color
 ;; global--key [(control d)]       'delete-char)            ;; s
-(normal-erase-is-backspace-mode)
+
+;; Now that I do most of my work from an OSX keyboard, I don't need to
+;; run this toggle at startup usually.
+;; not needed: work hackintosh with mac keyboard on iterm
+;; (normal-erase-is-backspace-mode)
+
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
 (require 'eshell)
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
+(defun m-eshell-hook ()
+; define control p, control n and the up/down arrow
+(define-key eshell-mode-map [(control p)] 'eshell-previous-matching-input-from-input)
+(define-key eshell-mode-map [(control n)] 'eshell-next-matching-input-from-input)
+
+(define-key eshell-mode-map [up] 'eshell-previous-matching-input-from-input)
+(define-key eshell-mode-map [down] 'eshell-next-matching-input-from-input)
+
+(add-hook 'eshell-mode-hook 'm-eshell-hook))
+
+
+(defun my-forward-paragraph ()
+  (interactive)
+  (forward-paragraph)
+  (recenter))
+(global-set-key (kbd "M-}") (quote my-forward-paragraph))
+
+(defun my-backward-paragraph ()
+  (interactive)
+  (backward-paragraph)
+  (recenter))
+(global-set-key (kbd "M-{") (quote my-backward-paragraph))
+
+(require 'cycbuf)
+;; Shift+tab to cycle to most-recently-visited buffer in ring.
+;; Alt+Shift+tab to pop backwards through ring.
+;; Why Alt+Shift+tab is detected as C-M-y, I really don't know.
+(global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
+(global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
+
+;; Built-in keybinding for dot-mode-execute (C-.) isn't detected for me.
+(global-set-key (kbd "C-M-r") 'dot-mode-execute)
+
+
+;; save a list of open files in ~/.emacs.desktop
+;; save the desktop file automatically if it already exists
+;; M-x desktop-save necessary to first create this file, auto-updates thereafter.
+(setq desktop-save 'if-exists)
+(desktop-save-mode 1)
+
+;; save a bunch of variables to the desktop file
+;; for lists specify the len of the maximal saved data also
+(setq desktop-globals-to-save
+      (append '((extended-command-history . 30)
+                (file-name-history        . 100)
+                (grep-history             . 30)
+                (compile-history          . 30)
+                (minibuffer-history       . 50)
+                (query-replace-history    . 60)
+                (read-expression-history  . 60)
+                (regexp-history           . 60)
+                (regexp-search-ring       . 20)
+                (search-ring              . 20)
+                (shell-command-history    . 50)
+                tags-file-name
+                register-alist)))
 
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)
