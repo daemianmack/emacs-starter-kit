@@ -4,7 +4,7 @@ loaddefs.el
 places
 url/cookies
 elpa-to-submit/jabber/jabber.info
-elpa-to-submit/nxhtml/etc/schema/xhtml-loader.rnc
+elpa-to-submit/nxhtml/*
 thumbs/*
 oddmuse/*
 .newsrc-dribble
@@ -14,7 +14,6 @@ oddmuse/*
 .DS_Store
 image-dired/
 elim/
-elpa-to-submit/nxhtml/etc/schema/xhtml-loader.rnc~
 tramp
 \#*
 /.autosaves*
