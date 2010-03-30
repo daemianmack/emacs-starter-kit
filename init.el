@@ -231,8 +231,8 @@
 
 ;; Restore a sane and non-eyeball-murdering background color for certain modes.
 ;; I want these in place but they're causing errors on launch. Figure out why.
-;;(set-face-background mumamo-background-chunk-submode nil)
-;;(set-face-background mumamo-background-chunk-major nil)
+(set-face-background mumamo-background-chunk-submode1 nil)
+(set-face-background mumamo-background-chunk-major nil)
 (require 'magit)
 (set-face-background 'magit-item-highlight "color-233")
 
@@ -290,7 +290,8 @@
 ;; Now that I do most of my work from an OSX keyboard, I don't need to
 ;; run this toggle at startup usually.
 ;; not needed: work hackintosh with mac keyboard on iterm
-;; (normal-erase-is-backspace-mode)
+;; needed: home macbook (!?)
+(normal-erase-is-backspace-mode)
 
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
@@ -306,6 +307,8 @@
 
 (add-hook 'eshell-mode-hook 'm-eshell-hook))
 
+;; Override keystroke for query-replace. I almost always want the -regexp version instead.
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 
 (defun my-forward-paragraph ()
   (interactive)
@@ -355,3 +358,5 @@
 
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
+
+(put 'scroll-left 'disabled nil)
