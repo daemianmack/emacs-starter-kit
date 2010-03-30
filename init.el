@@ -139,6 +139,8 @@
 ;; Let C-xk kill buffers as normal even when there's a client listening.
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
+;; post-mode if coming in via sup.
+;; (add-to-list 'auto-mode-alist '("sup\\.\\(compose\\|forward\\|reply\\|resume\\)-mode$" . post-mode))
 
 ;; Copy vim's "set scroll-off=10" setting.
 ;; (require 'smooth-scrolling)
@@ -231,8 +233,8 @@
 
 ;; Restore a sane and non-eyeball-murdering background color for certain modes.
 ;; I want these in place but they're causing errors on launch. Figure out why.
-;;(set-face-background mumamo-background-chunk-submode nil)
-;;(set-face-background mumamo-background-chunk-major nil)
+(set-face-background mumamo-background-chunk-submode1 nil)
+(set-face-background mumamo-background-chunk-major nil)
 (require 'magit)
 (set-face-background 'magit-item-highlight "color-233")
 
@@ -290,7 +292,8 @@
 ;; Now that I do most of my work from an OSX keyboard, I don't need to
 ;; run this toggle at startup usually.
 ;; not needed: work hackintosh with mac keyboard on iterm
-;; (normal-erase-is-backspace-mode)
+;; needed: home macbook (!?)
+(normal-erase-is-backspace-mode)
 
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
@@ -306,6 +309,8 @@
 
 (add-hook 'eshell-mode-hook 'm-eshell-hook))
 
+;; Override keystroke for query-replace. I almost always want the -regexp version instead.
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 
 (defun my-forward-paragraph ()
   (interactive)
@@ -329,5 +334,31 @@
 ;; Built-in keybinding for dot-mode-execute (C-.) isn't detected for me.
 (global-set-key (kbd "C-M-r") 'dot-mode-execute)
 
+
+;; save a list of open files in ~/.emacs.desktop
+;; save the desktop file automatically if it already exists
+;; M-x desktop-save necessary to first create this file, auto-updates thereafter.
+(setq desktop-save 'if-exists)
+(desktop-save-mode 1)
+
+;; save a bunch of variables to the desktop file
+;; for lists specify the len of the maximal saved data also
+(setq desktop-globals-to-save
+      (append '((extended-command-history . 30)
+                (file-name-history        . 100)
+                (grep-history             . 30)
+                (compile-history          . 30)
+                (minibuffer-history       . 50)
+                (query-replace-history    . 60)
+                (read-expression-history  . 60)
+                (regexp-history           . 60)
+                (regexp-search-ring       . 20)
+                (search-ring              . 20)
+                (shell-command-history    . 50)
+                tags-file-name
+                register-alist)))
+
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
+
+(put 'scroll-left 'disabled nil)
