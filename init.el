@@ -358,6 +358,19 @@
                 tags-file-name
                 register-alist)))
 
+;; Hopefully this fixes the bug where having a number of similarly-named buffers open
+;; eventually results in being unable to switch to some of them ("you have selected a deleted buffer").
+(defadvice iswitchb-kill-buffer (after rescan-after-kill activate)
+  "*Regenerate the list of matching buffer names after a kill.
+    Necessary if using niquify' with niquify-after-kill-buffer-p'
+    set to non-nil."
+  (setq iswitchb-buflist iswitchb-matches)
+  (iswitchb-rescan))
+(defun iswitchb-rescan ()
+  "*Regenerate the list of matching buffer names."
+  (interactive)
+  (iswitchb-make-buflist iswitchb-default)
+  (setq iswitchb-rescan t))
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
 
