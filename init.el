@@ -134,8 +134,6 @@
 ;; Obvious.
 (setq recentf-exclude (append recentf-exclude '(".ftp:.*" ".sudo:.*" "~$" "/.autosaves/")))
 
-;; Start server.
-(server-start)
 ;; Let C-xk kill buffers as normal even when there's a client listening.
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
