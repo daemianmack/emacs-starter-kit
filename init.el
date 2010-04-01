@@ -371,6 +371,8 @@
   (interactive)
   (iswitchb-make-buflist iswitchb-default)
   (setq iswitchb-rescan t))
+
+(require 'ibuffer-git)
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
 
