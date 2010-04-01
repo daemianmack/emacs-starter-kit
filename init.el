@@ -322,12 +322,14 @@
   (recenter))
 (global-set-key (kbd "M-{") (quote my-backward-paragraph))
 
-(require 'cycbuf)
-;; Shift+tab to cycle to most-recently-visited buffer in ring.
-;; Alt+Shift+tab to pop backwards through ring.
-;; Why Alt+Shift+tab is detected as C-M-y, I really don't know.
-(global-set-key [backtab] 'cycbuf-switch-to-next-buffer)
-(global-set-key [(control meta y)]  'cycbuf-switch-to-previous-buffer)
+(require 'buffer-stack)
+(global-set-key (kbd "C-q") 'buffer-stack-up)
+(global-set-key (kbd "M-C-q") 'buffer-stack-down)
+(global-set-key [(f9)] 'buffer-stack-track)
+(global-set-key [(control f9)] 'buffer-stack-untrack)
+(global-set-key [(f12)] 'buffer-stack-bury)
+(global-set-key [(control f12)] 'buffer-stack-bury-and-kill)
+
 
 ;; Built-in keybinding for dot-mode-execute (C-.) isn't detected for me.
 (global-set-key (kbd "C-M-r") 'dot-mode-execute)
