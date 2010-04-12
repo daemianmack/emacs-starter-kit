@@ -373,6 +373,33 @@
   (setq iswitchb-rescan t))
 
 (require 'ibuffer-git)
+;;; Fix junk characters in shell mode
+(add-hook 'shell-mode-hook
+          'ansi-color-for-comint-mode-on)
+
+;; Let's not have to launch this stuff manually anymore.
+(defun mysql ()
+  (interactive)
+  (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -p\n"))
+  )
+
+(defun mailserver ()
+  (interactive)
+  (progn (setf mailserver-buffer (shell "*mailserver*")) (comint-send-string (get-buffer-process mailserver-buffer) "python -m smtpd -n -c DebuggingServer localhost:1025\n"))
+  )
+
+(defun django-shell ()
+  (interactive)
+  (progn (setf django-shell-buffer (shell "*django-shell*")) (comint-send-string (get-buffer-process django-shell-buffer) "cd ~/jangoes/geck; workon geck12; python manage.py shell_plus\n"))
+  )
+
+;; ...or even one-at-a-time.
+(defun geck-shells ()
+  (interactive)
+  (mailserver)
+  (mysql)
+  (django-shell))
+
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
 
