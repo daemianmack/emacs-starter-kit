@@ -19,6 +19,7 @@
  '(recentf-max-saved-items 100)
  '(recentf-save-file "~/.emacs.d/.recentf")
  '(show-trailing-whitespace t)
+ '(sr-virtual-listing-switches "-aldp")
  '(uniquify-ask-about-buffer-names-p nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(uniquify-ignore-buffers-re nil)
