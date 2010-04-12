@@ -231,8 +231,8 @@
 
 ;; Restore a sane and non-eyeball-murdering background color for certain modes.
 ;; I want these in place but they're causing errors on launch. Figure out why.
-(set-face-background mumamo-background-chunk-submode1 nil)
-(set-face-background mumamo-background-chunk-major nil)
+;;(set-face-background mumamo-background-chunk-submode1 nil)
+;;(set-face-background mumamo-background-chunk-major nil)
 (require 'magit)
 (set-face-background 'magit-item-highlight "color-233")
 
@@ -291,7 +291,7 @@
 ;; run this toggle at startup usually.
 ;; not needed: work hackintosh with mac keyboard on iterm
 ;; needed: home macbook (!?)
-(normal-erase-is-backspace-mode)
+;;(normal-erase-is-backspace-mode)
 
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
