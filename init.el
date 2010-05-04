@@ -326,8 +326,8 @@
 (global-set-key (kbd "M-{") (quote my-backward-paragraph))
 
 (require 'buffer-stack)
-(global-set-key (kbd "C-q") 'buffer-stack-up)
-(global-set-key (kbd "M-C-q") 'buffer-stack-down)
+(global-set-key (kbd "C-z") 'buffer-stack-down)
+(global-set-key (kbd "M-C-z") 'buffer-stack-up)
 (global-set-key [(f9)] 'buffer-stack-track)
 (global-set-key [(control f9)] 'buffer-stack-untrack)
 (global-set-key [(f12)] 'buffer-stack-bury)
