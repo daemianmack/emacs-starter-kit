@@ -40,7 +40,7 @@
  '(font-lock-function-name-face ((((class color) (min-colors 88) (background light)) (:foreground "brightblue"))))
  '(header-line ((default (:background "brightblue")) (((type tty)) nil)))
  '(hi-blue-b ((((min-colors 88)) (:foreground "brightblue" :weight bold))))
- '(highlight ((((class color) (min-colors 88) (background light)) (:background "darkseagreen2" :foreground "black"))))
+ '(highlight ((((class color) (min-colors 88) (background light)) (:background "color-233"))))
  '(isearch ((((class color) (min-colors 88) (background light)) (:background "blue" :foreground "white" :underline "white" :weight extra-bold))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "red" :foreground "black" :strike-through "yellow"))))
  '(italic ((((supports :underline t)) (:underline nil))))

@@ -196,6 +196,9 @@
 (set-face-attribute 'show-paren-match-face nil 
         :weight 'normal :underline nil :overline nil :slant 'normal)
 
+(set-face-background 'region "#090909")
+(set-face-foreground 'region "#3e00f8")
+
 (set-face-foreground 'show-paren-mismatch-face "white")
 (set-face-background 'show-paren-mismatch-face "red")
 (set-face-attribute 'show-paren-mismatch-face nil 
