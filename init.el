@@ -386,6 +386,11 @@
 (add-hook 'shell-mode-hook
           'ansi-color-for-comint-mode-on)
 
+
+(require 'kill-ring-search)
+(global-set-key "\M-\C-y" 'kill-ring-search)
+
+
 ;; Let's not have to launch this stuff manually anymore.
 (defun mysql ()
   (interactive)
