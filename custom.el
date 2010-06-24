@@ -5,7 +5,6 @@
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
- '(ibuffer-formats (quote ((mark modified read-only git-status-mini " " (name 18 18 :left :elide) " " (size 9 -1 :right) " " (mode 16 16 :left :elide) " " (git-status 8 8 :left) " " filename-and-process))))
  '(large-file-warning-threshold nil)
  '(list-matching-lines-face (quote default))
  '(magit-commit-all-when-nothing-staged nil)
