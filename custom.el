@@ -56,6 +56,7 @@
  '(mode-line ((t (:background "brightblack" :foreground "white" :box (:line-width -1 :style released-button)))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))
  '(mode-line-inactive ((default (:foreground "brightblack")) (nil nil)))
+ '(mumamo-background-chunk-major ((t nil)))
  '(py-XXX-tag-face ((t (:foreground "Firebrick"))) t)
  '(region ((((class color) (min-colors 88) (background light)) (:background "brightblack"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
