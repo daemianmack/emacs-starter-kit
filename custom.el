@@ -12,7 +12,7 @@
  '(nav-bookmark-list (quote ("~/src/git/cloud-quote" "~/.emacs.d" "/tmp" "/")))
  '(nav-default-width 30)
  '(nav-follow t)
- '(nav-quickdir-list (quote ("~/src/git/cloud-quote" "~/src/git/cloud-api" "~/.emacs.d")))
+ '(nav-quickdir-list (quote ("~/src/git/cloud-quote" "~/src/git/cloud-ui" "~/.emacs.d")))
  '(nav-quickfile-list (quote ("~/dotfiles/.bashrc" "" "")))
  '(nav-quickjump-show nil)
  '(nav-widths-percentile 99)
