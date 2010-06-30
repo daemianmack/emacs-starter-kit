@@ -276,25 +276,71 @@ Many Magit faces inherit from this one by default."
 	 (concat (car seqs) delim (magit-concat-with-delim delim (cdr seqs))))))
 
 (defun magit-get (&rest keys)
-  (magit-git-string "config %s" (magit-concat-with-delim "." keys)))
+  (magit-git-string "config" (magit-concat-with-delim "." keys)))
+
+(defun magit-get-all (&rest keys)
+  (magit-git-lines "config" "--get-all" (magit-concat-with-delim "." keys)))
 
 (defun magit-set (val &rest keys)
   (if val
-      (magit-git-string "config %s %s" (magit-concat-with-delim "." keys) val)
-    (magit-git-string "config --unset %s" (magit-concat-with-delim "." keys))))
+      (magit-git-string "config" (magit-concat-with-delim "." keys) val)
+    (magit-git-string "config" "--unset" (magit-concat-with-delim "." keys))))
+
+(defun magit-remove-conflicts (alist)
+  (let ((dict (make-hash-table :test 'equal))
+	(result nil))
+    (dolist (a alist)
+      (puthash (car a) (cons (cdr a) (gethash (car a) dict))
+	       dict))
+    (maphash (lambda (key value)
+	       (if (= (length value) 1)
+		   (push (cons key (car value)) result)
+		 (let ((sub (magit-remove-conflicts
+			     (mapcar (lambda (entry)
+				       (let ((dir (directory-file-name
+						   (substring entry 0 (- (length key))))))
+					 (cons (concat (file-name-nondirectory dir) "/" key)
+					       entry)))
+				     value))))
+		   (setq result (append result sub)))))
+	     dict)
+    result))
+
+(defun magit-git-repo-p (dir)
+  (file-exists-p (expand-file-name ".git" dir)))
+
+(defun magit-list-repos* (dir level)
+  (if (magit-git-repo-p dir)
+      (list dir)
+    (apply #'append
+	   (mapcar (lambda (entry)
+		     (unless (or (string= (substring entry -3) "/..")
+				 (string= (substring entry -2) "/."))
+		       (magit-list-repos* entry (+ level 1))))
+		   (and (file-directory-p dir)
+			(< level magit-repo-dirs-depth)
+			(directory-files dir t nil t))))))
+
+(defun magit-list-repos (dirs)
+  (magit-remove-conflicts
+   (apply #'append
+	  (mapcar (lambda (dir)
+		    (mapcar #'(lambda (repo)
+				(cons (file-name-nondirectory repo)
+				      repo))
+			    (magit-list-repos* dir 0)))
+		  dirs))))
 
 (defun magit-get-top-dir (cwd)
   (let ((cwd (expand-file-name cwd)))
-    (and (file-directory-p cwd)
-	 (let* ((default-directory cwd)
-		(magit-dir
-		 (magit-git-string "rev-parse --git-dir 2>/dev/null")))
-	   (and magit-dir
-		(file-name-as-directory
-		 (or (file-name-directory magit-dir) cwd)))))))
+    (when (file-directory-p cwd)
+      (let* ((default-directory cwd)
+             (cdup (magit-git-string "rev-parse" "--show-cdup")))
+        (when cdup
+          (file-name-as-directory (expand-file-name cdup cwd)))))))
 
 (defun magit-get-ref (ref)
-  (magit-git-string "symbolic-ref -q %s" ref))
+  (magit-git-string "symbolic-ref" "-q" ref))
 
 (defun magit-get-current-branch ()
   (let* ((head (magit-get-ref "HEAD"))

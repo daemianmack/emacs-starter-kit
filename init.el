@@ -65,6 +65,7 @@
       (list auto-mode-alist magic-mode-alist))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . rainbow-mode))
 ;; Load up starter kit customizations
 
 (require 'starter-kit-defuns)
