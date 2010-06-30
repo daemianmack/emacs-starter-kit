@@ -141,7 +141,7 @@
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
 ;; post-mode if coming in via sup.
-;; (add-to-list 'auto-mode-alist '("sup\\.\\(compose\\|forward\\|reply\\|resume\\)-mode$" . post-mode))
+(add-to-list 'auto-mode-alist '("sup\\.\\(compose\\|forward\\|reply\\|resume\\)-mode$" . post-mode))
 
 ;; Copy vim's "set scroll-off=10" setting.
 ;; (require 'smooth-scrolling)
