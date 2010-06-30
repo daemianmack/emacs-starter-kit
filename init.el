@@ -102,6 +102,8 @@
 
 
 ;; My additions
+(global-hl-line-mode 1)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq bookmark-default-file (concat dotfiles-dir ".emacs.bmk"))
