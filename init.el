@@ -384,7 +384,8 @@
   (iswitchb-make-buflist iswitchb-default)
   (setq iswitchb-rescan t))
 
-(require 'ibuffer-git)
+;; (require 'ibuffer-git)
+
 ;;; Fix junk characters in shell mode
 (add-hook 'shell-mode-hook
           'ansi-color-for-comint-mode-on)

@@ -3,8 +3,8 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
- '(ibuffer-formats (quote ((mark modified read-only git-status-mini " " (name 18 18 :left :elide) " " (size 9 -1 :right) " " (mode 16 16 :left :elide) " " (git-status 8 8 :left) " " filename-and-process))))
  '(large-file-warning-threshold nil)
  '(list-matching-lines-face (quote default))
  '(magit-commit-all-when-nothing-staged nil)
@@ -56,6 +56,7 @@
  '(mode-line ((t (:background "brightblack" :foreground "white" :box (:line-width -1 :style released-button)))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))
  '(mode-line-inactive ((default (:foreground "brightblack")) (nil nil)))
+ '(mumamo-background-chunk-major ((t nil)))
  '(py-XXX-tag-face ((t (:foreground "Firebrick"))) t)
  '(region ((((class color) (min-colors 88) (background light)) (:background "brightblack"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
