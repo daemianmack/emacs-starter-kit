@@ -4,6 +4,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(global-hl-line-mode t)
+ '(grep-highlight-matches t)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  '(list-matching-lines-face (quote default))
@@ -41,6 +43,7 @@
  '(header-line ((default (:background "brightblue")) (((type tty)) nil)))
  '(hi-blue-b ((((min-colors 88)) (:foreground "brightblue" :weight bold))))
  '(highlight ((((class color) (min-colors 88) (background light)) (:background "color-233"))))
+ '(hl-line ((t (:background "color-233"))))
  '(isearch ((((class color) (min-colors 88) (background light)) (:background "blue" :foreground "white" :underline "white" :weight extra-bold))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "red" :foreground "black" :strike-through "yellow"))))
  '(italic ((((supports :underline t)) (:underline nil))))
