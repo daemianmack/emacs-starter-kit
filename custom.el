@@ -65,7 +65,7 @@
  '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)))
  '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background light)) nil)))
  '(py-XXX-tag-face ((t (:foreground "Firebrick"))) t)
- '(region ((((class color) (min-colors 88) (background light)) (:background "brightblack"))))
+ '(region ((t (:background "blue" :foreground "#dddddd"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
  '(trailing-whitespace ((((class color) (background dark)) (:background "color-234"))))
  '(underline ((((supports :underline t)) (:underline nil))))
