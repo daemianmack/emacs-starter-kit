@@ -29,6 +29,7 @@
  '(uniquify-min-dir-content 3)
  '(uniquify-separator nil)
  '(uniquify-trailing-separator-p nil))
+ '(windmove-wrap-around t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
