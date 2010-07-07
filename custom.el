@@ -7,6 +7,7 @@
  '(global-hl-line-mode t)
  '(grep-highlight-matches t)
  '(gud-gdb-command-name "gdb --annotate=1")
+ '(ispell-highlight-face (quote flyspell-incorrect))
  '(large-file-warning-threshold nil)
  '(list-matching-lines-face (quote default))
  '(magit-commit-all-when-nothing-staged nil)
