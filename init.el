@@ -405,7 +405,7 @@
 ;; Let's not have to launch this stuff manually anymore.
 (defun mysql ()
   (interactive)
-  (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -p\n"))
+  (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -u root -p geck\n"))
   )
 
 (defun mailserver ()
