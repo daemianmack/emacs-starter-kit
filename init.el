@@ -199,9 +199,6 @@
 (set-face-attribute 'show-paren-match-face nil 
         :weight 'normal :underline nil :overline nil :slant 'normal)
 
-(set-face-background 'region "#111111")
-(set-face-foreground 'region "#875fff")
-
 (set-face-foreground 'show-paren-mismatch-face "white")
 (set-face-background 'show-paren-mismatch-face "red")
 (set-face-attribute 'show-paren-mismatch-face nil 
@@ -405,7 +402,7 @@
 ;; Let's not have to launch this stuff manually anymore.
 (defun mysql ()
   (interactive)
-  (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -p\n"))
+  (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -u root -p geck\n"))
   )
 
 (defun mailserver ()
