@@ -28,7 +28,7 @@
  '(uniquify-ignore-buffers-re nil)
  '(uniquify-min-dir-content 3)
  '(uniquify-separator nil)
- '(uniquify-trailing-separator-p nil))
+ '(uniquify-trailing-separator-p nil)
  '(windmove-wrap-around t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
