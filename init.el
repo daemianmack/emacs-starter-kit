@@ -471,6 +471,11 @@
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 (global-set-key "\M-\C-s" 'my-isearch-word-at-point)
+
+;; Remapping ctrl+w; it's faster!
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-c\C-w" 'kill-region)
+
 ;;; init.el ends here
 (put 'downcase-region 'disabled nil)
 
