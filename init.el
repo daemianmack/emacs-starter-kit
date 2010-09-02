@@ -398,6 +398,9 @@
 (require 'kill-ring-search)
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
+;; (require 'sunrise-commander)
+;; (global-set-key (kbd "C-c x") 'sunrise)
+;; (add-to-list 'auto-mode-alist '("\\.srvm\\'" . sr-virtual-mode))
 
 ;; Let's not have to launch this stuff manually anymore.
 (defun mysql ()
