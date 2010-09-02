@@ -225,7 +225,7 @@
 (add-hook 'text-mode-hook 'turn-off-auto-fill)
 
 ;; bind CTRL-X P to Mozilla refresh browser
-(global-set-key (kbd "C-x p")
+(global-set-key (kbd "C-x m")
                 (lambda ()
                   (save-buffer)
                   (interactive)
