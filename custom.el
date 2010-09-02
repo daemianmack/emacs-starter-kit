@@ -42,6 +42,7 @@
  '(custom-group-tag ((((min-colors 88) (class color) (background light)) (:foreground "brightblue" :weight bold :height 1.2))))
  '(custom-variable-tag ((((min-colors 88) (class color) (background light)) (:inherit variable-pitch :foreground "brightblue" :weight bold :height 1.2))))
  '(cycbuf-current-face ((t (:background "color-52" :weight bold))))
+ '(flymake-errline ((((class color) (background light)) (:background "red" :foreground "brightwhite" :weight bold))))
  '(font-lock-function-name-face ((((class color) (min-colors 88) (background light)) (:foreground "brightblue"))))
  '(header-line ((default (:background "brightblue")) (((type tty)) nil)))
  '(hi-blue-b ((((min-colors 88)) (:foreground "brightblue" :weight bold))))
