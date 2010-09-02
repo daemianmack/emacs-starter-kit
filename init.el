@@ -475,6 +475,7 @@
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 (global-set-key "\M-\C-s" 'my-isearch-word-at-point)
 
+
 (global-set-key (kbd "C-c ,") 'tags-search)
 
 ;; Let existence of an active region determine whether we backward-kill-word, or kill said region.
