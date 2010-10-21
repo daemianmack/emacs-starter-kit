@@ -220,6 +220,7 @@
   (moz-minor-mode 1))
 
 (add-hook 'python-mode-hook 'moz-minor-mode)
+(add-hook 'python-mode-hook 'flymake-mode)
 (add-hook 'nxml-mode-hook 'moz-minor-mode)
 
 (add-hook 'text-mode-hook 'turn-off-auto-fill)
@@ -425,6 +426,7 @@
   (mysql)
   (django-shell))
 
+(load-library "flymake-cursor")
 (when (load "flymake" t)
   (defun flymake-pylint-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -440,13 +442,12 @@
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
 ;; Make sure it's not a remote buffer or flymake would not work
-    (when (not (subsetp (list (current-buffer)) (tramp-list-remote-buffers)))
       (let* ((temp-file (flymake-init-create-temp-buffer-copy
                          'flymake-create-temp-inplace))
              (local-file (file-relative-name
                           temp-file
                           (file-name-directory buffer-file-name))))
-        (list "pyflakes-2.6" (list local-file)))))
+        (list "pyflakes-2.6" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks
                               '("\\.py\\'" flymake-pyflakes-init))) 
 
