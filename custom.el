@@ -13,7 +13,7 @@
  '(list-matching-lines-face (quote default))
  '(magit-commit-all-when-nothing-staged nil)
  '(magit-process-popup-time 10)
- '(mumamo-chunk-coloring 0 t)
+ '(mumamo-chunk-coloring 0)
  '(nav-bookmark-list (quote ("~/src/git/cloud-quote" "~/.emacs.d" "/tmp" "/")))
  '(nav-default-width 30)
  '(nav-follow t)
