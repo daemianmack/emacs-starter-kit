@@ -404,6 +404,23 @@
 ;; (add-to-list 'auto-mode-alist '("\\.srvm\\'" . sr-virtual-mode))
 
 ;; Let's not have to launch this stuff manually anymore.
+(defun repl ()
+  (interactive)
+  (progn (setf repl-buffer (shell "*repl*")) (comint-send-string (get-buffer-process repl-buffer) "source .bashrc && ip\n")))
+
+(defun log ()
+  (interactive) (progn (setf log-buffer (shell "*log*")) (comint-send-string (get-buffer-process log-buffer) "tail -f /var/log/apache2/error.log\ntail -f /var/log/cloud/job.log | grep --line-buffered -v DEBUG.*SQL.*NULL"))
+
+(defun free ()
+  (interactive)
+  (progn (setf free-buffer (shell "*free*")) ))
+
+(defun work-shells ()
+  (interactive)
+  (repl)
+  (log)
+  (free))
+
 (defun mysql ()
   (interactive)
   (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -u root -p geck\n"))
