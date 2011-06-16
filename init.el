@@ -238,7 +238,7 @@
 (add-hook 'nxml-mode-hook 'zencoding-mode)
 (global-set-key (kbd "C-c [") 'zencoding-expand-line)
 (global-set-key (kbd "C-c ]") 'zencoding-preview-accept)
-
+(global-set-key (kbd "C-x C-\\") 'goto-last-change)
 ;; Restore a sane and non-eyeball-murdering background color for certain modes.
 ;; I want these in place but they're causing errors on launch. Figure out why.
 ;;(set-face-background mumamo-background-chunk-submode1 nil)
