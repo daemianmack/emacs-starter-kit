@@ -404,6 +404,11 @@
 ;; (add-to-list 'auto-mode-alist '("\\.srvm\\'" . sr-virtual-mode))
 
 ;; Let's not have to launch this stuff manually anymore.
+(defun pg ()
+  (interactive)
+  (progn (setf pg-buffer (shell "*pg*")) (comint-send-string (get-buffer-process pg-buffer) "psql -U geo geodjango\n"))
+  )
+
 (defun mysql ()
   (interactive)
   (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -u root -p geck\n"))
@@ -419,7 +424,17 @@
   (progn (setf django-shell-buffer (shell "*django-shell*")) (comint-send-string (get-buffer-process django-shell-buffer) "cd ~/jangoes/geck; workon geck12; python manage.py shell_plus\n"))
   )
 
+(defun free ()
+  (interactive)
+  (progn (setf free-shell-buffer (shell "*free*")))
+  )
+
 ;; ...or even one-at-a-time.
+(defun shells ()
+  (interactive)
+  (pg)
+  (django-shell))
+
 (defun geck-shells ()
   (interactive)
   (mailserver)
