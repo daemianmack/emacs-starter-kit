@@ -508,3 +508,9 @@
 (put 'scroll-left 'disabled nil)
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+
+; Like Alt-m but to point after = sign.
+(fset 'back-to-operand
+   "\C-a\C-s=\C-m\C-[f\C-[b")
+(global-set-key (kbd "C-c m") 'back-to-operand)
+
