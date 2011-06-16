@@ -29,6 +29,9 @@
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 (setq custom-file (concat dotfiles-dir "custom.el"))
 
+;; Sex.
+(setq c-subword-mode 1)
+
 ;; These should be loaded on startup rather than autoloaded on demand
 ;; since they are likely to be used in every session
 
