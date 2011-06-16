@@ -215,6 +215,10 @@
 (defun javascript-custom-setup ()
   (moz-minor-mode 1))
 
+;;; MacOS X specific stuff
+(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'hyper)
+
 (add-hook 'javascript-mode-hook 'javascript-custom-setup)
 (defun javascript-custom-setup ()
   (moz-minor-mode 1))
@@ -514,3 +518,5 @@
    "\C-a\C-s=\C-m\C-[f\C-[b")
 (global-set-key (kbd "C-c m") 'back-to-operand)
 
+; Makes region-killing work in graphical emacs.
+(defun region-active-p ()  (and transient-mark-mode mark-active))
