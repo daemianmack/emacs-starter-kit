@@ -23,7 +23,7 @@
 
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/jabber"))
+(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/feature-mode"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 (setq package-user-dir (concat dotfiles-dir "elpa"))
@@ -506,3 +506,5 @@
 (put 'downcase-region 'disabled nil)
 
 (put 'scroll-left 'disabled nil)
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
