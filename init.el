@@ -24,6 +24,7 @@
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit"))
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/feature-mode"))
+(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/magit"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 (setq package-user-dir (concat dotfiles-dir "elpa"))
@@ -415,6 +416,22 @@
   (interactive)
   (progn (setf pg-buffer (shell "*pg*")) (comint-send-string (get-buffer-process pg-buffer) "psql -U geo geodjango\n"))
   )
+(defun repl ()
+  (interactive)
+  (progn (setf repl-buffer (shell "*repl*")) (comint-send-string (get-buffer-process repl-buffer) "source .bashrc && ip\n")))
+
+(defun log ()
+  (interactive) (progn (setf log-buffer (shell "*log*")) (comint-send-string (get-buffer-process log-buffer) "tail -f /var/log/apache2/error.log\ntail -f /var/log/cloud/job.log | grep --line-buffered -v DEBUG.*SQL.*NULL")))
+
+(defun free ()
+  (interactive)
+  (progn (setf free-buffer (shell "*free*")) ))
+
+(defun work-shells ()
+  (interactive)
+  (repl)
+  (log)
+  (free))
 
 (defun mysql ()
   (interactive)
