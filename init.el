@@ -510,6 +510,17 @@
 (put 'downcase-region 'disabled nil)
 
 (put 'scroll-left 'disabled nil)
+
+(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
+;; (require 'evernote-mode)
+;; (global-set-key (kbd "C-c ec") 'evernote-create-note)
+;; (global-set-key (kbd "C-c eo") 'evernote-open-note)
+;; (global-set-key (kbd "C-c es") 'evernote-search-notes)
+;; (global-set-key (kbd "C-c eS") 'evernote-do-saved-search)
+;; (global-set-key (kbd "C-c ew") 'evernote-write-note)
+;; (global-set-key (kbd "C-c ep") 'evernote-post-region)
+;; (global-set-key (kbd "C-c eb") 'evernote-browser)
+
 ;; (require 'slime)
 ;; (slime-setup)
 ;; (setq slime-use-autodoc-mode nil) ;; Workaround for Clojure 1.3. See http://groups.google.com/group/clojure/browse_thread/thread/692c3a93bbdf740c?tvc=2&pli=1
