@@ -510,6 +510,23 @@
 (put 'downcase-region 'disabled nil)
 
 (put 'scroll-left 'disabled nil)
+;; (require 'slime)
+;; (slime-setup)
+;; (setq slime-use-autodoc-mode nil) ;; Workaround for Clojure 1.3. See http://groups.google.com/group/clojure/browse_thread/thread/692c3a93bbdf740c?tvc=2&pli=1
+
+;; ;; paredit
+;; (require 'paredit)
+;; (require 'highlight-parentheses)
+;; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+;; (add-hook 'clojure-mode-hook
+;;           (lambda ()
+;;             (highlight-parentheses-mode t)
+;;             (paredit-mode t)
+;;             (slime-mode t)))
+;; (setq hl-paren-colors
+;;       '("red1" "orange1" "yellow1" "green1" "cyan1"
+;;         "slateblue1" "magenta1" "purple"))
+
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
