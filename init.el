@@ -527,6 +527,13 @@
 ;;       '("red1" "orange1" "yellow1" "green1" "cyan1"
 ;;         "slateblue1" "magenta1" "purple"))
 
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c M-x") 'execute-extended-command)
+
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
