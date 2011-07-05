@@ -5,6 +5,7 @@
   ;; If there is more than one, they won't work right.
  '(buffer-stack-untracked (quote ("KILL" "*Compile-Log*" "*Ibuffer*" "*Compile-Log-Show*" "*Group*" "*Completions*" "*Kill Ring*" "*Messages*" "*nav*")))
  '(column-number-mode t)
+ '(display-time-day-and-date t)
  '(global-hl-line-mode t)
  '(grep-highlight-matches t)
  '(gud-gdb-command-name "gdb --annotate=1")
@@ -43,6 +44,7 @@
  '(custom-group-tag ((((min-colors 88) (class color) (background light)) (:foreground "brightblue" :weight bold :height 1.2))))
  '(custom-variable-tag ((((min-colors 88) (class color) (background light)) (:inherit variable-pitch :foreground "brightblue" :weight bold :height 1.2))))
  '(cycbuf-current-face ((t (:background "color-52" :weight bold))))
+ '(egoge-display-time ((((type tty)) (:background "black" :foreground "color-130"))))
  '(flymake-errline ((((class color) (background light)) (:background "red" :foreground "brightwhite" :weight bold))))
  '(font-lock-function-name-face ((((class color) (min-colors 88) (background light)) (:foreground "brightblue"))))
  '(header-line ((default (:background "brightblue")) (((type tty)) nil)))

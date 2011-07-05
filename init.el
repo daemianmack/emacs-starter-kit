@@ -575,3 +575,19 @@
 
 ; Makes region-killing work in graphical emacs.
 (defun region-active-p ()  (and transient-mark-mode mark-active))
+
+;; clock in modeline
+(display-time-mode 1)
+(defface egoge-display-time
+  '((((type x w32 mac))
+     ;; #060525 is the background colour of my default face.
+     (:foreground "#ffaa00" :inherit bold))
+    (((type tty))
+     (:foreground "color-130")))
+  "Face used to display the time in the mode line.")
+;; This causes the current time in the mode line to be displayed in
+;; goge-display-time-face' to make it stand out visually.
+(setq display-time-string-forms
+      '((propertize (concat " " dayname " " monthname " " day ", " 12-hours ":" minutes " ")
+                    'face 'egoge-display-time)))
+
