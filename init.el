@@ -591,3 +591,4 @@
       '((propertize (concat " " dayname " " monthname " " day ", " 12-hours ":" minutes " ")
                     'face 'egoge-display-time)))
 
+(setq sentence-end-double-space nil) ;period single space ends sentence
