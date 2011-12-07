@@ -592,3 +592,7 @@
                     'face 'egoge-display-time)))
 
 (setq sentence-end-double-space nil) ;period single space ends sentence
+;; Disable all window erroring.
+(setq redisplay-dont-pause t)
+(setq visible-bell nil)
+(setq ring-bell-function(lambda nil (message "")))
