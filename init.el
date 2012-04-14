@@ -612,3 +612,10 @@
                       ))))
         )
       )
+;; Make shift-up work.
+(define-key input-decode-map "\e[1;2A" [S-up])
+;; Unnecessary for shift-up at least from a Darwin console.
+;; (if (equal "xterm" (tty-type))
+;;     (define-key input-decode-map "\e[1;2A" [S-up]))
+;; (defadvice terminal-init-xterm (after select-shift-up activate)
+;;       (define-key input-decode-map "\e[1;2A" [S-up]))
