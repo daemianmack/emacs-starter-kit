@@ -599,3 +599,16 @@
 (setq redisplay-dont-pause t)
 (setq visible-bell nil)
 (setq ring-bell-function(lambda nil (message "")))
+(setq org-agenda-custom-commands
+      '(("H" "Home Lists"
+         ((agenda)
+          (tags-todo "DONE")))
+        
+        ("D" "Daily Action List"
+         ((agenda "" ((org-agenda-ndays 7)
+                      (org-agenda-sorting-strategy
+                       (quote ((agenda time-up priority-down tag-up) )))
+                      (org-deadline-warning-days 0)
+                      ))))
+        )
+      )
