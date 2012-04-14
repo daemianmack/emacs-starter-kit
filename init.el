@@ -544,7 +544,10 @@
 ;; (global-set-key (kbd "C-c ep") 'evernote-post-region)
 ;; (global-set-key (kbd "C-c eb") 'evernote-browser)
 
-;; (require 'slime)
+(require 'clojure-mode)
+(defun turn-on-paredit () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'turn-on-paredit)
+(require 'slime)
 ;; (slime-setup)
 ;; (setq slime-use-autodoc-mode nil) ;; Workaround for Clojure 1.3. See http://groups.google.com/group/clojure/browse_thread/thread/692c3a93bbdf740c?tvc=2&pli=1
 
