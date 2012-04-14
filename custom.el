@@ -76,6 +76,7 @@
  '(magit-diff-hunk-header ((t (:inherit magit-header :background "blue" :foreground "white" :slant italic))))
  '(magit-diff-none ((t (:foreground "color-235"))))
  '(magit-header ((t (:foreground "color-45"))))
+ '(magit-item-highlight ((t (:background "black"))))
  '(magit-section-title ((t (:inherit magit-header :foreground "red" :weight bold))))
  '(match ((nil (:background "black" :foreground "white" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "brightblue"))))
