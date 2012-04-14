@@ -70,6 +70,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.org" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.css.*" . rainbow-mode))
+(add-to-list 'auto-mode-alist '("\\.js.*" . espresso-mode))
+(add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
 ;; Load up starter kit customizations
 
 (require 'starter-kit-defuns)
@@ -229,6 +231,7 @@
 
 (add-hook 'python-mode-hook 'moz-minor-mode)
 (add-hook 'python-mode-hook 'flymake-mode)
+(add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'nxml-mode-hook 'moz-minor-mode)
 
 (add-hook 'text-mode-hook 'turn-off-auto-fill)
