@@ -96,6 +96,7 @@
  '(region ((t (:background "blue" :foreground "white"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1" :foreground "black"))))
  '(set-cursor-color (quote black))
+ '(show-paren-match ((t (:background "#444444" :foreground "black" :overline nil :underline nil :slant normal :weight normal))))
  '(trailing-whitespace ((((class color) (background dark)) (:background "color-234"))))
  '(underline ((((supports :underline t)) (:underline nil))))
  '(vertical-border ((((type tty)) (:background "black" :foreground "brightblack")))))
