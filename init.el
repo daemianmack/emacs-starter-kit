@@ -622,3 +622,7 @@
 ;;     (define-key input-decode-map "\e[1;2A" [S-up]))
 ;; (defadvice terminal-init-xterm (after select-shift-up activate)
 ;;       (define-key input-decode-map "\e[1;2A" [S-up]))
+
+(jiggle-mode 1)
+(setq jiggle-how-many-times 2)
+(setq jiggle-sit-for-how-long .1)
