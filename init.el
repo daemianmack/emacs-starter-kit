@@ -627,3 +627,5 @@
 (setq jiggle-how-many-times 2)
 (setq jiggle-sit-for-how-long .01)
 
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
