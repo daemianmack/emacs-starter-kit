@@ -625,4 +625,5 @@
 
 (jiggle-mode 1)
 (setq jiggle-how-many-times 2)
-(setq jiggle-sit-for-how-long .1)
+(setq jiggle-sit-for-how-long .01)
+
