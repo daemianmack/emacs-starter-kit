@@ -629,3 +629,8 @@
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
+
+;; Make shift-up work instead of triggering "<select> is undefined".
+(defadvice terminal-init-xterm (after select-shift-up activate)
+      (define-key input-decode-map "\e[1;2A" [S-up])q)
+
