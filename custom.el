@@ -56,6 +56,7 @@
  '(uniquify-min-dir-content 3)
  '(uniquify-separator nil)
  '(uniquify-trailing-separator-p nil)
+ '(which-function-mode t)
  '(windmove-wrap-around t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -120,4 +121,5 @@
  '(show-paren-match ((t (:background "#444444" :foreground "black" :overline nil :underline nil :slant normal :weight normal))))
  '(trailing-whitespace ((((class color) (background dark)) (:background "color-234"))))
  '(underline ((((supports :underline t)) (:underline nil))))
- '(vertical-border ((((type tty)) (:background "black" :foreground "brightblack")))))
+ '(vertical-border ((((type tty)) (:background "black" :foreground "brightblack"))))
+ '(which-func ((t (:inherit magit-item-highlight)))))
