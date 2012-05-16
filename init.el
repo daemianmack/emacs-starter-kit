@@ -662,3 +662,6 @@
 (defadvice terminal-init-xterm (after select-shift-up activate)
       (define-key input-decode-map "\e[1;2A" [S-up])q)
 
+
+;; After C-u C-SPC to pop mark off mark-ring, successive calls can just use C-SPC.
+(setq set-mark-command-repeat-pop t)
