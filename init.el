@@ -663,5 +663,7 @@
       (define-key input-decode-map "\e[1;2A" [S-up])q)
 
 
-;; After C-u C-SPC to pop mark off mark-ring, successive calls can just use C-SPC.
+;; If you set set-mark-command-repeat-pop to non-nil, then immediately
+;; after you type C-u C-<SPC>, you can type C-<SPC> instead of C-u
+;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
