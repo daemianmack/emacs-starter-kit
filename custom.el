@@ -1,21 +1,22 @@
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(buffer-stack-untracked (quote ("KILL" "*Compile-Log*" "*Ibuffer*" "*Compile-Log-Show*" "*Group*" "*Completions*" "*Kill Ring*" "*Messages*" "*nav*")))
  '(column-number-mode t)
  '(display-time-day-and-date t)
  '(global-hl-line-mode t)
  '(grep-highlight-matches t)
  '(gud-gdb-command-name "gdb --annotate=1")
+ '(hl-paren-background-colors (quote ("white")))
  '(ispell-highlight-face (quote flyspell-incorrect))
  '(large-file-warning-threshold nil)
  '(list-matching-lines-face (quote default))
  '(magit-commit-all-when-nothing-staged nil)
  '(magit-process-popup-time 10)
  '(mode-line-in-non-selected-windows nil)
- '(mumamo-chunk-coloring 0 t)
+ '(mumamo-chunk-coloring 0)
  '(nav-bookmark-list (quote ("~/src/git/cloud-quote" "~/.emacs.d" "/tmp" "/")))
  '(nav-default-width 30)
  '(nav-follow t)
