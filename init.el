@@ -807,7 +807,7 @@
 
 ;; Make shift-up work instead of triggering "<select> is undefined".
 (defadvice terminal-init-xterm (after select-shift-up activate)
-      (define-key input-decode-map "\e[1;2A" [S-up])q)
+      (define-key input-decode-map "\e[1;2A" [S-up]))
 
 
 ;; If you set set-mark-command-repeat-pop to non-nil, then immediately
