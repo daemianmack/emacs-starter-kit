@@ -814,3 +814,10 @@
 ;; after you type C-u C-<SPC>, you can type C-<SPC> instead of C-u
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
+
+
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+(global-highlight-parentheses-mode t)
