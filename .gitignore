@@ -4,7 +4,6 @@ loaddefs.el
 places
 url/cookies
 elpa-to-submit/jabber/jabber.info
-elpa-to-submit/nxhtml/*
 thumbs/*
 oddmuse/*
 .newsrc-dribble

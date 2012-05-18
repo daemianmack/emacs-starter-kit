@@ -1,8 +1,8 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(buffer-stack-untracked (quote ("KILL" "*Compile-Log*" "*Ibuffer*" "*Compile-Log-Show*" "*Group*" "*Completions*" "*Kill Ring*" "*Messages*" "*nav*")))
  '(column-number-mode t)
  '(display-time-day-and-date t)
@@ -58,12 +58,13 @@
  '(uniquify-min-dir-content 3)
  '(uniquify-separator nil)
  '(uniquify-trailing-separator-p nil)
+ '(which-function-mode t)
  '(windmove-wrap-around t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(button ((((supports :underline t)) nil)))
  '(comint-highlight-prompt ((t (:foreground "brightblue"))))
  '(custom-comment-tag ((((class color) (background light)) (:foreground "brightblue"))))
@@ -122,4 +123,5 @@
  '(show-paren-match ((t (:background "#444444" :foreground "black" :overline nil :underline nil :slant normal :weight normal))))
  '(trailing-whitespace ((((class color) (background dark)) (:background "color-234"))))
  '(underline ((((supports :underline t)) (:underline nil))))
- '(vertical-border ((((type tty)) (:background "black" :foreground "brightblack")))))
+ '(vertical-border ((((type tty)) (:background "black" :foreground "brightblack"))))
+ '(which-func ((t (:inherit magit-item-highlight)))))

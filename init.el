@@ -338,6 +338,34 @@
 ;; Override keystroke for query-replace. I almost always want the -regexp version instead.
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 
+(defun my-previous-10 ()
+  (interactive)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter)
+  (previous-line) (recenter))
+(global-set-key (kbd "ESC <up>") 'my-previous-10)
+
+(defun my-forward-10 ()
+  (interactive)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter)
+  (forward-line) (recenter))
+(global-set-key (kbd "ESC <down>") 'my-forward-10)
+
 (defun my-forward-paragraph ()
   (interactive)
   (forward-paragraph)
@@ -630,7 +658,6 @@
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
-
 (setq-default
  header-line-format
  '(; Position, including warning for 80 columns
@@ -778,4 +805,12 @@
     :foreground "black" :background "#eab700")
 
 
+;; Make shift-up work instead of triggering "<select> is undefined".
+(defadvice terminal-init-xterm (after select-shift-up activate)
+      (define-key input-decode-map "\e[1;2A" [S-up])q)
 
+
+;; If you set set-mark-command-repeat-pop to non-nil, then immediately
+;; after you type C-u C-<SPC>, you can type C-<SPC> instead of C-u
+;; C-<SPC> to cycle through the mark ring.
+(setq set-mark-command-repeat-pop t)
