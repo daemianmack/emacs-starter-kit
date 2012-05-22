@@ -118,9 +118,9 @@
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
 
-(setq py-python-command-args '("-colors" "Linux"))
-(setq ipython-command "/usr/bin/ipython")
 (require 'ipython)
+(setq py-python-command-args '("--colors=NoColor"))
+(setq ipython-command "/usr/bin/ipython")
 
 (require 'sqlplus)
 
