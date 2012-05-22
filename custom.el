@@ -63,10 +63,10 @@
  '(which-function-mode t)
  '(windmove-wrap-around t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(button ((((supports :underline t)) nil)))
  '(comint-highlight-prompt ((t (:foreground "brightblue"))))
  '(custom-comment-tag ((((class color) (background light)) (:foreground "brightblue"))))
@@ -86,6 +86,7 @@
  '(hi-blue-b ((((min-colors 88)) (:foreground "brightblue" :weight bold))))
  '(highlight ((((class color) (min-colors 88) (background light)) (:background "color-233"))))
  '(hl-line ((t (:background "color-233"))))
+ '(hl-paren-face ((t nil)) t)
  '(isearch ((((class color) (min-colors 88) (background light)) (:background "blue" :foreground "white" :underline "white" :weight extra-bold))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "red" :foreground "black" :strike-through "yellow"))))
  '(italic ((((supports :underline t)) (:underline nil))))
