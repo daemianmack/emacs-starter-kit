@@ -651,14 +651,17 @@
  '(; Position, including warning for 80 columns
    (:propertize "%4l" face mode-line-position-face)
    ","
- (:eval (propertize "%1c" 'face
- (if (>= (current-column) 80)
- 'mode-line-80col-face
- 'mode-line-position-face)))
- ; Percentage of buffer above viewport.
- " %p "
- ; read-only or modified status
- (global-mode-string global-mode-string)))
+   (:eval (propertize "%1c" 'face
+                      (if (>= (current-column) 80)
+                          'mode-line-80col-face
+                        'mode-line-position-face)))
+   ; Percentage of buffer above viewport.
+   " %p "
+   ; read-only or modified status
+   (global-mode-string global-mode-string)
+   "   "
+   (:propertize (:eval which-func-current face mode-line-position-face)))
+ )
 
 
 (setq-default
@@ -671,15 +674,12 @@
         ((buffer-modified-p)
          (propertize " * " 'face 'mode-line-modified-face))
         (t "   ")))
-
    (:eval (propertize "%3c" 'face
                       'mode-line-80col-face
                       'mode-line-position-face))
                                         ; emacsclient [default -- keep?]
    mode-line-client
                                         ; directory and buffer/file name
-   (:propertize (:eval (shorten-directory default-directory 30))
-                face mode-line-folder-face)
    (:propertize "%b"
                 face mode-line-filename-face)
                                         ; narrow [default -- keep?]
@@ -698,32 +698,6 @@
                                         ; nyan-mode uses nyan cat as an alternative to %p
 (:eval (when nyan-mode (list (nyan-create))))
 )))
-
-;; (setq-default
-;;  mode-line-format
-;;  '(; Position, including warning for 80 columns
-;;    (:propertize (:eval (shorten-directory default-directory 30))
-;;                 face mode-line-folder-face)
-;;    (:propertize "%b"
-;;                 face mode-line-filename-face)
-;;                                         ; narrow [default -- keep?]
-;;    " %n "
-;;                                         ; mode indicators: vc, recursive edit, major mode, minor modes,
-;;                                         ; process, global
-;;    (vc-mode vc-mode)
-;;    " %["
-;;    (:propertize mode-name
-;;                 face mode-line-mode-face)
-;;    "%] "
-;;    (:eval (propertize (format-mode-line minor-mode-alist)
-;;                       'face
-;;                       'mode-line-minor-mode-face))
-;;    (:propertize mode-line-process face mode-line-process-face)
-;;    " "
-;;                                         ; nyan-mode uses nyan cat as an alternative to %p
-;;    (:eval (when nyan-mode (list (nyan-create))))
-;;    ))
-
 
 
 ;; Helper function
