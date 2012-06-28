@@ -25,6 +25,8 @@
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit"))
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/feature-mode"))
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/magit"))
+(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/mark-multiple"))
+(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/expand-region"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 (setq package-user-dir (concat dotfiles-dir "elpa"))
@@ -769,3 +771,16 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
+(require 'inline-string-rectangle)
+(global-set-key (kbd "C-x r t") 'inline-string-rectangle)
+               
+(require 'mark-more-like-this)
+(global-set-key (kbd "C-c <") 'mark-previous-like-this)
+(global-set-key (kbd "C-c >") 'mark-next-like-this)
+(global-set-key (kbd "C-M-m") 'mark-more-like-this) ; like the other two, but takes an argument (negative is previous)
+(global-set-key (kbd "C-*") 'mark-all-like-this)
+
+(require 'expand-region)
+(global-set-key (kbd "C-^") 'er/expand-region)
+
+

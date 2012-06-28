@@ -1,0 +1,6 @@
+[submodule "elpa-to-submit/mark-multiple"]
+	path = elpa-to-submit/mark-multiple
+	url = https://github.com/magnars/mark-multiple.el.git
+[submodule "elpa-to-submit/expand-region"]
+	path = elpa-to-submit/expand-region
+	url = https://github.com/magnars/expand-region.el.git
