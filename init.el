@@ -396,13 +396,17 @@
 ;; Built-in keybinding for dot-mode-execute (C-.) isn't detected for me.
 (global-set-key (kbd "C-M-r") 'dot-mode-execute)
 
-
-;; save a list of open files in ~/.emacs.desktop
 ;; save the desktop file automatically if it already exists
 ;; M-x desktop-save necessary to first create this file, auto-updates thereafter.
 (setq desktop-save 'if-exists)
-(desktop-save-mode 1)
-
+;; Automatically save and restore sessions
+(setq desktop-dirname             "~/.emacs.d"
+      desktop-base-file-name      "emacs.desktop"
+      desktop-base-lock-name      "lock"
+      desktop-path                (list desktop-dirname)
+      desktop-save                t
+      desktop-files-not-to-save   "^$" ;reload tramp paths
+      desktop-load-locked-desktop nil)
 ;; save a bunch of variables to the desktop file
 ;; for lists specify the len of the maximal saved data also
 (setq desktop-globals-to-save
@@ -419,6 +423,8 @@
                 (shell-command-history    . 50)
                 tags-file-name
                 register-alist)))
+(desktop-save-mode 1)
+
 
 ;; Hopefully this fixes the bug where having a number of similarly-named buffers open
 ;; eventually results in being unable to switch to some of them ("you have selected a deleted buffer").
