@@ -776,6 +776,11 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
+;; Saveplace
+(setq-default save-place t)
+;; Keep places in the load path
+(setq save-place-file "~/.emacs.d/.emacs-places")
+
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
                
