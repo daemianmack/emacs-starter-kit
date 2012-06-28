@@ -776,6 +776,16 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
+
+
+
+(defun vc-hg-annotate-command (file buffer &optional revision)
+  "Execute \"hg annotate\" on FILE, inserting the contents in BUFFER.
+Optional arg REVISION is a revision to annotate from."
+  (vc-hg-command buffer 0 file "annotate" "-l" "-u" "-v" "-n" "-c"
+                                                   (when revision (concat "-r" revision))))
+
+
 (defun bf-pretty-print-xml-region (begin end)
   "Pretty format XML markup in region. You need to have nxml-mode
 http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
@@ -797,6 +807,7 @@ by using nxml's indentation rules."
 (setq save-place-file "~/.emacs.d/.emacs-places")
 
 (setq uniquify-separator ":")
+
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
                
