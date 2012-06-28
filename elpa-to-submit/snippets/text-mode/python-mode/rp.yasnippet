@@ -1,3 +1,5 @@
-logger.debug(' ==================== BREAKING ==================== ')
-import rpdb2; rpdb2.start_embedded_debugger('$1')$0
-logger.debug(' ==================== FINISHED ==================== ')
+import logging
+logging.debug(' ==================== BREAKING ==================== ')
+import rpdb2; rpdb2.start_embedded_debugger('$1')
+logging.debug(' ==================== FINISHED ==================== ')
+$0
