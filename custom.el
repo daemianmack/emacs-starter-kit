@@ -107,6 +107,7 @@
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))
  '(mode-line-inactive ((default (:foreground "brightblack")) (nil nil)))
  '(monky-diff-add ((t (:background "color-232" :foreground "color-22"))))
+ '(monky-diff-none ((t (:foreground "brightblack"))))
  '(mumamo-background-chunk-major ((t nil)))
  '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background light)) nil)))
  '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)))
