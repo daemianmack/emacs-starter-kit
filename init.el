@@ -689,14 +689,14 @@
    (:eval (propertize "%3c" 'face
                       'mode-line-80col-face
                       'mode-line-position-face))
-                                        ; emacsclient [default -- keep?]
+   ; emacsclient [default -- keep?]
    mode-line-client
-                                        ; directory and buffer/file name
+   ; directory and buffer/file name
    (:propertize "%b"
                 face mode-line-filename-face)
-                                        ; narrow [default -- keep?]
+   ; narrow [default -- keep?]
    " %n "
-                                        ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
+   ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
    (vc-mode vc-mode)
    " %["
    (:propertize mode-name
@@ -707,7 +707,7 @@
           (:propertize mode-line-process
                        face mode-line-process-face)
 " "
-                                        ; nyan-mode uses nyan cat as an alternative to %p
+; nyan-mode uses nyan cat as an alternative to %p
 (:eval (when nyan-mode (list (nyan-create))))
 )))
 
@@ -723,14 +723,10 @@
 (make-face 'mode-line-process-face)
 (make-face 'mode-line-80col-face)
 
-(set-face-attribute 'mode-line nil
-    :foreground "blue" :background "gray20"
-    :inverse-video nil)
 (set-face-attribute 'mode-line-inactive nil
     :foreground "black" :background "gray20"
     :inverse-video nil
     :box '(:line-width 6 :color "gray40" :style nil))
-
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#4271ae"
@@ -742,16 +738,15 @@
     :box '(:line-width 2 :color "#ffffff"))
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
-    :foreground "gray60")
+    :foreground "black")
 (set-face-attribute 'mode-line-filename-face nil
     :inherit 'mode-line-face
-    :foreground "#eab700"
-    :weight 'bold)
+    :foreground "white")
 (set-face-attribute 'mode-line-position-face nil
     :inherit 'mode-line-face
     :family "Menlo" :height 100)
 (set-face-attribute 'mode-line-mode-face nil
-    :inherit 'mode-line-face
+                    :inherit 'mode-line-face
     :foreground "gray80")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
