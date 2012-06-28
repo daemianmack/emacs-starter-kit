@@ -27,6 +27,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/magit"))
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/mark-multiple"))
 (add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/expand-region"))
+(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/monky"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 (setq package-user-dir (concat dotfiles-dir "elpa"))
@@ -54,6 +55,9 @@
 (require 'package)
 (package-initialize)
 (require 'starter-kit-elpa)
+
+(require 'monky)
+(setq monky-process-type 'cmdserver)
 
 (load "elpa-to-submit/nxhtml/autostart")
 ;; Let's see if autoloading nxhtml this way makes it a bit nicer.
