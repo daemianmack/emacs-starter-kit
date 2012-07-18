@@ -158,7 +158,7 @@
 (add-to-list 'auto-mode-alist '("sup\\.\\(compose\\|forward\\|reply\\|resume\\)-mode$" . post-mode))
 
 ;; Copy vim's "set scroll-off=10" setting.
-;; (require 'smooth-scrolling)
+(require 'smooth-scrolling)
 
 
 ;; Provide a python compile.
