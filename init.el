@@ -56,8 +56,6 @@
 (package-initialize)
 (require 'starter-kit-elpa)
 
-(require 'workgroups)
-
 (require 'monky)
 (setq monky-process-type 'cmdserver)
 
@@ -827,11 +825,6 @@ by using nxml's indentation rules."
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 (defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
   (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
-
-(setq wg-prefix-key (kbd "C-c w"))
-(workgroups-mode 1)
-(setq wg-morph-on nil)
-(wg-load (concat dotfiles-dir "/.workgroups"))
 
 ;; vi-style %
 (defun goto-match-paren (arg)
