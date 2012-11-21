@@ -1,0 +1,1 @@
+logger.debug("============ `(buffer-name)`, `(what-line)`: values for ${1:name}: %s" % ($1,))$0
