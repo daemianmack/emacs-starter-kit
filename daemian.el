@@ -278,13 +278,13 @@
 ;; To globally enable the minor mode in *all* buffers
 (yas/global-mode)
 
-(defun my-foo ()
+(defun explain-different-quit-keys ()
   (interactive)
-  (message "Use C-x M-c to quit instead!")
+  (message "Use C-x M-c to quit instead! It's harder to hit by accident.")
   )
 
 ;; Rebind quit key and make it harder to hit. I rarely use it on purpose.
-(global-set-key "\C-x\C-c" (lambda () (interactive) (message "FOO!")))
+(global-set-key "\C-x\C-c" 'explain-different-quit-keys)
 (global-set-key "\C-x\M-c" 'save-buffers-kill-emacs)
 ;; I do, however, kill the hell out of some buffers. If I add a C- to the second keystroke, kill without confirmation.
 (global-set-key "\C-x\C-k" 'my-kill-buffer)
