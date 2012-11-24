@@ -166,18 +166,6 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
-
-;; highlight-symbol mode
-(require 'highlight-symbol)
-
-(defface highlight-symbol-face
-  '((((class color) (background light))
-     (:background "gray10"))
-    (((class color) (background dark))
-     (:background "gray90")))
-  "*Face used by `highlight-symbol-mode'."
-  :group 'highlight-symbol)
-
 ;; paren matching
 (setq show-paren-delay 0)           ; how long to wait?
 (show-paren-mode t)                 ; turn paren-mode on
