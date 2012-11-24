@@ -635,17 +635,17 @@
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "black" :background "gray20"
-    :inverse-video nil
-    :box '(:line-width 6 :color "gray40" :style nil))
+    :foreground "black" :background "gray20")
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
-    :foreground "#4271ae"
+    :foreground "#000000"
+    :background "blue"
     :box '(:line-width 2 :color "#4271ae"))
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#ffffff"
     :background "#c82829"
+    :weight 'bold
     :box '(:line-width 2 :color "#ffffff"))
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
@@ -654,21 +654,20 @@
     :inherit 'mode-line-face
     :foreground "white")
 (set-face-attribute 'mode-line-position-face nil
-    :inherit 'mode-line-face
-    :family "Menlo" :height 100)
+                    :inherit 'mode-line-face)
 (set-face-attribute 'mode-line-mode-face nil
                     :inherit 'mode-line-face
     :foreground "gray80")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
-    :foreground "gray40"
+    :foreground "color-88"
     :height 110)
 (set-face-attribute 'mode-line-process-face nil
     :inherit 'mode-line-face
     :foreground "#718c00")
 (set-face-attribute 'mode-line-80col-face nil
     :inherit 'mode-line-position-face
-    :foreground "black" :background "#eab700")
+    :foreground "#000000" :background "yellow" :weight 'bold)
 
 
 ;; Make shift-up work instead of triggering "<select> is undefined".
