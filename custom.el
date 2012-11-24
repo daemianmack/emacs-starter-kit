@@ -29,6 +29,7 @@
  '(grep-highlight-matches t)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(hl-line-face (quote hl-line))
+ '(hippie-expand-try-functions-list (quote (try-expand-dabbrev try-expand-line try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list)))
  '(hl-paren-background-colors (quote ("color-57")))
  '(hl-paren-colors (quote ("brightwhite" "IndianRed1" "IndianRed3" "IndianRed4")))
  '(ispell-highlight-face (quote flyspell-incorrect))
