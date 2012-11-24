@@ -2,3 +2,17 @@
 .DS_Store
 starter-kit-2.*
 *.tar
+
+backups/
+loaddefs.el
+places
+url/cookies
+\#*
+/.autosaves*
+*.elc
+/.recentf
+emacs.desktop
+eshell/history
+lock
+.emacs-places
+.smex-items
