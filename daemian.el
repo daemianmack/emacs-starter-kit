@@ -595,9 +595,6 @@
         ((buffer-modified-p)
          (propertize "  !  " 'face 'mode-line-modified-face))
         (t "   ")))
-   (:eval (propertize "%3c" 'face
-                      'mode-line-80col-face
-                      'mode-line-position-face))
    ; emacsclient [default -- keep?]
    mode-line-client
    ; directory and buffer/file name
