@@ -589,13 +589,11 @@
 
 (setq-default
  mode-line-format
- '(; Position, including warning for 80 columns
-    " "
- (:eval
+ '((:eval
   (cond (buffer-read-only
-         (propertize "RO " 'face 'mode-line-read-only-face))
+         (propertize "  X  " 'face 'mode-line-read-only-face))
         ((buffer-modified-p)
-         (propertize " * " 'face 'mode-line-modified-face))
+         (propertize "  !  " 'face 'mode-line-modified-face))
         (t "   ")))
    (:eval (propertize "%3c" 'face
                       'mode-line-80col-face
