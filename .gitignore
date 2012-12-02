@@ -16,3 +16,4 @@ eshell/history
 lock
 .emacs-places
 .smex-items
+/.breadcrumb
