@@ -709,3 +709,6 @@ vi style of % jumping to matching brace."
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
 (global-set-key (kbd "C-x g") 'magit-status)
+
+(require 'desktop)
+(desktop-read)
