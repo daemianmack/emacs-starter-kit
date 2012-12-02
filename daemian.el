@@ -16,10 +16,10 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Load path etc.
 
 (setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
+                     (or (buffer-file-name) load-file-name)))
+
 
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "elpa"))
@@ -36,7 +36,7 @@
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 (setq custom-file (concat dotfiles-dir "custom.el"))
 
-;; Sex.
+;; Treat camelCasedWords as camel_cased_words.
 (global-subword-mode 1)
 
 ;; These should be loaded on startup rather than autoloaded on demand
@@ -64,8 +64,8 @@
       (list auto-mode-alist magic-mode-alist))
 
 (add-to-list 'auto-mode-alist '("\\.org" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.css.*" . rainbow-mode))
-(add-to-list 'auto-mode-alist '("\\.js.*" . espresso-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\.*" . rainbow-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\.*" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
 ;; Load up starter kit customizations
 
@@ -81,7 +81,6 @@
 (require 'starter-kit-lisp)
 (require 'starter-kit-ruby)
 
-;; (regen-autoloads)
 (load custom-file 'noerror)
 
 ;; Disable auto-fill-mode.
@@ -147,7 +146,7 @@
 (local-set-key "\C-c\C-c" 'my-compile)
 
 (defun my-kill-buffer ()
-  "Just kill the current buffer without asking, unless of course it's a modified file"
+  "Just kill the current buffer without asking, unless it's a modified file"
   (interactive)
   (kill-buffer (current-buffer)))
 
@@ -163,7 +162,6 @@
 
 (setq auto-save-list-file-prefix
       (concat user-temporary-file-directory ".auto-saves-"))
-
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
@@ -226,13 +224,12 @@
 ;; I want these in place but they're causing errors on launch. Figure out why.
 ;;(set-face-background mumamo-background-chunk-submode1 nil)
 ;;(set-face-background mumamo-background-chunk-major nil)
+
 (require 'magit)
 (set-face-background 'magit-item-highlight "color-233")
 
 
 (require 'breadcrumb)
-
-;; bookmark.el
 (global-set-key [(control x) (j)]       'bc-set)            ;; Set bookmark.
 (global-set-key [(meta j)]              'bc-previous)       ;; M-j for jump to previous
 (global-set-key [(shift meta j)]        'bc-next)           ;; Shift-M-j for jump to next
@@ -246,7 +243,6 @@
 (global-set-key (kbd "M-[ c") 'windmove-right)
 (global-set-key (kbd "M-[ a") 'windmove-up)
 (global-set-key (kbd "M-[ b") 'windmove-down)
-
 
 ;; When I'm working from an OSX keyboard, make the delete key work the
 ;; way I'm used to everywhere else. That is, delete backward, and
@@ -319,7 +315,6 @@
   (dotimes (number 10)
     (forward-line) (recenter)))
 (global-set-key (kbd "ESC <down>") 'my-forward-10)
-
 (defun my-forward-paragraph ()
   (interactive)
   (forward-paragraph)
