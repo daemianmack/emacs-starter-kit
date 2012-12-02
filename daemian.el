@@ -22,11 +22,12 @@
                     (or (buffer-file-name) load-file-name)))
 
 (add-to-list 'load-path dotfiles-dir)
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/feature-mode"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/magit"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/mark-multiple"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit/expand-region"))
+(add-to-list 'load-path (concat dotfiles-dir "elpa"))
+(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit"))
+(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/feature-mode"))
+(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/magit"))
+(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/mark-multiple"))
+(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/expand-region"))
 
 ;; Why is this necessary?
 (add-to-list 'load-path (concat dotfiles-dir "/elpa/clojure-mode-1.11.5/"))
@@ -152,7 +153,7 @@
 
 ;; Move auto-save and backup files elsewhere.
 (defvar user-temporary-file-directory
-  (setq temporary-file-directory "~/.emacs.d/.autosaves"))
+  (setq temporary-file-directory (concat dotfiles-dir ".autosaves")))
 
 (make-directory user-temporary-file-directory t)
 (setq backup-by-copying t)
@@ -261,7 +262,7 @@
 (set-face-background 'yas/field-highlight-face "color-56")
 (set-face-foreground 'yas/field-debug-face "#222222")
 
-(setq yas/root-directory "~/.emacs.d/elpa-to-submit/snippets")
+(setq yas/root-directory (concat dotfiles-dir "/elpa-to-submit/snippets"))
 (yas/load-directory yas/root-directory)
 ;; To globally enable the minor mode in *all* buffers
 (yas/global-mode)
@@ -701,7 +702,7 @@ by using nxml's indentation rules."
 ;; Saveplace
 (setq-default save-place t)
 ;; Keep places in the load path
-(setq save-place-file "~/.emacs.d/.emacs-places")
+(setq save-place-file (concat dotfiles-dir ".emacs-places"))
 
 (setq uniquify-separator ":")
 
