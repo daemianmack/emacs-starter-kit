@@ -29,8 +29,13 @@
 (add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/mark-multiple"))
 (add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/expand-region"))
 
-;; Why is this necessary?
-(add-to-list 'load-path (concat dotfiles-dir "/elpa/clojure-mode-1.11.5/"))
+
+(let ((default-directory (concat dotfiles-dir "elpa")))
+  (setq load-path
+        (append
+         (let ((load-path (copy-sequence load-path))) ;; Shadow
+           (normal-top-level-add-subdirs-to-load-path))
+         load-path)))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 (setq package-user-dir (concat dotfiles-dir "elpa"))
@@ -41,7 +46,6 @@
 
 ;; These should be loaded on startup rather than autoloaded on demand
 ;; since they are likely to be used in every session
-
 (require 'cl)
 (require 'saveplace)
 (require 'ffap)
@@ -67,19 +71,6 @@
 (add-to-list 'auto-mode-alist '("\\.css\\.*" . rainbow-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
-;; Load up starter kit customizations
-
-
-;; Figure out how to add all child dirs of ./elpa/ to load-path so we
-;; can nix this.
-(add-to-list 'load-path (concat dotfiles-dir "/elpa/starter-kit-bindings-2.0.2/"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa/starter-kit-lisp-2.0.3/"))
-(add-to-list 'load-path (concat dotfiles-dir "/elpa/starter-kit-ruby-2.0.3/"))
-
-(require 'starter-kit-defuns)
-(require 'starter-kit-bindings)
-(require 'starter-kit-lisp)
-(require 'starter-kit-ruby)
 
 (load custom-file 'noerror)
 
@@ -105,7 +96,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq bookmark-default-file (concat dotfiles-dir ".emacs.bmk"))
-
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
