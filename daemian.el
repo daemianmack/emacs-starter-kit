@@ -41,6 +41,8 @@
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 (setq custom-file (concat dotfiles-dir "custom.el"))
 
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
+
 ;; Treat camelCasedWords as camel_cased_words.
 (global-subword-mode 1)
 
@@ -75,8 +77,6 @@
 (if (file-exists-p system-specific-config) (load system-specific-config))
 (if (file-exists-p user-specific-dir)
   (mapc #'load (directory-files user-specific-dir nil ".*el$")))
-
-(global-hl-line-mode 1)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -673,3 +673,4 @@ vi style of % jumping to matching brace."
 
 (require 'desktop)
 (desktop-read)
+(require 'hlinum)
