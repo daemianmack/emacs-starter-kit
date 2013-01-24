@@ -17,3 +17,4 @@ lock
 .emacs-places
 .smex-items
 /.breadcrumb
+elpa/
