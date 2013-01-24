@@ -156,14 +156,6 @@
 (require 'nav)
 (require 'python-mode)
 
-;; mozilla-emacs key bindings
-
-(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
-(add-hook 'javascript-mode-hook 'javascript-custom-setup)
-
-(defun javascript-custom-setup ()
-  (moz-minor-mode 1))
-
 ;;; MacOS X specific stuff
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'hyper)
@@ -224,16 +216,6 @@
 ;; oddly this is now necessary directly on kimjung...
 (global-set-key (kbd "C-M-d") (quote backward-kill-word))
 
-;; when is this necessary?
-;; from hackintosh to kimjun under screen/screen and term xterm-256color
-;; global--key [(control d)]       'delete-char)            ;; s
-
-;; Now that I do most of my work from an OSX keyboard, I don't need to
-;; run this toggle at startup usually.
-;; not needed: work hackintosh with mac keyboard on iterm
-;; needed: home macbook (!?)
-;;(normal-erase-is-backspace-mode)
-
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
 
@@ -282,20 +264,6 @@
 (global-set-key [(f12)] 'buffer-stack-bury)
 (global-set-key [(control f12)] 'buffer-stack-bury-and-kill)
 
-;; ;; Hopefully this fixes the bug where having a number of similarly-named buffers open
-;; ;; eventually results in being unable to switch to some of them ("you have selected a deleted buffer").
-;; (defadvice iswitchb-kill-buffer (after rescan-after-kill activate)
-;;   "*Regenerate the list of matching buffer names after a kill.
-;;     Necessary if using niquify' with niquify-after-kill-buffer-p'
-;;     set to non-nil."
-;;   (setq iswitchb-buflist iswitchb-matches)
-;;   (iswitchb-rescan))
-;; (defun iswitchb-rescan ()
-;;   "*Regenerate the list of matching buffer names."
-;;   (interactive)
-;;   (iswitchb-make-buflist iswitchb-default)
-;;   (setq iswitchb-rescan t))
-
 ;;; Fix junk characters in shell mode
 (add-hook 'shell-mode-hook
           'ansi-color-for-comint-mode-on)
@@ -304,64 +272,6 @@
 (require 'kill-ring-search)
 (require 'browse-kill-ring)
 (global-set-key "\M-\C-y" 'kill-ring-search)
-
-(require 'sunrise-commander)
-;; (global-set-key (kbd "C-c x") 'sunrise)
-;; (add-to-list 'auto-mode-alist '("\\.srvm\\'" . sr-virtual-mode))
-
-;; Let's not have to launch this stuff manually anymore.
-(defun pg ()
-  (interactive)
-  (progn (setf pg-buffer (shell "*pg*")) (comint-send-string (get-buffer-process pg-buffer) "psql -U geo geodjango\n"))
-  )
-(defun repl ()
-  (interactive)
-  (progn (setf repl-buffer (shell "*repl*")) (comint-send-string (get-buffer-process repl-buffer) "source .bashrc && ip\n")))
-
-(defun log ()
-  (interactive) (progn (setf log-buffer (shell "*log*")) (comint-send-string (get-buffer-process log-buffer) "tail -f /var/log/apache2/error.log\ntail -f /var/log/cloud/job.log | grep --line-buffered -v DEBUG.*SQL.*NULL")))
-
-(defun free ()
-  (interactive)
-  (progn (setf free-buffer (shell "*free*")) ))
-
-(defun work-shells ()
-  (interactive)
-  (repl)
-  (log)
-  (free))
-
-(defun mysql ()
-  (interactive)
-  (progn (setf mysql-buffer (shell "*mysql*")) (comint-send-string (get-buffer-process mysql-buffer) "mysql -u root -p geck\n"))
-  )
-
-(defun mailserver ()
-  (interactive)
-  (progn (setf mailserver-buffer (shell "*mailserver*")) (comint-send-string (get-buffer-process mailserver-buffer) "python -m smtpd -n -c DebuggingServer localhost:1025\n"))
-  )
-
-(defun django-shell ()
-  (interactive)
-  (progn (setf django-shell-buffer (shell "*django-shell*")) (comint-send-string (get-buffer-process django-shell-buffer) "cd ~/jangoes/geck; workon geck12; python manage.py shell_plus\n"))
-  )
-
-(defun free ()
-  (interactive)
-  (progn (setf free-shell-buffer (shell "*free*")))
-  )
-
-;; ...or even one-at-a-time.
-(defun shells ()
-  (interactive)
-  (pg)
-  (django-shell))
-
-(defun geck-shells ()
-  (interactive)
-  (mailserver)
-  (mysql)
-  (django-shell))
 
 (require 'flymake-cursor)
 (when (load "flymake" t)
@@ -412,40 +322,10 @@
     (backward-kill-word arg)))
 
 (global-set-key (kbd "C-w") 'backward-kill-word-or-kill-region)
-;;; init.el ends here
-(put 'downcase-region 'disabled nil)
-
-(put 'scroll-left 'disabled nil)
-
-(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
-;; (require 'evernote-mode)
-;; (global-set-key (kbd "C-c ec") 'evernote-create-note)
-;; (global-set-key (kbd "C-c eo") 'evernote-open-note)
-;; (global-set-key (kbd "C-c es") 'evernote-search-notes)
-;; (global-set-key (kbd "C-c eS") 'evernote-do-saved-search)
-;; (global-set-key (kbd "C-c ew") 'evernote-write-note)
-;; (global-set-key (kbd "C-c ep") 'evernote-post-region)
-;; (global-set-key (kbd "C-c eb") 'evernote-browser)
 
 (require 'clojure-mode)
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
-;;(require 'slime)
-;; (slime-setup)
-;; (setq slime-use-autodoc-mode nil) ;; Workaround for Clojure 1.3. See http://groups.google.com/group/clojure/browse_thread/thread/692c3a93bbdf740c?tvc=2&pli=1
-
-;; ;; paredit
-;; (require 'paredit)
-;; (require 'highlight-parentheses)
-;; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-;; (add-hook 'clojure-mode-hook
-;;           (lambda ()
-;;             (highlight-parentheses-mode t)
-;;             (paredit-mode t)
-;;             (slime-mode t)))
-;; (setq hl-paren-colors
-;;       '("red1" "orange1" "yellow1" "green1" "cyan1"
-;;         "slateblue1" "magenta1" "purple"))
 
 (require 'smex)
 (smex-initialize)
@@ -502,10 +382,6 @@
 ;;     (define-key input-decode-map "\e[1;2A" [S-up]))
 ;; (defadvice terminal-init-xterm (after select-shift-up activate)
 ;;       (define-key input-decode-map "\e[1;2A" [S-up]))
-
-;; (jiggle-mode 1)
-;; (setq jiggle-how-many-times 2)
-;; (setq jiggle-sit-for-how-long .01)
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
@@ -615,13 +491,6 @@
 ;; after you type C-u C-<SPC>, you can type C-<SPC> instead of C-u
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
-
-
-(defun vc-hg-annotate-command (file buffer &optional revision)
-  "Execute \"hg annotate\" on FILE, inserting the contents in BUFFER.
-Optional arg REVISION is a revision to annotate from."
-  (vc-hg-command buffer 0 file "annotate" "-l" "-u" "-v" "-n" "-c"
-                 (when revision (concat "-r" revision))))
 
 
 (defun bf-pretty-print-xml-region (begin end)
