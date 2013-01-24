@@ -6,7 +6,8 @@
 (package-initialize)
 
 ;; Add in your own as you wish:
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings starter-kit-ruby clojure-mode)
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings starter-kit-ruby clojure-mode ipython python-mode smooth-scrolling nav buffer-stack kill-ring-search browse-kill-ring flymake-cursor rainbow-delimiters hlinum)
+
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

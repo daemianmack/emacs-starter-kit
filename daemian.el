@@ -52,21 +52,6 @@
 (require 'uniquify)
 (require 'ansi-color)
 
-(load "elpa-to-submit/nxhtml/autostart")
-;; Let's see if autoloading nxhtml this way makes it a bit nicer.
-;; (load "elpa-to-submit/nxhtml/autostart")
-(mapc (lambda (list)
-        (mapc (lambda (pair)
-                (if (or (eq (cdr pair)
-                            'html-mode)
-                        (eq (cdr pair)
-                            'php-mode))
-                    (setcdr pair (lambda ()
-                                   (require 'nxhtml-mode "elpa-to-submit/nxhtml/autostart")
-                                   (nxhtml-mumamo-mode)))))
-              list))
-      (list auto-mode-alist magic-mode-alist))
-
 (add-to-list 'auto-mode-alist '("\\.org" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\.*" . rainbow-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . espresso-mode))
@@ -103,8 +88,6 @@
 (require 'ipython)
 (setq py-python-command-args '("--colors=NoColor"))
 (setq ipython-command "/usr/bin/ipython")
-
-(require 'sqlplus)
 
 ;; For tramp with sudo.
 (setq tramp-default-method "ssh")
@@ -212,16 +195,6 @@
 (require 'magit)
 (set-face-background 'magit-item-highlight "color-233")
 
-
-(require 'breadcrumb)
-(global-set-key [(control x) (j)]       'bc-set)            ;; Set bookmark.
-(global-set-key [(meta j)]              'bc-previous)       ;; M-j for jump to previous
-(global-set-key [(shift meta j)]        'bc-next)           ;; Shift-M-j for jump to next
-(global-set-key [(meta up)]             'bc-local-previous) ;; M-up-arrow for local previous
-(global-set-key [(meta down)]           'bc-local-next)     ;; M-down-arrow for local next
-(global-set-key [(control c)(j)]        'bc-goto-current)   ;; C-c j for jump to current bookmark
-(global-set-key [(control x)(meta j)]   'bc-list)           ;; C-x M-j for the bookmark menu list
-
 ;; tmux handles shift+arrow differently than screen. Accomodate. Prefer a fix in .tmux.conf.
 (global-set-key (kbd "M-[ d") 'windmove-left)
 (global-set-key (kbd "M-[ c") 'windmove-right)
@@ -236,16 +209,6 @@
 
   (global-set-key (kbd "C-M-d") (quote backward-kill-word))
   )
-
-(require 'yasnippet)
-(set-face-foreground 'yas/field-highlight-face "#ffffff")
-(set-face-background 'yas/field-highlight-face "color-56")
-(set-face-foreground 'yas/field-debug-face "#222222")
-
-(setq yas/root-directory (concat dotfiles-dir "/elpa-to-submit/snippets"))
-(yas/load-directory yas/root-directory)
-;; To globally enable the minor mode in *all* buffers
-(yas/global-mode)
 
 (defun explain-different-quit-keys ()
   (interactive)
@@ -339,6 +302,7 @@
 
 
 (require 'kill-ring-search)
+(require 'browse-kill-ring)
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
 (require 'sunrise-commander)
@@ -399,7 +363,7 @@
   (mysql)
   (django-shell))
 
-(load-library "elpa-to-submit/flymake-cursor")
+(require 'flymake-cursor)
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
     ;; Make sure it's not a remote buffer or flymake would not work
@@ -489,9 +453,6 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
-
-(require 'feature-mode)
-(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
 ; Like Alt-m but to point after = sign.
 (fset 'back-to-operand
