@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ack-and-a-half-executable "/usr/local/bin/ack")
+ '(ansi-color-names-vector ["#000000" "#ff0000" "#00ff00" "#ffff00" "#0000ff" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(backup-by-copying t)
  '(bc-bookmark-file (concat dotfiles-dir ".breadcrumb"))
  '(blink-cursor-alist nil)
@@ -113,7 +114,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(mumamo-background-chunk-major ((t nil)))
  '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)))
  '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background light)) nil)))
- '(py-XXX-tag-face ((t (:foreground "Firebrick"))) t)
+ '(py-XXX-tag-face ((t (:foreground "Firebrick"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "color-17"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "color-18"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "color-19"))))
