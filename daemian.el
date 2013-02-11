@@ -136,16 +136,6 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
-;; paren matching
-(setq show-paren-delay 0)           ; how long to wait?
-(show-paren-mode t)                 ; turn paren-mode on
-(setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
-
-(set-face-foreground 'show-paren-mismatch-face "white")
-(set-face-background 'show-paren-mismatch-face "red")
-(set-face-attribute 'show-paren-mismatch-face nil
-                    :weight 'bold :underline nil :overline nil :slant 'normal);;; init.el ends here
-
 (require 'nav)
 (require 'python-mode)
 
@@ -535,7 +525,7 @@ vi style of % jumping to matching brace."
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
 
-(global-set-key "\M-%" 'goto-match-paren)
+(global-set-key (kbd "C-c %") 'goto-match-paren)
 
 
 ;; Make windmove work in org-mode:
