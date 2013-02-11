@@ -106,7 +106,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(magit-diff-none ((t (:foreground "color-235"))))
  '(magit-header ((t (:foreground "color-45"))))
  '(magit-item-highlight ((t (:weight bold))))
- '(minibuffer-prompt ((t (:foreground "#4271ae"))))
+ '(minibuffer-prompt ((t (:foreground "#4271ae" :weight bold))))
  '(mode-line ((t (:background "#4271ae" :foreground "#eeeeec" :weight bold))))
  '(mode-line-80col-face ((t (:inherit mode-line-position-face :background "black" :foreground "yellow" :weight bold))) t)
  '(mode-line-emphasis ((t nil)))
