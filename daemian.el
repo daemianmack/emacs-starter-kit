@@ -136,16 +136,6 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
-;; paren matching
-(setq show-paren-delay 0)           ; how long to wait?
-(show-paren-mode t)                 ; turn paren-mode on
-(setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
-
-(set-face-foreground 'show-paren-mismatch-face "white")
-(set-face-background 'show-paren-mismatch-face "red")
-(set-face-attribute 'show-paren-mismatch-face nil
-                    :weight 'bold :underline nil :overline nil :slant 'normal);;; init.el ends here
-
 (require 'nav)
 (require 'python-mode)
 
