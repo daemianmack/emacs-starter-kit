@@ -337,13 +337,7 @@
 
 ;; clock in modeline
 (display-time-mode 1)
-(defface egoge-display-time
-  '((((type x w32 mac))
-     ;; #060525 is the background colour of my default face.
-     (:foreground "#ffaa00" :inherit bold))
-    (((type tty))
-     (:foreground "color-130")))
-  "Face used to display the time in the mode line.")
+
 ;; This causes the current time in the mode line to be displayed in
 ;; goge-display-time-face' to make it stand out visually.
 (setq display-time-string-forms
@@ -408,8 +402,7 @@
    ; emacsclient [default -- keep?]
    mode-line-client
    ; directory and buffer/file name
-   (:propertize "%b"
-                face mode-line-filename-face)
+   "%b"
    ; narrow [default -- keep?]
    " %n "
    ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
@@ -440,7 +433,7 @@
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "black" :background "gray20")
+    :foreground "bright blue" :background "gray20")
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#000000"
@@ -462,11 +455,10 @@
                     :inherit 'mode-line-face)
 (set-face-attribute 'mode-line-mode-face nil
                     :inherit 'mode-line-face
-    :foreground "gray80")
+    :foreground "bright black")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
-    :foreground "color-88"
-    :height 110)
+    :foreground "bright black")
 (set-face-attribute 'mode-line-process-face nil
     :inherit 'mode-line-face
     :foreground "#718c00")
