@@ -426,9 +426,7 @@
     :foreground "bright blue" :background "gray20")
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
-    :foreground "#000000"
-    :background "blue"
-    :box '(:line-width 2 :color "#4271ae"))
+    :foreground "#000000")
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#ffffff"
