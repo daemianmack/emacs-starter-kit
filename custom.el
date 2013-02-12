@@ -128,6 +128,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(rainbow-delimiters-depth-8-face ((t (:foreground "color-33"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "color-99"))))
  '(region ((t (:background "#4271ae" :foreground "black"))))
- '(show-paren-match ((t (:background "color-53" :foreground "white"))))
+ '(show-paren-match ((t (:background "black" :foreground "bright green" :weight bold))))
+ '(show-paren-match-face ((t (:foreground "bright blue"))) t)
  '(show-paren-mismatch ((t (:background "red" :foreground "white"))))
  '(trailing-whitespace ((t (:background "color-52")))))
