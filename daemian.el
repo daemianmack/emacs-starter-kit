@@ -383,16 +383,19 @@
 
 (setq-default
  mode-line-format
- '((:eval
+ '(
+   ; directory and buffer/file name
+   (:propertize "%b "
+                face mode-line-filename-face)
+
+   (:eval
   (cond (buffer-read-only
          (propertize "  X  " 'face 'mode-line-read-only-face))
         ((buffer-modified-p)
-         (propertize "  !  " 'face 'mode-line-modified-face))
+         (propertize " ! " 'face 'mode-line-modified-face))
         (t "   ")))
    ; emacsclient [default -- keep?]
    mode-line-client
-   ; directory and buffer/file name
-   "%b"
    ; narrow [default -- keep?]
    " %n "
    ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
