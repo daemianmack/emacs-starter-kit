@@ -574,3 +574,10 @@ vi style of % jumping to matching brace."
 
 
 (require 'hlinum)
+
+; *scratch* starts empty
+(setq initial-scratch-message nil)
+
+; Set *scratch* to Clojure mode
+(when (locate-library "clojure-mode")
+  (setq initial-major-mode 'clojure-mode))
