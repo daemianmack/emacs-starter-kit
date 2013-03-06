@@ -56,6 +56,7 @@
 (add-to-list 'auto-mode-alist '("\\.css\\.*" . rainbow-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . javascript-mode))
 (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.coffee\\.*" . coffee-mode))
 
 (load custom-file 'noerror)
 
