@@ -593,3 +593,5 @@ vi style of % jumping to matching brace."
 (defun my-nrepl-mode-setup ()
     (require 'nrepl-ritz))
 
+(defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
+
