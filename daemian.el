@@ -311,6 +311,9 @@
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
+(defun fix-coffeescript-tab-width () (setq tab-width 2))
+(add-hook 'coffee-mode 'fix-coffeescript-tab-width)
+
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
