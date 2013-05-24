@@ -589,3 +589,7 @@ vi style of % jumping to matching brace."
 
 ; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
+(add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
+(defun my-nrepl-mode-setup ()
+    (require 'nrepl-ritz))
+
