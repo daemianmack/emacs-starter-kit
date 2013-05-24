@@ -636,3 +636,5 @@ vi style of % jumping to matching brace."
 
 (global-set-key (kbd "C-x 4 r") 'rotate-windows)
 
+; Necessary due to bug in ruby-mode.
+(setq ruby-indent-level 2)
