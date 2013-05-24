@@ -578,17 +578,20 @@ vi style of % jumping to matching brace."
 
 (require 'hlinum)
 
+
 ; *scratch* starts empty
 (setq initial-scratch-message nil)
 
 ; Set *scratch* to Clojure mode
 (when (locate-library "clojure-mode")
   (setq initial-major-mode 'clojure-mode))
+
 (require 'projectile)
 (projectile-global-mode)
 
 ; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
+
 (add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
 (defun my-nrepl-mode-setup ()
     (require 'nrepl-ritz))
@@ -602,3 +605,6 @@ vi style of % jumping to matching brace."
 
 (require 'kpm-list)
 (global-set-key (kbd "C-x f") 'kpm-list)
+
+(require 'ag)
+
