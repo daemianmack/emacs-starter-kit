@@ -595,3 +595,8 @@ vi style of % jumping to matching brace."
 
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
+(global-set-key (kbd "C-c =") 'er/expand-region)
+
+(global-set-key (kbd "C-c C-g") 'rgrep)
+(global-set-key (kbd "C-c ^") 'query-replace-regexp)
+
