@@ -584,3 +584,8 @@ vi style of % jumping to matching brace."
 ; Set *scratch* to Clojure mode
 (when (locate-library "clojure-mode")
   (setq initial-major-mode 'clojure-mode))
+(require 'projectile)
+(projectile-global-mode)
+
+; Projectile shows full relative paths
+(setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
