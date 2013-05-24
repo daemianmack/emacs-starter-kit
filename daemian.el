@@ -600,3 +600,5 @@ vi style of % jumping to matching brace."
 (global-set-key (kbd "C-c C-g") 'rgrep)
 (global-set-key (kbd "C-c ^") 'query-replace-regexp)
 
+(require 'kpm-list)
+(global-set-key (kbd "C-x f") 'kpm-list)
