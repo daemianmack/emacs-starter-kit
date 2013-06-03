@@ -642,3 +642,10 @@ vi style of % jumping to matching brace."
 
 ; Necessary due to bug in ruby-mode.
 (setq ruby-indent-level 2)
+
+
+(require 'smart-forward)
+(global-set-key (kbd "C-<up>") 'smart-up)
+(global-set-key (kbd "C-<down>") 'smart-down)
+(global-set-key (kbd "C-<left>") 'smart-backward)
+(global-set-key (kbd "C-<right>") 'smart-forward)
