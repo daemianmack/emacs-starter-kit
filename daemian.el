@@ -84,9 +84,10 @@
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
 
-(require 'ipython)
-(setq py-python-command-args '("--colors=NoColor"))
-(setq ipython-command "/usr/bin/ipython")
+;; (require 'ipython)
+;; (setq py-python-command-args '("--colors=NoColor"))
+;; (setq ipython-command "/usr/bin/ipython")
+;; (setq py-default-interpreter "ipython")
 
 ;; For tramp with sudo.
 (setq tramp-default-method "ssh")
@@ -545,7 +546,6 @@ vi style of % jumping to matching brace."
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
 ;; full screen magit-status
-
 (defadvice magit-status (around magit-fullscreen activate)
   (window-configuration-to-register :magit-fullscreen)
   ad-do-it
@@ -595,6 +595,10 @@ vi style of % jumping to matching brace."
 (add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
 (defun my-nrepl-mode-setup ()
     (require 'nrepl-ritz))
+
+;; (require 'kibit-mode)
+;; (add-hook 'clojure-mode-hook 'kibit-mode)
+;; (add-hook 'clojure-mode-hook 'flymake-mode-on)
 
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
