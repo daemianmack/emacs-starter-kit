@@ -118,7 +118,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(mumamo-background-chunk-major ((t nil)) t)
  '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)) t)
  '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background light)) nil)) t)
- '(org-hide ((t (:background "#181d23" :foreground "#181d23"))) t)
+ '(org-hide ((t (:background "#181d23" :foreground "#181d23"))))
  '(py-XXX-tag-face ((t (:foreground "Firebrick"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "color-160"))))
