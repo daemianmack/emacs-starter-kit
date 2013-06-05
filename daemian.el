@@ -649,3 +649,11 @@ vi style of % jumping to matching brace."
 (global-set-key (kbd "C-<down>") 'smart-down)
 (global-set-key (kbd "C-<left>") 'smart-backward)
 (global-set-key (kbd "C-<right>") 'smart-forward)
+
+
+(add-hook 'server-switch-hook
+          (lambda ()
+            (when (current-local-map)
+              (use-local-map (copy-keymap (current-local-map))))
+            (when server-buffer-clients
+              (local-set-key (kbd "C-x C-k") 'server-edit))))
