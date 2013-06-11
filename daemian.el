@@ -657,3 +657,11 @@ vi style of % jumping to matching brace."
               (use-local-map (copy-keymap (current-local-map))))
             (when server-buffer-clients
               (local-set-key (kbd "C-x C-k") 'server-edit))))
+
+
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "jl" 'other-window)
+(key-chord-define-global "zz" 'save-buffer)
+(key-chord-define-global "m," 'beginning-of-buffer)
+(key-chord-define-global "./" 'end-of-buffer)
