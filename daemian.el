@@ -665,3 +665,6 @@ vi style of % jumping to matching brace."
 (key-chord-define-global "zz" 'save-buffer)
 (key-chord-define-global "m," 'beginning-of-buffer)
 (key-chord-define-global "./" 'end-of-buffer)
+
+(require 'undo-tree)
+(global-undo-tree-mode)
