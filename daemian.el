@@ -56,6 +56,7 @@
 (add-to-list 'auto-mode-alist '("\\.css\\.*" . rainbow-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . javascript-mode))
 (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.coffee\\.*" . coffee-mode))
 
 (load custom-file 'noerror)
 
@@ -83,9 +84,10 @@
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
 
-(require 'ipython)
-(setq py-python-command-args '("--colors=NoColor"))
-(setq ipython-command "/usr/bin/ipython")
+;; (require 'ipython)
+;; (setq py-python-command-args '("--colors=NoColor"))
+;; (setq ipython-command "/usr/bin/ipython")
+;; (setq py-default-interpreter "ipython")
 
 ;; For tramp with sudo.
 (setq tramp-default-method "ssh")
@@ -309,6 +311,9 @@
 (require 'clojure-mode)
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
+
+(defun fix-coffeescript-tab-width () (setq tab-width 2))
+(add-hook 'coffee-mode 'fix-coffeescript-tab-width)
 
 (require 'smex)
 (smex-initialize)
@@ -544,7 +549,6 @@ vi style of % jumping to matching brace."
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
 ;; full screen magit-status
-
 (defadvice magit-status (around magit-fullscreen activate)
   (window-configuration-to-register :magit-fullscreen)
   ad-do-it
@@ -576,3 +580,94 @@ vi style of % jumping to matching brace."
 
 
 (require 'hlinum)
+
+
+; *scratch* starts empty
+(setq initial-scratch-message nil)
+
+; Set *scratch* to Clojure mode
+(when (locate-library "clojure-mode")
+  (setq initial-major-mode 'clojure-mode))
+
+(require 'projectile)
+(projectile-global-mode)
+
+; Projectile shows full relative paths
+(setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
+
+(add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
+(defun my-nrepl-mode-setup ()
+    (require 'nrepl-ritz))
+
+;; (require 'kibit-mode)
+;; (add-hook 'clojure-mode-hook 'kibit-mode)
+;; (add-hook 'clojure-mode-hook 'flymake-mode-on)
+
+(defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
+
+(global-set-key (kbd "C-c =") 'er/expand-region)
+
+(global-set-key (kbd "C-c C-g") 'rgrep)
+(global-set-key (kbd "C-c ^") 'query-replace-regexp)
+
+(require 'kpm-list)
+(global-set-key (kbd "C-x f") 'kpm-list)
+
+(require 'ag)
+
+;; Flips the left and right windows. Taken from
+;; http://whattheemacsd.com//buffer-defuns.el-02.html
+(defun rotate-windows ()
+  "Rotate your windows"
+  (interactive)
+  (cond ((not (> (count-windows) 1))
+         (message "You can't rotate a single window!"))
+        (t
+         (setq i 1)
+         (setq numWindows (count-windows))
+         (while  (< i numWindows)
+           (let* (
+                  (w1 (elt (window-list) i))
+                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+
+                  (b1 (window-buffer w1))
+                  (b2 (window-buffer w2))
+
+                  (s1 (window-start w1))
+                  (s2 (window-start w2)))
+             (set-window-buffer w1  b2)
+             (set-window-buffer w2 b1)
+             (set-window-start w1 s2)
+             (set-window-start w2 s1)
+             (setq i (1+ i)))))))
+
+(global-set-key (kbd "C-x 4 r") 'rotate-windows)
+
+; Necessary due to bug in ruby-mode.
+(setq ruby-indent-level 2)
+
+
+(require 'smart-forward)
+(global-set-key (kbd "C-<up>") 'smart-up)
+(global-set-key (kbd "C-<down>") 'smart-down)
+(global-set-key (kbd "C-<left>") 'smart-backward)
+(global-set-key (kbd "C-<right>") 'smart-forward)
+
+
+(add-hook 'server-switch-hook
+          (lambda ()
+            (when (current-local-map)
+              (use-local-map (copy-keymap (current-local-map))))
+            (when server-buffer-clients
+              (local-set-key (kbd "C-x C-k") 'server-edit))))
+
+
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "jl" 'other-window)
+(key-chord-define-global "zz" 'save-buffer)
+(key-chord-define-global "m," 'beginning-of-buffer)
+(key-chord-define-global "./" 'end-of-buffer)
+
+(require 'undo-tree)
+(global-undo-tree-mode)
