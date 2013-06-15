@@ -90,6 +90,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ace-jump-face-foreground ((t (:background "white" :foreground "red"))))
  '(comint-highlight-prompt ((t (:foreground "brightblue"))))
  '(cycbuf-current-face ((t (:background "color-52" :weight bold))) t)
  '(diff-added ((t (:foreground "green4"))))
@@ -122,7 +123,10 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(magit-header ((t (:foreground "color-45"))))
  '(magit-item-highlight ((t (:background "color-233" :weight bold))))
  '(mode-line-80col-face ((t (:inherit mode-line-position-face :background "black" :foreground "yellow" :weight bold))) t)
- '(org-hide ((t (:background "#181d23" :foreground "#181d23"))))
+ '(mumamo-background-chunk-major ((t nil)) t)
+ '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)) t)
+ '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background light)) nil)) t)
+ '(org-hide ((t (:background "#181d23" :foreground "#181d23"))) t)
  '(py-XXX-tag-face ((t (:foreground "Firebrick"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "color-160"))))
