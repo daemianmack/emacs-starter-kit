@@ -393,7 +393,7 @@
          (propertize "  X  " 'face 'mode-line-read-only-face))
         ((buffer-modified-p)
          (propertize "  !  " 'face 'mode-line-modified-face))
-        (t "   ")))
+        (t "     ")))
    ; emacsclient [default -- keep?]
    mode-line-client
    ; directory and buffer/file name
@@ -640,9 +640,12 @@ vi style of % jumping to matching brace."
 
 (global-set-key (kbd "C-x 4 r") 'rotate-windows)
 
+;; I always hit space when I mean to jump. 
+(global-set-key (kbd "C-x r a")   'point-to-register) ; "assign" to point
+(global-set-key (kbd "C-x r SPC") 'jump-to-register)  ; easy jump target
+
 ; Necessary due to bug in ruby-mode.
 (setq ruby-indent-level 2)
-
 
 (require 'smart-forward)
 (global-set-key (kbd "C-<up>") 'smart-up)
@@ -668,3 +671,13 @@ vi style of % jumping to matching brace."
 
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+(require 'yasnippet)
+;;(set-face-foreground 'yas/field-highlight-face "#ffffff")
+;;(set-face-background 'yas/field-highlight-face "color-56")
+;;(set-face-foreground 'yas/field-debug-face "#222222")
+
+(setq yas/root-directory "~/.emacs.d/snippets")
+(yas/load-directory yas/root-directory)
+;; To globally enable the minor mode in *all* buffers
+(yas/global-mode)
