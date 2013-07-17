@@ -110,7 +110,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(egoge-display-time ((((type tty)) (:background "black" :foreground "color-130"))) t)
  '(font-lock-comment-face ((t (:inherit font-lock-string-face))))
  '(font-lock-function-name-face ((t (:foreground "bright Blue"))))
- '(header-line ((t (:background "gray20" :weight bold))))
+ '(header-line ((t (:background "color-234" :weight bold))))
  '(highlight ((t (:background "bright blue" :foreground "white"))))
  '(highlight-symbol-face ((t (:background "red"))) t)
  '(hl-paren-face ((t (:underline "red"))) t)
