@@ -428,7 +428,7 @@
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "bright blue" :background "gray20")
+    :foreground "bright blue" :background "color-233")
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#000000")
@@ -448,7 +448,7 @@
                     :inherit 'mode-line-face)
 (set-face-attribute 'mode-line-mode-face nil
                     :inherit 'mode-line-face
-    :foreground "bright black")
+    :foreground "color-233")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
     :foreground "bright black")
