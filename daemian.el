@@ -682,3 +682,10 @@ vi style of % jumping to matching brace."
 (yas/load-directory yas/root-directory)
 ;; To globally enable the minor mode in *all* buffers
 (yas/global-mode)
+
+(defun is-in-terminal ()
+  (not (display-graphic-p)))
+
+(if (is-in-terminal)
+    (load-theme 'daemian t)
+  (load-theme 'twilight-anti-bright t))
