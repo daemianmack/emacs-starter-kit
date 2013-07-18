@@ -62,6 +62,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(org-agenda-ndays 14)
  '(org-cycle-global-at-bob t)
  '(org-hide-leading-stars t)
+ '(org-level-color-stars-only nil)
  '(org-odd-levels-only t)
  '(org-special-ctrl-a/e (quote reversed))
  '(package-user-dir (concat dotfiles-dir "elpa"))

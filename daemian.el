@@ -172,11 +172,11 @@
 (require 'magit)
 (set-face-background 'magit-item-highlight "color-233")
 
-;; tmux handles shift+arrow differently than screen. Accomodate. Prefer a fix in .tmux.conf.
-(global-set-key (kbd "M-[ d") 'windmove-left)
-(global-set-key (kbd "M-[ c") 'windmove-right)
-(global-set-key (kbd "M-[ a") 'windmove-up)
-(global-set-key (kbd "M-[ b") 'windmove-down)
+;; ;; tmux handles shift+arrow differently than screen. Accomodate. Prefer a fix in .tmux.conf.
+;; (global-set-key (kbd "M-[ d") 'windmove-left)
+;; (global-set-key (kbd "M-[ c") 'windmove-right)
+;; (global-set-key (kbd "M-[ a") 'windmove-up)
+;; (global-set-key (kbd "M-[ b") 'windmove-down)
 
 ;; When I'm working from an OSX keyboard, make the delete key work the
 ;; way I'm used to everywhere else. That is, delete backward, and
