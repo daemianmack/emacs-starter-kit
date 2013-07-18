@@ -397,8 +397,8 @@
   (cond (buffer-read-only
          (propertize "  X  " 'face 'mode-line-read-only-face))
         ((buffer-modified-p)
-         (propertize " ! " 'face 'mode-line-modified-face))
-        (t "   ")))
+         (propertize "  !  " 'face 'mode-line-modified-face))
+        (t "     ")))
    ; emacsclient [default -- keep?]
    mode-line-client
    ; narrow [default -- keep?]
@@ -431,7 +431,7 @@
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "bright blue" :background "gray20")
+    :foreground "bright blue" :background "color-233")
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#000000")
@@ -451,7 +451,7 @@
                     :inherit 'mode-line-face)
 (set-face-attribute 'mode-line-mode-face nil
                     :inherit 'mode-line-face
-    :foreground "bright black")
+    :foreground "color-233")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
     :foreground "bright black")
@@ -643,9 +643,12 @@ vi style of % jumping to matching brace."
 
 (global-set-key (kbd "C-x 4 r") 'rotate-windows)
 
+;; I always hit space when I mean to jump. 
+(global-set-key (kbd "C-x r a")   'point-to-register) ; "assign" to point
+(global-set-key (kbd "C-x r SPC") 'jump-to-register)  ; easy jump target
+
 ; Necessary due to bug in ruby-mode.
 (setq ruby-indent-level 2)
-
 
 (require 'smart-forward)
 (global-set-key (kbd "C-<up>") 'smart-up)
@@ -664,6 +667,7 @@ vi style of % jumping to matching brace."
 
 (require 'key-chord)
 (key-chord-mode 1)
+(key-chord-define-global "jk" 'ace-jump-word-mode)
 (key-chord-define-global "jl" 'other-window)
 (key-chord-define-global "zz" 'save-buffer)
 (key-chord-define-global "m," 'beginning-of-buffer)
@@ -671,3 +675,20 @@ vi style of % jumping to matching brace."
 
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+(require 'yasnippet)
+;;(set-face-foreground 'yas/field-highlight-face "#ffffff")
+;;(set-face-background 'yas/field-highlight-face "color-56")
+;;(set-face-foreground 'yas/field-debug-face "#222222")
+
+(setq yas/root-directory "~/.emacs.d/snippets")
+(yas/load-directory yas/root-directory)
+;; To globally enable the minor mode in *all* buffers
+(yas/global-mode)
+
+(defun is-in-terminal ()
+  (not (display-graphic-p)))
+
+(if (is-in-terminal)
+    (load-theme 'daemian t)
+  (load-theme 'twilight-anti-bright t))
