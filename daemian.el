@@ -533,6 +533,7 @@ vi style of % jumping to matching brace."
 (desktop-read)
 
 (setq nrepl-popup-stacktraces nil)
+(setq nrepl-hide-special-buffers t)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
 ;; full screen magit-status
