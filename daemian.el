@@ -664,16 +664,6 @@ vi style of % jumping to matching brace."
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-(require 'yasnippet)
-;;(set-face-foreground 'yas/field-highlight-face "#ffffff")
-;;(set-face-background 'yas/field-highlight-face "color-56")
-;;(set-face-foreground 'yas/field-debug-face "#222222")
-
-(setq yas/root-directory "~/.emacs.d/snippets")
-(yas/load-directory yas/root-directory)
-;; To globally enable the minor mode in *all* buffers
-(yas/global-mode)
-
 (defun is-in-terminal ()
   (not (display-graphic-p)))
 
