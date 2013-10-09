@@ -677,3 +677,6 @@ vi style of % jumping to matching brace."
 (global-set-key (kbd "C-c <f3>") (rings-generate-setter 3))
 (global-set-key (kbd "<f4>")   (rings-generate-cycler 4))
 (global-set-key (kbd "C-c <f4>") (rings-generate-setter 4))
+
+(setq split-height-threshold nil)
+(setq split-width-threshold 200)
