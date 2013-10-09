@@ -658,8 +658,8 @@ vi style of % jumping to matching brace."
 (key-chord-define-global "jk" 'ace-jump-word-mode)
 (key-chord-define-global "jl" 'other-window)
 (key-chord-define-global "zz" 'save-buffer)
-(key-chord-define-global "m," 'beginning-of-buffer)
-(key-chord-define-global "./" 'end-of-buffer)
+(key-chord-define-global "zx" 'beginning-of-buffer)
+(key-chord-define-global "xc" 'end-of-buffer)
 
 (require 'undo-tree)
 (global-undo-tree-mode)
