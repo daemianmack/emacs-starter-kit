@@ -369,8 +369,9 @@
 (global-rainbow-delimiters-mode)
 
 (setq-default
- header-line-format
- '(; Position, including warning for 80 columns
+ mode-line-format
+ '(
+   ; Position, including warning for 80 columns
    (:propertize "%4l" face mode-line-position-face)
    ","
    (:eval (propertize "%1c" 'face
@@ -379,26 +380,14 @@
                         'mode-line-position-face)))
    ; Percentage of buffer above viewport.
    " %p "
-   ; read-only or modified status
-   (global-mode-string global-mode-string)
-   "   "
-   (:propertize (:eval which-func-current face mode-line-position-face)))
- )
-
-
-(setq-default
- mode-line-format
- '(
    ; directory and buffer/file name
-   (:propertize "%b "
-                face mode-line-filename-face)
-
+   (:propertize "%b " face mode-line-filename-face)
    (:eval
-  (cond (buffer-read-only
-         (propertize "  X  " 'face 'mode-line-read-only-face))
-        ((buffer-modified-p)
-         (propertize "  !  " 'face 'mode-line-modified-face))
-        (t "     ")))
+    (cond (buffer-read-only
+           (propertize "  X  " 'face 'mode-line-read-only-face))
+          ((buffer-modified-p)
+           (propertize "  !  " 'face 'mode-line-modified-face))
+          (t "     ")))
    ; emacsclient [default -- keep?]
    mode-line-client
    ; narrow [default -- keep?]
@@ -406,17 +395,15 @@
    ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
    (vc-mode vc-mode)
    " %["
-   (:propertize mode-name
-                face mode-line-mode-face)
+   (:propertize mode-name face mode-line-mode-face)
    "%] "
    (:eval (propertize (format-mode-line minor-mode-alist)
-   'face 'mode-line-minor-mode-face)
-          (:propertize mode-line-process
-                       face mode-line-process-face)
-" "
-; nyan-mode uses nyan cat as an alternative to %p
-(:eval (when nyan-mode (list (nyan-create))))
-)))
+                      'face 'mode-line-minor-mode-face)
+          (:propertize mode-line-process face mode-line-process-face)
+          " "
+          ; nyan-mode uses nyan cat as an alternative to %p
+          (:eval (when nyan-mode (list (nyan-create))))
+          )))
 
 
 ;; Extra mode line faces
@@ -546,6 +533,7 @@ vi style of % jumping to matching brace."
 (desktop-read)
 
 (setq nrepl-popup-stacktraces nil)
+(setq nrepl-hide-special-buffers t)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
 ;; full screen magit-status
@@ -670,21 +658,11 @@ vi style of % jumping to matching brace."
 (key-chord-define-global "jk" 'ace-jump-word-mode)
 (key-chord-define-global "jl" 'other-window)
 (key-chord-define-global "zz" 'save-buffer)
-(key-chord-define-global "m," 'beginning-of-buffer)
-(key-chord-define-global "./" 'end-of-buffer)
+(key-chord-define-global "zx" 'beginning-of-buffer)
+(key-chord-define-global "xc" 'end-of-buffer)
 
 (require 'undo-tree)
 (global-undo-tree-mode)
-
-(require 'yasnippet)
-;;(set-face-foreground 'yas/field-highlight-face "#ffffff")
-;;(set-face-background 'yas/field-highlight-face "color-56")
-;;(set-face-foreground 'yas/field-debug-face "#222222")
-
-(setq yas/root-directory "~/.emacs.d/snippets")
-(yas/load-directory yas/root-directory)
-;; To globally enable the minor mode in *all* buffers
-(yas/global-mode)
 
 (defun is-in-terminal ()
   (not (display-graphic-p)))
@@ -692,3 +670,13 @@ vi style of % jumping to matching brace."
 (if (is-in-terminal)
     (load-theme 'daemian t)
   (load-theme 'twilight-anti-bright t))
+(require 'rings)
+(global-set-key (kbd "<f2>")   (rings-generate-cycler 2))
+(global-set-key (kbd "C-c <f2>") (rings-generate-setter 2))
+(global-set-key (kbd "<f3>")   (rings-generate-cycler 3))
+(global-set-key (kbd "C-c <f3>") (rings-generate-setter 3))
+(global-set-key (kbd "<f4>")   (rings-generate-cycler 4))
+(global-set-key (kbd "C-c <f4>") (rings-generate-setter 4))
+
+(setq split-height-threshold nil)
+(setq split-width-threshold 200)
