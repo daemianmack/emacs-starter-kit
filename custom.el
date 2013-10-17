@@ -115,6 +115,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(diff-refine-added ((t (:inherit diff-refine-change))))
  '(diff-refine-change ((t (:foreground "purple"))))
  '(diff-refine-removed ((t (:inherit diff-refine-change))))
+ '(diff-removed ((t (:inherit diff-changed :foreground "red3"))))
  '(diff-removed-face ((t (:foreground "red3"))) t)
  '(ediff-current-diff-B ((((class color) (min-colors 16)) (:background "Yellow" :foreground "black"))) t)
  '(ediff-even-diff-A ((((class color) (min-colors 16)) (:foreground "brightblue"))) t)
