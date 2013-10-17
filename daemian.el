@@ -25,7 +25,6 @@
 (add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/feature-mode"))
 (add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/magit"))
 (add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/mark-multiple"))
-(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/expand-region"))
 
 
 (let ((default-directory (concat dotfiles-dir "elpa")))
@@ -593,8 +592,6 @@ vi style of % jumping to matching brace."
 
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
-(global-set-key (kbd "C-c =") 'er/expand-region)
-
 (global-set-key (kbd "C-c C-g") 'rgrep)
 (global-set-key (kbd "C-c ^") 'query-replace-regexp)
 
@@ -680,3 +677,7 @@ vi style of % jumping to matching brace."
 
 (setq split-height-threshold nil)
 (setq split-width-threshold 200)
+
+(require 'easy-kill)
+(global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key (kbd "C-c =") 'easy-mark-sexp)
