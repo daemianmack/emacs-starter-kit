@@ -104,7 +104,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ace-jump-face-foreground ((t (:background "white" :foreground "red"))))
+ '(ace-jump-face-foreground ((t (:background "white" :foreground "red"))) t)
  '(comint-highlight-prompt ((t (:foreground "brightblue"))))
  '(cycbuf-current-face ((t (:background "color-52" :weight bold))) t)
  '(diff-added ((t (:foreground "green4"))))
