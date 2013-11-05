@@ -666,3 +666,8 @@ vi style of % jumping to matching brace."
 (require 'easy-kill)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "C-c =") 'easy-mark-sexp)
+
+(add-hook 'nrepl-repl-mode-hook
+          (lambda ()
+            (define-key nrepl-repl-mode-map [down] 'nrepl-forward-input)
+            (define-key nrepl-repl-mode-map [up] 'nrepl-backward-input)))
