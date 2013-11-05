@@ -583,8 +583,6 @@ vi style of % jumping to matching brace."
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
 
 (add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
-(defun my-nrepl-mode-setup ()
-    (require 'nrepl-ritz))
 
 ;; (require 'kibit-mode)
 ;; (add-hook 'clojure-mode-hook 'kibit-mode)
