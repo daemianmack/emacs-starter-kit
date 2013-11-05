@@ -83,11 +83,6 @@
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
 
-;; (require 'ipython)
-;; (setq py-python-command-args '("--colors=NoColor"))
-;; (setq ipython-command "/usr/bin/ipython")
-;; (setq py-default-interpreter "ipython")
-
 ;; For tramp with sudo.
 (setq tramp-default-method "ssh")
 ;; On startup, don't check recent-file readability. If I've used tramp
@@ -107,15 +102,6 @@
 ;; Copy vim's "set scroll-off=10" setting.
 (require 'smooth-scrolling)
 
-
-;; Provide a python compile.
-(defun my-compile ()
-  "Use compile to run python programs"
-    (interactive)
-      (compile (concat "python " (buffer-file-name))))
-(setq compilation-scroll-output t)
-;; This should be in a python-mode hook function.
-(local-set-key "\C-c\C-c" 'my-compile)
 
 (defun my-kill-buffer ()
   "Just kill the current buffer without asking, unless it's a modified file"
@@ -138,7 +124,6 @@
       `((".*" ,user-temporary-file-directory t)))
 
 (require 'nav)
-(require 'python-mode)
 
 ;;; MacOS X specific stuff
 (setq mac-option-modifier 'meta)
@@ -148,8 +133,6 @@
 (defun javascript-custom-setup ()
   (moz-minor-mode 1))
 
-(add-hook 'python-mode-hook 'moz-minor-mode)
-(add-hook 'python-mode-hook 'flymake-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'nxml-mode-hook 'moz-minor-mode)
 
