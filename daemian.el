@@ -674,3 +674,4 @@ vi style of % jumping to matching brace."
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "C-c =") 'easy-mark-sexp)
 
+(require 'clojure-test-mode)

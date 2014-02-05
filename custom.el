@@ -106,6 +106,9 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-jump-face-foreground ((t (:background "white" :foreground "red"))) t)
+ '(clojure-test-error-face ((t (:background "orange1" :foreground "black" :weight bold))))
+ '(clojure-test-failure-face ((t (:background "orange red" :foreground "black" :weight bold))))
+ '(clojure-test-success-face ((t (:foreground "green"))))
  '(comint-highlight-prompt ((t (:foreground "brightblue"))))
  '(cycbuf-current-face ((t (:background "color-52" :weight bold))) t)
  '(diff-added ((t (:foreground "green4"))))
