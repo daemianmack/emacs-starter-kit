@@ -110,7 +110,7 @@
 
 ;; Move auto-save and backup files elsewhere.
 (defvar user-temporary-file-directory
-  (setq temporary-file-directory (concat dotfiles-dir ".autosaves")))
+  (setq temporary-file-directory (concat dotfiles-dir ".autosaves/")))
 
 (make-directory user-temporary-file-directory t)
 (setq backup-by-copying t)

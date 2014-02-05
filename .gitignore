@@ -2,13 +2,10 @@
 .DS_Store
 starter-kit-2.*
 *.tar
-
-backups/
 loaddefs.el
 places
 url/cookies
-\#*
-/.autosaves*
+/.autosaves
 *.elc
 /.recentf
 emacs.desktop
