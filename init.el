@@ -6,7 +6,37 @@
 (package-initialize)
 
 ;; Add in your own as you wish:
-(defvar my-packages '(magit starter-kit starter-kit-lisp starter-kit-bindings starter-kit-ruby clojure-mode ipython python-mode smooth-scrolling nav buffer-stack kill-ring-search browse-kill-ring flymake-cursor rainbow-delimiters hlinum cider idle-highlight-mode find-file-in-project smex ido-ubiquitous elisp-slime-nav projectile key-chord undo-tree ag rings easy-kill)
+(defvar my-packages '(
+                      ag
+                      browse-kill-ring
+                      buffer-stack
+                      cider
+                      clojure-mode
+                      clojure-test-mode
+                      easy-kill
+                      elisp-slime-nav
+                      find-file-in-project
+                      flymake-cursor
+                      hlinum
+                      idle-highlight-mode
+                      ido-ubiquitous
+                      ipython
+                      key-chord
+                      kill-ring-search
+                      magit
+                      nav
+                      projectile
+                      python-mode
+                      rainbow-delimiters
+                      rings
+                      smex
+                      smooth-scrolling
+                      starter-kit
+                      starter-kit-bindings
+                      starter-kit-lisp
+                      starter-kit-ruby
+                      undo-tree
+                      )
 
   "A list of packages to ensure are installed at launch.")
 
