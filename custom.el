@@ -73,8 +73,6 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(nav-quickjump-show nil)
  '(nav-width 54)
  '(nav-widths-percentile 99)
- '(nrepl-hide-special-buffers nil)
- '(nrepl-popup-stacktraces nil)
  '(org-agenda-ndays 14)
  '(org-cycle-global-at-bob t)
  '(org-hide-leading-stars t)

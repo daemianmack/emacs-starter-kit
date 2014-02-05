@@ -514,9 +514,18 @@ vi style of % jumping to matching brace."
 (require 'desktop)
 (desktop-read)
 
-(setq nrepl-popup-stacktraces nil)
-(setq nrepl-hide-special-buffers t)
-(add-hook 'nrepl-mode-hook 'paredit-mode)
+;; From http://blog.jenkster.com/2013/12/a-cider-excursion.html
+;; Put [org.clojure/tools.namespace "0.2.4"] in ~/.lein/profiles.clj's
+;; :user :dependencies vector
+(defun cider-namespace-refresh ()
+  (interactive)
+  (cider-interactive-eval
+   "(require 'clojure.tools.namespace.repl)
+    (clojure.tools.namespace.repl/refresh)"))
+
+(add-hook 'cider-mode-hook
+          (lambda ()
+            (define-key cider-mode-map (kbd "C-c M-r") 'cider-namespace-refresh)))
 
 ;; full screen magit-status
 (defadvice magit-status (around magit-fullscreen activate)
@@ -564,8 +573,6 @@ vi style of % jumping to matching brace."
 
 ; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
-
-(add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
 
 ;; (require 'kibit-mode)
 ;; (add-hook 'clojure-mode-hook 'kibit-mode)
@@ -667,7 +674,3 @@ vi style of % jumping to matching brace."
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "C-c =") 'easy-mark-sexp)
 
-(add-hook 'nrepl-repl-mode-hook
-          (lambda ()
-            (define-key nrepl-repl-mode-map [down] 'nrepl-forward-input)
-            (define-key nrepl-repl-mode-map [up] 'nrepl-backward-input)))
