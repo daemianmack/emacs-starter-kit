@@ -673,7 +673,19 @@ vi style of % jumping to matching brace."
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "C-c =") 'easy-mark-sexp)
 
+(defun reset-highlight ()
+  (interactive)
+  (global-hi-lock-mode 0)
+  (global-hi-lock-mode 1))
+
+(defun highlight-this ()
+  (interactive)
+  (highlight-regexp (regexp-quote (word-at-point))))
+
 (global-unset-key (kbd "C-c e")) ; Don't need esk-eval-and-replace
 
 (global-set-key (kbd "C-c e r") 'eval-region)
+
+(global-set-key (kbd "C-c h t") 'highlight-this)
+
 (require 'clojure-test-mode)
