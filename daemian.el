@@ -706,3 +706,11 @@ vi style of % jumping to matching brace."
                 '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
 (global-set-key (kbd "S-<left>")
                 '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
+
+(defun write-region-to-tmux-buffer (beg end)
+  (interactive "r")
+  (shell-command-on-region beg end "tmux load-buffer -" nil nil nil t))
+
+(defun write-buffer-to-tmux-buffer ()
+  (interactive)
+    (write-region-to-tmux-buffer (point-min) (point-max)))
