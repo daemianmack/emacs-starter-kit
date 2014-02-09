@@ -97,6 +97,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(uniquify-min-dir-content 3)
  '(uniquify-separator nil)
  '(uniquify-trailing-separator-p nil)
+ '(vc-follow-symlinks t)
  '(which-function-mode t)
  '(windmove-wrap-around nil)
  '(window-sides-vertical t))
