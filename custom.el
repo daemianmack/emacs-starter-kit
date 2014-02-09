@@ -98,7 +98,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(uniquify-separator nil)
  '(uniquify-trailing-separator-p nil)
  '(which-function-mode t)
- '(windmove-wrap-around t)
+ '(windmove-wrap-around nil)
  '(window-sides-vertical t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

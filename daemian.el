@@ -689,3 +689,20 @@ vi style of % jumping to matching brace."
 (global-set-key (kbd "C-c h t") 'highlight-this)
 
 (require 'clojure-test-mode)
+
+(defun windmove-emacs-or-tmux (dir tmux-cmd)
+  (interactive)
+  (if (ignore-errors (funcall (intern (concat "windmove-" dir))))
+      nil                     ;; Moving within emacs
+    (shell-command tmux-cmd)) ;; At edges, send command to tmux
+  )
+
+; Integrate with tmux splits.
+(global-set-key (kbd "S-<up>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "up"  "tmux select-pane -U")))
+(global-set-key (kbd "S-<down>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "down"  "tmux select-pane -D")))
+(global-set-key (kbd "S-<right>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
+(global-set-key (kbd "S-<left>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
