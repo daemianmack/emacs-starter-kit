@@ -525,6 +525,7 @@ vi style of % jumping to matching brace."
   (cider-interactive-eval
    "(require 'clojure.tools.namespace.repl)
     (clojure.tools.namespace.repl/refresh)"))
+(winner-mode 1)
 
 (add-hook 'cider-mode-hook
           (lambda ()
