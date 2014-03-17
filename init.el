@@ -1,3 +1,20 @@
+;; Put timestamps in *Messages* buffer to diag start-time slowness.
+(defun current-time-microseconds ()
+  (let* ((nowtime (current-time))
+         (now-ms (nth 2 nowtime)))
+    (concat (format-time-string "[%Y-%m-%dT%T" nowtime) (format ".%d] " now-ms))))
+
+(defadvice message (before test-symbol activate)
+  (if (not (string-equal (ad-get-arg 0) "%s%s"))
+      (let ((deactivate-mark nil)
+            (inhibit-read-only t))
+        (save-excursion
+          (set-buffer "*Messages*")
+          (goto-char (point-max))
+          (if (not (bolp))
+              (newline))
+                    (insert (current-time-microseconds))))))
+
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
