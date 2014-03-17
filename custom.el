@@ -84,7 +84,15 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(projectile-ack-function (quote ack))
  '(recentf-max-saved-items 100)
  '(recentf-save-file (concat dotfiles-dir ".recentf"))
- '(safe-local-variable-values (quote ((eval when (fboundp (quote rainbow-mode)) (rainbow-mode 1)) (whitespace-line-column . 80) (lexical-binding . t))))
+ '(safe-local-variable-values
+   (quote
+    ((eval when
+           (fboundp
+            (quote rainbow-mode))
+           (rainbow-mode 1))
+     (whitespace-line-column . 80)
+     (lexical-binding . t))))
+ '(same-window-regexps (quote ("\\*magit*")))
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-paren-style (quote expression))

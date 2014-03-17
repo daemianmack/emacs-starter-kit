@@ -531,18 +531,16 @@ vi style of % jumping to matching brace."
             (define-key cider-mode-map (kbd "C-c M-r") 'cider-namespace-refresh)))
 
 ;; full screen magit-status
-(defadvice magit-status (around magit-fullscreen activate)
-  (window-configuration-to-register :magit-fullscreen)
+(defadvice vc-annotate-status (around vc-annotate-fullscreen activate)
+  (window-configuration-to-register :vc-annotate-fullscreen)
   ad-do-it
   (delete-other-windows))
 
-(defun magit-quit-session ()
-  "Restores the previous window configuration and kills the magit buffer"
+(defun vc-annotate-quit-session ()
+  "Restores the previous window configuration and kills the vc-annotate buffer"
   (interactive)
   (kill-buffer)
-  (jump-to-register :magit-fullscreen))
-
-(define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+  (jump-to-register :vc-annotate-fullscreen))
 
 ;; full screen vc-annotate
 (defun vc-annotate-quit ()
