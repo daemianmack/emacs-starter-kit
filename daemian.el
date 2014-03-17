@@ -291,7 +291,10 @@
 (global-set-key (kbd "C-w") 'backward-kill-word-or-kill-region)
 
 (require 'clojure-mode)
-(defun turn-on-paredit () (paredit-mode 1))
+(defun turn-on-paredit ()
+  (paredit-mode 1)
+  ; TODO Does this need to be wrapped in a fn?
+  (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
 (defun fix-coffeescript-tab-width () (setq tab-width 2))
