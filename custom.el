@@ -78,6 +78,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(org-hide-leading-stars t)
  '(org-level-color-stars-only nil)
  '(org-odd-levels-only t)
+ '(org-replace-disputed-keys t)
  '(org-special-ctrl-a/e (quote reversed))
  '(package-user-dir (concat dotfiles-dir "elpa"))
  '(projectile-ack-function (quote ack))
