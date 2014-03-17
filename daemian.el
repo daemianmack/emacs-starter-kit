@@ -21,10 +21,6 @@
 
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "elpa"))
-(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit"))
-(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/feature-mode"))
-(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/magit"))
-(add-to-list 'load-path (concat dotfiles-dir "elpa-to-submit/mark-multiple"))
 
 
 (let ((default-directory (concat dotfiles-dir "elpa")))
