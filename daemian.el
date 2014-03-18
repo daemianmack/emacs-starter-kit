@@ -717,3 +717,5 @@ vi style of % jumping to matching brace."
 (defun write-buffer-to-tmux-buffer ()
   (interactive)
     (write-region-to-tmux-buffer (point-min) (point-max)))
+
+(add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
