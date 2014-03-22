@@ -43,6 +43,7 @@
                       magit
                       nav
                       projectile
+                      project-explorer
                       python-mode
                       rainbow-delimiters
                       rings
