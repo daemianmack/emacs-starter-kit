@@ -28,6 +28,7 @@
                       browse-kill-ring
                       buffer-stack
                       cider
+                      clj-refactor
                       clojure-mode
                       clojure-test-mode
                       easy-kill

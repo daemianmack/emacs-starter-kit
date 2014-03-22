@@ -714,3 +714,6 @@ vi style of % jumping to matching brace."
     (write-region-to-tmux-buffer (point-min) (point-max)))
 
 (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
+
+(require 'clj-refactor)
+(cljr-add-keybindings-with-prefix "C-c C-f")
