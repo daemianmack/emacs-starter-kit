@@ -157,7 +157,6 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))
  '(mode-line-inactive ((t (:inherit mode-line :background "gray20" :weight bold))))
  '(modeline ((t (:background "#4271ae" :foreground "#eeeeec" :weight bold))) t)
- '(modeline-inactive ((t (:inherit mode-line :background "gray20" :foreground "#4271ae" :weight bold))) t)
  '(mumamo-background-chunk-major ((t nil)) t)
  '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)) t)
  '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background light)) nil)) t)
