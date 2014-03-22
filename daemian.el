@@ -719,5 +719,24 @@ vi style of % jumping to matching brace."
 (require 'clj-refactor)
 (cljr-add-keybindings-with-prefix "C-c C-f")
 
+(defvar former-window-configuration nil
+  "Stores previous window configurations, e.g. those that were in effect when center-window-horizontally was called.")
+
+
+(defun center-window-horizontally (width)
+  "Arrange windows three as side-by-side, with the center one
+having width WIDTH.
+Accepts WIDTH as a numeric prefix, but defaults to 85."
+  (interactive "P")
+  (push (current-window-configuration) former-window-configuration)
+  (let ((width (or width 85)))
+    (let ((side-window-width (/ (- (frame-parameter nil 'width) width) 2)))
+      (delete-other-windows)
+      (set-window-buffer (split-window-horizontally side-window-width)
+                         (other-buffer nil nil))
+      (other-window 1)
+      (set-window-buffer (split-window-horizontally (- side-window-width))
+                         (other-buffer nil nil)))))
+
 (require 'project-explorer)
 
