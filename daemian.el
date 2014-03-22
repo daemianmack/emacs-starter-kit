@@ -584,8 +584,6 @@ vi style of % jumping to matching brace."
 
 (require 'kpm-list)
 
-(require 'ag)
-
 ;; Flips the left and right windows. Taken from
 ;; http://whattheemacsd.com//buffer-defuns.el-02.html
 (defun rotate-windows ()

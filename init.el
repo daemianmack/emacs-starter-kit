@@ -24,7 +24,6 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(
-                      ag
                       browse-kill-ring
                       buffer-stack
                       cider
