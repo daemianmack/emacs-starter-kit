@@ -292,6 +292,7 @@
   ; TODO Does this need to be wrapped in a fn?
   (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (defun fix-coffeescript-tab-width () (setq tab-width 2))
 (add-hook 'coffee-mode 'fix-coffeescript-tab-width)
