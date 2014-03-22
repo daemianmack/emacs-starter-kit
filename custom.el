@@ -81,6 +81,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(org-replace-disputed-keys t)
  '(org-special-ctrl-a/e (quote reversed))
  '(package-user-dir (concat dotfiles-dir "elpa"))
+ '(pe/side (quote right))
  '(projectile-ack-function (quote ack))
  '(recentf-max-saved-items 100)
  '(recentf-save-file (concat dotfiles-dir ".recentf"))

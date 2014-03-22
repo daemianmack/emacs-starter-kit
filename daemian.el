@@ -717,3 +717,6 @@ vi style of % jumping to matching brace."
 
 (require 'clj-refactor)
 (cljr-add-keybindings-with-prefix "C-c C-f")
+
+(require 'project-explorer)
+
