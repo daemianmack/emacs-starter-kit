@@ -4,9 +4,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ack-and-a-half-executable "/usr/local/bin/ack")
- '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector ["#000000" "#ff0000" "#00ff00" "#ffff00" "#0000ff" "#dc8cc3" "#93e0e3" "#dcdccc"])
- '(ansi-term-color-vector ["#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#8cd0d3" "#dc8cc3" "#93e0e3" "#dcdccc"])
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   ["#000000" "#ff0000" "#00ff00" "#ffff00" "#0000ff" "#dc8cc3" "#93e0e3" "#dcdccc"])
+ '(ansi-term-color-vector
+   ["#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#8cd0d3" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(background-color "#ffffd7")
  '(background-mode light)
  '(backup-by-copying t)
@@ -14,18 +17,39 @@
  '(blink-cursor-alist nil)
  '(blink-cursor-mode t)
  '(blink-matching-delay 0.5)
- '(buffer-stack-untracked (quote ("KILL" "*Compile-Log*" "*Ibuffer*" "*Compile-Log-Show*" "*Group*" "*Completions*" "*Kill Ring*" "*Messages*" "*nav*")))
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/.emacs.bmk")
+ '(buffer-stack-untracked
+   (quote
+    ("KILL" "*Compile-Log*" "*Ibuffer*" "*Compile-Log-Show*" "*Group*" "*Completions*" "*Kill Ring*" "*Messages*" "*nav*")))
  '(column-number-mode t)
  '(cursor-color "#626262")
- '(custom-safe-themes (quote ("01680272822bbb2d02f85f4fefb0684ab15bbd5b229ddfd4929ddececcec6d6c" "548f6cea041842d145ee35b90f1a07a74a51b14f77f1e931138f960c42ca7b39" "bfc0f14c5d5902b5154d57c6d3d14f8389b74997708aae3e98315795a0f0ca6b" "4a4475800ef69d5b3b6e02cd88a3fef391b2fb9bce5c7c9bfcb065cfa6ebce33" "e35ac8101749aa8ac01b588418a134d9ad42a74d5a1619228fe5fd4ac5f44898" "aaed3c12b6121161c0e3d142c6e25002e062fdfc47da26b5fd73c1f3b3eae0e0" "3223b32123d0890c8aa1674db7b6d84f0d31b70c7411a9ffd455ebfbcb3a5a82" "7400b80c7478b262314f9176cd616fe19b4457b67156145b4977a4b260216a32" "181bf8c5f71bb208ecd6a632fa6fa8cd86060dfbdd8fa82d5eae7df0c7c7b90e" "c2a2175e9ae03e328c1877f4b60bb0c1f78f796a2f433edf700acb41f7b1fec2" "34a0f577803a27674e5ae6bb2d82394dafd5252d9df751868b3821e02d0c5755" "ac24ba4e5adddd53aee6d4fd029a77ebf09920d59418e7a70d8a41ce7b78f9d6" "acca6c7438c8cc67b6b45da2841ad3452e2d9ab05b24eb8bafd2cd0985cf8ddc" "8340250882a74e751421b85cd18f277ab25c95fd63daa800ecbd42d79fc74f0f" "159bb8f86836ea30261ece64ac695dc490e871d57107016c09f286146f0dae64" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "e9a1226ffed627ec58294d77c62aa9561ec5f42309a1f7a2423c6227e34e3581" "951e10f17de57de1e0c9cbeb44fcdda1b6c6d26beab40c3bd0abbfc38dd5c9c8" "bf7ed640479049f1d74319ed004a9821072c1d9331bc1147e01d22748c18ebdf" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(custom-safe-themes
+   (quote
+    ("5d98db0ee0af3681d987fc0a9ca3d32632cf18b73c50238fe9ba5a58ed797d93" "8ac31e1bc1920b33d478dfafb0b45989a00ede15a2388ea16093e7d0988c48d0" "01680272822bbb2d02f85f4fefb0684ab15bbd5b229ddfd4929ddececcec6d6c" "548f6cea041842d145ee35b90f1a07a74a51b14f77f1e931138f960c42ca7b39" "bfc0f14c5d5902b5154d57c6d3d14f8389b74997708aae3e98315795a0f0ca6b" "4a4475800ef69d5b3b6e02cd88a3fef391b2fb9bce5c7c9bfcb065cfa6ebce33" "e35ac8101749aa8ac01b588418a134d9ad42a74d5a1619228fe5fd4ac5f44898" "aaed3c12b6121161c0e3d142c6e25002e062fdfc47da26b5fd73c1f3b3eae0e0" "3223b32123d0890c8aa1674db7b6d84f0d31b70c7411a9ffd455ebfbcb3a5a82" "7400b80c7478b262314f9176cd616fe19b4457b67156145b4977a4b260216a32" "181bf8c5f71bb208ecd6a632fa6fa8cd86060dfbdd8fa82d5eae7df0c7c7b90e" "c2a2175e9ae03e328c1877f4b60bb0c1f78f796a2f433edf700acb41f7b1fec2" "34a0f577803a27674e5ae6bb2d82394dafd5252d9df751868b3821e02d0c5755" "ac24ba4e5adddd53aee6d4fd029a77ebf09920d59418e7a70d8a41ce7b78f9d6" "acca6c7438c8cc67b6b45da2841ad3452e2d9ab05b24eb8bafd2cd0985cf8ddc" "8340250882a74e751421b85cd18f277ab25c95fd63daa800ecbd42d79fc74f0f" "159bb8f86836ea30261ece64ac695dc490e871d57107016c09f286146f0dae64" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "e9a1226ffed627ec58294d77c62aa9561ec5f42309a1f7a2423c6227e34e3581" "951e10f17de57de1e0c9cbeb44fcdda1b6c6d26beab40c3bd0abbfc38dd5c9c8" "bf7ed640479049f1d74319ed004a9821072c1d9331bc1147e01d22748c18ebdf" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(desktop-after-read-hook (quote (list-buffers)))
  '(desktop-base-file-name "emacs.desktop")
  '(desktop-base-lock-name "lock")
  '(desktop-dirname nil t)
  '(desktop-files-not-to-save "^$")
- '(desktop-globals-to-clear (quote (regexp-search-ring regexp-search-ring-yank-pointer)))
- '(desktop-globals-to-save (quote ((extended-command-history . 30) (file-name-history . 100) (grep-history . 30) (compile-history . 30) (minibuffer-history . 50) (query-replace-history . 60) (read-expres\
-sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring . 20) (shell-command-history . 50) (kill-ring . 20) tags-file-name register-alist)))
+ '(desktop-globals-to-clear
+   (quote
+    (regexp-search-ring regexp-search-ring-yank-pointer)))
+ '(desktop-globals-to-save
+   (quote
+    ((extended-command-history . 30)
+     (file-name-history . 100)
+     (grep-history . 30)
+     (compile-history . 30)
+     (minibuffer-history . 50)
+     (query-replace-history . 60)
+     (read-expres\
+      sion-history . 60)
+     (regexp-history . 60)
+     (regexp-search-ring . 20)
+     (search-ring . 20)
+     (shell-command-history . 50)
+     (kill-ring . 20)
+     tags-file-name register-alist)))
  '(desktop-load-locked-desktop nil)
  '(desktop-path (quote ("/Users/daemian/.emacs.d/")))
  '(desktop-save (quote if-exists))
@@ -41,9 +65,13 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(global-rainbow-delimiters-mode t)
  '(grep-highlight-matches t)
  '(gud-gdb-command-name "gdb --annotate=1")
- '(hippie-expand-try-functions-list (quote (try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-file-name try-expand-all-abbrevs)))
+ '(hippie-expand-try-functions-list
+   (quote
+    (try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-file-name try-expand-all-abbrevs)))
  '(hl-paren-background-colors (quote ("color-57")))
- '(hl-paren-colors (quote ("brightwhite" "IndianRed1" "IndianRed3" "IndianRed4")))
+ '(hl-paren-colors
+   (quote
+    ("brightwhite" "IndianRed1" "IndianRed3" "IndianRed4")))
  '(idle-highlight-idle-time 1.0)
  '(ido-auto-merge-work-directories-length nil)
  '(ido-confirm-unique-completion t)
@@ -153,8 +181,8 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(idle-highlight ((t (:background "color-236"))))
  '(italic ((((supports :underline t)) (:underline nil))))
  '(linum-highlight-face ((t (:inherit default :background "green" :foreground "black"))))
- '(magit-diff-file-header ((t (:background "bright blue" :weight bold))))
- '(magit-diff-hunk-header ((t (:inherit magit-header :background "blue" :foreground "white" :slant italic))))
+ '(magit-diff-file-header ((t (:background "black"))))
+ '(magit-diff-hunk-header ((t (:background "blue" :foreground "white"))))
  '(magit-diff-none ((t (:foreground "color-235"))))
  '(magit-header ((t (:foreground "color-45"))))
  '(magit-item-highlight ((t (:background "color-233" :weight bold))))
@@ -167,7 +195,7 @@ sion-history . 60) (regexp-history . 60) (regexp-search-ring . 20) (search-ring 
  '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background light)) nil)) t)
  '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background light)) nil)) t)
  '(org-hide ((t (:background "#181d23" :foreground "#181d23"))) t)
- '(py-XXX-tag-face ((t (:foreground "Firebrick"))))
+ '(py-XXX-tag-face ((t (:foreground "Firebrick"))) t)
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "color-160"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "color-196"))))
