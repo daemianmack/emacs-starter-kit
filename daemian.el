@@ -740,3 +740,33 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
 
 (require 'project-explorer)
 
+;; (defun pt-pbpaste ()
+;;   "Paste data from pasteboard."
+;;   (interactive)
+;;   (shell-command-on-region
+;;    (point)
+;;    (if mark-active (mark) (point))
+;;    "pbpaste" nil t))
+
+;; (defun pt-pbcopy ()
+;;   "Copy region to pasteboard."
+;;   (interactive)
+;;   (print (mark))
+;;   (when mark-active
+;;     (shell-command-on-region
+;;      (point) (mark) "pbcopy")
+;;     (kill-buffer "*Shell Command Output*")))
+
+;; (global-set-key (kbd "C-x C-y") 'pt-pbpaste)
+;; (global-set-key (kbd "C-x M-w") 'pt-pbcopy)
+
+(setq interprogram-cut-function
+      (lambda (text &optional push)
+        (let* ((process-connection-type nil)
+               (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
+          (process-send-string pbproxy text)
+          (process-send-eof pbproxy))))
+
+(setq interprogram-paste-function
+      (lambda ()
+                (shell-command-to-string "pbpaste")))
