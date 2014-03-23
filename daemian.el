@@ -651,7 +651,11 @@ vi style of % jumping to matching brace."
 (if (is-in-terminal)
     (load-theme 'daemian t)
   (load-theme 'twilight-anti-bright t))
+
 (require 'rings)
+
+(global-set-key (kbd "<f1>")   (rings-generate-cycler 1))
+(global-set-key (kbd "C-c <f1>") (rings-generate-setter 1))
 (global-set-key (kbd "<f2>")   (rings-generate-cycler 2))
 (global-set-key (kbd "C-c <f2>") (rings-generate-setter 2))
 (global-set-key (kbd "<f3>")   (rings-generate-cycler 3))
