@@ -43,16 +43,15 @@
                       magit
                       nav
                       projectile
-                      project-explorer
                       python-mode
                       rainbow-delimiters
                       rings
                       smex
                       smooth-scrolling
-                      starter-kit
-                      starter-kit-bindings
-                      starter-kit-lisp
-                      starter-kit-ruby
+                      ;; starter-kit
+                      ;; ;; starter-kit-bindings
+                      ;; starter-kit-lisp
+                      ;; starter-kit-ruby
                       undo-tree
                       )
 
