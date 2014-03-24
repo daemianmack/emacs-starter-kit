@@ -213,11 +213,6 @@
 (defadvice backward-sentence (after backward-sentence-advice activate)
   (recenter))
 
-(defadvice beginning-of-defun (after beginning-of-defun-advice activate)
-  (recenter))
-(defadvice end-of-defun (after end-of-defun-advice activate)
-  (recenter))
-
 (require 'buffer-stack)
 (global-set-key (kbd "C-z") 'buffer-stack-down)
 (global-set-key (kbd "M-C-z") 'buffer-stack-up)
