@@ -21,6 +21,7 @@
  '(buffer-stack-untracked
    (quote
     ("KILL" "*Compile-Log*" "*Ibuffer*" "*Compile-Log-Show*" "*Group*" "*Completions*" "*Kill Ring*" "*Messages*" "*nav*")))
+ '(cider-repl-use-clojure-font-lock t)
  '(column-number-mode t)
  '(cursor-color "#626262")
  '(custom-safe-themes
@@ -145,6 +146,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-jump-face-foreground ((t (:background "white" :foreground "red"))) t)
+ '(cider-error-highlight-face ((t (:inherit font-lock-warning-face :weight bold))))
+ '(cider-repl-input-face ((t (:foreground "brightblack"))) t)
+ '(cider-repl-output-face ((t nil)) t)
+ '(cider-repl-prompt-face ((t (:background "black" :foreground "purple"))) t)
+ '(cider-repl-result-face ((t (:foreground "blue"))) t)
  '(clojure-test-error-face ((t (:background "orange1" :foreground "black" :weight bold))))
  '(clojure-test-failure-face ((t (:background "orange red" :foreground "black" :weight bold))))
  '(clojure-test-success-face ((t (:foreground "green"))))
