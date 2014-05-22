@@ -760,3 +760,11 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
 
 (global-set-key (kbd "C-x C-y") 'pt-pbpaste)
 (global-set-key (kbd "C-x M-w") 'pt-pbcopy)
+(defun dired-insert-this-directory-recursively ()
+  "Recursively insert the subdirectories of the current dired directory."
+  (interactive)
+  (dired-insert-subdir dired-directory "-alR"))
+
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (define-key dired-mode-map (kbd "I") 'dired-insert-this-directory-recursively)))
