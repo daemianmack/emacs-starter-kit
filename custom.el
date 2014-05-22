@@ -192,6 +192,8 @@
  '(magit-diff-none ((t (:foreground "color-235"))))
  '(magit-header ((t (:foreground "color-45"))))
  '(magit-item-highlight ((t (:background "color-233" :weight bold))))
+ '(magit-log-head-label-local ((t (:inherit magit-log-head-label-remote))))
+ '(magit-log-head-label-remote ((t (:background "brightblue" :foreground "black"))))
  '(mode-line-80col-face ((t (:inherit mode-line-position-face :background "black" :foreground "yellow" :weight bold))) t)
  '(mode-line-emphasis ((t nil)))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:foreground "brightgreen" :box (:line-width 1 :color "grey40" :style released-button)))))
