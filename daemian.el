@@ -768,3 +768,6 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
 (add-hook 'dired-mode-hook
           (lambda ()
             (define-key dired-mode-map (kbd "I") 'dired-insert-this-directory-recursively)))
+(require 'swoop)
+(define-key isearch-mode-map (kbd "C-o") 'swoop-from-isearch)
+(define-key swoop-map (kbd "C-o") 'swoop-multi-from-swoop)
