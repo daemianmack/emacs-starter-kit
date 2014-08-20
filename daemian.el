@@ -718,7 +718,7 @@ vi style of % jumping to matching brace."
 (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
 
 (require 'clj-refactor)
-(cljr-add-keybindings-with-prefix "C-c C-f")
+(cljr-add-keybindings-with-prefix "C-c C-r")
 
 (defvar former-window-configuration nil
   "Stores previous window configurations, e.g. those that were in effect when center-window-horizontally was called.")
