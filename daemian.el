@@ -771,3 +771,19 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
 (require 'swoop)
 (define-key isearch-mode-map (kbd "C-o") 'swoop-from-isearch)
 (define-key swoop-map (kbd "C-o") 'swoop-multi-from-swoop)
+
+(defun count-last-expression ()
+  (interactive)
+  (cider-interactive-eval
+   (format "(count %s)"
+           (cider-last-sexp))))
+
+(define-key cider-mode-map (kbd "C-c c") 'count-last-expression)
+
+(defun time-and-say-last-expr ()
+  (interactive)
+  (cider-interactive-eval
+   (format "(user/time-and-say %s)" (cider-last-sexp))))
+
+(define-key cider-mode-map (kbd "C-c e") 'time-and-say-last-expr)
+
