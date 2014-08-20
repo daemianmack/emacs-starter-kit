@@ -145,7 +145,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ace-jump-face-foreground ((t (:background "white" :foreground "red"))) t)
+ '(ace-jump-face-background ((t (:foreground "color-236"))) t)
+ '(ace-jump-face-foreground ((t (:background "purple" :foreground "white" :weight bold))) t)
  '(cider-error-highlight-face ((t (:inherit font-lock-warning-face :weight bold))))
  '(cider-repl-input-face ((t (:foreground "brightblack"))))
  '(cider-repl-output-face ((t nil)))
@@ -185,14 +186,14 @@
  '(highlight-symbol-face ((t (:background "red"))) t)
  '(hl-line ((t (:background "black"))) t)
  '(hl-paren-face ((t (:underline "red"))) t)
- '(idle-highlight ((t (:background "color-236"))))
+ '(idle-highlight ((t (:background "brightblack" :underline t))))
  '(italic ((((supports :underline t)) (:underline nil))))
  '(linum-highlight-face ((t (:inherit default :background "green" :foreground "black"))))
  '(magit-diff-file-header ((t (:background "black"))))
  '(magit-diff-hunk-header ((t (:background "blue" :foreground "white"))))
  '(magit-diff-none ((t (:foreground "color-235"))))
  '(magit-header ((t (:foreground "color-45"))))
- '(magit-item-highlight ((t (:background "color-233" :weight bold))))
+ '(magit-item-highlight ((t nil)))
  '(magit-log-head-label-local ((t (:inherit magit-log-head-label-remote))))
  '(magit-log-head-label-remote ((t (:background "brightblue" :foreground "black"))))
  '(mode-line-80col-face ((t (:inherit mode-line-position-face :background "black" :foreground "yellow" :weight bold))) t)
