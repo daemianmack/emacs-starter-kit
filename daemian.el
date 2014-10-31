@@ -19,7 +19,6 @@
 (setq dotfiles-dir (file-name-directory
                      (or (buffer-file-name) load-file-name)))
 
-(add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "elpa"))
 
 
@@ -211,11 +210,6 @@
 (defadvice forward-sentence (after forward-sentence-advice activate)
   (recenter))
 (defadvice backward-sentence (after backward-sentence-advice activate)
-  (recenter))
-
-(defadvice forward-paragraph (after forward-paragraph-advice activate)
-  (recenter))
-(defadvice backward-paragraph (after backward-paragraph-advice activate)
   (recenter))
 
 (require 'buffer-stack)
