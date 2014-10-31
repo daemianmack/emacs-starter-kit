@@ -693,7 +693,7 @@ vi style of % jumping to matching brace."
 (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
 
 (require 'clj-refactor)
-(cljr-add-keybindings-with-prefix "C-c C-r")
+(cljr-add-keybindings-with-prefix "C-c C-f")
 
 (defvar former-window-configuration nil
   "Stores previous window configurations, e.g. those that were in effect when center-window-horizontally was called.")
@@ -734,13 +734,107 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
 (global-set-key (kbd "C-x C-y") 'pt-pbpaste)
 (global-set-key (kbd "C-x M-w") 'pt-pbcopy)
 
+(define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "C-c q") 'join-line)
 
+(global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
 
+;; (defun cider-repl-reset ()
+;;   (interactive)
+;;   (save-some-buffers)
+;;   (with-current-buffer (cider-current-repl-buffer)
+;;     (goto-char (point-max))
+;;     (insert "(user/reset)")
+;;     (cider-repl-return)))
 
-(defun time-and-say-last-expr ()
+;; (global-set-key (kbd "C-c C-r") 'cider-repl-reset)
+
+ (global-set-key (kbd "C-c <C-right>") 'org-do-demote)
+(global-set-key (kbd "C-c <C-left>") 'org-do-promote)
+
+(require 'project-explorer)
+
+(defun reload-repl ()
   (interactive)
-  (cider-interactive-eval
-   (format "(user/time-and-say %s)" (cider-last-sexp))))
+  (cider-quit)
+  (cider-jack-in))
 
-(define-key cider-mode-map (kbd "C-c e") 'time-and-say-last-expr)
+(defun cider-repl-command (cmd)
+  "Execute commands on the cider repl"
+  (cider-switch-to-repl-buffer)
+  (goto-char (point-max))
+  (insert cmd)
+  (cider-repl-return)
+  (cider-switch-to-last-clojure-buffer))
 
+(defun cider-reset-repl ()
+  "Assumes reloaded + tools.namespace is used to reload everything"
+  (interactive)
+  (save-some-buffers)
+  (cider-repl-command "(repl/reload)"))
+
+(defun cider-reset-repl-run-tests ()
+  (interactive)
+  (cider-reset-repl)
+  (clojure-test-run-tests)) ;; Upgrade CIDER some day and use its cider-test-run-tests?
+
+(define-key cider-mode-map (kbd "C-c !") 'cider-reset-repl)
+(define-key cider-mode-map (kbd "C-c .") 'cider-reset-repl-run-tests)
+
+(setq package-check-signature nil)
+
+(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist))
+ 
+(require 'clj-refactor)
+(add-hook 'clojure-mode-hook (lambda ()
+                               (clj-refactor-mode 1)
+                               (cljr-add-keybindings-with-prefix "C-c C-o")))
+ 
+;; align-cljlet
+(require 'align-cljlet)
+(global-set-key (kbd "C-c C-a") 'align-cljlet)
+ 
+;; yasnippet
+(require 'yasnippet)
+(require 'clojure-snippets)
+(yas-global-mode 1)
+(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+(yas-load-directory "~/.emacs.d/snippets")
+ 
+(global-set-key (kbd "C-c C-s") 'clojure-toggle-keyword-string)
+(global-set-key (kbd "C-c C-q") 'cider-restart)
+
+;; inferior lisp mode stuff
+;; (setq inferior-lisp-program "lein repl")
+;; (add-hook 'clojure-mode-hook
+;;           '(lambda ()
+;;              (define-key clojure-mode-map
+;;                "\C-c\C-k"
+;;                '(lambda ()
+;;                   (interactive)
+;;                   (let ((current-point (point)))
+;;                     (goto-char (point-min))
+;;                     (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
+;;                       (when ns-idx
+;;                         (goto-char ns-idx)
+;;                         (let ((sym (symbol-at-point)))
+;;                           (message (format "Loading %s ..." sym))
+;;                           (lisp-eval-string (format "(require '%s :reload)" sym))
+;;                           (lisp-eval-string (format "(in-ns '%s)" sym)))))
+;;                     (goto-char current-point))))))
+ 
+;; (add-hook 'inferior-lisp-mode-hook
+;;           '(lambda ()
+;;              (define-key inferior-lisp-mode-map
+;;                "\C-cl"
+;;                '(lambda ()
+;;                   (interactive)
+;;                   (erase-buffer)
+;;                   (lisp-eval-string "")))))
+
+(require 'sml-mode)
+(global-set-key (kbd "C-c S") 'sml-run)
+
+(require 'highlight-symbol)
