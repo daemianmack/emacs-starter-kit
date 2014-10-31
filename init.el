@@ -29,11 +29,13 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(
+                      align-cljlet
                       browse-kill-ring
                       buffer-stack
                       cider
                       clj-refactor
                       clojure-mode
+                      clojure-snippets
                       clojure-test-mode
                       easy-kill
                       elisp-slime-nav
