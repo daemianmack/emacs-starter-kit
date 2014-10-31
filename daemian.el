@@ -780,8 +780,10 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
   (cider-reset-repl)
   (clojure-test-run-tests)) ;; Upgrade CIDER some day and use its cider-test-run-tests?
 
-(define-key cider-mode-map (kbd "C-c !") 'cider-reset-repl)
-(define-key cider-mode-map (kbd "C-c .") 'cider-reset-repl-run-tests)
+
+;; cider-mode-map is only available in future version of cider.
+;; (define-key cider-mode-map (kbd "C-c !") 'cider-reset-repl)
+;; (define-key cider-mode-map (kbd "C-c .") 'cider-reset-repl-run-tests)
 
 (setq package-check-signature nil)
 
