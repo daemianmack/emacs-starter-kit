@@ -22,6 +22,11 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; (add-to-list 'package-archives
+;;              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+;; Moving to Melpa Stable will be a delight!
+;; (setq package-pinned-archives '((magit . "MELPA") (flycheck . "MELPA Stable"))
+
 ;; Add in your own as you wish:
 (defvar my-packages '(
                       browse-kill-ring
