@@ -611,7 +611,7 @@ vi style of % jumping to matching brace."
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'ace-jump-word-mode)
-(key-chord-define-global "jl" 'other-window)
+(key-chord-define-global ",." 'other-window)
 (key-chord-define-global "zz" 'save-buffer)
 (key-chord-define-global "zx" 'beginning-of-buffer)
 (key-chord-define-global "xc" 'end-of-buffer)
