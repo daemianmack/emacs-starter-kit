@@ -507,19 +507,7 @@ vi style of % jumping to matching brace."
 (require 'desktop)
 (desktop-read)
 
-;; From http://blog.jenkster.com/2013/12/a-cider-excursion.html
-;; Put [org.clojure/tools.namespace "0.2.4"] in ~/.lein/profiles.clj's
-;; :user :dependencies vector
-(defun cider-namespace-refresh ()
-  (interactive)
-  (cider-interactive-eval
-   "(require 'clojure.tools.namespace.repl)
-    (clojure.tools.namespace.repl/refresh)"))
 (winner-mode 1)
-
-(add-hook 'cider-mode-hook
-          (lambda ()
-            (define-key cider-mode-map (kbd "C-c M-r") 'cider-namespace-refresh)))
 
 ;; full screen magit-status
 (defadvice vc-annotate-status (around vc-annotate-fullscreen activate)
@@ -605,19 +593,12 @@ vi style of % jumping to matching brace."
 
 (global-set-key (kbd "C-x 4 r") 'rotate-windows)
 
-;; I always hit space when I mean to jump. 
+;; I always hit space when I mean to jump.
 (global-set-key (kbd "C-x r a")   'point-to-register) ; "assign" to point
 (global-set-key (kbd "C-x r SPC") 'jump-to-register)  ; easy jump target
 
 ; Necessary due to bug in ruby-mode.
 (setq ruby-indent-level 2)
-
-(require 'smart-forward)
-(global-set-key (kbd "C-<up>") 'smart-up)
-(global-set-key (kbd "C-<down>") 'smart-down)
-(global-set-key (kbd "C-<left>") 'smart-backward)
-(global-set-key (kbd "C-<right>") 'smart-forward)
-
 
 (add-hook 'server-switch-hook
           (lambda ()
@@ -733,8 +714,6 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
       (set-window-buffer (split-window-horizontally (- side-window-width))
                          (other-buffer nil nil)))))
 
-(require 'project-explorer)
-
 (defun pt-pbpaste ()
   "Paste data from pasteboard."
   (interactive)
@@ -754,25 +733,9 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
 
 (global-set-key (kbd "C-x C-y") 'pt-pbpaste)
 (global-set-key (kbd "C-x M-w") 'pt-pbcopy)
-(defun dired-insert-this-directory-recursively ()
-  "Recursively insert the subdirectories of the current dired directory."
-  (interactive)
-  (dired-insert-subdir dired-directory "-alR"))
 
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (define-key dired-mode-map (kbd "I") 'dired-insert-this-directory-recursively)))
-(require 'swoop)
-(define-key isearch-mode-map (kbd "C-o") 'swoop-from-isearch)
-(define-key swoop-map (kbd "C-o") 'swoop-multi-from-swoop)
 
-(defun count-last-expression ()
-  (interactive)
-  (cider-interactive-eval
-   (format "(count %s)"
-           (cider-last-sexp))))
 
-(define-key cider-mode-map (kbd "C-c c") 'count-last-expression)
 
 (defun time-and-say-last-expr ()
   (interactive)
