@@ -34,6 +34,7 @@
                       elisp-slime-nav
                       find-file-in-project
                       flymake-cursor
+                      git-messenger
                       hlinum
                       idle-highlight-mode
                       ido-ubiquitous
@@ -43,6 +44,7 @@
                       magit
                       nav
                       projectile
+                      project-explorer
                       python-mode
                       rainbow-delimiters
                       rings
