@@ -22,7 +22,6 @@
 (require 'rings)
 (require 'saveplace)
 (require 'smex)
-(require 'sml-mode)
 (require 'smooth-scrolling)
 (require 'undo-tree)
 (require 'uniquify)
