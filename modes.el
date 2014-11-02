@@ -12,7 +12,7 @@
 (global-rainbow-delimiters-mode)
 (global-subword-mode 1)
 (global-undo-tree-mode)
-(highlight-symbol-mode 1)
+(highlight-symbol-mode)
 (key-chord-mode 1)
 (projectile-global-mode)
 (smex-initialize)

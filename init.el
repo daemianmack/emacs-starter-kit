@@ -40,7 +40,7 @@
                       flymake-cursor
                       git-messenger
                       hlinum
-                      idle-highlight-mode
+		      highlight-symbol
                       ido-ubiquitous
                       ipython
                       key-chord
