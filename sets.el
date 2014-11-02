@@ -1,6 +1,6 @@
 (setq dotfiles-dir (file-name-directory
 		    (or (buffer-file-name) load-file-name)))
-
+(setq variable-files-dir (concat dotfiles-dir "var/"))
 
 ;; MacOS X specific stuff
 (setq mac-option-modifier 'meta)
@@ -13,7 +13,7 @@
   (setq initial-major-mode 'clojure-mode))
 
 (setq desktop-save nil)
- (add-to-list 'desktop-path dotfiles-dir)
+ (add-to-list 'desktop-path variable-files-dir)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -58,10 +58,10 @@
 
 (setq scroll-preserve-screen-position t)
 
-(setq bookmark-default-file (concat dotfiles-dir ".emacs.bmk"))
+(setq bookmark-default-file (concat variable-files-dir ".emacs.bmk"))
 
 (setq-default save-place t)
-(setq save-place-file (concat dotfiles-dir ".emacs-places"))
+(setq save-place-file (concat variable-files-dir ".emacs-places"))
 
 ;; Remove older backup files.
 (setq delete-old-versions t
@@ -69,11 +69,11 @@
   kept-old-versions 2
   version-control t)
 
-(setq backup-directory-alist `(("." . ,(concat dotfiles-dir "backups"))))
+(setq backup-directory-alist `(("." . ,(concat variable-files-dir "backups"))))
 
 ;; Move auto-save and backup files elsewhere.
 (defvar user-temporary-file-directory
-  (setq temporary-file-directory (concat dotfiles-dir ".autosaves/")))
+  (setq temporary-file-directory (concat variable-files-dir ".autosaves/")))
 (make-directory user-temporary-file-directory t)
 
 (setq backup-by-copying t)
@@ -108,8 +108,8 @@
 
 ;; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
-(setq projectile-cache-file (concat dotfiles-dir "projectile.cache"))
-(setq projectile-known-projects-file (concat dotfiles-dir "projectile-bookmarks.eld"))
+(setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
+(setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
 
 ;; Still needed?
 ;; Necessary due to bug in ruby-mode.

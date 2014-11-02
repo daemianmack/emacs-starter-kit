@@ -15,3 +15,4 @@ lock
 .smex-items
 /.breadcrumb
 elpa/
+/var/
