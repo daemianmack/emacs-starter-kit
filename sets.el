@@ -106,6 +106,10 @@
         " [Too big]"      ; directory too big
         " [Confirm]")))
 
+(setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
+
+(setq smex-save-file (concat variable-files-dir "smex-items"))
+
 ;; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
 (setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
