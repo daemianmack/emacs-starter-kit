@@ -27,12 +27,6 @@
 ;; Moving to Melpa Stable will be a delight!
 ;; (setq package-pinned-archives '((magit . "MELPA") (flycheck . "MELPA Stable"))
 
-(setq dotfiles-dir (file-name-directory
-		    (or (buffer-file-name) load-file-name)))
-(setq user-config (concat dotfiles-dir user-login-name ".el"))
-(when (file-exists-p user-config)
-  (load user-config))
-
 (defvar my-packages '(align-cljlet
                       browse-kill-ring
                       buffer-stack
@@ -67,3 +61,10 @@
   (when (not (package-installed-p p))
         (package-install p)))
 (put 'downcase-region 'disabled nil)
+
+
+(setq dotfiles-dir (file-name-directory
+		    (or (buffer-file-name) load-file-name)))
+(setq user-config (concat dotfiles-dir user-login-name ".el"))
+(when (file-exists-p user-config)
+  (load user-config))
