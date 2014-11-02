@@ -27,9 +27,13 @@
 ;; Moving to Melpa Stable will be a delight!
 ;; (setq package-pinned-archives '((magit . "MELPA") (flycheck . "MELPA Stable"))
 
-;; Add in your own as you wish:
-(defvar my-packages '(
-                      align-cljlet
+(setq dotfiles-dir (file-name-directory
+		    (or (buffer-file-name) load-file-name)))
+(setq user-config (concat dotfiles-dir user-login-name ".el"))
+(when (file-exists-p user-config)
+  (load user-config))
+
+(defvar my-packages '(align-cljlet
                       browse-kill-ring
                       buffer-stack
                       cider
@@ -38,7 +42,6 @@
                       clojure-snippets
                       clojure-test-mode
                       easy-kill
-                      elisp-slime-nav
                       find-file-in-project
                       flymake-cursor
                       git-messenger
@@ -57,13 +60,7 @@
                       rings
                       smex
                       smooth-scrolling
-                      starter-kit
-                      starter-kit-bindings
-                      starter-kit-lisp
-                      starter-kit-ruby
-                      undo-tree
-                      )
-
+                      undo-tree)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
