@@ -9,7 +9,6 @@
 (auto-fill-mode nil)
 (column-number-mode t)
 (desktop-save-mode 1)
-(global-rainbow-delimiters-mode)
 (global-subword-mode 1)
 (global-undo-tree-mode)
 (highlight-symbol-mode)
@@ -33,6 +32,7 @@
   (paredit-mode 1)
   (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round))
 
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
