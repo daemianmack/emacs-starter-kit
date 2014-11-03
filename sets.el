@@ -91,6 +91,7 @@
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
 
+(setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
 ;; Make ido-mode list things vertically
 (setq ido-decorations
       (quote
@@ -105,8 +106,6 @@
         " [Not readable]" ; current diretory is not readable
         " [Too big]"      ; directory too big
         " [Confirm]")))
-
-(setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
 
 (setq smex-save-file (concat variable-files-dir "smex-items"))
 
