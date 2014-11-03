@@ -11,7 +11,6 @@
 (desktop-save-mode 1)
 (global-subword-mode 1)
 (global-undo-tree-mode)
-(highlight-symbol-mode)
 (key-chord-mode 1)
 (projectile-global-mode)
 (smex-initialize)
@@ -33,6 +32,8 @@
   (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round))
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
+(add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
