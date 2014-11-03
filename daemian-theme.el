@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2014-11-02.")
+  "Created 2014-11-03.")
 
 (custom-theme-set-variables
  'daemian
@@ -104,6 +104,7 @@
  '(diff-added ((t (:foreground "green"))))
  '(magit-diff-add ((t (:foreground "green"))))
  '(magit-diff-del ((t (:foreground "red"))))
- '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "unspecified-fg" :background "unspecified-bg" :stipple nil :inherit nil)))))
+ '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "unspecified-fg" :background "unspecified-bg" :stipple nil :inherit nil))))
+ '(custom-variable-tag ((t (:foreground "brightblue" :weight bold)))))
 
 (provide-theme 'daemian)
