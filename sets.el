@@ -12,8 +12,9 @@
 (when (locate-library "clojure-mode")
   (setq initial-major-mode 'clojure-mode))
 
-(setq desktop-save nil)
- (add-to-list 'desktop-path variable-files-dir)
+(setq desktop-path (list variable-files-dir))
+(setq desktop-save t)
+(setq desktop-dirname variable-files-dir)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -180,3 +181,6 @@
 (if (is-in-terminal)
     (load-theme 'daemian t)
   (load-theme 'twilight-anti-bright t))
+
+;; At bottom to resolve some ordering issue.
+(setq recentf-save-file (concat variable-files-dir ".recentf"))
