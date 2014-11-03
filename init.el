@@ -20,12 +20,10 @@
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+(setq package-pinned-archives '((magit . "MELPA") (cider . "MELPA Stable")))
 (package-initialize)
-
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-;; Moving to Melpa Stable will be a delight!
-;; (setq package-pinned-archives '((magit . "MELPA") (flycheck . "MELPA Stable"))
 
 (defvar my-packages '(align-cljlet
                       browse-kill-ring
