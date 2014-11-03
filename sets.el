@@ -15,6 +15,9 @@
 (setq desktop-path (list variable-files-dir))
 (setq desktop-save t)
 (setq desktop-dirname variable-files-dir)
+(setq desktop-globals-to-save (append '((kill-ring . 50)
+					recentf-list)))
+
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
