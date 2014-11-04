@@ -77,7 +77,6 @@
 (key-chord-define-global ",." 'other-window)
 (key-chord-define-global "zz" 'save-buffer)
 (key-chord-define-global "zx" 'beginning-of-buffer)
-(key-chord-define-global "xc" 'end-of-buffer)
 
 
 (global-set-key (kbd "<f1>")   (rings-generate-cycler 1))
