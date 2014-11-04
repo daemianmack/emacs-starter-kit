@@ -112,16 +112,15 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
     (kill-buffer "*Shell Command Output*")))
 
 
-;; (defun cider-repl-reset ()
-;;   (interactive)
-;;   (save-some-buffers)
-;;   (with-current-buffer (cider-current-repl-buffer)
-;;     (goto-char (point-max))
-;;     (insert "(user/reset)")
-;;     (cider-repl-return)))
+(defun cider-repl-reset ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(dev/reset)")
+    (cider-repl-return)))
 
-;; (global-set-key (kbd "C-c C-r") 'cider-repl-reset)
-
+(global-set-key (kbd "C-c !") 'cider-repl-reset)
 
 (defun reload-repl ()
   (interactive)
