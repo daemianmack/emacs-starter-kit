@@ -6,3 +6,6 @@
       (find-file file))))
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
+(setq nrepl-hide-special-buffers t)
+(setq cider-show-error-buffer nil)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
