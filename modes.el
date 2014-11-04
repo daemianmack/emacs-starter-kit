@@ -19,7 +19,7 @@
 
 
 (add-to-list 'auto-mode-alist '("\\.org" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\.*" . rainbow-mode))
+(add-to-list 'auto-mode-alist '("\\.s\?css\\.*" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . javascript-mode))
 (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs" . clojure-mode))
@@ -38,6 +38,7 @@
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 ;; Make windmove work in org-mode.
 (add-hook 'org-shiftup-final-hook 'windmove-up)
