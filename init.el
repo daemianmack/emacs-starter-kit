@@ -32,7 +32,6 @@
                       clj-refactor
                       clojure-mode
                       clojure-snippets
-                      clojure-test-mode
                       easy-kill
                       find-file-in-project
                       flymake-cursor

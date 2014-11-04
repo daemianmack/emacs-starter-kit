@@ -4,7 +4,6 @@
 (require 'clj-refactor)
 (require 'clojure-mode)
 (require 'clojure-snippets)
-(require 'clojure-test-mode)
 (require 'desktop)
 (require 'easy-kill)
 (require 'ffap)
