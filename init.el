@@ -31,7 +31,6 @@
                       cider
                       clj-refactor
                       clojure-mode
-                      clojure-snippets
                       easy-kill
                       find-file-in-project
                       flymake-cursor

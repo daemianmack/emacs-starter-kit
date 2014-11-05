@@ -3,7 +3,6 @@
 (require 'buffer-stack)
 (require 'clj-refactor)
 (require 'clojure-mode)
-(require 'clojure-snippets)
 (require 'desktop)
 (require 'easy-kill)
 (require 'ffap)
