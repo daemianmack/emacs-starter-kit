@@ -15,7 +15,6 @@
 (projectile-global-mode)
 (smex-initialize)
 (winner-mode 1)
-(yas-global-mode 1)
 
 
 (add-to-list 'auto-mode-alist '("\\.org" . org-mode))
@@ -131,7 +130,3 @@
 
 
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
-
-
-(add-to-list 'yas-snippet-dirs (concat dotfiles-dir "snippets"))
-(yas-load-directory (concat dotfiles-dir "snippets"))
