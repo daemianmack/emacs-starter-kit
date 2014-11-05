@@ -18,3 +18,6 @@
 (require 'comment-dwim-2)
 (define-key cider-mode-map (kbd "M-;") 'comment-dwim-2)
 (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
+
+(global-set-key (kbd "C-c C-c") '(lambda () (interactive) (message "Here is a message.")))
+
