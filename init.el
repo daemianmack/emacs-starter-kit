@@ -43,6 +43,7 @@
                       ipython
                       key-chord
                       kill-ring-search
+		      kpm-list
                       magit
                       nav
                       projectile
