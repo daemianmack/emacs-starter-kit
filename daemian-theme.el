@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2014-11-04.")
+  "Created 2014-11-07.")
 
 (custom-theme-set-variables
  'daemian
@@ -16,7 +16,6 @@
  '(diff-changed ((t (:foreground "purple"))))
  '(diff-indicator-removed ((t (:inherit diff-removed))))
  '(diff-refine-change ((t (:foreground "purple"))))
- '(diff-refine-removed ((t (:inherit diff-refine-change))))
  '(flx-highlight-face ((t (:inherit isearch-lazy-highlight-face :background "null" :weight normal))))
  '(font-lock-comment-face ((t (:background nil :foreground "red"))))
  '(highlight ((t (:background "brightblue" :foreground "white"))))
@@ -91,7 +90,7 @@
  '(match ((t (:weight bold :foreground "brightgreen" :background "black"))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
- '(magit-item-highlight ((t (:background "color-233" :weight bold))))
+ '(magit-item-highlight ((t (:background "color-233"))))
  '(mode-line-read-only-face ((t (:inherit mode-line-face :foreground "#000000"))))
  '(mode-line-modified-face ((t (:inherit mode-line-face :background "#c82829" :foreground "#ffffff" :box (:line-width 2 :color "#ffffff") :weight bold))))
  '(mode-line-folder-face ((t (:inherit mode-line-face :foreground "black"))))
@@ -101,11 +100,11 @@
  '(mode-line-minor-mode-face ((t (:inherit mode-line-mode-face :foreground "bright black"))))
  '(mode-line-process-face ((t (:inherit mode-line-face :foreground "#718c00"))))
  '(mode-line-80col-face ((t (:background "yellow" :foreground "black"))))
- '(diff-added ((t (:foreground "green"))))
- '(magit-diff-add ((t (:foreground "green"))))
- '(magit-diff-del ((t (:foreground "red"))))
+ '(diff-added ((t (:foreground "color-22"))))
  '(custom-variable-tag ((t (:foreground "brightblue" :weight bold))))
+ '(widget-field ((t (:background "color-21" :foreground "color-254"))))
+ '(diff-refine-removed ((t (:foreground "brightred" :weight bold))))
  '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "unspecified-fg" :background "unspecified-bg" :stipple nil :inherit nil))))
- '(widget-field ((t (:background "color-21" :foreground "color-254")))))
+ '(diff-refine-added ((t (:foreground "brightgreen" :weight bold)))))
 
 (provide-theme 'daemian)
