@@ -30,6 +30,8 @@
 
 (setq sentence-end-double-space nil)
 
+(setq-default indent-tabs-mode nil)
+
 (setq shift-select-mode nil)
 
 (setq mouse-yank-at-point t)
