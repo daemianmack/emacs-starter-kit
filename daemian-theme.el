@@ -19,7 +19,7 @@
  '(flx-highlight-face ((t (:inherit isearch-lazy-highlight-face :background "null" :weight normal))))
  '(font-lock-comment-face ((t (:background nil :foreground "red"))))
  '(highlight ((t (:background "brightblue" :foreground "white"))))
- '(highlight-symbol-face ((t (:background "brightblack"))))
+ '(highlight-symbol-face ((t (:background "color-235"))))
  '(hiwin-face ((t (:background "black"))))
  '(hl-paren-face ((t (:underline "red"))))
  '(italic ((((supports :underline t)) (:underline nil))))
