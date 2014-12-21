@@ -62,6 +62,8 @@
 (setq shell-prompt-pattern "
 ")
 
+(setq magit-process-popup-time 10)
+
 (setq scroll-preserve-screen-position t)
 
 (setq bookmark-default-file (concat variable-files-dir ".emacs.bmk"))
