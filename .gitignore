@@ -16,3 +16,4 @@ lock
 /.breadcrumb
 elpa/
 /var/
+/custom.el
