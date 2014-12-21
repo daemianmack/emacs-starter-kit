@@ -21,7 +21,6 @@
  '(highlight ((t (:background "brightblue" :foreground "white"))))
  '(highlight-symbol-face ((t (:background "color-235"))))
  '(hiwin-face ((t (:background "black"))))
- '(hl-paren-face ((t (:underline "red"))))
  '(italic ((((supports :underline t)) (:underline nil))))
  '(linum-highlight-face ((t (:inherit default :background "green" :foreground "black"))))
  '(magit-diff-file-header ((t (:background "black"))))
