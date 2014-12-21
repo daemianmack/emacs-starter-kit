@@ -117,7 +117,8 @@
 
      (define-key vc-annotate-mode-map (kbd "q") 'vc-annotate-quit)))
 
-
+(defadvice backward-paragraph (after backward-paragraph-advice activate) (recenter))
+(defadvice forward-paragraph  (after forward-paragraph-advice  activate) (recenter))
 (defadvice forward-sentence (after forward-sentence-advice activate) (recenter))
 (defadvice backward-sentence (after backward-sentence-advice activate) (recenter))
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
