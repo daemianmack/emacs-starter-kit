@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2014-11-07.")
+  "Created 2014-12-21.")
 
 (custom-theme-set-variables
  'daemian
@@ -47,7 +47,7 @@
  '(rainbow-delimiters-depth-7-face ((t (:foreground "color-95"))))
  '(rainbow-delimiters-depth-8-face ((t (:foreground "color-33"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "color-99"))))
- '(show-paren-match ((t (:background "black"))))
+ '(show-paren-match ((t (:background "color-235"))))
  '(show-paren-mismatch ((t (:background "red" :foreground "white"))))
  '(vertical-border ((t (:foreground "black"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "color-160"))))
