@@ -39,7 +39,7 @@
  '(font-lock-warning-face ((t (:inherit (error)))))
  '(header-line ((t (:inherit mode-line :background "gray20" :weight bold))))
  '(highlight ((t (:background "brightblue" :foreground "white"))))
- '(highlight-symbol-face ((t (:background "color-235"))))
+ '(highlight-symbol-face ((t (:background "color-235" :underline (:color foreground-color :style wave)))))
  '(isearch ((t (:background "purple" :foreground "white"))))
  '(isearch-fail ((t (:weight ultra-bold :foreground "white" :background "red"))))
  '(italic ((((supports :underline t)) (:underline nil))))
