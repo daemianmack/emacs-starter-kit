@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: run-tests
+# key: rt
+# --
+(run-tests)

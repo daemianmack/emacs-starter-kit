@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: require dev
+# key: dev
+# --
+(require 'dev :reload)

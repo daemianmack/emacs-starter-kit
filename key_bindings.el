@@ -1,4 +1,3 @@
-(global-set-key "\M-/" 'hippie-expand)
 
 ;; ;; tmux handles shift+arrow differently than screen. Accomodate. Prefer a fix in .tmux.conf.
 ;; (global-set-key (kbd "M-[ d") 'windmove-left)
@@ -129,8 +128,6 @@
 (global-set-key (kbd "C-c C-s") 'clojure-toggle-keyword-string)
 (global-set-key (kbd "C-c C-q") 'cider-restart)
 
-(global-set-key (kbd "C-c S") 'sml-run)
-
 ;; Let existence of an active region determine whether we backward-kill-word, or kill said region.
 (defun backward-kill-word-or-kill-region (&optional arg)
   (interactive "p")
@@ -138,3 +135,5 @@
       (kill-region (region-beginning) (region-end))
     (backward-kill-word arg)))
 (global-set-key (kbd "C-w") 'backward-kill-word-or-kill-region)
+
+(global-set-key (kbd "C-c w") 'whitespace-cleanup)

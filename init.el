@@ -23,7 +23,7 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-(setq package-pinned-archives '((magit . "MELPA") (cider . "MELPA Stable")))
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 (package-initialize)
 
 (defvar my-packages '(align-cljlet
@@ -32,6 +32,7 @@
                       cider
                       clj-refactor
                       clojure-mode
+                      clojure-snippets
                       easy-kill
                       find-file-in-project
                       flymake-cursor
@@ -52,7 +53,8 @@
                       rings
                       smex
                       smooth-scrolling
-                      undo-tree)
+                      undo-tree
+                      yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

@@ -7,24 +7,14 @@
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
-(setq nrepl-hide-special-buffers t)
-(setq cider-show-error-buffer nil)
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-
-(global-aggressive-indent-mode)
-
-
-(require 'comment-dwim-2)
-(define-key cider-mode-map (kbd "M-;") 'comment-dwim-2)
-(setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
 (defun clear-nrepl-server-buffer ()
   (interactive)
   (switch-to-buffer "*nrepl-server vium-backend*")
   (erase-buffer)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
-(global-set-key (kbd "C-c C-c") '(lambda () (interactive) (message "Here is a message.")))
 (defun clear-all-nrepl-buffers ()
   (interactive)
   (clear-nrepl-server-buffer)
@@ -40,3 +30,32 @@
 
 ;; Expand this to all programming modes.
 (add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
+
+(setq helm-M-x-fuzzy-match t
+      helm-apropos-fuzzy-match t
+      helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t
+      helm-completion-in-region-fuzzy-match t
+      helm-file-cache-fuzzy-match t
+      helm-imenu-fuzzy-match t
+      helm-locate-fuzzy-match t)
+
+(require 'yasnippet)
+(require 'clojure-snippets)
+(yas-global-mode 1)
+(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+;; Inherit local/ in a given mode by referencing it in that mode's .yas-parents.
+(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
+(yas-load-directory "~/.emacs.d/snippets")
+
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+    '(add-to-list 'ac-modes 'cider-mode))
+(require 'auto-complete-config)
+(ac-config-default)
+(setq ac-auto-start nil)
+(setq ac-quick-help-delay 0.3)
+(setq ac-trigger-key "M-/")

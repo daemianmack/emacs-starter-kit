@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: my
+# key: my
+# binding: direct-keybinding
+# --
+(require '[my :as my])

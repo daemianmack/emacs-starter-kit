@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: clojure.repl/pst
+# key: pst
+# --
+(clojure.repl/pst *e)
