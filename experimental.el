@@ -38,3 +38,5 @@
 (define-key cider-mode-map (kbd "C-c M-o") 'clear-all-nrepl-buffers)
 (define-key cider-mode-map (kbd "C-c M-k") 'load-buffer-clearing)
 
+;; Expand this to all programming modes.
+(add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
