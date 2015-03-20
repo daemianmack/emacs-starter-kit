@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2014-12-21.")
+  "Created 2015-03-05.")
 
 (custom-theme-set-variables
  'daemian
@@ -9,9 +9,6 @@
 (custom-theme-set-faces
  'daemian
  '(button ((t (:inherit (link)))))
- '(clojure-test-error-face ((t (:background "orange1" :foreground "black" :weight bold))))
- '(clojure-test-failure-face ((t (:background "orange red" :foreground "black" :weight bold))))
- '(clojure-test-success-face ((t (:foreground "green"))))
  '(comint-highlight-prompt ((t (:foreground "brightblue"))))
  '(cursor ((t (:background "#a6cafe"))))
  '(custom-variable-tag ((t (:foreground "brightblue" :weight bold))))
@@ -46,14 +43,14 @@
  '(lazy-highlight ((t (:background "black" :foreground "purple" :weight bold))))
  '(link ((((class color) (min-colors 88) (background light)) (:underline t :foreground "RoyalBlue3")) (((class color) (background light)) (:underline t :foreground "blue")) (((class color) (min-colors 88) (background dark)) (:underline t :foreground "cyan1")) (((class color) (background dark)) (:underline t :foreground "cyan")) (t (:inherit (underline)))))
  '(link-visited ((t (:foreground "magenta4" :inherit (link)))))
- '(linum-highlight-face ((t (:inherit default :background "green" :foreground "black"))))
+ '(linum-highlight-face ((t (:foreground "black" :background "green" :inherit default))))
  '(magit-diff-add ((t (:foreground "green" :inherit nil))))
  '(magit-diff-del ((t (:foreground "red" :inherit nil))))
  '(magit-diff-file-header ((t (:background "black"))))
  '(magit-diff-hunk-header ((t (:background "blue" :foreground "white"))))
  '(magit-diff-none ((t (:foreground "color-235"))))
  '(magit-item-highlight ((t (:background "color-233"))))
- '(match ((t (:weight bold :foreground "brightgreen" :background "black"))))
+ '(match ((t (:background "black" :foreground "brightgreen" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "#4271ae"))))
  '(mode-line ((t (:background "#4271ae" :foreground "#eeeeec" :weight bold))))
  '(mode-line-80col-face ((t (:background "yellow" :foreground "black"))))
@@ -96,6 +93,15 @@
  '(vertical-border ((t (:foreground "black"))))
  '(widget-field ((t (:background "color-21" :foreground "color-254"))))
  '(mode-line-inactive ((t (:background "color-234" :foreground "grey20" :weight light))))
+ '(magit-log-head-label-remote ((t (:foreground "blue"))))
+ '(magit-log-head-label-local ((t (:background "blue" :foreground "black"))))
+ '(magit-log-head-label-head ((t (:background "green" :foreground "brightblack"))))
+ '(magit-branch ((t (:foreground "brightblue"))))
+ '(cider-test-error-face ((t (:background "yellow" :foreground "black"))))
+ '(cider-test-failure-face ((t (:background "red" :foreground "black"))))
+ '(helm-source-header ((t (:inherit helm-header))))
+ '(helm-selection ((t (:background "black" :foreground "brightgreen"))))
+ '(helm-buffer-directory ((t (:inherit helm-buffer-file))))
  '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "unspecified-fg" :background "unspecified-bg" :stipple nil :inherit nil)))))
 
 (provide-theme 'daemian)
