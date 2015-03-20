@@ -23,7 +23,7 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-(setq package-pinned-archives '((magit . "MELPA") (cider . "MELPA Stable")))
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 (package-initialize)
 
 (defvar my-packages '(align-cljlet
