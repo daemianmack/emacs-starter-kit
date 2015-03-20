@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dev/reset
+# key: rs
+# --
+(dev/reset)

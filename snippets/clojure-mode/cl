@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: clojure.tools.namespace.repl/clear
+# key: cl
+# --
+(clojure.tools.namespace.repl/clear)

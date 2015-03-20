@@ -32,6 +32,7 @@
                       cider
                       clj-refactor
                       clojure-mode
+                      clojure-snippets
                       easy-kill
                       find-file-in-project
                       flymake-cursor
@@ -52,7 +53,8 @@
                       rings
                       smex
                       smooth-scrolling
-                      undo-tree)
+                      undo-tree
+                      yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

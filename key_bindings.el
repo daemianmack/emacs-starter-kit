@@ -1,4 +1,3 @@
-(global-set-key "\M-/" 'hippie-expand)
 
 ;; ;; tmux handles shift+arrow differently than screen. Accomodate. Prefer a fix in .tmux.conf.
 ;; (global-set-key (kbd "M-[ d") 'windmove-left)

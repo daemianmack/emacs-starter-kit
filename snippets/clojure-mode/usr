@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: in-ns user
+# key: usr
+# --
+(in-ns 'user)

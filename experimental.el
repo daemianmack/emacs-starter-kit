@@ -17,6 +17,15 @@
       helm-file-cache-fuzzy-match t
       helm-imenu-fuzzy-match t
       helm-locate-fuzzy-match t)
+
+(require 'yasnippet)
+(require 'clojure-snippets)
+(yas-global-mode 1)
+(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+;; Inherit local/ in a given mode by referencing it in that mode's .yas-parents.
+(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
+(yas-load-directory "~/.emacs.d/snippets")
+
 (require 'ac-cider)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)

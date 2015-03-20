@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: jud
+# key: jud
+# binding: direct-keybinding
+# --
+(java.util.Date.)$0
