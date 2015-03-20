@@ -189,5 +189,7 @@
     (load-theme 'daemian t)
   (load-theme 'twilight-anti-bright t))
 
+(setq ac-comphist-file (concat variable-files-dir "ac-comphist.dat"))
+
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
