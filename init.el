@@ -26,7 +26,8 @@
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 (package-initialize)
 
-(defvar my-packages '(align-cljlet
+(defvar my-packages '(ac-cider
+                      align-cljlet
                       browse-kill-ring
                       buffer-stack
                       cider
