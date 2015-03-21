@@ -191,5 +191,12 @@
 
 (setq ac-comphist-file (concat variable-files-dir "ac-comphist.dat"))
 
+;; Disable linum for some modes.
+(setq linum-disabled-modes-list
+      '(cider-repl-mode grep-mode compilation-mode git-commit-mode help-mode))
+(defun linum-on ()
+  (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
+    (linum-mode 1)))
+
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
