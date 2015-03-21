@@ -11,7 +11,7 @@
 
 (defun clear-nrepl-server-buffer ()
   (interactive)
-  (switch-to-buffer "*nrepl-server vium-backend*")
+  (switch-to-buffer "*nrepl-server vium*")
   (erase-buffer)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
@@ -25,8 +25,17 @@
   (cider-load-buffer)
   (clear-all-nrepl-buffers))
 
+(defun run-tests-fresh ()
+  (interactive)
+  (load-buffer-clearing)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(run-tests)")
+    (cider-repl-return)))
+
 (define-key cider-mode-map (kbd "C-c M-o") 'clear-all-nrepl-buffers)
 (define-key cider-mode-map (kbd "C-c M-k") 'load-buffer-clearing)
+(define-key cider-mode-map (kbd "C-c M-r") 'run-tests-fresh)
 
 ;; Expand this to all programming modes.
 (add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
