@@ -68,3 +68,7 @@
 (setq ac-auto-start nil)
 (setq ac-quick-help-delay 0.3)
 (setq ac-trigger-key "M-/")
+
+(setq desktop-restore-frames t)
+(setq desktop-restore-in-current-display t)
+(setq desktop-restore-forces-onscreen nil)
