@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: go
+# key: go
+# binding: direct-keybinding
+# --
+(user/go)$0
