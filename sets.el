@@ -231,6 +231,8 @@
 (setq cider-repl-use-clojure-font-lock t)
 (setq cider-show-error-buffer nil)
 
+(setq highlight-symbol-idle-delay 0.2)
+
 (setq css-indent-offset 2)
 
 ;; At bottom to resolve some ordering issue.
