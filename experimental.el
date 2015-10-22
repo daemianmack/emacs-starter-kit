@@ -123,3 +123,6 @@
     ad-do-it)
 
 (ad-activate 'javarun)
+
+(require 'neotree)
+(set 'neo-window-width 65)

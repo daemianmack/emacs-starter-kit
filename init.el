@@ -47,6 +47,7 @@
 		      kpm-list
                       magit
                       nav
+                      neotree
                       projectile
                       project-explorer
                       python-mode
