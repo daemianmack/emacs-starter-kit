@@ -233,6 +233,9 @@
 
 (setq highlight-symbol-idle-delay 0.2)
 
+(setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+(setq avy-goto-char-style 'at)
+
 (setq css-indent-offset 2)
 
 ;; At bottom to resolve some ordering issue.
