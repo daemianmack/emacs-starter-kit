@@ -14,9 +14,20 @@
 
 (setq desktop-path (list variable-files-dir))
 (setq desktop-save t)
+(setq desktop-load-locked-desktop t)
 (setq desktop-dirname variable-files-dir)
 (setq desktop-globals-to-save (append '((kill-ring . 50)
 					recentf-list)))
+(defun desktop-file-modtime-reset ()
+  "Reset `desktop-file-modtime' so the user is not bothered."
+  (interactive)
+  (run-with-timer 5 nil
+                  (lambda ()
+                    (setq desktop-file-modtime (nth 5 (file-attributes (desktop-full-file-name))))
+                    (desktop-save desktop-dirname))))
+
+(add-hook 'find-file-hook 'desktop-file-modtime-reset)
+(add-hook 'kill-emacs-hook 'desktop-file-modtime-reset)
 
 
 (fset 'yes-or-no-p 'y-or-n-p)
