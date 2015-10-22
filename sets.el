@@ -32,6 +32,9 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq show-paren-mode t)
+(setq show-paren-style 'mixed)
+
 ;; Disable visual/audio erroring.
 (setq visible-bell nil)
 (setq redisplay-dont-pause t)
