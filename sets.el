@@ -110,6 +110,21 @@
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
 
+(setq ido-mode 'both)
+(setq ido-ubiquitous-mode t)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
+(setq ido-enable-prefix nil)
+(setq ido-auto-merge-work-directories-length nil)
+(setq ido-confirm-unique-completion t)
+(setq ido-create-new-buffer 'always)
+(setq ido-enter-matching-directory 'first)
+(setq ido-max-prospects 10)
+(setq ido-max-work-file-list 50)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-use-virtual-buffers t)
+(setq flx-ido-mode t)
+
 (setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
 ;; Make ido-mode list things vertically
 (setq ido-decorations
