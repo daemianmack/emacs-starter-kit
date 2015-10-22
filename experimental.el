@@ -95,3 +95,6 @@
 (define-key cider-mode-map (kbd "C-c C-e") 'rkn-eval-expression-at-point-to-comment)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(global-set-key (kbd "M-y") 'yank-pop)
+(global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
+

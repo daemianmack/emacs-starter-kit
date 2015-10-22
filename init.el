@@ -38,6 +38,7 @@
                       find-file-in-project
                       flymake-cursor
                       git-messenger
+                      helm
                       hlinum
 		      highlight-symbol
                       ido-ubiquitous
