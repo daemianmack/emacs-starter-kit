@@ -33,6 +33,7 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
