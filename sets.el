@@ -224,5 +224,12 @@
   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
     (linum-mode 1)))
 
+(setq cider-popup-on-error t)
+(setq cider-prompt-save-file-on-load nil)
+(setq cider-repl-history-file "~/.lein/cider-repl-history")
+(setq cider-repl-result-prefix "=> ")
+(setq cider-repl-use-clojure-font-lock t)
+(setq cider-show-error-buffer nil)
+
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
