@@ -231,5 +231,7 @@
 (setq cider-repl-use-clojure-font-lock t)
 (setq cider-show-error-buffer nil)
 
+(setq css-indent-offset 2)
+
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
