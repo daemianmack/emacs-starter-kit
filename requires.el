@@ -1,4 +1,5 @@
 (require 'align-cljlet)
+(require 'avy)
 (require 'browse-kill-ring)
 (require 'buffer-stack)
 (require 'clj-refactor)
