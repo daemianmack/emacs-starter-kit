@@ -120,8 +120,8 @@
 
 (global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
 
-(global-set-key (kbd "C-c <C-right>") 'org-do-demote)
-(global-set-key (kbd "C-c <C-left>") 'org-do-promote)
+(define-key org-mode-map (kbd "<C-right>") 'org-do-demote)
+(define-key org-mode-map (kbd "<C-left>") 'org-do-promote)
 
 (global-set-key (kbd "C-c C-a") 'align-cljlet)
  
