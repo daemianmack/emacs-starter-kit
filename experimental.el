@@ -103,3 +103,6 @@
 
 ;; (setq magit-completing-read-function 'magit-ido-completing-read)
 
+(define-key clojure-mode-map (kbd "C-x M-r") 'cljr-helm)
+(setq cljr-auto-clean-ns nil)
+(setq cljr-auto-sort-ns nil)
