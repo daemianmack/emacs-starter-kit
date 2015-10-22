@@ -8,9 +8,6 @@
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
-;; Set *scratch* to Clojure mode.
-(when (locate-library "clojure-mode")
-  (setq initial-major-mode 'clojure-mode))
 
 (setq desktop-path (list variable-files-dir))
 (setq desktop-save t)
