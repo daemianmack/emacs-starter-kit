@@ -57,18 +57,6 @@
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
 (yas-load-directory "~/.emacs.d/snippets")
 
-(require 'ac-cider)
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete"
-    '(add-to-list 'ac-modes 'cider-mode))
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-auto-start nil)
-(setq ac-quick-help-delay 0.3)
-(setq ac-trigger-key "M-/")
-
 (setq desktop-restore-frames t)
 (setq desktop-restore-in-current-display t)
 (setq desktop-restore-forces-onscreen nil)
@@ -105,3 +93,5 @@
     (rkn-nrepl-interactive-eval-print form)))
 
 (define-key cider-mode-map (kbd "C-c C-e") 'rkn-eval-expression-at-point-to-comment)
+
+(setq magit-last-seen-setup-instructions "1.4.0")
