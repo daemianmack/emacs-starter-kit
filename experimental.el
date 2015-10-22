@@ -104,5 +104,12 @@
 ;; (setq magit-completing-read-function 'magit-ido-completing-read)
 
 (define-key clojure-mode-map (kbd "C-x M-r") 'cljr-helm)
+(defadvice yank (around yank-indent)
+   "Indents after yanking."
+   (let ((point-before (point)))
+     ad-do-it
+       (indent-region point-before (point))))
+(ad-activate 'yank)
+
 (setq cljr-auto-clean-ns nil)
 (setq cljr-auto-sort-ns nil)
