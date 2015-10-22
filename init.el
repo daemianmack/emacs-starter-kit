@@ -37,12 +37,11 @@
                       easy-kill
                       find-file-in-project
                       flymake-cursor
-                      git-messenger
                       helm
                       hlinum
 		      highlight-symbol
                       ido-ubiquitous
-                      ipython
+                      ido-completing-read+ ;; For magit.
                       key-chord
                       kill-ring-search
 		      kpm-list
