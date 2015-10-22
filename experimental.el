@@ -104,6 +104,7 @@
 ;; (setq magit-completing-read-function 'magit-ido-completing-read)
 
 (define-key clojure-mode-map (kbd "C-x M-r") 'cljr-helm)
+
 (defadvice yank (around yank-indent)
    "Indents after yanking."
    (let ((point-before (point)))
@@ -113,3 +114,12 @@
 
 (setq cljr-auto-clean-ns nil)
 (setq cljr-auto-sort-ns nil)
+
+(defadvice javarun (around javarun)
+  (if (get-buffer "*java-output*")
+      (kill-buffer "*java-output*"))
+  (if (get-buffer "*javac-output*")
+      (kill-buffer "*javac-output*"))
+    ad-do-it)
+
+(ad-activate 'javarun)
