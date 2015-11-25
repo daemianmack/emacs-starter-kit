@@ -48,6 +48,7 @@
                       kill-ring-search
 		      kpm-list
                       magit
+                      markdown-mode+
                       nav
                       neotree
                       projectile
