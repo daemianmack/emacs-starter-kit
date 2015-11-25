@@ -31,6 +31,7 @@
                       browse-kill-ring
                       buffer-stack
                       cider
+                      cider-eval-sexp-fu
                       clj-refactor
                       clojure-mode
                       clojure-snippets
