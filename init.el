@@ -32,6 +32,7 @@
                       buffer-stack
                       cider
                       cider-eval-sexp-fu
+                      cl ;; Support fn for buffer-stack.el.
                       clj-refactor
                       clojure-mode
                       clojure-snippets
