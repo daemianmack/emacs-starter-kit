@@ -18,7 +18,7 @@
 (defun clear-all-nrepl-buffers ()
   (interactive)
   (clear-nrepl-server-buffer)
-  (cider-find-and-clear-repl-buffer))
+  (cider-find-and-clear-repl-output))
 
 (defun load-buffer-clearing ()
   (interactive)
@@ -36,6 +36,8 @@
 (define-key cider-mode-map (kbd "C-c M-o") 'clear-all-nrepl-buffers)
 (define-key cider-mode-map (kbd "C-c M-k") 'load-buffer-clearing)
 (define-key cider-mode-map (kbd "C-c M-r") 'run-tests-fresh)
+
+(define-key cider-repl-mode-map (kbd "C-c M-o") 'cider-repl-clear-buffer)
 
 ;; Expand this to all programming modes.
 (add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
@@ -126,3 +128,4 @@
 
 (require 'neotree)
 (set 'neo-window-width 65)
+(setq cider-overlays-use-font-lock t)
