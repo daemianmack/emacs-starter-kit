@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2015-08-12.")
+  "Created 2015-12-16.")
 
 (custom-theme-set-variables
  'daemian
@@ -14,9 +14,9 @@
  '(custom-variable-tag ((t (:foreground "brightblue" :weight bold))))
  '(diff-added ((t (:foreground "color-22"))))
  '(diff-changed ((t (:foreground "purple"))))
- '(diff-refine-added ((t (:foreground "brightgreen" :weight bold))))
- '(diff-refine-change ((t (:foreground "purple"))))
- '(diff-refine-removed ((t (:foreground "brightred" :weight bold))))
+ '(diff-refine-added ((t (:background "color-22"))))
+ '(diff-refine-changed ((t (:foreground "purple"))))
+ '(diff-refine-removed ((t (:background "color-52"))))
  '(escape-glyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(font-lock-builtin-face ((((class grayscale) (background light)) (:weight bold :foreground "LightGray")) (((class grayscale) (background dark)) (:weight bold :foreground "DimGray")) (((class color) (min-colors 88) (background light)) (:foreground "dark slate blue")) (((class color) (min-colors 88) (background dark)) (:foreground "LightSteelBlue")) (((class color) (min-colors 16) (background light)) (:foreground "Orchid")) (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue")) (((class color) (min-colors 8)) (:weight bold :foreground "blue")) (t (:weight bold))))
