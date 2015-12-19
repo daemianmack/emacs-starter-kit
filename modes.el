@@ -10,6 +10,7 @@
 (auto-fill-mode nil)
 (column-number-mode t)
 (desktop-save-mode 1)
+(savehist-mode 1)
 (global-subword-mode 1)
 (global-undo-tree-mode)
 (key-chord-mode 1)
