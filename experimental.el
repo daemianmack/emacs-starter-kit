@@ -128,4 +128,7 @@
 
 (require 'neotree)
 (set 'neo-window-width 65)
+
 (setq cider-overlays-use-font-lock t)
+
+(setq magit-diff-refine-hunk 'all)
