@@ -9,15 +9,8 @@
 
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-(defun clear-nrepl-server-buffer ()
-  (interactive)
-  (switch-to-buffer "*nrepl-server vium*")
-  (erase-buffer)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
-
 (defun clear-all-nrepl-buffers ()
   (interactive)
-  (clear-nrepl-server-buffer)
   (cider-find-and-clear-repl-output))
 
 (defun load-buffer-clearing ()
