@@ -122,4 +122,3 @@
 
 (setq cider-overlays-use-font-lock t)
 
-(setq magit-diff-refine-hunk 'all)

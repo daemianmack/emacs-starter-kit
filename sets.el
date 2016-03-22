@@ -73,11 +73,11 @@
 (setq shell-prompt-pattern "
 ")
 
-(setq magit-process-popup-time 10)
-
 (setq scroll-preserve-screen-position t)
 
 (setq bookmark-default-file (concat variable-files-dir ".emacs.bmk"))
+
+(setq list-colors-sort (quote hsv))
 
 (setq-default save-place t)
 (setq save-place-file (concat variable-files-dir ".emacs-places"))
@@ -254,6 +254,13 @@
 (setq neo-smart-open t)
 (setq neo-theme 'nerd)
 (setq neo-vc-integration nil)
+
+(setq magit-process-popup-time 10)
+(setq magit-diff-refine-hunk 'all)
+
+(setq rings-protect-buffers-in-rings nil)
+
+(setq org-src-fontify-natively t)
 
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
