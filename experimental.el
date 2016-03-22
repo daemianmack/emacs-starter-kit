@@ -120,5 +120,3 @@
 (ad-activate 'javarun)
 
 
-(setq cider-overlays-use-font-lock t)
-
