@@ -3,4 +3,4 @@
 # key: jud
 # binding: direct-keybinding
 # --
-(java.util.Date. $1)$0
+(java.util.Date.$1)$0

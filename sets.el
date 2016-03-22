@@ -89,7 +89,7 @@
 (setq show-paren-style 'mixed)
 
 ;; Disable visual/audio erroring.
-(setq visible-bell nil)
+(setq visible-bell t)
 (setq redisplay-dont-pause t)
 (setq ring-bell-function (lambda nil (message "")))
 
