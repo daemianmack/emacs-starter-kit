@@ -137,3 +137,6 @@
 (global-set-key (kbd "C-w") 'backward-kill-word-or-kill-region)
 
 (global-set-key (kbd "C-c w") 'whitespace-cleanup)
+
+;; Better just-one-space.
+(global-set-key (kbd "M-SPC") 'cycle-spacing)
