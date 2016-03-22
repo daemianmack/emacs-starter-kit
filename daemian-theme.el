@@ -102,7 +102,8 @@
  '(magit-branch-local ((t (:foreground "blue"))))
  '(magit-branch-remote ((t (:background "black" :foreground "blue"))))
  '(magit-diff-context ((t (:foreground "color-238"))))
- '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal ...))))
- '(cider-debug-code-overlay-face ((t (:inverse-video t)))))
+ '(cider-debug-code-overlay-face ((t (:inverse-video t))))
+ '(cider-result-overlay-face ((t (:foreground "brightblue" :box (:line-width -1 :color "brightblue")))))
+ '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.)))))
 
 (provide-theme 'daemian)
