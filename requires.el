@@ -16,6 +16,7 @@
 (require 'kpm-list)
 (require 'magit)
 (require 'nav)
+(require 'neotree)
 (require 'project-explorer)
 (require 'projectile)
 (require 'rainbow-delimiters)

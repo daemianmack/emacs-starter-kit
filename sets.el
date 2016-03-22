@@ -248,5 +248,12 @@
 (setq beacon-blink-delay 0.05)
 (setq beacon-blink-duration 0.05)
 (setq beacon-size 50)
+
+(setq neo-window-width 45)
+(setq neo-window-fixed-size nil)
+(setq neo-smart-open t)
+(setq neo-theme 'nerd)
+(setq neo-vc-integration nil)
+
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
