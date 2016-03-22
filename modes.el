@@ -8,6 +8,7 @@
 
 (ido-mode 1)
 (auto-fill-mode nil)
+(beacon-mode 1)
 (column-number-mode t)
 (desktop-save-mode 1)
 (savehist-mode 1)

@@ -245,5 +245,8 @@
 
 (setq css-indent-offset 2)
 
+(setq beacon-blink-delay 0.05)
+(setq beacon-blink-duration 0.05)
+(setq beacon-size 50)
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))

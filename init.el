@@ -28,6 +28,7 @@
 
 (defvar my-packages '(align-cljlet
                       avy
+                      beacon
                       browse-kill-ring
                       buffer-stack
                       cider
