@@ -128,3 +128,15 @@
 
 (setq max-list-eval-depth 20000)
 
+(defun cider-figwheel-repl ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+        (insert "(require 'figwheel-sidecar.repl-api)
+             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
+             (figwheel-sidecar.repl-api/cljs-repl \"dev\")")
+        (cider-repl-return)))
+
+(global-set-key (kbd "C-c M-f") #'cider-figwheel-repl)
+
