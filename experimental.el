@@ -122,3 +122,7 @@
 (setq ibuffer-display-summary nil)
 
 (setq dired-dwim-target t)
+
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
