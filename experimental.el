@@ -140,3 +140,5 @@
 
 (global-set-key (kbd "C-c M-f") #'cider-figwheel-repl)
 
+(setq window-combination-resize t)
+
