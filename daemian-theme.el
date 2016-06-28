@@ -104,6 +104,11 @@
  '(magit-diff-context ((t (:foreground "color-238"))))
  '(cider-debug-code-overlay-face ((t (:inverse-video t))))
  '(cider-result-overlay-face ((t (:foreground "brightblue" :box (:line-width -1 :color "brightblue")))))
- '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal ...)))))
+ '(smerge-markers ((t (:background "brightblack"))))
+ '(smerge-mine ((t (:background "color-208" :foreground "black"))))
+ '(smerge-other ((t (:background "color-34" :foreground "black"))))
+ '(smerge-base ((t (:background "color-24"))))
+ '(smerge-refined-removed ((t (:inherit smerge-refined-change :background "color-130"))))
+ '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
 
 (provide-theme 'daemian)
