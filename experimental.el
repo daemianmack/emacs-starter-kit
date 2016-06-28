@@ -126,3 +126,5 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
+(setq max-list-eval-depth 20000)
+
