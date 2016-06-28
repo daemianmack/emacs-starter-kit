@@ -110,5 +110,6 @@
  '(smerge-base ((t (:background "color-24"))))
  '(smerge-refined-removed ((t (:inherit smerge-refined-change :background "color-130"))))
  '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
+ '(swoop-face-target-line ((t (:background "brightblack" :foreground "#7700ff")))))
 
 (provide-theme 'daemian)
