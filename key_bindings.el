@@ -29,7 +29,7 @@
 (global-set-key [(f9)] 'buffer-stack-track)
 (global-set-key [(control f9)] 'buffer-stack-untrack)
 (global-set-key [(f12)] 'buffer-stack-bury)
-(global-set-key [(control f12)] 'buffer-stack-bury-and-kill)
+(global-set-key (kbd "C-c <f12>") 'buffer-stack-bury-and-kill)
 
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
