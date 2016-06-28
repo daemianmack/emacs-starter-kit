@@ -181,3 +181,20 @@
 (global-set-key (kbd "C-c O")   'swoop-multi)
 (global-set-key (kbd "C-c M-o") 'swoop-pcre-regexp)
 (global-set-key (kbd "C-c C-o") 'swoop-back-to-last-position)
+
+(define-key org-mode-map (kbd "<M-S-right>") 'org-shiftright)
+(define-key org-mode-map (kbd "<M-S-left>")  'org-shiftleft)
+(define-key org-mode-map (kbd "<M-S-up>")    'org-shiftup)
+(define-key org-mode-map (kbd "<M-S-down>")  'org-shiftdown)
+
+;; It appears necessary to explicitly insert these keybindings into the org-mode-map.
+;; `global-set-key` doesn't suffice. (?)
+(define-key org-mode-map (kbd "S-<up>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "up" "tmux select-pane -U")))
+(define-key org-mode-map (kbd "S-<down>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "down" "tmux select-pane -D")))
+(define-key org-mode-map (kbd "S-<right>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
+(define-key org-mode-map (kbd "S-<left>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "left" "tmux select-pane -L")))
+
