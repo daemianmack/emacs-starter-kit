@@ -7,8 +7,6 @@
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
 (defun clear-all-nrepl-buffers ()
   (interactive)
   (cider-find-and-clear-repl-output))
