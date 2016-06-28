@@ -238,7 +238,6 @@
 (setq cider-prompt-save-file-on-load nil)
 ;; Just save without prompting
 (setq cider-prompt-save-file-on-load 'always-save)
-(setq cider-enlighten-mode t)
 (setq cider-font-lock-dynamically (quote (var macro)))
 (setq cider-overlays-use-font-lock t)
 
