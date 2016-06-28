@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2016-03-23.")
+  "Created 2016-06-27.")
 
 (custom-theme-set-variables
  'daemian
@@ -71,7 +71,7 @@
  '(rainbow-delimiters-depth-6-face ((t (:foreground "brightblue"))))
  '(rainbow-delimiters-depth-7-face ((t (:foreground "purple"))))
  '(rainbow-delimiters-depth-8-face ((t (:foreground "violet"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "brightwhite"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "color-30"))))
  '(region ((t (:background "color-237" :foreground "#4271ae"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 16) (background light)) (:background "yellow")) (((class color) (min-colors 16) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 8)) (:foreground "black" :background "cyan")) (t (:inverse-video t))))
  '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
