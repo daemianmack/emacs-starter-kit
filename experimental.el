@@ -172,3 +172,6 @@
           (kill-buffer))))))
 
 (defalias 'crux-delete-buffer-and-file #'crux-delete-file-and-buffer)
+
+;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
+(put-clojure-indent 'comment 'defun)
