@@ -123,9 +123,6 @@
 
 (setq dired-dwim-target t)
 
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
-
 (setq max-list-eval-depth 20000)
 
 (defun cider-figwheel-repl ()
@@ -233,3 +230,5 @@
                                             (if (>= (current-column) 80)
                                                 'mode-line-80col-face
                                               'mode-line-position-face))))))
+
+(use-package vhl)

@@ -108,6 +108,7 @@
  '(smerge-other ((t (:background "color-34" :foreground "black"))))
  '(smerge-base ((t (:background "color-24"))))
  '(smerge-refined-removed ((t (:inherit smerge-refined-change :background "color-130"))))
+ '(vhl/default-face ((t (:background "brightblack"))))
  '(mode-line-filename-face ((t (:foreground "brightwhite" :weight bold))))
  '(sml/read-only ((t (:inherit mode-line-read-only-face :foreground "DeepSkyBlue"))))
  '(sml/projectile ((t (:inherit font-lock-function-name-face))))
