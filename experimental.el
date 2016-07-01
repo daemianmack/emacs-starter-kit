@@ -173,12 +173,6 @@
 ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
 (put-clojure-indent 'comment 'defun)
 
-(require 'swoop)
-(global-set-key (kbd "C-c o")   'swoop)
-(global-set-key (kbd "C-c O")   'swoop-multi)
-(global-set-key (kbd "C-c M-o") 'swoop-pcre-regexp)
-(global-set-key (kbd "C-c C-o") 'swoop-back-to-last-position)
-
 (define-key org-mode-map (kbd "<M-S-right>") 'org-shiftright)
 (define-key org-mode-map (kbd "<M-S-left>")  'org-shiftleft)
 (define-key org-mode-map (kbd "<M-S-up>")    'org-shiftup)
@@ -232,3 +226,9 @@
                                               'mode-line-position-face))))))
 
 (use-package vhl)
+
+(use-package swoop
+  :bind (("C-c o"   . swoop)
+         ("C-c O"   . swoop-multi)
+         ("C-c M-o" . swoop-pcre-regexp)
+         ("C-c C-o" . swoop-back-to-last-position)))
