@@ -9,54 +9,6 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
-(setq-default
- mode-line-format
- '(
-                                        ; Position, including warning for 80 columns
-   (:propertize "%4l" face mode-line-position-face)
-   ","
-   (:eval (propertize "%1c" 'face
-                      (if (>= (current-column) 80)
-                          'mode-line-80col-face
-                        'mode-line-position-face)))
-                                        ; Percentage of buffer above viewport.
-   " %p "
-                                        ; directory and buffer/file name
-   (:propertize "%b " face mode-line-filename-face)
-   (:eval
-    (cond (buffer-read-only
-           (propertize "  X  " 'face 'mode-line-read-only-face))
-          ((buffer-modified-p)
-           (propertize "  !  " 'face 'mode-line-modified-face))
-          (t "     ")))
-                                        ; emacsclient [default -- keep?]
-   mode-line-client
-                                        ; narrow [default -- keep?]
-   " %n "
-                                        ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
-   (vc-mode vc-mode)
-   " %["
-   (:propertize mode-name face mode-line-mode-face)
-   "%] "
-   (:eval (propertize (format-mode-line minor-mode-alist)
-                      'face 'mode-line-minor-mode-face)
-          (:propertize mode-line-process face mode-line-process-face)
-          " "
-                                        ; nyan-mode uses nyan cat as an alternative to %p
-          (:eval (when nyan-mode (list (nyan-create))))
-          )))
-
-(make-face 'mode-line-read-only-face)
-(make-face 'mode-line-modified-face)
-(make-face 'mode-line-folder-face)
-(make-face 'mode-line-filename-face)
-(make-face 'mode-line-position-face)
-(make-face 'mode-line-mode-face)
-(make-face 'mode-line-minor-mode-face)
-(make-face 'mode-line-process-face)
-(make-face 'mode-line-80col-face)
-
-
 (add-to-list 'custom-theme-load-path dotfiles-dir)
 (defun is-in-terminal () (not (display-graphic-p)))
 (if (is-in-terminal)
@@ -102,9 +54,6 @@
 (setq shift-select-mode nil)
 
 (setq mouse-yank-at-point t)
-
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-separator ":")
 
 (setq whitespace-style '(face trailing lines-tail tabs))
 (setq whitespace-line-column 80)

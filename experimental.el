@@ -208,3 +208,28 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c M-x" . execute-extended-command)))
+
+;; Define themeable faces. smart-mode-line will inherit from these.
+(make-face 'mode-line-read-only-face)
+(make-face 'mode-line-modified-face)
+(make-face 'mode-line-folder-face)
+(make-face 'mode-line-filename-face)
+(make-face 'mode-line-position-face)
+(make-face 'mode-line-mode-face)
+(make-face 'mode-line-minor-mode-face)
+(make-face 'mode-line-process-face)
+(make-face 'mode-line-80col-face)
+
+(use-package smart-mode-line
+  :config
+  (setq sml/theme nil)
+  (sml/setup)
+  (setq sml/outside-modified-char "‽")
+  (setq sml/modified-char "!")
+  (setq-default mode-line-front-space
+                '(:eval (concat (propertize "%4l" 'face 'mode-line-position-face)
+                                ","
+                                (propertize "%1c" 'face
+                                            (if (>= (current-column) 80)
+                                                'mode-line-80col-face
+                                              'mode-line-position-face))))))

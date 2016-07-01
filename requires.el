@@ -24,5 +24,4 @@
 (require 'saveplace)
 (require 'smooth-scrolling)
 (require 'undo-tree)
-(require 'uniquify)
 (require 'use-package)

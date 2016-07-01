@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2016-06-27.")
+  "Created 2016-07-01.")
 
 (custom-theme-set-variables
  'daemian
@@ -45,11 +45,10 @@
  '(link-visited ((t (:foreground "magenta4" :inherit (link)))))
  '(match ((t (:background "black" :foreground "brightgreen" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "#4271ae"))))
- '(mode-line ((t (:background "#4271ae" :foreground "#eeeeec" :weight bold))))
+ '(mode-line ((t (:background "#4271ae" :foreground "#bbbbbb" :weight bold))))
  '(mode-line-80col-face ((t (:background "yellow" :foreground "black"))))
  '(mode-line-buffer-id ((t (:weight bold))))
  '(mode-line-emphasis ((t nil)))
- '(mode-line-filename-face ((t (:inherit mode-line-face :foreground "white"))))
  '(mode-line-folder-face ((t (:inherit mode-line-face :foreground "black"))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 1 :color "grey40" :style released-button) :foreground "brightgreen"))))
  '(mode-line-inactive ((t (:background "color-234" :foreground "grey20" :weight light))))
@@ -109,7 +108,13 @@
  '(smerge-other ((t (:background "color-34" :foreground "black"))))
  '(smerge-base ((t (:background "color-24"))))
  '(smerge-refined-removed ((t (:inherit smerge-refined-change :background "color-130"))))
+ '(mode-line-filename-face ((t (:foreground "brightwhite" :weight bold))))
+ '(sml/read-only ((t (:inherit mode-line-read-only-face :foreground "DeepSkyBlue"))))
+ '(sml/projectile ((t (:inherit font-lock-function-name-face))))
  '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
- '(swoop-face-target-line ((t (:background "brightblack" :foreground "#7700ff")))))
+ '(swoop-face-target-line ((t (:background "brightblack" :foreground "#7700ff"))))
+ '(sml/modified ((t (:inherit mode-line-modified-face))))
+ '(sml/folder ((t (:inherit mode-line-filename-face))))
+ '(sml/filename ((t (:inherit mode-line-filename-face)))))
 
 (provide-theme 'daemian)
