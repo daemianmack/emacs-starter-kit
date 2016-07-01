@@ -22,7 +22,8 @@
 (setq desktop-load-locked-desktop t)
 (setq desktop-dirname variable-files-dir)
 (setq desktop-globals-to-save (append '((kill-ring . 50)
-					recentf-list)))
+					recentf-list
+                                        minibuffer-history)))
 (defun desktop-file-modtime-reset ()
   "Reset `desktop-file-modtime' so the user is not bothered."
   (interactive)
