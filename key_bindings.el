@@ -50,14 +50,6 @@
 ;; (defadvice terminal-init-xterm (after select-shift-up activate)
 ;;       (define-key input-decode-map "\e[1;2A" [S-up]))
 
-;; Use standard navigation keys that make sense vertically
-(add-hook 'ido-setup-hook
-          (lambda ()
-            (define-key ido-completion-map [down] 'ido-next-match)
-            (define-key ido-completion-map [up] 'ido-prev-match)
-            (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-            (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
-
 (global-set-key (kbd "C-c %") 'goto-match-paren)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-c C-g") 'rgrep)

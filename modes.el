@@ -6,7 +6,6 @@
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
 
-(ido-mode 1)
 (auto-fill-mode nil)
 (beacon-mode 1)
 (column-number-mode t)
@@ -61,9 +60,6 @@
               (use-local-map (copy-keymap (current-local-map))))
             (when server-buffer-clients
               (local-set-key (kbd "C-x C-k") 'server-edit))))
-
-(defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
-(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
 
 (defun m-eshell-hook ()
   ;; define control p, control n and the up/down arrow.

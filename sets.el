@@ -119,37 +119,6 @@
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
 
-(setq ido-mode 'both)
-(setq ido-ubiquitous-mode t)
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
-(setq ido-enable-prefix nil)
-(setq ido-auto-merge-work-directories-length nil)
-(setq ido-confirm-unique-completion t)
-(setq ido-create-new-buffer 'always)
-(setq ido-enter-matching-directory 'first)
-(setq ido-max-prospects 10)
-(setq ido-max-work-file-list 50)
-(setq ido-use-filename-at-point 'guess)
-(setq ido-use-virtual-buffers t)
-(setq flx-ido-mode t)
-
-(setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
-;; Make ido-mode list things vertically
-(setq ido-decorations
-      (quote
-       ("\n-> "           ; Opening bracket around prospect list
-        ""                ; Closing bracket around prospect list
-        "\n   "           ; separator between prospects
-        "\n   ..."        ; appears at end of truncated list of prospects
-        "["               ; opening bracket around common match string
-        "]"               ; closing bracket around common match string
-        " [No match]"     ; displayed when there is no match
-        " [Matched]"      ; displayed if there is a single match
-        " [Not readable]" ; current diretory is not readable
-        " [Too big]"      ; directory too big
-        " [Confirm]")))
-
 ;; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
 (setq projectile-cache-file (concat variable-files-dir "projectile.cache"))

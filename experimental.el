@@ -232,3 +232,39 @@
          ("C-c O"   . swoop-multi)
          ("C-c M-o" . swoop-pcre-regexp)
          ("C-c C-o" . swoop-back-to-last-position)))
+
+(defun ido-disable-line-truncation ()
+  (set (make-local-variable 'truncate-lines) nil))
+
+(use-package ido
+  :init (setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
+  :config
+  (use-package ido-ubiquitous
+    :ensure t
+    :config (ido-ubiquitous-mode 1))
+  (use-package flx-ido
+    :ensure t
+    :config
+    (flx-ido-mode 1)
+    (setq ido-enable-flex-matching t)
+    (setq ido-use-faces nil))
+  (use-package ido-vertical-mode
+    :ensure t
+    :config
+    (ido-vertical-mode 1)
+    (setq ido-vertical-show-count t)
+    (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+  (ido-mode 1)
+  (ido-everywhere 1)
+
+  (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+
+  (setq ido-confirm-unique-completion t)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-enable-prefix nil)
+  (setq ido-enter-matching-directory 'first)
+  (setq ido-max-prospects 10)
+  (setq ido-max-work-file-list 50)
+  (setq ido-mode 'both)
+  (setq ido-use-filename-at-point 'guess)
+  (setq ido-use-virtual-buffers t))

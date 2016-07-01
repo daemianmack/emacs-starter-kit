@@ -43,7 +43,6 @@
                       helm
                       hlinum
 		      highlight-symbol
-                      ido-ubiquitous
                       ido-completing-read+ ;; For magit.
                       key-chord
                       kill-ring-search
