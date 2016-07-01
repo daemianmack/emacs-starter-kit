@@ -16,7 +16,6 @@
 (global-undo-tree-mode)
 (key-chord-mode 1)
 (projectile-global-mode)
-(smex-initialize)
 (winner-mode 1)
 
 

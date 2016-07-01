@@ -34,9 +34,6 @@
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
 (global-set-key (kbd "C-c ,") 'tags-search)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C-c m") 'back-to-operand)
 
 ;; Make shift-up work.

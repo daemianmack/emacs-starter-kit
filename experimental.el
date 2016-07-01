@@ -198,3 +198,13 @@
 (define-key org-mode-map (kbd "S-<left>")
                 '(lambda () (interactive) (windmove-emacs-or-tmux "left" "tmux select-pane -L")))
 
+;; Dupe this here for convenience until all config is single-filed.
+(setq dotfiles-dir (file-name-directory
+		    (or (buffer-file-name) load-file-name)))
+(setq variable-files-dir (concat dotfiles-dir "var/"))
+
+(use-package smex
+  :init (setq smex-save-file (concat variable-files-dir "smex-items"))
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c M-x" . execute-extended-command)))

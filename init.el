@@ -57,7 +57,6 @@
                       python-mode
                       rainbow-delimiters
                       rings
-                      smex
                       smooth-scrolling
                       undo-tree
                       yasnippet)

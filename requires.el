@@ -22,7 +22,7 @@
 (require 'rainbow-delimiters)
 (require 'rings)
 (require 'saveplace)
-(require 'smex)
 (require 'smooth-scrolling)
 (require 'undo-tree)
 (require 'uniquify)
+(require 'use-package)
