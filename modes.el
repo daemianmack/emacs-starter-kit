@@ -37,7 +37,6 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'clj-refactor-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)

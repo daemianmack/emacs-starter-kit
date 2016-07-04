@@ -268,3 +268,53 @@
   (setq ido-mode 'both)
   (setq ido-use-filename-at-point 'guess)
   (setq ido-use-virtual-buffers t))
+
+(defun cider-repl-reset ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(dev/reset)")
+    (cider-repl-return)))
+
+(defun cider-repl-command (cmd)
+  "Execute commands on the cider repl"
+  (cider-switch-to-repl-buffer)
+  (goto-char (point-max))
+  (insert cmd)
+  (cider-repl-return)
+  (cider-switch-to-last-clojure-buffer))
+
+(defun cider-reset-repl ()
+  "Assumes reloaded + tools.namespace is used to reload everything"
+  (interactive)
+  (save-some-buffers)
+  (cider-repl-command "(repl/reload)"))
+
+(defun cider-reset-repl-run-tests ()
+  (interactive)
+  (cider-reset-repl)
+  (clojure-test-run-tests))
+
+(use-package cider
+  :ensure t
+  :pin melpa-stable
+  :bind (("C-c !" . cider-repl-reset)
+         ("C-c ." . cider-reset-repl-run-tests))
+  :config
+  (use-package cider-eval-sexp-fu :ensure t)
+  (use-package clj-refactor       :ensure t)
+  
+  (add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+  (setq cider-eval-spinner-type 'box-in-box)
+  (setq cider-font-lock-dynamically '(macro core var))
+  (setq cider-overlays-use-font-lock t)
+  (setq cider-popup-on-error t)
+  (setq cider-prompt-save-file-on-load 'always-save)
+  (setq cider-prompt-save-file-on-load nil)
+  (setq cider-repl-history-file "~/.lein/cider-repl-history")
+  (setq cider-repl-result-prefix ";; => ")
+  (setq cider-repl-use-clojure-font-lock t)
+  (setq cider-show-error-buffer nil)
+  (setq nrepl-buffer-name-separator "/"))

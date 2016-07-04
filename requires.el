@@ -2,8 +2,6 @@
 (require 'avy)
 (require 'browse-kill-ring)
 (require 'buffer-stack)
-(require 'cider-eval-sexp-fu)
-(require 'clj-refactor)
 (require 'clojure-mode)
 (require 'desktop)
 (require 'easy-kill)

@@ -112,44 +112,6 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
     (kill-buffer "*Shell Command Output*")))
 
 
-(defun cider-repl-reset ()
-  (interactive)
-  (save-some-buffers)
-  (with-current-buffer (cider-current-repl-buffer)
-    (goto-char (point-max))
-    (insert "(dev/reset)")
-    (cider-repl-return)))
-
-(global-set-key (kbd "C-c !") 'cider-repl-reset)
-
-(defun reload-repl ()
-  (interactive)
-  (cider-quit)
-  (cider-jack-in))
-
-(defun cider-repl-command (cmd)
-  "Execute commands on the cider repl"
-  (cider-switch-to-repl-buffer)
-  (goto-char (point-max))
-  (insert cmd)
-  (cider-repl-return)
-  (cider-switch-to-last-clojure-buffer))
-
-(defun cider-reset-repl ()
-  "Assumes reloaded + tools.namespace is used to reload everything"
-  (interactive)
-  (save-some-buffers)
-  (cider-repl-command "(repl/reload)"))
-
-(defun cider-reset-repl-run-tests ()
-  (interactive)
-  (cider-reset-repl)
-  (clojure-test-run-tests)) ;; Upgrade CIDER some day and use its cider-test-run-tests?
-
-
-;; cider-mode-map is only available in future version of cider.
-;; (define-key cider-mode-map (kbd "C-c !") 'cider-reset-repl)
-;; (define-key cider-mode-map (kbd "C-c .") 'cider-reset-repl-run-tests)
 
 
 ;; inferior lisp mode stuff

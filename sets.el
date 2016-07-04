@@ -143,21 +143,6 @@
   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
     (linum-mode 1)))
 
-(setq cider-popup-on-error t)
-(setq cider-prompt-save-file-on-load nil)
-(setq cider-repl-history-file "~/.lein/cider-repl-history")
-(setq cider-repl-result-prefix ";; => ")
-(setq cider-repl-use-clojure-font-lock t)
-(setq cider-show-error-buffer nil)
-(setq cider-font-lock-dynamically '(macro core function var))
-(setq nrepl-buffer-name-separator "/")
-;; Don't prompt and don't save
-(setq cider-prompt-save-file-on-load nil)
-;; Just save without prompting
-(setq cider-prompt-save-file-on-load 'always-save)
-(setq cider-font-lock-dynamically (quote (var macro)))
-(setq cider-overlays-use-font-lock t)
-
 (setq highlight-symbol-idle-delay 0.2)
 
 (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))

@@ -115,7 +115,6 @@
 (global-set-key (kbd "C-c C-a") 'align-cljlet)
  
 (global-set-key (kbd "C-c C-s") 'clojure-toggle-keyword-string)
-(global-set-key (kbd "C-c C-q") 'cider-restart)
 
 ;; Let existence of an active region determine whether we backward-kill-word, or kill said region.
 (defun backward-kill-word-or-kill-region (&optional arg)

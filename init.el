@@ -23,7 +23,6 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 (package-initialize)
 
 (defvar my-packages '(align-cljlet
@@ -31,8 +30,6 @@
                       beacon
                       browse-kill-ring
                       buffer-stack
-                      cider
-                      cider-eval-sexp-fu
                       cl ;; Support fn for buffer-stack.el.
                       clj-refactor
                       clojure-mode
