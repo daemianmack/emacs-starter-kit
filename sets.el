@@ -119,11 +119,6 @@
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
 
-;; Projectile shows full relative paths
-(setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
-(setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
-(setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
-
 ;; Still needed?
 ;; Necessary due to bug in ruby-mode.
 (setq ruby-indent-level 2)

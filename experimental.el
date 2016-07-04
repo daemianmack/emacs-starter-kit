@@ -361,3 +361,12 @@
   (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
   (diminish 'undo-tree-mode)
   (diminish 'yas-minor-mode))
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode)
+  ;; Show full relative paths.
+  (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
+  (setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
+  (setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld")))

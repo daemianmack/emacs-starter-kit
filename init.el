@@ -48,7 +48,6 @@
                       markdown-mode+
                       nav
                       neotree
-                      projectile
                       project-explorer
                       python-mode
                       rainbow-delimiters

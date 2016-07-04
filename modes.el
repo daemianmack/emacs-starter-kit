@@ -14,7 +14,6 @@
 (global-subword-mode 1)
 (global-undo-tree-mode)
 (key-chord-mode 1)
-(projectile-global-mode)
 (winner-mode 1)
 
 
