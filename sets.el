@@ -155,9 +155,6 @@
 (setq neo-theme 'nerd)
 (setq neo-vc-integration nil)
 
-(setq magit-process-popup-time 10)
-(setq magit-diff-refine-hunk 'all)
-
 (setq rings-protect-buffers-in-rings nil)
 
 (setq org-src-fontify-natively t)

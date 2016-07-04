@@ -87,14 +87,8 @@
 
 (define-key cider-mode-map (kbd "C-c C-e") 'rkn-eval-expression-at-point-to-comment)
 
-(setq magit-last-seen-setup-instructions "1.4.0")
-
 (global-set-key (kbd "M-y") 'yank-pop)
 (global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
-
-(setq magit-revert-buffers 't)
-
-;; (setq magit-completing-read-function 'magit-ido-completing-read)
 
 (define-key clojure-mode-map (kbd "C-x M-r") 'cljr-helm)
 
@@ -350,6 +344,9 @@
   ;;                   (erase-buffer)
   ;;                   (lisp-eval-string "")))))
 )
+
+(use-package adaptive-wrap :ensure t)
+
 (use-package diminish :ensure t
   :config
   (diminish 'beacon-mode)
@@ -370,3 +367,15 @@
   (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
   (setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
   (setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld")))
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status))
+  :config
+  (use-package ido-completing-read+ :ensure t)
+  (setq magit-completing-read-function 'magit-ido-completing-read)
+  (setq magit-diff-arguments '("--stat" "--no-ext-diff" "--ignore-all-space"))
+  (setq magit-diff-refine-hunk 'all)
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  (setq magit-process-popup-time 10)
+  (setq magit-revert-buffers 't))

@@ -86,7 +86,7 @@
       (isearch-search-and-update))))
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 
-;; full screen magit-status
+;; full screen vc-annotate
 (defadvice vc-annotate-status (around vc-annotate-fullscreen activate)
   (window-configuration-to-register :vc-annotate-fullscreen)
   ad-do-it
@@ -98,7 +98,6 @@
   (kill-buffer)
   (jump-to-register :vc-annotate-fullscreen))
 
-;; full screen vc-annotate
 (defun vc-annotate-quit ()
   "Restores the previous window configuration and kills the vc-annotate buffer"
   (interactive)

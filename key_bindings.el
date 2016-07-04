@@ -51,7 +51,6 @@
 ;;       (define-key input-decode-map "\e[1;2A" [S-up]))
 
 (global-set-key (kbd "C-c %") 'goto-match-paren)
-(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-c C-g") 'rgrep)
 (global-set-key (kbd "C-c ^") 'query-replace-regexp)
 (global-set-key (kbd "C-x 4 r") 'rotate-windows)

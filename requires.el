@@ -12,7 +12,6 @@
 (require 'key-chord)
 (require 'kill-ring-search)
 (require 'kpm-list)
-(require 'magit)
 (require 'nav)
 (require 'neotree)
 (require 'project-explorer)
