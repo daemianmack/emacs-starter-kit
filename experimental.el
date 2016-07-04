@@ -350,3 +350,14 @@
   ;;                   (erase-buffer)
   ;;                   (lisp-eval-string "")))))
 )
+(use-package diminish :ensure t
+  :config
+  (diminish 'beacon-mode)
+  (diminish 'clj-refactor-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'highlight-symbol-mode)
+  (diminish 'subword-mode)
+  (diminish 'paredit-mode " (( ") ;; ¯\_(ツ)_/¯
+  (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
+  (diminish 'undo-tree-mode)
+  (diminish 'yas-minor-mode))
