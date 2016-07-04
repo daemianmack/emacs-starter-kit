@@ -238,7 +238,10 @@
 
 (use-package ido
   :init (setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
+  :bind (("M-e" . ido-preview-forward)
+         ("M-w" . ido-preview-backward))
   :config
+  (use-package ido-preview)
   (use-package ido-ubiquitous
     :ensure t
     :config (ido-ubiquitous-mode 1))
