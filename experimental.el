@@ -321,3 +321,32 @@
   (setq cider-repl-use-clojure-font-lock t)
   (setq cider-show-error-buffer nil)
   (setq nrepl-buffer-name-separator "/"))
+  
+(use-package inferior-lisp
+  ;; (setq inferior-lisp-program "lein repl")
+  ;; (add-hook 'clojure-mode-hook
+  ;;           '(lambda ()
+  ;;              (define-key clojure-mode-map
+  ;;                "\C-c\C-k"
+  ;;                '(lambda ()
+  ;;                   (interactive)
+  ;;                   (let ((current-point (point)))
+  ;;                     (goto-char (point-min))
+  ;;                     (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
+  ;;                       (when ns-idx
+  ;;                         (goto-char ns-idx)
+  ;;                         (let ((sym (symbol-at-point)))
+  ;;                           (message (format "Loading %s ..." sym))
+  ;;                           (lisp-eval-string (format "(require '%s :reload)" sym))
+  ;;                           (lisp-eval-string (format "(in-ns '%s)" sym)))))
+  ;;                     (goto-char current-point))))))
+
+  ;; (add-hook 'inferior-lisp-mode-hook
+  ;;           '(lambda ()
+  ;;              (define-key inferior-lisp-mode-map
+  ;;                "\C-cl"
+  ;;                '(lambda ()
+  ;;                   (interactive)
+  ;;                   (erase-buffer)
+  ;;                   (lisp-eval-string "")))))
+)
