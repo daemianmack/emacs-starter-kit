@@ -154,7 +154,7 @@
 
 ;; Dupe this here for convenience until all config is single-filed.
 (setq dotfiles-dir (file-name-directory
-		    (or (buffer-file-name) load-file-name)))
+                    (or (buffer-file-name) load-file-name)))
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
 (use-package smex
@@ -209,8 +209,6 @@
 
 (use-package ido
   :init (setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
-  :bind (("M-e" . ido-preview-forward)
-         ("M-w" . ido-preview-backward))
   :config
   (use-package ido-preview)
   (use-package ido-ubiquitous
@@ -232,6 +230,10 @@
   (ido-everywhere 1)
 
   (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+  (add-hook 'ido-setup-hook
+            (lambda ()
+              (define-key ido-completion-map (kbd "M-w") 'ido-preview-backward)
+              (define-key ido-completion-map (kbd "M-e") 'ido-preview-forward)))
 
   (setq ido-confirm-unique-completion t)
   (setq ido-create-new-buffer 'always)
@@ -240,6 +242,7 @@
   (setq ido-max-prospects 10)
   (setq ido-max-work-file-list 50)
   (setq ido-mode 'both)
+  (setq ido-use-faces t)
   (setq ido-use-filename-at-point 'guess)
   (setq ido-use-virtual-buffers t))
 
