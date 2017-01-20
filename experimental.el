@@ -413,3 +413,53 @@
   :config
   (add-hook 'clojure-mode-hook 'lisp-mode-setup)
   (add-hook 'cider-repl-mode-hook 'lisp-mode-setup))
+(use-package whitespace
+  :ensure t
+  :config
+  (setq whitespace-style '(face trailing tabs)))
+
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+
+(use-package ivy
+  :ensure t
+  :config
+  (setq ivy-use-virtual-buffers t)
+  )
+
+(use-package swiper
+  :ensure t
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-extra-directories nil)
+  (setq ivy-virtual-abbreviate 'full)
+  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c k") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate))
+
+(use-package dired+
+  :ensure t)
+
+(use-package pinentry
+  :ensure t
+  :config
+  (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
+  (pinentry-start))
+
+(use-package yaml-mode
+  :ensure t)
+
+(use-package back-button
+  :ensure t
+  :config
+  (use-package visible-mark :ensure t)
+  (back-button-mode 1))
+
+
