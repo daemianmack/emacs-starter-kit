@@ -387,6 +387,12 @@
       (when (eq 'magit-status-mode current-mode)
                   (jump-to-register :magit-fullscreen)))))
 
+(defun add-watchwords ()
+  (interactive)
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
+          1 font-lock-warning-face t))))
+
 (add-hook 'prog-mode-hook 'show-paren-mode)
 (add-hook 'prog-mode-hook 'add-watchwords)
 
