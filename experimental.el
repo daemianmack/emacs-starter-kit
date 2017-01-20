@@ -359,12 +359,34 @@
   :bind (("C-x g" . magit-status))
   :config
   (use-package ido-completing-read+ :ensure t)
+  (use-package magithub :ensure t)
   (setq magit-completing-read-function 'magit-ido-completing-read)
-  (setq magit-diff-arguments '("--stat" "--no-ext-diff" "--ignore-all-space"))
+  (setq magit-diff-arguments '("--stat" "--no-ext-diff"))
+  (setq magit-diff-section-arguments '("--no-ext-diff"))
   (setq magit-diff-refine-hunk 'all)
   (setq magit-last-seen-setup-instructions "1.4.0")
   (setq magit-process-popup-time 10)
-  (setq magit-revert-buffers 't))
+  (setq magit-revert-buffers 't)
+  (setq magit-repository-directories '("~/src"))
+  (setq magit-repository-directories-depth 2)
+  (add-hook 'ido-setup-hook
+            (lambda ()
+              (define-key ido-completion-map
+                (kbd "C-x g") 'ido-enter-magit-status)))
+  (defadvice magit-status (around magit-fullscreen activate)
+    (window-configuration-to-register :magit-fullscreen)
+    ad-do-it
+          (delete-other-windows))
+  ;; restore previously hidden windows
+  ;; TODO HACK
+  (defadvice magit-quit-window (around magit-restore-screen activate)
+    (let ((current-mode major-mode))
+      ad-do-it
+      ;; we only want to jump to register when the last seen buffer
+      ;; was a magit-status buffer.
+      (when (eq 'magit-status-mode current-mode)
+                  (jump-to-register :magit-fullscreen)))))
+
 (add-hook 'prog-mode-hook 'show-paren-mode)
 (add-hook 'prog-mode-hook 'add-watchwords)
 
