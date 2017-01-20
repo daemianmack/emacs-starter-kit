@@ -340,7 +340,7 @@
   (diminish 'eldoc-mode)
   (diminish 'highlight-symbol-mode)
   (diminish 'subword-mode)
-  (diminish 'paredit-mode " (( ") ;; ¯\_(ツ)_/¯
+  (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
   (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
   (diminish 'undo-tree-mode)
   (diminish 'yas-minor-mode))
