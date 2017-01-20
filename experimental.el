@@ -209,6 +209,7 @@
   :config
   (setq sml/theme nil)
   (sml/setup)
+  (setq sml/name-width '(20 . 80))
   (setq sml/outside-modified-char "‽")
   (setq sml/modified-char "!")
   (setq-default mode-line-front-space
@@ -217,7 +218,14 @@
                                 (propertize "%1c" 'face
                                             (if (>= (current-column) 80)
                                                 'mode-line-80col-face
-                                              'mode-line-position-face))))))
+                                              'mode-line-position-face)))))
+  (setq sml/replacer-regexp-list
+        '(("^~/\\.emacs\\.d/elpa/" ":ELPA:")
+          ("^~/\\.emacs\\.d/" ":ED:")
+          ("^/sudo:.*:" ":SU:")
+          ("^~/Documents/" ":Doc:")
+          ("^~/Dropbox/" ":DB:")
+          ("^~/relevance-smart-tab-organizer/" ":RE:"))))
 
 (use-package vhl)
 
