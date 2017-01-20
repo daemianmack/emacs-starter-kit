@@ -7,32 +7,6 @@
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
-(defun clear-all-nrepl-buffers ()
-  (interactive)
-  (cider-find-and-clear-repl-output))
-
-(defun load-buffer-clearing ()
-  (interactive)
-  (cider-load-buffer)
-  (clear-all-nrepl-buffers))
-
-(defun run-tests-fresh ()
-  (interactive)
-  (load-buffer-clearing)
-  (with-current-buffer (cider-current-repl-buffer)
-    (goto-char (point-max))
-    (insert "(run-tests)")
-    (cider-repl-return)))
-
-(define-key cider-mode-map (kbd "C-c M-o") 'clear-all-nrepl-buffers)
-(define-key cider-mode-map (kbd "C-c M-k") 'load-buffer-clearing)
-(define-key cider-mode-map (kbd "C-c M-r") 'run-tests-fresh)
-
-(define-key cider-repl-mode-map (kbd "C-c M-o") 'cider-repl-clear-buffer)
-
-;; Expand this to all programming modes.
-(add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
-
 (setq helm-M-x-fuzzy-match t
       helm-apropos-fuzzy-match t
       helm-buffers-fuzzy-matching t
@@ -90,17 +64,12 @@
 (global-set-key (kbd "M-y") 'yank-pop)
 (global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
 
-(define-key clojure-mode-map (kbd "C-x M-r") 'cljr-helm)
-
 (defadvice yank (around yank-indent)
    "Indents after yanking."
    (let ((point-before (point)))
      ad-do-it
        (indent-region point-before (point))))
 (ad-activate 'yank)
-
-(setq cljr-auto-clean-ns nil)
-(setq cljr-auto-sort-ns nil)
 
 (defadvice javarun (around javarun)
   (if (get-buffer "*java-output*")
@@ -274,13 +243,8 @@
   (setq ido-use-filename-at-point 'guess)
   (setq ido-use-virtual-buffers t))
 
-(defun cider-repl-reset ()
-  (interactive)
-  (save-some-buffers)
-  (with-current-buffer (cider-current-repl-buffer)
-    (goto-char (point-max))
-    (insert "(dev/reset)")
-    (cider-repl-return)))
+;; Expand this to all programming modes.
+(add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 
 (defun cider-repl-command (cmd)
   "Execute commands on the cider repl"
@@ -290,30 +254,40 @@
   (cider-repl-return)
   (cider-switch-to-last-clojure-buffer))
 
-(defun cider-reset-repl ()
-  "Assumes reloaded + tools.namespace is used to reload everything"
+(defun cider-repl-clear-buffer-from-orbit ()
+  (interactive)
+  (cider-switch-to-repl-buffer)
+  (cider-repl-clear-buffer)
+  (cider-switch-to-last-clojure-buffer))
+
+(defun cider-repl-reset ()
   (interactive)
   (save-some-buffers)
-  (cider-repl-command "(repl/reload)"))
-
-(defun cider-reset-repl-run-tests ()
-  (interactive)
-  (cider-reset-repl)
-  (clojure-test-run-tests))
+  (cider-repl-command "(dev/reset)"))
 
 (use-package cider
   :ensure t
   :pin melpa-stable
-  :bind (("C-c !" . cider-repl-reset)
-         ("C-c ." . cider-reset-repl-run-tests))
+  :bind (("C-c M-o" . cider-repl-clear-buffer-from-orbit)
+         ("C-c d"   . cider-repl-reset))
   :config
   (use-package cider-eval-sexp-fu :ensure t)
-  (use-package clj-refactor       :ensure t)
-  
+  (use-package clj-refactor       :ensure t
+    :init
+    (cljr-add-keybindings-with-prefix "C-c M-r")
+    (setq cljr-favor-prefix-notation nil)
+    (setq cljr-warn-on-eval nil)
+    :config
+    (use-package cljr-helm :ensure t)
+    (setq cljr-auto-clean-ns nil)
+    (setq cljr-auto-sort-ns nil))
+
   (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
+  (define-key cider-repl-mode-map (kbd "C-c M-o") 'cider-repl-clear-buffer)
+
   (setq cider-eval-spinner-type 'box-in-box)
-  (setq cider-font-lock-dynamically '(macro core var))
+  (setq cider-font-lock-dynamically '(var))
   (setq cider-overlays-use-font-lock t)
   (setq cider-popup-on-error t)
   (setq cider-prompt-save-file-on-load 'always-save)
@@ -322,8 +296,9 @@
   (setq cider-repl-result-prefix ";; => ")
   (setq cider-repl-use-clojure-font-lock t)
   (setq cider-show-error-buffer nil)
+  (setq cider-use-overlays nil)
   (setq nrepl-buffer-name-separator "/"))
-  
+
 (use-package inferior-lisp
   ;; (setq inferior-lisp-program "lein repl")
   ;; (add-hook 'clojure-mode-hook
@@ -387,3 +362,23 @@
   (setq magit-last-seen-setup-instructions "1.4.0")
   (setq magit-process-popup-time 10)
   (setq magit-revert-buffers 't))
+(add-hook 'prog-mode-hook 'show-paren-mode)
+(add-hook 'prog-mode-hook 'add-watchwords)
+
+(use-package rainbow-delimiters :ensure t
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(defun lisp-mode-setup ()
+  (eldoc-mode)
+  (paredit-mode 1)
+  (whitespace-mode))
+
+(add-hook 'lisp-mode-hook 'lisp-mode-setup)
+(add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup)
+
+(use-package clojure-mode
+  :ensure t
+  :bind (("C-x M-r" . cljr-helm))
+  :config
+  (add-hook 'clojure-mode-hook 'lisp-mode-setup)
+  (add-hook 'cider-repl-mode-hook 'lisp-mode-setup))
