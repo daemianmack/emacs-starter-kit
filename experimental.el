@@ -477,6 +477,19 @@
   (back-button-mode 1))
 
 
+
+
+(setq locate-command "mdfind")  ;; Use Mac OS X's Spotlight
+(global-set-key (kbd "C-c l") 'locate)
+
+(defun locate-org-files (search-string)
+  "Adjust `locate-with-filter' to only search `org-mode' files with SEARCH-STRING."
+  (interactive "sSearch string: ")
+  (locate-with-filter search-string ".org$"))
+
+(global-set-key (kbd "C-c i") 'locate-org-files)
+
+
 (defun wwai-repl ()
   (interactive)
   (run-clojure "bin/run script/repl.clj")
