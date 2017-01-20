@@ -413,6 +413,7 @@
   :config
   (add-hook 'clojure-mode-hook 'lisp-mode-setup)
   (add-hook 'cider-repl-mode-hook 'lisp-mode-setup))
+
 (use-package whitespace
   :ensure t
   :config
@@ -447,6 +448,19 @@
 (use-package dired+
   :ensure t)
 
+(use-package inf-clojure
+  :ensure t
+  :config
+  (setq inf-clojure-program "nc localhost 5555")
+  (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
+  (add-hook 'clojure-mode-hook 'clojure-custom-setup)
+  ;; For some reason paredit is missing this in inf-clojure REPLs.
+  (add-hook 'paredit-mode-hook
+            (lambda ()
+              (when (>= paredit-version 21)
+                (define-key inf-clojure-mode-map "{" 'paredit-open-curly)
+                (define-key inf-clojure-mode-map "}" 'paredit-close-curly)))))
+
 (use-package pinentry
   :ensure t
   :config
@@ -463,3 +477,41 @@
   (back-button-mode 1))
 
 
+(defun wwai-repl ()
+  (interactive)
+  (run-clojure "bin/run script/repl.clj")
+  (rename-buffer "*inf-clj*"))
+
+(defun wwai-cljs-repl ()
+  (interactive)
+  (run-clojure "bin/run script/cljs_repl.clj")
+  (rename-buffer "*inf-cljs*"))
+
+(defvar inf-clojure-project nil)
+
+(defmacro safe-wrap (fn &rest clean-up)
+  `(unwind-protect
+       (let (retval)
+         (condition-case ex
+             (setq retval (progn ,fn))
+           ('error
+            (message (format "Caught exception: [%s]" ex))
+            (setq retval (cons 'exception (list ex)))))
+         retval)
+     ,@clean-up))
+
+(defun clojure-custom-setup ()
+  (let ((enable-local-variables :all))
+    (hack-dir-local-variables-non-file-buffer))
+
+  ;; inf-clojure config
+  (when inf-clojure-project
+    (progn
+      (when (require 'inf-clojure nil 'noerror)
+        (safe-wrap (inf-clojure-minor-mode)))
+      (make-local-variable 'inf-clojure-buffer)
+      (let ((ext (car (last (split-string (buffer-name (current-buffer)) "\\.")))))
+        (if (equal ext "clj")
+            (setq inf-clojure-buffer "*inf-clj*")
+          (if (equal ext "cljs")
+              (setq inf-clojure-buffer "*inf-cljs*")))))))
