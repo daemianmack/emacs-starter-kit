@@ -480,6 +480,7 @@
   (unbind-key "S-<left>" org-mode-map)
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
+  (setq org-return-follows-link t)
   :bind
   (:map org-mode-map
         ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
