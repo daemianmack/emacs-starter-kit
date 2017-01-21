@@ -157,9 +157,6 @@
 
 (setq rings-protect-buffers-in-rings nil)
 
-(setq org-src-fontify-natively t)
-(setq org-hide-leading-stars t)
-
 ;; At bottom to resolve some ordering issue.
 (setq recentf-save-file (concat variable-files-dir ".recentf"))
 

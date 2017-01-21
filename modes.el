@@ -39,11 +39,6 @@
 (add-hook 'clojure-mode-hook 'clj-refactor-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-;; Make windmove work in org-mode.
-(add-hook 'org-shiftup-final-hook 'windmove-up)
-(add-hook 'org-shiftleft-final-hook 'windmove-left)
-(add-hook 'org-shiftdown-final-hook 'windmove-down)
-(add-hook 'org-shiftright-final-hook 'windmove-right)
 ;; Run shellhist, which preserves command history in eshell within
 ;; applications (e.g., python console or mysql prompt).
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)

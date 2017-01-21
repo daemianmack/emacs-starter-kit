@@ -136,22 +136,6 @@
 ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
 (put-clojure-indent 'comment 'defun)
 
-(define-key org-mode-map (kbd "<M-S-right>") 'org-shiftright)
-(define-key org-mode-map (kbd "<M-S-left>")  'org-shiftleft)
-(define-key org-mode-map (kbd "<M-S-up>")    'org-shiftup)
-(define-key org-mode-map (kbd "<M-S-down>")  'org-shiftdown)
-
-;; It appears necessary to explicitly insert these keybindings into the org-mode-map.
-;; `global-set-key` doesn't suffice. (?)
-(define-key org-mode-map (kbd "S-<up>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "up" "tmux select-pane -U")))
-(define-key org-mode-map (kbd "S-<down>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "down" "tmux select-pane -D")))
-(define-key org-mode-map (kbd "S-<right>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
-(define-key org-mode-map (kbd "S-<left>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "left" "tmux select-pane -L")))
-
 ;; Dupe this here for convenience until all config is single-filed.
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
@@ -477,6 +461,45 @@
   (back-button-mode 1))
 
 
+;; Change org keybindings from the default of...
+;;   shift-arrow      ;; cycle TODO states
+;;   ctrl-shift-arrow ;; clock stuff
+;; to
+;;   shift-arrow ;; preserve windmove movement
+;;   ctrl-arrow  ;; cycle TODO states
+;; Additional terminal config required to support default org keybindings...
+;;   ctrl-shift-up    [1;6A
+;;   ctrl-shift-down  [1;6B
+;;   ctrl-shift-right [1;6C
+;;   ctrl-shift-left  [1;6D
+(use-package org-mode
+  :init
+  (unbind-key "S-<up>" org-mode-map)
+  (unbind-key "S-<down>" org-mode-map)
+  (unbind-key "S-<right>" org-mode-map)
+  (unbind-key "S-<left>" org-mode-map)
+  (setq org-src-fontify-natively t)
+  (setq org-hide-leading-stars t)
+  :bind
+  (:map org-mode-map
+        ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
+        ("<C-left>"  . org-shiftleft)
+        ("<C-up>"    . org-shiftup)
+        ("<C-down>"  . org-shiftdown))
+  :config
+  ;; Show all empty lines when collapsed.
+  (setq org-cycle-separator-lines -1))
+
+
+;; Integrate with tmux splits.
+(global-set-key (kbd "S-<up>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "up"  "tmux select-pane -U")))
+(global-set-key (kbd "S-<down>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "down"  "tmux select-pane -D")))
+(global-set-key (kbd "S-<right>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
+(global-set-key (kbd "S-<left>")
+                '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
 
 
 (setq locate-command "mdfind")  ;; Use Mac OS X's Spotlight

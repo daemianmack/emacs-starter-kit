@@ -1,10 +1,4 @@
 
-;; ;; tmux handles shift+arrow differently than screen. Accomodate. Prefer a fix in .tmux.conf.
-;; (global-set-key (kbd "M-[ d") 'windmove-left)
-;; (global-set-key (kbd "M-[ c") 'windmove-right)
-;; (global-set-key (kbd "M-[ a") 'windmove-up)
-;; (global-set-key (kbd "M-[ b") 'windmove-down)
-
 (defun explain-different-quit-keys ()
   (interactive)
   (message "Use C-x M-c to quit instead! It's harder to hit by accident."))
@@ -86,16 +80,6 @@
 
 (global-set-key (kbd "C-c h t") 'highlight-this)
 
-; Integrate with tmux splits.
-(global-set-key (kbd "S-<up>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "up"  "tmux select-pane -U")))
-(global-set-key (kbd "S-<down>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "down"  "tmux select-pane -D")))
-(global-set-key (kbd "S-<right>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
-(global-set-key (kbd "S-<left>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
-
 (cljr-add-keybindings-with-prefix "C-c C-f")
 
 (global-set-key (kbd "C-x C-y") 'pt-pbpaste)
@@ -107,9 +91,6 @@
 (global-set-key (kbd "C-c q") 'join-line)
 
 (global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
-
-(define-key org-mode-map (kbd "<C-right>") 'org-do-demote)
-(define-key org-mode-map (kbd "<C-left>") 'org-do-promote)
 
 (global-set-key (kbd "C-c C-a") 'align-cljlet)
  
