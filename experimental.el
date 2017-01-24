@@ -489,7 +489,9 @@
         ("<C-down>"  . org-shiftdown))
   :config
   ;; Show all empty lines when collapsed.
-  (setq org-cycle-separator-lines -1))
+  (setq org-cycle-separator-lines -1)
+  (make-face 'org-inflight-face)
+  (setq org-todo-keyword-faces '(("DOING" . org-inflight-face))))
 
 
 ;; Integrate with tmux splits.
