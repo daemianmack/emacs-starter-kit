@@ -133,9 +133,6 @@
 
 (defalias 'crux-delete-buffer-and-file #'crux-delete-file-and-buffer)
 
-;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
-(put-clojure-indent 'comment 'defun)
-
 ;; Dupe this here for convenience until all config is single-filed.
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
@@ -398,8 +395,16 @@
   :ensure t
   :bind (("C-x M-r" . cljr-helm))
   :config
+  (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
+  (add-to-list 'auto-mode-alist '("\\.cljs" . clojure-mode))
+  (add-to-list 'auto-mode-alist '("\\.edn" . clojure-mode))
+  (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
   (add-hook 'clojure-mode-hook 'lisp-mode-setup)
-  (add-hook 'cider-repl-mode-hook 'lisp-mode-setup))
+  (add-hook 'clojure-mode-hook 'turn-on-paredit)
+  (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+  (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
+  ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
+  (put-clojure-indent 'comment 'defun))
 
 (use-package whitespace
   :ensure t

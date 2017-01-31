@@ -20,9 +20,6 @@
 (add-to-list 'auto-mode-alist '("\\.org" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.s\?css\\.*" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . javascript-mode))
-(add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljs" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.coffee\\.*" . coffee-mode))
 
 
@@ -35,8 +32,6 @@
 (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
-(add-hook 'clojure-mode-hook 'turn-on-paredit)
-(add-hook 'clojure-mode-hook 'clj-refactor-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 ;; Run shellhist, which preserves command history in eshell within
