@@ -340,8 +340,11 @@
 
 (use-package magit
   :ensure t
+  :pin melpa-stable
   :bind (("C-x g" . magit-status))
   :config
+  ;; Avoid version skew that breaks Magit's git-rebase-mode.
+  (use-package with-editor :ensure t :pin melpa-stable)
   (use-package ido-completing-read+ :ensure t)
   (use-package magithub :ensure t)
   (setq magit-completing-read-function 'magit-ido-completing-read)
