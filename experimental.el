@@ -440,6 +440,13 @@
 (use-package dired+
   :ensure t)
 
+(defun inf-clojurize-buffer ()
+  ;; For now sometimes this is required in a buffer needing a connection to an inf REPL...
+  ;; TODO Make this not necessary.
+  (interactive)
+  (make-local-variable 'inf-clojure-buffer)
+  (setq inf-clojure-buffer "*inf-clj*"))
+
 (defun inf-clojure-repl-edit-last-sexp ()
   "Send the previous sexp to the inferior Clojure process for editing."
   (interactive)
