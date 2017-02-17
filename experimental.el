@@ -440,8 +440,19 @@
 (use-package dired+
   :ensure t)
 
+(defun inf-clojure-repl-edit-last-sexp ()
+  "Send the previous sexp to the inferior Clojure process for editing."
+  (interactive)
+  (let ((str (buffer-substring-no-properties
+              (save-excursion (backward-sexp) (point))
+              (point))))
+    (with-current-buffer inf-clojure-buffer
+      (insert str))
+    (inf-clojure-switch-to-repl t)))
+
 (use-package inf-clojure
   :ensure t
+  :bind (("C-c M-p" . inf-clojure-repl-edit-last-sexp)) ;; Mimic + clobber CIDER's.
   :config
   (setq inf-clojure-program "nc localhost 5555")
   (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
