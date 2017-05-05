@@ -339,7 +339,8 @@
 (use-package magit
   :ensure t
   :pin melpa-stable
-  :bind (("C-x g" . magit-status))
+  :bind (("C-x g" . magit-status)
+         ("C-c f f" . magit-log-buffer-file))
   :config
   ;; Avoid version skew that breaks Magit's git-rebase-mode.
   (use-package with-editor :ensure t :pin melpa-stable)
