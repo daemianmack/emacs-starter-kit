@@ -5,7 +5,8 @@
     (when file
       (find-file file))))
 
-(global-set-key (kbd "C-c f") 'recentf-ido-find-file)
+(global-set-key (kbd "C-c f f") 'recentf-ido-find-file)
+(setq recentf-max-saved-items 100)
 
 (setq helm-M-x-fuzzy-match t
       helm-apropos-fuzzy-match t
