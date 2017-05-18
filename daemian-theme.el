@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2017-01-25.")
+  "Created 2017-05-18.")
 
 (custom-theme-set-variables
  'daemian
@@ -43,7 +43,7 @@
  '(helm-buffer-directory ((t (:inherit helm-buffer-file))))
  '(helm-selection ((t (:background "black" :foreground "brightgreen"))))
  '(helm-source-header ((t (:inherit helm-header))))
- '(highlight ((t (:background "brightblue" :foreground "white"))))
+ '(highlight ((t (:background "brightblue" :foreground "black"))))
  '(highlight-symbol-face ((t (:background "color-235" :underline (:color foreground-color :style wave)))))
  '(isearch ((t (:background "purple" :foreground "white"))))
  '(isearch-fail ((t (:weight ultra-bold :foreground "white" :background "red"))))
@@ -127,7 +127,14 @@
  '(widget-field ((t (:background "color-21" :foreground "color-254"))))
  '(org-todo ((t (:background "ForestGreen" :foreground "black" :weight bold))))
  '(org-done ((t (:background "color-53" :foreground "color-239" :weight bold))))
- '(org-inflight-face ((t (:background "color-239" :foreground "color-208" :weight bold))))
- '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.)))))
+ '(diredp-dir-name ((t (:inherit font-lock-function-name-face))))
+ '(diredp-dir-priv ((t (:foreground "Red" :weight bold))))
+ '(diredp-no-priv ((t nil)))
+ '(diredp-exec-priv ((t nil)))
+ '(diredp-read-priv ((t nil)))
+ '(diredp-write-priv ((t nil)))
+ '(org-date ((t (:inherit font-lock-function-name-face :underline t))))
+ '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
+ '(comint-highlight-input ((t nil))))
 
 (provide-theme 'daemian)
