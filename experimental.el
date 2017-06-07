@@ -617,3 +617,14 @@
   :config
   (setq ag-highlight-search t))
 
+;; Cast as a replacement to `highlight-symbol` but this seems more
+;; useful as a tool for deliberately painting vars with faces to help
+;; unsquirrel dense code and walking among all painted things, whereas
+;; `highlight-symbol` highlights only the thing at point, and without
+;; intervention.
+(use-package symbol-overlay :ensure t
+  :bind
+  (("M-i" . symbol-overlay-put))
+  :init
+  (unbind-key "M-u" symbol-overlay-map)
+  (unbind-key "M-o" symbol-overlay-map))
