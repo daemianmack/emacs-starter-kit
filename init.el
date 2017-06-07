@@ -40,7 +40,6 @@
                       helm
                       hlinum
 		      highlight-symbol
-                      key-chord
                       kill-ring-search
 		      kpm-list
                       markdown-mode+

@@ -645,3 +645,12 @@
 (global-set-key (kbd "C-c +") 'increment-number-at-point)
 (global-set-key (kbd "C-c -") 'decrement-number-at-point)
 
+(use-package key-chord :ensure t
+  :init
+  (key-chord-mode 1)
+  :config
+  (key-chord-define-global "jk" 'avy-goto-char-timer)
+  (key-chord-define-global ",." 'other-window)
+  (key-chord-define-global "ZZ" 'save-buffer)
+  (key-chord-define-global "zx" 'jump-to-register)
+  (key-chord-define-global "ZX" 'window-configuration-to-register))

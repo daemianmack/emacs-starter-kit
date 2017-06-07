@@ -53,14 +53,6 @@
 (global-set-key (kbd "C-x r a")   'point-to-register) ; "assign" to point
 (global-set-key (kbd "C-x r SPC") 'jump-to-register)  ; easy jump target
 
-
-(key-chord-define-global "jk" 'avy-goto-char-timer)
-(key-chord-define-global ",." 'other-window)
-(key-chord-define-global "ZZ" 'save-buffer)
-(key-chord-define-global "zx" 'jump-to-register)
-(key-chord-define-global "ZX" 'window-configuration-to-register)
-
-
 (global-set-key (kbd "<f1>")   (rings-generate-cycler 1))
 (global-set-key (kbd "C-c <f1>") (rings-generate-setter 1))
 (global-set-key (kbd "<f2>")   (rings-generate-cycler 2))

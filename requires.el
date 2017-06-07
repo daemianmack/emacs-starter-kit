@@ -8,7 +8,6 @@
 (require 'ffap)
 (require 'flymake-cursor)
 (require 'hlinum)
-(require 'key-chord)
 (require 'kill-ring-search)
 (require 'kpm-list)
 (require 'nav)

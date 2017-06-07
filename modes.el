@@ -13,7 +13,6 @@
 (savehist-mode 1)
 (global-subword-mode 1)
 (global-undo-tree-mode)
-(key-chord-mode 1)
 (winner-mode 1)
 
 
