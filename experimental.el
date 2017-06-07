@@ -597,3 +597,10 @@
             (setq inf-clojure-buffer "*inf-clj*")
           (if (equal ext "cljs")
               (setq inf-clojure-buffer "*inf-cljs*")))))))
+
+(use-package which-key :ensure t
+  :config
+  (which-key-mode)
+  (setq which-key-separator " ")
+  (setq which-key-idle-delay 0.6))
+
