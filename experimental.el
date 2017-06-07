@@ -613,3 +613,7 @@
   (setq highlight-symbol-on-navigation-p t)
   (setq highlight-symbol-occurrence-message '(explicit navigation)))
 
+(use-package ag :ensure t
+  :config
+  (setq ag-highlight-search t))
+
