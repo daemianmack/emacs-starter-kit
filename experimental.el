@@ -257,6 +257,11 @@
   (save-some-buffers)
   (cider-repl-command "(dev/reset)"))
 
+
+(defun my-cider-repl-prompt (namespace)
+  "Return a prompt string that mentions NAMESPACE."
+  (format "\n%s> " namespace))
+
 (use-package cider
   :ensure t
   :pin melpa-stable
@@ -289,7 +294,8 @@
   (setq cider-repl-use-clojure-font-lock t)
   (setq cider-show-error-buffer nil)
   (setq cider-use-overlays nil)
-  (setq nrepl-buffer-name-separator "/"))
+  (setq nrepl-buffer-name-separator "/")
+  (setq cider-repl-prompt-function 'my-cider-repl-prompt))
 
 (use-package inferior-lisp
   ;; (setq inferior-lisp-program "lein repl")
