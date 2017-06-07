@@ -180,11 +180,18 @@
 
 (use-package vhl)
 
-(use-package swoop
+(use-package swoop :ensure t
   :bind (("C-c o"   . swoop)
          ("C-c O"   . swoop-multi)
          ("C-c M-o" . swoop-pcre-regexp)
-         ("C-c C-o" . swoop-back-to-last-position)))
+         ("C-c C-o" . swoop-back-to-last-position))
+  :config
+  (bind-keys
+   :map swoop-map
+   ("<up>"   . swoop-action-goto-line-prev)
+   ("<down>" . swoop-action-goto-line-next)
+   ("C-p"    . prev-history-element)
+   ("C-n"    . next-history-element)))
 
 (defun ido-disable-line-truncation ()
   (set (make-local-variable 'truncate-lines) nil))
