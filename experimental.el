@@ -604,3 +604,12 @@
   (setq which-key-separator " ")
   (setq which-key-idle-delay 0.6))
 
+(use-package highlight-symbol :ensure t
+  :init
+  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+  (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
+  :config
+  (setq highlight-symbol-idle-delay 0.2)
+  (setq highlight-symbol-on-navigation-p t)
+  (setq highlight-symbol-occurrence-message '(explicit navigation)))
+

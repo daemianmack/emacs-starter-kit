@@ -7,7 +7,6 @@
 (require 'easy-kill)
 (require 'ffap)
 (require 'flymake-cursor)
-(require 'highlight-symbol)
 (require 'hlinum)
 (require 'key-chord)
 (require 'kill-ring-search)

@@ -138,8 +138,6 @@
   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
     (linum-mode 1)))
 
-(setq highlight-symbol-idle-delay 0.2)
-
 (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq avy-goto-char-style 'at)
 
