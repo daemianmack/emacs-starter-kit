@@ -532,7 +532,9 @@
   ;; Show all empty lines when collapsed.
   (setq org-cycle-separator-lines -1)
   (make-face 'org-inflight-face)
-  (setq org-todo-keyword-faces '(("DOING" . org-inflight-face))))
+  (setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
+  (setq org-yank-folded-subtrees nil)
+  (setq org-yank-adjusted-subtrees t))
 
 
 ;; Integrate with tmux splits.
