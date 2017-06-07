@@ -134,7 +134,10 @@
  '(diredp-read-priv ((t nil)))
  '(diredp-write-priv ((t nil)))
  '(org-date ((t (:inherit font-lock-function-name-face :underline t))))
+ '(comint-highlight-input ((t nil)))
+ '(magit-section-secondary-heading ((t (:inherit magit-section-heading :slant italic :weight normal))))
  '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
- '(comint-highlight-input ((t nil))))
+ '(ediff-current-diff-A ((t (:inherit smerge-mine))))
+ '(ediff-current-diff-B ((t (:inherit smerge-other)))))
 
 (provide-theme 'daemian)
