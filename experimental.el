@@ -419,7 +419,9 @@
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
-  (put-clojure-indent 'comment 'defun))
+  (put-clojure-indent 'comment 'defun)
+  (font-lock-add-keywords 'clojure-mode
+                          '(("?[^[:space:]]+" . font-lock-constant-face))))
 
 (use-package whitespace
   :ensure t
