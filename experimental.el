@@ -627,6 +627,12 @@
   :config
   (setq ag-highlight-search t))
 
+(use-package keyfreq :ensure t
+  :init
+  (setq keyfreq-mode 1)
+  :config
+  (setq keyfreq-autosave-mode 1))
+
 ;; Cast as a replacement to `highlight-symbol` but this seems more
 ;; useful as a tool for deliberately painting vars with faces to help
 ;; unsquirrel dense code and walking among all painted things, whereas
