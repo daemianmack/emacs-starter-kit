@@ -706,3 +706,6 @@
   (key-chord-define-global "ZZ" 'save-buffer)
   (key-chord-define-global "zx" 'jump-to-register)
   (key-chord-define-global "ZX" 'window-configuration-to-register))
+
+;; Don't display `\` when wrapping lines.
+(set-display-table-slot standard-display-table 'wrap ?\ )
