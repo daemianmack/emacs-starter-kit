@@ -627,6 +627,14 @@
   :config
   (setq ag-highlight-search t))
 
+(use-package dumb-jump :ensure t
+  :config
+  (bind-keys*
+   ("M-." . dumb-jump-go)
+   ("C-c M-." . dumb-jump-go-other-window))
+  (use-package s :ensure t)
+  (setq dumb-jump-selector 'ivy))
+
 (use-package keyfreq :ensure t
   :init
   (setq keyfreq-mode 1)
