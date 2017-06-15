@@ -155,7 +155,4 @@
 
 (setq rings-protect-buffers-in-rings nil)
 
-;; At bottom to resolve some ordering issue.
-(setq recentf-save-file (concat variable-files-dir ".recentf"))
-
 (setq pe/follow-current t)

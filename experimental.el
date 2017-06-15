@@ -1,3 +1,8 @@
+;; Dupe this here for convenience until all config is single-filed.
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
+(setq variable-files-dir (concat dotfiles-dir "var/"))
+
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
@@ -5,8 +10,13 @@
     (when file
       (find-file file))))
 
-(global-set-key (kbd "C-c f f") 'recentf-ido-find-file)
-(setq recentf-max-saved-items 100)
+(use-package recentf
+  :bind
+  (("C-c f f" . recentf-ido-find-file))
+  :config
+  (setq recentf-max-saved-items 100)
+  (setq recentf-save-file (concat variable-files-dir ".recentf")))
+
 
 (setq helm-M-x-fuzzy-match t
       helm-apropos-fuzzy-match t
@@ -133,11 +143,6 @@
           (kill-buffer))))))
 
 (defalias 'crux-delete-buffer-and-file #'crux-delete-file-and-buffer)
-
-;; Dupe this here for convenience until all config is single-filed.
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-(setq variable-files-dir (concat dotfiles-dir "var/"))
 
 (use-package smex
   :init (setq smex-save-file (concat variable-files-dir "smex-items"))
