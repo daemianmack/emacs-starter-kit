@@ -657,6 +657,33 @@
   (shell-command (concat "open " (shell-quote-argument default-directory))))
 
 
+(defvar git-grep-switches "--extended-regexp -I -n"
+  "Switches to pass to `git grep'.")
+
+(defun git-grep-fullscreen (regexp &optional files dir confirm)
+  (interactive
+   (let* ((regexp (grep-read-regexp))
+          (files (grep-read-files regexp))
+          (files (if (string= "* .*" files) "*" files))
+          (dir (ido-read-directory-name "Base directory: "
+                                        nil default-directory t))
+          (confirm (equal current-prefix-arg '(4))))
+     (list regexp files dir confirm)))
+  (let ((command (format "cd %s && git --no-pager grep %s %s -e %S -- '%s' "
+                         dir
+                         git-grep-switches
+                         (if (s-lowercase? regexp) " --ignore-case" "")
+                         regexp
+                         files))
+        (grep-use-null-device nil))
+    (when confirm
+      (setq command (read-shell-command "Run git-grep: " command 'git-grep-history)))
+    (window-configuration-to-register ?$)
+    (grep command)
+    (switch-to-buffer "*grep*")
+    (delete-other-windows)
+    (beginning-of-buffer)))
+
 (use-package iflipb :ensure t
   :bind
   (("C-z"   . iflipb-next-buffer)
