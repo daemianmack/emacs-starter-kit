@@ -65,3 +65,7 @@
 (setq user-config (concat dotfiles-dir user-login-name ".el"))
 (when (file-exists-p user-config)
   (load user-config))
+
+(setq stack-trace-on-error '(buffer-read-only))
+
+(setq debug-ignored-errors nil)
