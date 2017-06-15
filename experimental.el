@@ -630,9 +630,11 @@
 (use-package symbol-overlay :ensure t
   :bind
   (("M-i" . symbol-overlay-put))
-  :init
-  (unbind-key "M-u" symbol-overlay-map)
-  (unbind-key "M-o" symbol-overlay-map))
+  :config
+  (bind-keys
+   :map symbol-overlay-map
+   (unbind-key "M-u" symbol-overlay-map)
+   (unbind-key "M-o" symbol-overlay-map)))
 
 (defun increment-number-at-point ()
   (interactive)
