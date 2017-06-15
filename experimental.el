@@ -650,6 +650,13 @@
 (global-set-key (kbd "C-c +") 'increment-number-at-point)
 (global-set-key (kbd "C-c -") 'decrement-number-at-point)
 
+(use-package iflipb :ensure t
+  :bind
+  (("C-z"   . iflipb-next-buffer)
+   ("C-M-z" . iflipb-previous-buffer))
+  :config
+  (setq iflipb-ignore-buffers nil))
+
 (use-package key-chord :ensure t
   :init
   (key-chord-mode 1)
