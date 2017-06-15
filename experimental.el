@@ -273,7 +273,9 @@
   :bind (("C-c M-o" . cider-repl-clear-buffer-from-orbit)
          ("C-c d"   . cider-repl-reset))
   :config
-  (use-package cider-eval-sexp-fu :ensure t)
+  (use-package cider-eval-sexp-fu :ensure t
+    :config
+    (setq eval-sexp-fu-flash-duration 0.05))
   (use-package clj-refactor       :ensure t
     :init
     (cljr-add-keybindings-with-prefix "C-c M-r")
