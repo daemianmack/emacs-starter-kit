@@ -650,6 +650,13 @@
 (global-set-key (kbd "C-c +") 'increment-number-at-point)
 (global-set-key (kbd "C-c -") 'decrement-number-at-point)
 
+
+(defun finder ()
+  "Open the current working directory in finder."
+  (interactive)
+  (shell-command (concat "open " (shell-quote-argument default-directory))))
+
+
 (use-package iflipb :ensure t
   :bind
   (("C-z"   . iflipb-next-buffer)
