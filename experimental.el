@@ -657,6 +657,10 @@
   :config
   (setq iflipb-ignore-buffers nil))
 
+;; Would enable globally but messes up magit's status display for some reason.
+;; https://bitbucket.org/adamsmd/digit-groups/issues/1/conflict-with-egg-mode
+(use-package digit-groups :ensure t)
+
 (use-package key-chord :ensure t
   :init
   (key-chord-mode 1)
