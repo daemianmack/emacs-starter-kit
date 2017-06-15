@@ -365,6 +365,7 @@
   (setq magit-diff-arguments '("--stat" "--no-ext-diff"))
   (setq magit-diff-section-arguments '("--no-ext-diff"))
   (setq magit-diff-refine-hunk 'all)
+  (setq magit-fetch-arguments '("--prune"))
   (setq magit-last-seen-setup-instructions "1.4.0")
   (setq magit-process-popup-time 10)
   (setq magit-revert-buffers 't)
