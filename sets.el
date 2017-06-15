@@ -59,9 +59,6 @@
 
 (setq mouse-yank-at-point t)
 
-(setq whitespace-style '(face trailing lines-tail tabs))
-(setq whitespace-line-column 80)
-
 (setq diff-switches "-u")
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
