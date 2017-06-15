@@ -358,7 +358,9 @@
   ;; Avoid version skew that breaks Magit's git-rebase-mode.
   (use-package with-editor :ensure t :pin melpa-stable)
   (use-package ido-completing-read+ :ensure t)
-  (use-package magithub :ensure t)
+  (use-package magithub :ensure t
+    :config
+    (setq magithub-cache-refresh-seconds-plist '(:issues 600 :ci-status 600)))
   (setq magit-completing-read-function 'magit-ido-completing-read)
   (setq magit-diff-arguments '("--stat" "--no-ext-diff"))
   (setq magit-diff-section-arguments '("--no-ext-diff"))
