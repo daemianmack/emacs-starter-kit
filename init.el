@@ -29,8 +29,6 @@
                       avy
                       beacon
                       browse-kill-ring
-                      buffer-stack
-                      cl ;; Support fn for buffer-stack.el.
                       clj-refactor
                       clojure-mode
                       clojure-snippets
