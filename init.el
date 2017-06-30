@@ -25,36 +25,6 @@
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 (package-initialize)
 
-(defvar my-packages '(align-cljlet
-                      avy
-                      beacon
-                      browse-kill-ring
-                      clj-refactor
-                      clojure-mode
-                      clojure-snippets
-                      easy-kill
-                      find-file-in-project
-                      flymake-cursor
-                      helm
-                      hlinum
-		      highlight-symbol
-                      kill-ring-search
-		      kpm-list
-                      markdown-mode+
-                      nav
-                      neotree
-                      project-explorer
-                      python-mode
-                      rainbow-delimiters
-                      rings
-                      smooth-scrolling
-                      undo-tree
-                      yasnippet)
-  "A list of packages to ensure are installed at launch.")
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-        (package-install p)))
 (put 'downcase-region 'disabled nil)
 
 
