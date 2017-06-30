@@ -3,29 +3,39 @@
                     (or (buffer-file-name) load-file-name)))
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
+(use-package validate :ensure t)
+
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+  (let ((file (ido-completing-read "Choose recent file:" recentf-list nil t)))
     (when file
       (find-file file))))
 
-(use-package recentf
+(use-package recentf :ensure t
+  :init
+  (recentf-mode 1)
   :bind
   (("C-c f f" . recentf-ido-find-file))
   :config
-  (setq recentf-max-saved-items 100)
-  (setq recentf-save-file (concat variable-files-dir ".recentf")))
+  (validate-setq recentf-max-saved-items 100)
+  (validate-setq recentf-save-file (concat variable-files-dir ".recentf")))
 
+(defun locate-org-files (search-string)
+  "Adjust `locate-with-filter' to only search `org-mode' files with SEARCH-STRING."
+  (interactive "sSearch string: ")
+  (locate-with-filter search-string ".org$"))
 
-(setq helm-M-x-fuzzy-match t
-      helm-apropos-fuzzy-match t
-      helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-completion-in-region-fuzzy-match t
-      helm-file-cache-fuzzy-match t
-      helm-imenu-fuzzy-match t
-      helm-locate-fuzzy-match t)
+(global-set-key (kbd "C-c i") 'locate-org-files)
+
+(use-package helm :ensure t
+  :init
+  (helm-mode 1)
+  :config
+  (validate-setq helm-mode-fuzzy-match t
+                 helm-completion-in-region-fuzzy-match t)
+  ;; Use Mac OS X's Spotligh
+  (validate-setq helm-locate-command "mdfind -name %s %s"))
 
 (require 'yasnippet)
 (require 'clojure-snippets)
@@ -35,11 +45,9 @@
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
 (yas-load-directory "~/.emacs.d/snippets")
 
-(setq desktop-restore-frames t)
-(setq desktop-restore-in-current-display t)
-(setq desktop-restore-forces-onscreen nil)
-
-(setq cljr-sort-comparator 'cljr--semantic-comparator)
+(validate-setq desktop-restore-frames t)
+(validate-setq desktop-restore-in-current-display t)
+(validate-setq desktop-restore-forces-onscreen nil)
 
 (defun rkn-print-results-on-next-line (value)
   (end-of-line)
@@ -92,12 +100,7 @@
 (ad-activate 'javarun)
 
 
-
-(setq ibuffer-display-summary nil)
-
-(setq dired-dwim-target t)
-
-(setq max-list-eval-depth 20000)
+(validate-setq dired-dwim-target t)
 
 (defun cider-figwheel-repl ()
   (interactive)
@@ -111,7 +114,7 @@
 
 (global-set-key (kbd "C-c M-f") #'cider-figwheel-repl)
 
-(setq window-combination-resize t)
+(validate-setq window-combination-resize t)
 
 (defun crux-rename-file-and-buffer ()
   "Rename current buffer and if the buffer is visiting a file, rename it too."
@@ -144,8 +147,8 @@
 
 (defalias 'crux-delete-buffer-and-file #'crux-delete-file-and-buffer)
 
-(use-package smex
-  :init (setq smex-save-file (concat variable-files-dir "smex-items"))
+(use-package smex :ensure t
+  :config (setq smex-save-file (concat variable-files-dir "smex-items"))
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c M-x" . execute-extended-command)))
@@ -161,13 +164,13 @@
 (make-face 'mode-line-process-face)
 (make-face 'mode-line-80col-face)
 
-(use-package smart-mode-line
+(use-package smart-mode-line :ensure t
   :config
-  (setq sml/theme nil)
+  (validate-setq sml/theme nil)
   (sml/setup)
-  (setq sml/name-width '(20 . 80))
-  (setq sml/outside-modified-char "‽")
-  (setq sml/modified-char "!")
+  (validate-setq sml/name-width '(20 . 80))
+  (validate-setq sml/outside-modified-char "‽")
+  (validate-setq sml/modified-char "!")
   (setq-default mode-line-front-space
                 '(:eval (concat (propertize "%4l" 'face 'mode-line-position-face)
                                 ","
@@ -175,7 +178,7 @@
                                             (if (>= (current-column) 80)
                                                 'mode-line-80col-face
                                               'mode-line-position-face)))))
-  (setq sml/replacer-regexp-list
+  (validate-setq sml/replacer-regexp-list
         '(("^~/\\.emacs\\.d/elpa/" ":ELPA:")
           ("^~/\\.emacs\\.d/" ":ED:")
           ("^/sudo:.*:" ":SU:")
@@ -201,8 +204,7 @@
 (defun ido-disable-line-truncation ()
   (set (make-local-variable 'truncate-lines) nil))
 
-(use-package ido
-  :init (setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
+(use-package ido :ensure t
   :config
   (use-package ido-preview)
   (use-package ido-ubiquitous
@@ -212,14 +214,15 @@
     :ensure t
     :config
     (flx-ido-mode 1)
-    (setq ido-enable-flex-matching t)
-    (setq ido-use-faces nil))
+    (validate-setq ido-enable-flex-matching t)
+    (validate-setq ido-use-faces nil))
   (use-package ido-vertical-mode
     :ensure t
     :config
     (ido-vertical-mode 1)
-    (setq ido-vertical-show-count t)
-    (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+    (validate-setq ido-vertical-show-count t)
+    (validate-setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+  (validate-setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
   (ido-mode 1)
   (ido-everywhere 1)
 
@@ -229,16 +232,16 @@
               (define-key ido-completion-map (kbd "M-w") 'ido-preview-backward)
               (define-key ido-completion-map (kbd "M-e") 'ido-preview-forward)))
 
-  (setq ido-confirm-unique-completion t)
-  (setq ido-create-new-buffer 'always)
-  (setq ido-enable-prefix nil)
-  (setq ido-enter-matching-directory 'first)
-  (setq ido-max-prospects 10)
-  (setq ido-max-work-file-list 50)
-  (setq ido-mode 'both)
-  (setq ido-use-faces t)
-  (setq ido-use-filename-at-point 'guess)
-  (setq ido-use-virtual-buffers t))
+  (validate-setq ido-confirm-unique-completion t)
+  (validate-setq ido-create-new-buffer 'always)
+  (validate-setq ido-enable-prefix nil)
+  (validate-setq ido-enter-matching-directory 'first)
+  (validate-setq ido-max-prospects 10)
+  (validate-setq ido-max-work-file-list 50)
+  (validate-setq ido-mode 'both)
+  (validate-setq ido-use-faces t)
+  (validate-setq ido-use-filename-at-point 'guess)
+  (validate-setq ido-use-virtual-buffers t))
 
 ;; Expand this to all programming modes.
 (add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
@@ -275,37 +278,36 @@
   :config
   (use-package cider-eval-sexp-fu :ensure t
     :config
-    (setq eval-sexp-fu-flash-duration 0.05))
+    (validate-setq eval-sexp-fu-flash-duration 0.05))
   (use-package clj-refactor       :ensure t
     :init
     (cljr-add-keybindings-with-prefix "C-c M-r")
-    (setq cljr-favor-prefix-notation nil)
-    (setq cljr-warn-on-eval nil)
+    (validate-setq cljr-favor-prefix-notation nil)
+    (validate-setq cljr-warn-on-eval nil)
     :config
     (use-package cljr-helm :ensure t)
-    (setq cljr-auto-clean-ns nil)
-    (setq cljr-auto-sort-ns nil))
+    (validate-setq cljr-auto-clean-ns nil)
+    (validate-setq cljr-auto-sort-ns nil))
 
   (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
   (define-key cider-repl-mode-map (kbd "C-c M-o") 'cider-repl-clear-buffer)
 
-  (setq cider-eval-spinner-type 'box-in-box)
-  (setq cider-font-lock-dynamically '(var))
-  (setq cider-overlays-use-font-lock t)
-  (setq cider-popup-on-error t)
-  (setq cider-prompt-save-file-on-load 'always-save)
-  (setq cider-prompt-save-file-on-load nil)
-  (setq cider-repl-history-file "~/.lein/cider-repl-history")
-  (setq cider-repl-result-prefix ";; => ")
-  (setq cider-repl-use-clojure-font-lock t)
-  (setq cider-show-error-buffer nil)
-  (setq cider-use-overlays nil)
-  (setq nrepl-buffer-name-separator "/")
-  (setq cider-repl-prompt-function 'my-cider-repl-prompt))
+  (validate-setq cider-eval-spinner-type 'box-in-box)
+  (validate-setq cider-font-lock-dynamically '(var))
+  (validate-setq cider-overlays-use-font-lock t)
+  (validate-setq cider-prompt-save-file-on-load 'always-save)
+  (validate-setq cider-prompt-save-file-on-load nil)
+  (validate-setq cider-repl-history-file "~/.lein/cider-repl-history")
+  (validate-setq cider-repl-result-prefix ";; => ")
+  (validate-setq cider-repl-use-clojure-font-lock t)
+  (validate-setq cider-show-error-buffer nil)
+  (validate-setq cider-use-overlays nil)
+  (validate-setq nrepl-buffer-name-separator "/")
+  (validate-setq cider-repl-prompt-function 'my-cider-repl-prompt))
 
 (use-package inferior-lisp
-  ;; (setq inferior-lisp-program "lein repl")
+  ;; (validate-setq inferior-lisp-program "lein repl")
   ;; (add-hook 'clojure-mode-hook
   ;;           '(lambda ()
   ;;              (define-key clojure-mode-map
@@ -351,10 +353,8 @@
   :ensure t
   :config
   (projectile-global-mode)
-  ;; Show full relative paths.
-  (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
-  (setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
-  (setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld")))
+  (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
+  (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld")))
 
 (use-package magit
   :ensure t
@@ -367,17 +367,17 @@
   (use-package ido-completing-read+ :ensure t)
   (use-package magithub :ensure t
     :config
-    (setq magithub-cache-refresh-seconds-plist '(:issues 600 :ci-status 600)))
-  (setq magit-completing-read-function 'magit-ido-completing-read)
-  (setq magit-diff-arguments '("--stat" "--no-ext-diff"))
-  (setq magit-diff-section-arguments '("--no-ext-diff"))
-  (setq magit-diff-refine-hunk 'all)
-  (setq magit-fetch-arguments '("--prune"))
-  (setq magit-last-seen-setup-instructions "1.4.0")
-  (setq magit-process-popup-time 10)
-  (setq magit-revert-buffers 't)
-  (setq magit-repository-directories '("~/src"))
-  (setq magit-repository-directories-depth 2)
+    (magithub-feature-autoinject t)
+    (validate-setq magithub-dir (concat variable-files-dir "magithub")))
+  (validate-setq magit-completing-read-function 'magit-ido-completing-read)
+  (validate-setq magit-diff-arguments '("--stat" "--no-ext-diff"))
+  (validate-setq magit-diff-section-arguments '("--no-ext-diff"))
+  (validate-setq magit-diff-refine-hunk 'all)
+  (validate-setq magit-fetch-arguments '("--prune"))
+  (validate-setq magit-process-popup-time 10)
+  (validate-setq magit-revert-buffers 't)
+  (validate-setq magit-repository-directories '("~/src"))
+  (validate-setq magit-repository-directories-depth 2)
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map
@@ -431,30 +431,32 @@
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
   (put-clojure-indent 'comment 'defun)
   (font-lock-add-keywords 'clojure-mode
-                          '(("?[[:alnum:][:punct:]]+" . font-lock-constant-face))))
+                          '(("?[[:alnum:][:punct:]]+" . font-lock-constant-face)))
+  ;; This causes CLJS buffer errors to return REPL control more quickly.
+  (validate-setq max-lisp-eval-depth 20000))
 
 (use-package whitespace
   :ensure t
   :config
-  (setq whitespace-style '(face trailing tabs)))
+  (validate-setq whitespace-style '(face trailing tabs)))
 
 (use-package uniquify
   :config
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+  (validate-setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (use-package ivy
   :ensure t
   :config
-  (setq ivy-use-virtual-buffers t)
+  (validate-setq ivy-use-virtual-buffers t)
   )
 
 (use-package swiper
   :ensure t
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-extra-directories nil)
-  (setq ivy-virtual-abbreviate 'full)
+  (validate-setq ivy-extra-directories nil)
+  (validate-setq enable-recursive-minibuffers t)
+  (validate-setq ivy-virtual-abbreviate 'full)
   (global-set-key (kbd "C-s") 'swiper)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -472,7 +474,7 @@
   ;; TODO Make this not necessary.
   (interactive)
   (make-local-variable 'inf-clojure-buffer)
-  (setq inf-clojure-buffer "*inf-clj*"))
+  (validate-setq inf-clojure-buffer "*inf-clj*"))
 
 (defun inf-clojure-repl-edit-last-sexp ()
   "Send the previous sexp to the inferior Clojure process for editing."
@@ -488,9 +490,10 @@
   :ensure t
   :bind (("C-c M-p" . inf-clojure-repl-edit-last-sexp)) ;; Mimic + clobber CIDER's.
   :config
-  (setq inf-clojure-program "nc localhost 5555")
+  (validate-setq inf-clojure-program "nc localhost 5554")
   (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
   (add-hook 'clojure-mode-hook 'clojure-custom-setup)
+  (validate-setq inf-clojure-generic-cmd '("localhost" . 5554))
   ;; For some reason paredit is missing this in inf-clojure REPLs.
   (add-hook 'paredit-mode-hook
             (lambda ()
@@ -531,9 +534,21 @@
   (unbind-key "S-<down>" org-mode-map)
   (unbind-key "S-<right>" org-mode-map)
   (unbind-key "S-<left>" org-mode-map)
-  (setq org-src-fontify-natively t)
-  (setq org-hide-leading-stars t)
-  (setq org-return-follows-link t)
+  (validate-setq org-src-fontify-natively t)
+  (validate-setq org-hide-leading-stars t)
+  (validate-setq org-return-follows-link t)
+  (validate-setq org-cycle-separator-lines -1)
+  (validate-setq org-yank-folded-subtrees nil)
+  (validate-setq org-yank-adjusted-subtrees t)
+  (validate-setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ditaa . t)))
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages
+  ;;  '((java . t)))
+  (validate-setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
+  (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
   :bind
   (:map org-mode-map
         ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
@@ -542,12 +557,10 @@
         ("<C-down>"  . org-shiftdown))
   :config
   ;; Show all empty lines when collapsed.
-  (setq org-cycle-separator-lines -1)
-  (make-face 'org-inflight-face)
-  (setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
-  (setq org-yank-folded-subtrees nil)
-  (setq org-yank-adjusted-subtrees t))
 
+  (make-face 'org-inflight-face)
+  (validate-setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
+  )
 
 ;; Integrate with tmux splits.
 (global-set-key (kbd "S-<up>")
@@ -560,25 +573,14 @@
                 '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
 
 
-(setq locate-command "mdfind")  ;; Use Mac OS X's Spotlight
-(global-set-key (kbd "C-c l") 'locate)
-
-(defun locate-org-files (search-string)
-  "Adjust `locate-with-filter' to only search `org-mode' files with SEARCH-STRING."
-  (interactive "sSearch string: ")
-  (locate-with-filter search-string ".org$"))
-
-(global-set-key (kbd "C-c i") 'locate-org-files)
-
-
 (defun wwai-repl ()
   (interactive)
-  (run-clojure "bin/run script/repl.clj")
+  (inf-clojure "bin/run script/repl.clj")
   (rename-buffer "*inf-clj*"))
 
 (defun wwai-cljs-repl ()
   (interactive)
-  (run-clojure "bin/run script/cljs_repl.clj")
+  (inf-clojure "bin/run script/cljs_repl.clj")
   (rename-buffer "*inf-cljs*"))
 
 (defvar inf-clojure-project nil)
@@ -587,10 +589,10 @@
   `(unwind-protect
        (let (retval)
          (condition-case ex
-             (setq retval (progn ,fn))
+             (validate-setq retval (progn ,fn))
            ('error
             (message (format "Caught exception: [%s]" ex))
-            (setq retval (cons 'exception (list ex)))))
+            (validate-setq retval (cons 'exception (list ex)))))
          retval)
      ,@clean-up))
 
@@ -613,21 +615,21 @@
 (use-package which-key :ensure t
   :config
   (which-key-mode)
-  (setq which-key-separator " ")
-  (setq which-key-idle-delay 0.6))
+  (validate-setq which-key-separator " ")
+  (validate-setq which-key-idle-delay 0.6))
 
 (use-package highlight-symbol :ensure t
   :init
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
   :config
-  (setq highlight-symbol-idle-delay 0.2)
-  (setq highlight-symbol-on-navigation-p t)
-  (setq highlight-symbol-occurrence-message '(explicit navigation)))
+  (validate-setq highlight-symbol-idle-delay 0.2)
+  (validate-setq highlight-symbol-on-navigation-p t)
+  (validate-setq highlight-symbol-occurrence-message '(explicit navigation)))
 
 (use-package ag :ensure t
   :config
-  (setq ag-highlight-search t))
+  (validate-setq ag-highlight-search t))
 
 (use-package dumb-jump :ensure t
   :config
@@ -635,13 +637,13 @@
    ("M-." . dumb-jump-go)
    ("C-c M-." . dumb-jump-go-other-window))
   (use-package s :ensure t)
-  (setq dumb-jump-selector 'ivy))
+  (validate-setq dumb-jump-selector 'ivy))
 
 (use-package keyfreq :ensure t
   :init
-  (setq keyfreq-mode 1)
+  (validate-setq keyfreq-mode t)
   :config
-  (setq keyfreq-autosave-mode 1))
+  (validate-setq keyfreq-autosave-mode t))
 
 ;; Cast as a replacement to `highlight-symbol` but this seems more
 ;; useful as a tool for deliberately painting vars with faces to help
@@ -700,7 +702,7 @@
                          files))
         (grep-use-null-device nil))
     (when confirm
-      (setq command (read-shell-command "Run git-grep: " command 'git-grep-history)))
+      (validate-setq command (read-shell-command "Run git-grep: " command 'git-grep-history)))
     (window-configuration-to-register ?$)
     (grep command)
     (switch-to-buffer "*grep*")
@@ -712,7 +714,7 @@
   (("C-z"   . iflipb-next-buffer)
    ("C-M-z" . iflipb-previous-buffer))
   :config
-  (setq iflipb-ignore-buffers nil))
+  (validate-setq iflipb-ignore-buffers nil))
 
 ;; Would enable globally but messes up magit's status display for some reason.
 ;; https://bitbucket.org/adamsmd/digit-groups/issues/1/conflict-with-egg-mode

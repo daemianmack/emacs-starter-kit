@@ -3,6 +3,7 @@
 (require 'browse-kill-ring)
 (require 'buffer-stack)
 (require 'clojure-mode)
+(require 'counsel)
 (require 'desktop)
 (require 'easy-kill)
 (require 'ffap)
