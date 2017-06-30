@@ -11,7 +11,6 @@
 (setq custom-file (concat dotfiles-dir "custom.el"))
 (load custom-file 'noerror)
 
-(load (concat dotfiles-dir "requires.el"))
 (load (concat dotfiles-dir "modes.el"))
 (load (concat dotfiles-dir "sets.el"))
 (load (concat dotfiles-dir "general.el"))

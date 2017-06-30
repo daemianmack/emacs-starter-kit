@@ -732,3 +732,27 @@
 
 ;; Don't display `\` when wrapping lines.
 (set-display-table-slot standard-display-table 'wrap ?\ )
+
+
+(use-package align-cljlet :ensure t)
+(use-package avy :ensure t)
+(use-package browse-kill-ring :ensure t)
+(use-package buffer-stack :ensure t)
+(use-package clojure-mode :ensure t)
+(use-package counsel :ensure t)
+(use-package desktop :ensure t)
+(use-package easy-kill :ensure t)
+(use-package ffap :ensure t)
+(use-package flymake-cursor :ensure t)
+(use-package hlinum :ensure t)
+(use-package kill-ring-search :ensure t)
+(use-package kpm-list :ensure t)
+(use-package nav :ensure t)
+(use-package neotree :ensure t)
+(use-package project-explorer :ensure t)
+(use-package rainbow-delimiters :ensure t)
+(use-package rings :ensure t)
+(use-package saveplace :ensure t)
+(use-package smooth-scrolling :ensure t)
+(use-package undo-tree :ensure t)
+(use-package use-package :ensure t)
