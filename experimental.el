@@ -5,6 +5,9 @@
 
 (use-package validate :ensure t)
 
+;; Always load newest byte code.
+(validate-setq load-prefer-newer t)
+
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
