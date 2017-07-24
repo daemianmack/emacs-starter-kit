@@ -448,7 +448,7 @@
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
   (put-clojure-indent 'comment 'defun)
   (font-lock-add-keywords 'clojure-mode
-                          '(("?[[:alnum:][:punct:]]+" . font-lock-constant-face)))
+                          '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-warning-face)))
   ;; This causes CLJS buffer errors to return REPL control more quickly.
   (validate-setq max-lisp-eval-depth 20000))
 
