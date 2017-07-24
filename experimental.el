@@ -231,7 +231,7 @@
     :config
     (ido-vertical-mode 1)
     (validate-setq ido-vertical-show-count t)
-    (validate-setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+    (validate-setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
   (validate-setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
   (ido-mode 1)
   (ido-everywhere 1)
@@ -240,7 +240,12 @@
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map (kbd "M-w") 'ido-preview-backward)
-              (define-key ido-completion-map (kbd "M-e") 'ido-preview-forward)))
+              (define-key ido-completion-map (kbd "M-e") 'ido-preview-forward)
+              ;; "enter", "right", "TAB" all enter directory at point.
+              (define-key ido-completion-map (kbd "<right>") 'ido-exit-minibuffer)
+              (define-key ido-completion-map (kbd "TAB")     'ido-exit-minibuffer)
+              ;; "left" walks back up one directory.
+              (define-key ido-completion-map (kbd "<left>") 'ido-delete-backward-updir)))
 
   (validate-setq ido-confirm-unique-completion t)
   (validate-setq ido-create-new-buffer 'always)
