@@ -448,7 +448,7 @@
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
   (put-clojure-indent 'comment 'defun)
   (font-lock-add-keywords 'clojure-mode
-                          '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-warning-face)))
+                          '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-constant-face)))
   ;; This causes CLJS buffer errors to return REPL control more quickly.
   (validate-setq max-lisp-eval-depth 20000))
 
@@ -481,7 +481,11 @@
   (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
-  (global-set-key (kbd "C-x l") 'counsel-locate))
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (bind-keys
+   :map swiper-map
+   ("C-r" . ivy-previous-line)))
+
 
 (use-package dired+
   :ensure t)
