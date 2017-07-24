@@ -31,13 +31,20 @@
 
 (global-set-key (kbd "C-c i") 'locate-org-files)
 
+;; TODO ctrl-up, ctrl-down allow in-place preview via
+;; `helm-follow-action-forward` etc but only from within
+;; `helm-buffers-list` -- get this working from within
+;; `helm-find-files` too.
 (use-package helm :ensure t
   :init
   (helm-mode 1)
+  :bind
+  ("C-x C-b" . helm-buffers-list)
   :config
   (validate-setq helm-mode-fuzzy-match t
-                 helm-completion-in-region-fuzzy-match t)
-  ;; Use Mac OS X's Spotligh
+                 helm-completion-in-region-fuzzy-match t
+                 helm-follow-mode-persistent t)
+  ;; Use Mac OS X's Spotlight.
   (validate-setq helm-locate-command "mdfind -name %s %s"))
 
 (require 'yasnippet)
