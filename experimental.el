@@ -369,7 +369,9 @@
   :config
   (projectile-global-mode)
   (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
-  (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld")))
+  (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
+  (add-to-list 'projectile-globally-ignored-directories "resources/public/js")
+  (add-to-list 'projectile-globally-ignored-directories "js/compiled"))
 
 (use-package magit
   :ensure t
