@@ -18,13 +18,6 @@
 ;; Override keystroke for query-replace. I almost always want the -regexp version instead.
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 
-(global-set-key (kbd "C-z") 'buffer-stack-down)
-(global-set-key (kbd "M-C-z") 'buffer-stack-up)
-(global-set-key [(f9)] 'buffer-stack-track)
-(global-set-key [(control f9)] 'buffer-stack-untrack)
-(global-set-key [(f12)] 'buffer-stack-bury)
-(global-set-key (kbd "C-c <f12>") 'buffer-stack-bury-and-kill)
-
 (global-set-key "\M-\C-y" 'kill-ring-search)
 
 (global-set-key (kbd "C-c ,") 'tags-search)

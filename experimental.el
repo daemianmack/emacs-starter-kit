@@ -8,6 +8,8 @@
 ;; Always load newest byte code.
 (validate-setq load-prefer-newer t)
 
+(global-set-key (kbd "<f12>") 'bury-buffer)
+
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
@@ -759,7 +761,6 @@
 (use-package avy :ensure t)
 (use-package beacon :ensure t)
 (use-package browse-kill-ring :ensure t)
-(use-package buffer-stack :ensure t)
 (use-package clojure-snippets :ensure t)
 (use-package counsel :ensure t)
 (use-package desktop :ensure t)
