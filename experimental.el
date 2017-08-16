@@ -756,6 +756,9 @@
 ;; Don't display `\` when wrapping lines.
 (set-display-table-slot standard-display-table 'wrap ?\ )
 
+(use-package smooth-scrolling :ensure t
+  :config (smooth-scrolling-mode 1))
+
 (use-package google-translate :ensure t
   :config
   (validate-setq google-translate-translation-directions-alist '(("da" . "en")))
@@ -784,6 +787,5 @@
 (use-package rainbow-delimiters :ensure t)
 (use-package rings :ensure t)
 (use-package saveplace :ensure t)
-(use-package smooth-scrolling :ensure t)
 (use-package undo-tree :ensure t)
 (use-package yasnippet :ensure t)
