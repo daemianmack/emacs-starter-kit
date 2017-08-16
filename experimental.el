@@ -756,6 +756,10 @@
 ;; Don't display `\` when wrapping lines.
 (set-display-table-slot standard-display-table 'wrap ?\ )
 
+(use-package google-translate :ensure t
+  :config
+  (validate-setq google-translate-translation-directions-alist '(("da" . "en")))
+  :bind (("C-c t" . google-translate-smooth-translate)))
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
