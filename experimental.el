@@ -652,7 +652,8 @@
 
 (use-package ag :ensure t
   :config
-  (validate-setq ag-highlight-search t))
+  (validate-setq ag-highlight-search t)
+  (validate-setq ag-ignore-list '(".*.map" "resources")))
 
 (use-package dumb-jump :ensure t
   :config
