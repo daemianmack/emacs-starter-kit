@@ -58,6 +58,8 @@
 (global-set-key (kbd "C-c <f5>") (rings-generate-setter 5))
 (global-set-key (kbd "<f6>")   (rings-generate-cycler 6))
 (global-set-key (kbd "C-c <f6>") (rings-generate-setter 6))
+(global-set-key (kbd "<f11>")   (rings-generate-cycler 11))
+(global-set-key (kbd "C-c <f11>") (rings-generate-setter 11))
 
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "C-c =") 'easy-mark-sexp)
