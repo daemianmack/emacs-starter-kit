@@ -10,7 +10,6 @@
 (beacon-mode 1)
 (column-number-mode t)
 (desktop-save-mode 1)
-(savehist-mode 1)
 (global-subword-mode 1)
 (global-undo-tree-mode)
 (winner-mode 1)

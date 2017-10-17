@@ -790,3 +790,8 @@
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t)
 (use-package yasnippet :ensure t)
+(use-package savehist :ensure t
+  :init
+  (savehist-mode)
+  :config
+  (validate-setq savehist-file  (concat variable-files-dir ".savehist")))
