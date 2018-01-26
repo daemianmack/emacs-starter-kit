@@ -608,6 +608,7 @@
         ("<C-up>"    . org-shiftup)
         ("<C-down>"  . org-shiftdown))
   :config
+  (use-package org-cliplink :ensure t)
   (validate-setq org-babel-clojure-backend 'cider)
   (validate-setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
   (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
