@@ -835,6 +835,48 @@
   :config
   (validate-setq savehist-file  (concat variable-files-dir ".savehist")))
 
+
+(defun kill-dired-buffers ()
+     (interactive)
+     (mapc (lambda (buffer)
+           (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
+             (kill-buffer buffer)))
+           (buffer-list)))
+
+(defun clean-buffer-list-now ()
+  (interactive)
+  (let ((orig (eval clean-buffer-list-delay-special)))
+    (validate-setq clean-buffer-list-delay-special 0)
+    (clean-buffer-list)
+    (validate-setq clean-buffer-list-delay-special orig)))
+
+;; These settings are meant to be useful for midnight mode to run
+;; automatically but also to allow manually running
+;; `clean-buffer-list` when annoyed at buffer sprawl.
+(use-package midnight-mode
+  :init
+  (midnight-mode 1)
+  (validate-setq midnight-period 7200) ;; Auto-run frequently -- the "day" occurs every 2 hours.
+  (midnight-delay-set 'midnight-delay 5) ;; Kill at this offset in the "day".
+  (validate-setq clean-buffer-list-delay-special 600) ;; Don't kill buffers displayed in the last n seconds.
+  (validate-setq clean-buffer-list-kill-regexps
+                 '("\\`\\*magit.*\\'"
+                   "\\`\\*helm .*\\'"
+                   "\\`\\*ag .*\\*\\'"
+                   "\\`\\*Occur\\*\\'"
+                   "\\`\\*cider-error\\*\\'"
+                   "\\`\\*edn\\*\\'"
+                   "\\`\\*Help\\*\\'"
+                   "\\`\\*Shell Command Output\\*\\'"
+                   "\\`\\*Backtrace\\*\\'"
+                   "\\`\\*Packages\\*\\'"
+                   "\\`\\*Warnings\\*\\'"
+                   "\\`\\*Annotate.*\\*\\'"
+                   ;; `magit-diff-visit-file` buffers, e.g, `CHANGELOG.md.~master~3~'
+                   "\\`.*~.*~.*~\\'"
+                   "\\`dev.clj\\'"))
+  :bind (("C-x M-k" . clean-buffer-list-now)))
+
 ;; Improvements over built-in `Help` facilities.
 (use-package helpful :ensure t
   :bind
