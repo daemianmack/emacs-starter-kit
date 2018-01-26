@@ -794,9 +794,13 @@
   :config (smooth-scrolling-mode 1))
 
 (use-package google-translate :ensure t
+  ;; `:demand` necessary to expose related setqs in `:config`.
+  :demand t
+  :bind (("C-c t" . google-translate-smooth-translate))
   :config
+  (require 'google-translate-smooth-ui)
   (validate-setq google-translate-translation-directions-alist '(("da" . "en")))
-  :bind (("C-c t" . google-translate-smooth-translate)))
+  (validate-setq google-translate-output-destination 'echo-area))
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
