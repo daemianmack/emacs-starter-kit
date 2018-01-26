@@ -407,10 +407,6 @@
   ;; Avoid version skew that breaks Magit's git-rebase-mode.
   (use-package with-editor :ensure t :pin melpa-stable)
   (use-package ido-completing-read+ :ensure t)
-  (use-package magithub :ensure t
-    :config
-    (magithub-feature-autoinject t)
-    (validate-setq magithub-dir (concat variable-files-dir "magithub")))
   (validate-setq magit-completing-read-function 'magit-ido-completing-read)
   (validate-setq magit-diff-arguments '("--stat" "--no-ext-diff"))
   (validate-setq magit-diff-section-arguments '("--no-ext-diff"))
