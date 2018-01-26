@@ -8,6 +8,7 @@
 ;; Always load newest byte code.
 (validate-setq load-prefer-newer t)
 
+(validate-setq require-final-newline nil)
 (global-set-key (kbd "<f12>") 'bury-buffer)
 
 (defun recentf-ido-find-file ()
