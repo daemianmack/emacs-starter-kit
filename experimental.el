@@ -10,6 +10,7 @@
 
 (validate-setq require-final-newline nil)
 (global-set-key (kbd "<f12>") 'bury-buffer)
+(global-set-key (kbd "C-c C-i") 'bury-buffer)
 
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
