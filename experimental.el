@@ -792,6 +792,8 @@
 
 (use-package smooth-scrolling :ensure t
   :config (smooth-scrolling-mode 1))
+(use-package centered-cursor-mode :ensure t
+  :config (validate-setq centered-cursor-mode t))
 
 (use-package google-translate :ensure t
   ;; `:demand` necessary to expose related setqs in `:config`.
