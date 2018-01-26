@@ -395,6 +395,7 @@
   (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
   (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
   (add-to-list 'projectile-globally-ignored-directories "resources/public/js")
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".log")
   (add-to-list 'projectile-globally-ignored-directories "js/compiled"))
 
 (use-package magit
