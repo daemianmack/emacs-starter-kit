@@ -686,7 +686,19 @@
 (use-package ag :ensure t
   :config
   (validate-setq ag-highlight-search t)
-  (validate-setq ag-ignore-list '(".*.map" "resources")))
+  (validate-setq ag-context-lines 3)
+  ;; Have to use `ag` directly -- `project-ag` uses gitignore instead. :(
+  (validate-setq ag-ignore-list '(".*.map" "resources" "front.*" "**.log")))
+
+;; Clobber ag's buffer-name display tactic in absence of a proper customize option.
+(defun ag/buffer-name (search-string directory regexp)
+  "Return a buffer name formatted according to ag.el conventions."
+  (cond
+   (ag-reuse-buffers "*ag search*")
+   (regexp (format "*ag search regexp:%s dir:%s*" search-string directory))
+   ;; Much shorter format than stock.
+   ;; (:else (format "*ag search text:%s dir:%s*" search-string directory))
+   (:else (format "*ag %s*" search-string))))
 
 (use-package dumb-jump :ensure t
   :config
