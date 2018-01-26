@@ -680,6 +680,7 @@
   :config
   (validate-setq highlight-symbol-idle-delay 0.2)
   (validate-setq highlight-symbol-on-navigation-p t)
+  (validate-setq highlight-symbol-highlight-single-occurrence nil)
   (validate-setq highlight-symbol-occurrence-message '(explicit navigation)))
 
 (use-package ag :ensure t
