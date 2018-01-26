@@ -178,6 +178,18 @@
 (make-face 'mode-line-process-face)
 (make-face 'mode-line-80col-face)
 
+(defvar my-mode-line-buffer-line-count nil)
+(make-variable-buffer-local 'my-mode-line-buffer-line-count)
+
+(defun my-mode-line-count-lines ()
+  (validate-setq my-mode-line-buffer-line-count
+                 (int-to-string (count-lines (point-min) (point-max)))))
+
+(add-hook 'find-file-hook 'my-mode-line-count-lines)
+(add-hook 'after-save-hook 'my-mode-line-count-lines)
+(add-hook 'after-revert-hook 'my-mode-line-count-lines)
+(add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
+
 (use-package smart-mode-line :ensure t
   :config
   (validate-setq sml/theme nil)
@@ -186,12 +198,18 @@
   (validate-setq sml/outside-modified-char "‽")
   (validate-setq sml/modified-char "!")
   (setq-default mode-line-front-space
-                '(:eval (concat (propertize "%4l" 'face 'mode-line-position-face)
-                                ","
+                '(:eval (concat (let ((str "%4l"))
+                                  (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
+                                    (setq str (concat str "/" my-mode-line-buffer-line-count)))
+                                  str)
+                                ":"
                                 (propertize "%1c" 'face
                                             (if (>= (current-column) 80)
                                                 'mode-line-80col-face
-                                              'mode-line-position-face)))))
+                                              'mode-line-position-face))
+                                " "
+                                (propertize "%p" 'face 'mode-line-position-face)
+                                " ")))
   (validate-setq sml/replacer-regexp-list
         '(("^~/\\.emacs\\.d/elpa/" ":ELPA:")
           ("^~/\\.emacs\\.d/" ":ED:")
