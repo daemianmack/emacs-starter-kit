@@ -9,6 +9,11 @@
 (validate-setq load-prefer-newer t)
 
 (validate-setq require-final-newline nil)
+
+(defun delete-register (name)
+  (setq register-alist
+        (delq (assoc name register-alist)
+              register-alist)))
 (global-set-key (kbd "<f12>") 'bury-buffer)
 (global-set-key (kbd "C-c C-i") 'bury-buffer)
 
@@ -432,7 +437,8 @@
       ;; we only want to jump to register when the last seen buffer
       ;; was a magit-status buffer.
       (when (eq 'magit-status-mode current-mode)
-                  (jump-to-register :magit-fullscreen)))))
+        (progn (jump-to-register :magit-fullscreen)
+               (delete-register :magit-fullscreen))))))
 
 (defun add-watchwords ()
   (interactive)
