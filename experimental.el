@@ -478,6 +478,7 @@
   (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
   (put-clojure-indent 'comment 'defun)
+  ;; Font-lock Datomic's logic vars (`?user-id`).
   (font-lock-add-keywords 'clojure-mode
                           '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-constant-face)))
   ;; This causes CLJS buffer errors to return REPL control more quickly.
@@ -610,7 +611,6 @@
   (validate-setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
   (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
   ;; Show all empty lines when collapsed.
-
   (make-face 'org-inflight-face)
   (validate-setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
   )
