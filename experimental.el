@@ -836,6 +836,18 @@
   (validate-setq savehist-file  (concat variable-files-dir ".savehist")))
 
 
+(validate-setq locale-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+;; For old Carbon emacs on OS X only
+(set-keyboard-coding-system 'utf-8-mac)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-locale-environment "en.UTF-8")
+(unless (eq system-type 'windows-nt)
+  (set-selection-coding-system 'utf-8))
+(prefer-coding-system 'utf-8)
+
+
 (defun kill-dired-buffers ()
      (interactive)
      (mapc (lambda (buffer)
