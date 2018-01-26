@@ -469,7 +469,7 @@
   :bind (("C-x M-r" . cljr-helm))
   :config
   (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
-  (add-to-list 'auto-mode-alist '("\\.cljs" . clojure-mode))
+  (add-to-list 'auto-mode-alist '("\\.cljs" . clojurescript-mode))
   (add-to-list 'auto-mode-alist '("\\.edn" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
   (add-hook 'clojure-mode-hook 'lisp-mode-setup)
