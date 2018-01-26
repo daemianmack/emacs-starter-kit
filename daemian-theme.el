@@ -138,8 +138,12 @@
  '(magit-section-secondary-heading ((t (:inherit magit-section-heading :slant italic :weight normal))))
  '(clojure-character-face ((t (:inherit (font-lock-string-face)))))
  '(clojure-keyword-face ((t (:foreground "dark cyan"))))
+ '(compilation-info ((t (:background "purple" :foreground "white" :weight bold))))
+ '(compilation-line-number ((t (:background "green" :foreground "black"))))
+ '(compilation-column-number ((t (:background "green" :foreground "black"))))
  '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
  '(ediff-current-diff-A ((t (:inherit smerge-mine))))
- '(ediff-current-diff-B ((t (:inherit smerge-other)))))
+ '(ediff-current-diff-B ((t (:inherit smerge-other))))
+ '(flycheck-warning ((t (:inherit whitespace-tab)))))
 
 (provide-theme 'daemian)
