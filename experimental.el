@@ -843,3 +843,5 @@
   ("C-h k" . helpful-key)
   ("C-h t" . helpful-at-point))
 
+(use-package dockerfile-mode :ensure t)
+
