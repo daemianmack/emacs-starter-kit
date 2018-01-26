@@ -829,6 +829,10 @@
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t)
 (use-package yasnippet :ensure t)
+
+(fset 'copy-current-clj-ns-to-system-clipboard
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("<fOC w  " 0 "%d")) arg)))
+
 (use-package savehist :ensure t
   :init
   (savehist-mode)
