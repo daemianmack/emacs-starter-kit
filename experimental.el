@@ -834,3 +834,12 @@
   (savehist-mode)
   :config
   (validate-setq savehist-file  (concat variable-files-dir ".savehist")))
+
+;; Improvements over built-in `Help` facilities.
+(use-package helpful :ensure t
+  :bind
+  ("C-h f" . helpful-callable)
+  ("C-h v" . helpful-variable)
+  ("C-h k" . helpful-key)
+  ("C-h t" . helpful-at-point))
+
