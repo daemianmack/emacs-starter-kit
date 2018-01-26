@@ -540,7 +540,8 @@
 
 (use-package inf-clojure
   :ensure t
-  :bind (("C-c M-p" . inf-clojure-repl-edit-last-sexp)) ;; Mimic + clobber CIDER's.
+  :bind (("C-c M-p" . inf-clojure-repl-edit-last-sexp)  ;; Mimic + clobber CIDER's.
+         ("C-c M-o" . inf-clojure-clear-repl-buffer))
   :config
   (validate-setq inf-clojure-program "nc localhost 5554")
   (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
