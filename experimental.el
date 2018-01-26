@@ -592,14 +592,13 @@
   (validate-setq org-yank-folded-subtrees nil)
   (validate-setq org-yank-adjusted-subtrees t)
   (validate-setq org-confirm-babel-evaluate nil)
+  (require 'ob-clojure)
+;  (use-package org-babel-clojure :ensure t)
+  (require 'cider)
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((ditaa . t)))
-  ;; (org-babel-do-load-languages
-  ;;  'org-babel-load-languages
-  ;;  '((java . t)))
-  (validate-setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
-  (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
+   '((ditaa . t)
+     (clojure . t)))
   :bind
   (:map org-mode-map
         ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
@@ -607,6 +606,9 @@
         ("<C-up>"    . org-shiftup)
         ("<C-down>"  . org-shiftdown))
   :config
+  (validate-setq org-babel-clojure-backend 'cider)
+  (validate-setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
+  (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
   ;; Show all empty lines when collapsed.
 
   (make-face 'org-inflight-face)
