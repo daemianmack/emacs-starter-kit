@@ -341,7 +341,9 @@
   (validate-setq cider-show-error-buffer nil)
   (validate-setq cider-use-overlays nil)
   (validate-setq nrepl-buffer-name-separator "/")
-  (validate-setq cider-repl-prompt-function 'my-cider-repl-prompt))
+  (validate-setq cider-repl-prompt-function 'my-cider-repl-prompt)
+  (validate-setq cider-pprint-fn 'fipp)
+  (validate-setq cider-repl-history-separator "────────────────────────────────────────────────────────"))
 
 (use-package inferior-lisp
   ;; (validate-setq inferior-lisp-program "lein repl")
