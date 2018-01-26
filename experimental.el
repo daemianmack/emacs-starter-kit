@@ -14,6 +14,10 @@
   (setq register-alist
         (delq (assoc name register-alist)
               register-alist)))
+
+;; Speed up display of very long lines.
+(setq-default bidi-display-reordering nil)
+
 (global-set-key (kbd "<f12>") 'bury-buffer)
 (global-set-key (kbd "C-c C-i") 'bury-buffer)
 
