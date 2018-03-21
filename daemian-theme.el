@@ -136,9 +136,9 @@
  '(compilation-info ((t (:background "purple" :foreground "white" :weight bold))))
  '(compilation-line-number ((t (:background "green" :foreground "black"))))
  '(compilation-column-number ((t (:background "green" :foreground "black"))))
- '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\.))))
  '(ediff-current-diff-A ((t (:inherit smerge-mine))))
  '(ediff-current-diff-B ((t (:inherit smerge-other))))
- '(flycheck-warning ((t (:inherit whitespace-tab)))))
+ '(flycheck-warning ((t (:inherit whitespace-tab))))
+ '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default")))))
 
 (provide-theme 'daemian)
