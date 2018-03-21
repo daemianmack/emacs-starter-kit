@@ -1,10 +1,5 @@
 (deftheme daemian
-  "Created 2017-05-18.")
-
-(custom-theme-set-variables
- 'daemian
- '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector ["#000000" "#ff0000" "#00ff00" "#ffff00" "#0000ff" "#dc8cc3" "#93e0e3" "#dcdccc"]))
+  "Created 2018-03-02.")
 
 (custom-theme-set-faces
  'daemian
