@@ -69,6 +69,7 @@
  '(magit-hash ((t (:foreground "green"))))
  '(magit-section-heading ((t (:background "color-54" :foreground "color-225"))))
  '(magit-section-highlight ((t nil)))
+ '(markdown-inline-code-face ((t (:inherit mode-line-read-only-face :foreground "DeepSkyBlue"))))
  '(match ((t (:background "black" :foreground "brightgreen" :weight bold))))
  '(minibuffer-prompt ((t (:foreground "#4271ae"))))
  '(mode-line ((t (:background "#4271ae" :foreground "#bbbbbb" :weight bold))))
