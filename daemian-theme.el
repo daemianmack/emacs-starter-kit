@@ -56,7 +56,7 @@
  '(lazy-highlight ((t (:background "black" :foreground "purple" :weight bold))))
  '(link ((((class color) (min-colors 88) (background light)) (:underline t :foreground "RoyalBlue3")) (((class color) (background light)) (:underline t :foreground "blue")) (((class color) (min-colors 88) (background dark)) (:underline t :foreground "cyan1")) (((class color) (background dark)) (:underline t :foreground "cyan")) (t (:inherit (underline)))))
  '(link-visited ((t (:foreground "magenta4" :inherit (link)))))
- '(linum ((t (:foreground "brightblack"))))
+ '(linum ((t (:foreground "brightblack" :background "gray3"))))
  '(magit-branch-local ((t (:foreground "blue"))))
  '(magit-branch-remote ((t (:background "black" :foreground "blue"))))
  '(magit-diff-added ((t (:foreground "green"))))
