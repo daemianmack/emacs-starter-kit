@@ -331,7 +331,6 @@
     (validate-setq cljr-favor-prefix-notation nil)
     (validate-setq cljr-warn-on-eval nil)
     :config
-    (use-package cljr-helm :ensure t)
     (validate-setq cljr-auto-clean-ns nil)
     (validate-setq cljr-auto-sort-ns nil))
 
@@ -466,7 +465,6 @@
 
 (use-package clojure-mode
   :ensure t
-  :bind (("C-x M-r" . cljr-helm))
   :config
   (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.cljs" . clojurescript-mode))
