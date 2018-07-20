@@ -907,10 +907,13 @@
   (validate-setq clean-buffer-list-delay-special 600) ;; Don't kill buffers displayed in the last n seconds.
   (validate-setq clean-buffer-list-kill-regexps
                  '("\\`\\*magit.*\\'"
-                   "\\`\\*helm .*\\'"
+                   "\\`\\*helm.*\\*\\'"
+                   "\\`\\*info.*\\'"
                    "\\`\\*ag .*\\*\\'"
+                   "\\`\\*helpful .*\\*\\'"
                    "\\`\\*Occur\\*\\'"
                    "\\`\\*cider-error\\*\\'"
+                   "\\`\\*cider-result\\*\\'"
                    "\\`\\*edn\\*\\'"
                    "\\`\\*Help\\*\\'"
                    "\\`\\*Shell Command Output\\*\\'"
