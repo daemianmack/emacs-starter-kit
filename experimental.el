@@ -35,18 +35,10 @@
 (global-set-key (kbd "<f12>") 'bury-buffer)
 (global-set-key (kbd "C-c C-i") 'bury-buffer)
 
-(defun recentf-ido-find-file ()
-  "Find a recent file using ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file:" recentf-list nil t)))
-    (when file
-      (find-file file))))
 
 (use-package recentf :ensure t
   :init
   (recentf-mode 1)
-  :bind
-  (("C-c f f" . recentf-ido-find-file))
   :config
   (validate-setq recentf-max-saved-items 100)
   (validate-setq recentf-save-file (concat variable-files-dir ".recentf")))
@@ -952,3 +944,11 @@
 
 (use-package dockerfile-mode :ensure t)
 
+(use-package zel
+  :ensure t
+  :demand t
+  :bind (("C-c f f" . zel-find-file-frecent))
+  :config
+  (zel-install)
+  (validate-setq zel-history-file (concat variable-files-dir "zel"))
+  (validate-setq zel--aging-threshold 90000))
