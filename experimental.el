@@ -570,7 +570,6 @@
 (use-package back-button
   :ensure t
   :config
-  (use-package visible-mark :ensure t)
   (back-button-mode 1))
 
 
