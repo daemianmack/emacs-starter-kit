@@ -371,7 +371,7 @@
 (use-package adaptive-wrap :ensure t)
 
 (use-package diminish :ensure t
-  :config
+  :init
   (diminish 'beacon-mode)
   (diminish 'clj-refactor-mode)
   (diminish 'eldoc-mode)
