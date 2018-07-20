@@ -375,12 +375,21 @@
   (diminish 'beacon-mode)
   (diminish 'clj-refactor-mode)
   (diminish 'eldoc-mode)
+  (diminish 'which-key-mode)
+  (diminish 'whitespace-mode)
   (diminish 'highlight-symbol-mode)
+  (diminish 'ivy-mode)
+  (diminish 'helm-mode)
   (diminish 'subword-mode)
   (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
   (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
   (diminish 'undo-tree-mode)
-  (diminish 'yas-minor-mode))
+  (diminish 'yas-minor-mode)
+  (diminish 'google-this-mode)
+  (diminish 'volatile-highlights-mode)
+  (diminish 'back-button-mode " ⊙ ")
+  (diminish 'centered-cursor-mode)
+  (diminish 'auto-revert-mode " <! "))
 
 (use-package projectile
   :ensure t
