@@ -3,6 +3,20 @@
                     (or (buffer-file-name) load-file-name)))
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
+(use-package display-line-numbers :ensure t
+  :config
+  (global-display-line-numbers-mode)
+  (validate-setq display-line-numbers-width 3))
+
+;; No longer using linum in favor of `display-line-numbers` mode, but
+;; these forms may provide inspiration for controlling which buffers
+;; use that mode.
+;; (setq linum-disabled-modes-list
+;;       '(cider-repl-mode grep-mode compilation-mode git-commit-mode help-mode))
+;; (defun linum-on ()
+;;   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
+;;     (linum-mode 1)))
+
 (use-package validate :ensure t)
 
 ;; Always load newest byte code.
@@ -826,7 +840,6 @@
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t)
 (use-package helm :ensure t)
-(use-package hlinum :ensure t)
 (use-package kill-ring-search :ensure t)
 (use-package kpm-list :ensure t)
 (use-package markdown-mode+ :ensure t)

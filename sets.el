@@ -131,13 +131,6 @@
 
 (setq ac-comphist-file (concat variable-files-dir "ac-comphist.dat"))
 
-;; Disable linum for some modes.
-(setq linum-disabled-modes-list
-      '(cider-repl-mode grep-mode compilation-mode git-commit-mode help-mode))
-(defun linum-on ()
-  (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
-    (linum-mode 1)))
-
 (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq avy-goto-char-style 'at)
 

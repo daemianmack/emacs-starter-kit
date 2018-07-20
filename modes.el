@@ -26,7 +26,6 @@
   (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round))
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
