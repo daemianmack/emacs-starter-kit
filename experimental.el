@@ -57,6 +57,7 @@
 (use-package helm :ensure t
   :init
   (helm-mode 1)
+  (diminish 'helm-mode)
   :bind
   ("C-x C-b" . helm-buffers-list)
   :config
@@ -69,6 +70,7 @@
 (require 'yasnippet)
 (require 'clojure-snippets)
 (yas-global-mode 1)
+(diminish 'yas-minor-mode)
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
 ;; Inherit local/ in a given mode by referencing it in that mode's .yas-parents.
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
@@ -202,7 +204,8 @@
           ("^~/Dropbox/" ":DB:")
           ("^~/relevance-smart-tab-organizer/" ":RE:"))))
 
-(use-package volatile-highlights :ensure t)
+(use-package volatile-highlights :ensure t
+  :config (diminish 'volatile-highlights-mode))
 
 (use-package swoop :ensure t
   :bind (("C-c o"   . swoop)
@@ -313,6 +316,7 @@
     (validate-setq eval-sexp-fu-flash-duration 0.05))
   (use-package clj-refactor       :ensure t
     :init
+    (diminish 'clj-refactor-mode)
     (cljr-add-keybindings-with-prefix "C-c M-r")
     (validate-setq cljr-favor-prefix-notation nil)
     (validate-setq cljr-warn-on-eval nil)
@@ -371,30 +375,15 @@
 (use-package adaptive-wrap :ensure t)
 
 (use-package diminish :ensure t
-  :init
-  (diminish 'beacon-mode)
-  (diminish 'clj-refactor-mode)
+  :config
   (diminish 'eldoc-mode)
-  (diminish 'which-key-mode)
-  (diminish 'whitespace-mode)
-  (diminish 'highlight-symbol-mode)
-  (diminish 'ivy-mode)
-  (diminish 'helm-mode)
-  (diminish 'subword-mode)
-  (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
-  (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
-  (diminish 'undo-tree-mode)
-  (diminish 'yas-minor-mode)
-  (diminish 'google-this-mode)
-  (diminish 'volatile-highlights-mode)
-  (diminish 'back-button-mode " ⊙ ")
-  (diminish 'centered-cursor-mode)
-  (diminish 'auto-revert-mode " <! "))
+  (diminish 'subword-mode))
 
 (use-package projectile
   :ensure t
   :config
   (projectile-global-mode)
+  (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
   (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
   (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
   (add-to-list 'projectile-globally-ignored-directories "resources/public/js")
@@ -481,7 +470,8 @@
 (use-package whitespace
   :ensure t
   :config
-  (validate-setq whitespace-style '(face trailing tabs)))
+  (validate-setq whitespace-style '(face trailing tabs))
+  (diminish 'whitespace-mode))
 
 (use-package uniquify
   :config
@@ -497,6 +487,7 @@
   :ensure t
   :config
   (ivy-mode 1)
+  (diminish 'ivy-mode)
   (validate-setq ivy-extra-directories nil)
   (validate-setq enable-recursive-minibuffers t)
   (validate-setq ivy-virtual-abbreviate 'full)
@@ -555,6 +546,7 @@
 
 (use-package paredit :ensure t
   :config
+  (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
   (bind-keys :map paredit-mode-map
              ("C-J" . paredit-newline-in-place)))
 
@@ -570,7 +562,8 @@
 (use-package back-button
   :ensure t
   :config
-  (back-button-mode 1))
+  (back-button-mode 1)
+  (diminish 'back-button-mode " ⊙ "))
 
 ;; TODO
 ;; - Use var for save location.
@@ -688,6 +681,7 @@
 (use-package which-key :ensure t
   :config
   (which-key-mode)
+  (diminish 'which-key-mode)
   (validate-setq which-key-separator " ")
   (validate-setq which-key-idle-delay 0.6))
 
@@ -696,6 +690,7 @@
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
   :config
+  (diminish 'highlight-symbol-mode)
   (validate-setq highlight-symbol-idle-delay 0.2)
   (validate-setq highlight-symbol-on-navigation-p t)
   (validate-setq highlight-symbol-highlight-single-occurrence nil)
@@ -843,7 +838,9 @@
 ;; (validate-setq maximum-scroll-margin 0.5)
 
 (use-package centered-cursor-mode :ensure t
-  :config (validate-setq global-centered-cursor-mode t))
+  :config
+  (validate-setq global-centered-cursor-mode t)
+  (diminish 'centered-cursor-mode))
 
 (validate-setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
 
@@ -863,7 +860,8 @@
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
-(use-package beacon :ensure t)
+(use-package beacon :ensure t
+  :init (diminish 'beacon-mode))
 (use-package browse-kill-ring :ensure t)
 (use-package clojure-snippets :ensure t)
 (use-package counsel :ensure t)
@@ -883,7 +881,8 @@
 (use-package rainbow-delimiters :ensure t)
 (use-package rings :ensure t)
 (use-package saveplace :ensure t)
-(use-package undo-tree :ensure t)
+(use-package undo-tree :ensure t
+  :config (diminish 'undo-tree-mode))
 (use-package yasnippet :ensure t)
 
 (use-package savehist :ensure t
