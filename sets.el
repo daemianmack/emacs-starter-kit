@@ -79,8 +79,6 @@
 (setq shell-prompt-pattern "
 ")
 
-(setq scroll-preserve-screen-position t)
-
 (setq bookmark-default-file (concat variable-files-dir ".emacs.bmk"))
 
 (setq list-colors-sort (quote hsv))

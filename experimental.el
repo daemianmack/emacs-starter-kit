@@ -814,10 +814,37 @@
 ;; Don't display `\` when wrapping lines.
 (set-display-table-slot standard-display-table 'wrap ?\ )
 
-(use-package smooth-scrolling :ensure t
-  :config (smooth-scrolling-mode 1))
+;; Scrolling performance notes.
+;; Problem: scrolling through large portions of long Clojure files
+;; will hitch the screen every second or so.
+
+;; Removing the `smooth-scrolling-package` in favor of
+;; `centered-cursor-mode` seemed to help somewhat -- the hitches occur
+;; but seem less hitchy.
+
+;; The `smart-mode-line` package also seems implicated here; disabling
+;; that may improve matters.
+
+;; If performance continues to suck, consider removing
+;; `smart-mode-line` and/or removing `centered-cursor-mode` in favor
+;; of `scroll-conservatively`, `scroll-margin` and
+;; `maximum-scroll-margin`, which won't provide exact centering but
+;; comes close enough to maintain context when scrolling across
+;; pageviews.
+
+;; (validate-setq scroll-conservatively 101)
+;; (validate-setq scroll-margin 100)
+;; (validate-setq maximum-scroll-margin 0.5)
+
 (use-package centered-cursor-mode :ensure t
-  :config (validate-setq centered-cursor-mode t))
+  :config (validate-setq global-centered-cursor-mode t))
+
+(validate-setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+
+(setq mouse-wheel-progressive-speed t)
+
 
 (use-package google-translate :ensure t
   ;; `:demand` necessary to expose related setqs in `:config`.
@@ -860,8 +887,7 @@
   :init
   (savehist-mode)
   :config
-  (validate-setq savehist-file  (concat variable-files-dir ".savehist")))
-
+  (validate-setq savehist-file (concat variable-files-dir ".savehist")))
 
 (validate-setq locale-coding-system 'utf-8)
 (set-language-environment 'utf-8)
