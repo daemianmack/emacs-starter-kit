@@ -78,37 +78,6 @@
 (validate-setq desktop-restore-in-current-display t)
 (validate-setq desktop-restore-forces-onscreen nil)
 
-(defun rkn-print-results-on-next-line (value)
-  (end-of-line)
-  (newline)
-  (insert (format ";; => %s" value)))
-
-(defun rkn-nrepl-eval-newline-comment-print-handler (buffer)
-  (nrepl-make-response-handler buffer
-                               (lambda (buffer value)
-                                 (with-current-buffer buffer
-                                   (rkn-print-results-on-next-line value)))
-                               '()
-                               (lambda (buffer value)
-                                 (with-current-buffer buffer
-                                   (rkn-print-results-on-next-line value)))
-                               '()))
-
-(defun rkn-nrepl-interactive-eval-print (form)
-  "Evaluate the given FORM and print the value in the current
-  buffer on the next line as a comment."
-  (let ((buffer (current-buffer)))
-    (nrepl-send-string form
-                       (rkn-nrepl-eval-newline-comment-print-handler buffer)
-                       nrepl-buffer-ns)))
-
-(defun rkn-eval-expression-at-point-to-comment ()
-  (interactive)
-  (let ((form (cider-last-sexp)))
-    (rkn-nrepl-interactive-eval-print form)))
-
-(define-key cider-mode-map (kbd "C-c C-e") 'rkn-eval-expression-at-point-to-comment)
-
 (global-set-key (kbd "M-y") 'yank-pop)
 (global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
 
