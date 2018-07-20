@@ -202,7 +202,7 @@
           ("^~/Dropbox/" ":DB:")
           ("^~/relevance-smart-tab-organizer/" ":RE:"))))
 
-(use-package vhl)
+(use-package volatile-highlights :ensure t)
 
 (use-package swoop :ensure t
   :bind (("C-c o"   . swoop)
