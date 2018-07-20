@@ -20,11 +20,6 @@
 (add-to-list 'auto-mode-alist '("\\.js\\.*" . javascript-mode))
 (add-to-list 'auto-mode-alist '("\\.coffee\\.*" . coffee-mode))
 
-
-(defun turn-on-paredit ()
-  (paredit-mode 1)
-  (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round))
-
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'ruby-mode-hook 'flymake-mode)
 (add-hook 'css-mode-hook 'rainbow-mode)

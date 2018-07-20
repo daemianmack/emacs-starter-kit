@@ -467,7 +467,7 @@
   (add-to-list 'auto-mode-alist '("\\.edn" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
   (add-hook 'clojure-mode-hook 'lisp-mode-setup)
-  (add-hook 'clojure-mode-hook 'turn-on-paredit)
+  (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
@@ -547,6 +547,16 @@
               (when (>= paredit-version 21)
                 (define-key inf-clojure-mode-map "{" 'paredit-open-curly)
                 (define-key inf-clojure-mode-map "}" 'paredit-close-curly)))))
+
+(defun paredit-newline-in-place()
+  (interactive)
+  (progn (paredit-newline)
+         (previous-line)))
+
+(use-package paredit :ensure t
+  :config
+  (bind-keys :map paredit-mode-map
+             ("C-J" . paredit-newline-in-place)))
 
 (use-package pinentry
   :ensure t
