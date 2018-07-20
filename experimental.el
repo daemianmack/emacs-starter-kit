@@ -572,6 +572,20 @@
   :config
   (back-button-mode 1))
 
+;; TODO
+;; - Use var for save location.
+;; - Use a filter so we don't trigger hook fn when editing some repo's README.org.
+
+(defun git-log-changes-hook()
+  "Record a diff in git every time we save in org mode. This
+   gives us an edit history without having to org-time-stamp
+   everything."
+  (interactive)
+  ;; TODO This should accept the filename from the buffer object or similar
+  ;; instead of hardcoding a single known file.
+  (shell-command "cd ~/Dropbox/docs/notes/ && \
+                  git add notes.org && \
+                  git commit -m \"$(git diff --cached --unified=0 | tail -n +6)\""))
 
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
@@ -617,8 +631,9 @@
   (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
   ;; Show all empty lines when collapsed.
   (make-face 'org-inflight-face)
-  (validate-setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
-  )
+  (validate-setq org-todo-keyword-faces '(("DOING" . org-inflight-face))))
+
+
 
 ;; Integrate with tmux splits.
 (global-set-key (kbd "S-<up>")
