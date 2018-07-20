@@ -291,11 +291,22 @@
   "Return a prompt string that mentions NAMESPACE."
   (format "\n%s> " namespace))
 
+(defun clj-find-var-fallback ()
+  "Attempts to jump-to-definition of the symbol-at-point. If
+  CIDER fails, or not available, falls back to dumb-jump"
+  (interactive)
+  (let ((var (cider-symbol-at-point)))
+    (if (and (cider-connected-p) (cider-var-info var))
+        (unless (eq 'symbol (type-of (cider-find-var nil var)))
+          (dumb-jump-go))
+      (dumb-jump-go))))
+
 (use-package cider
   :ensure t
   :pin melpa-stable
   :bind (("C-c M-o" . cider-repl-clear-buffer-from-orbit)
-         ("C-c d"   . cider-repl-reset))
+         ("C-c d"   . cider-repl-reset)
+         ("M-."     . clj-find-var-fallback))
   :config
   (use-package cider-eval-sexp-fu :ensure t
     :config
@@ -676,7 +687,7 @@
 (use-package dumb-jump :ensure t
   :config
   (bind-keys*
-   ("M-." . dumb-jump-go)
+   ("M-."     . clj-find-var-fallback)
    ("C-c M-." . dumb-jump-go-other-window))
   (use-package s :ensure t)
   (validate-setq dumb-jump-selector 'ivy))
