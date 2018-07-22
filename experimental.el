@@ -979,3 +979,7 @@
   (zel-install)
   (validate-setq zel-history-file (concat variable-files-dir "zel"))
   (validate-setq zel--aging-threshold 90000))
+
+(use-package git-link :ensure t
+  :config (setq-default git-link-default-branch "master"))
+
