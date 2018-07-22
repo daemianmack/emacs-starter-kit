@@ -230,6 +230,7 @@
 
 (use-package ido :ensure t
   :config
+  ;; TODO Put ido-preview on Melpa, then :ensure.
   (use-package ido-preview)
   (use-package ido-ubiquitous
     :ensure t
