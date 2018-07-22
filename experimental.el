@@ -712,7 +712,10 @@
   (validate-setq ag-highlight-search t)
   (validate-setq ag-context-lines 3)
   ;; Have to use `ag` directly -- `project-ag` uses gitignore instead. :(
-  (validate-setq ag-ignore-list '(".*.map" "resources" "front.*" "**.log")))
+  (validate-setq ag-ignore-list '(".*.map" "resources" "front.*" "**.log"))
+  (bind-keys*
+   ;; Insert into `projectile` key map.
+   ("C-c p s a" . ag-project)))
 
 ;; Clobber ag's buffer-name display tactic in absence of a proper customize option.
 (defun ag/buffer-name (search-string directory regexp)
