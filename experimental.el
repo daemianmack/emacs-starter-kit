@@ -979,5 +979,8 @@
   (validate-setq zel--aging-threshold 90000))
 
 (use-package git-link :ensure t
-  :config (setq-default git-link-default-branch "master"))
+  :config
+  (setq-default git-link-default-branch "master")
+  (validate-setq git-link-open-in-browser t)
+  (defalias 'gh/visit-file 'git-link))
 
