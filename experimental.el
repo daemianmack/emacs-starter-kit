@@ -453,6 +453,10 @@
 (add-hook 'lisp-mode-hook 'lisp-mode-setup)
 (add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup)
 
+(defun no-final-newline ()
+  (validate-setq require-final-newline nil)
+  (validate-setq mode-require-final-newline nil))
+
 (use-package clojure-mode
   :ensure t
   :config
@@ -464,6 +468,7 @@
   (add-hook 'clojure-mode-hook 'lisp-mode-setup)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+  (add-hook 'clojure-mode-hook 'no-final-newline)
   (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
   (put-clojure-indent 'comment 'defun)
