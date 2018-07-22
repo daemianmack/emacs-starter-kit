@@ -208,7 +208,9 @@
           ("^~/relevance-smart-tab-organizer/" ":RE:"))))
 
 (use-package volatile-highlights :ensure t
-  :config (diminish 'volatile-highlights-mode))
+  :config
+  (diminish 'volatile-highlights-mode)
+  (validate-setq Vhl/highlight-zero-width-ranges t))
 
 (use-package swoop :ensure t
   :bind (("C-c o"   . swoop)
