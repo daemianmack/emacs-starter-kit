@@ -3,6 +3,9 @@
                     (or (buffer-file-name) load-file-name)))
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
+;; Performance improvement?
+(validate-setq redisplay-dont-pause t)
+
 (use-package display-line-numbers :ensure t
   :config
   (global-display-line-numbers-mode)
