@@ -1,3 +1,5 @@
+(use-package validate :ensure t)
+
 ;; Dupe this here for convenience until all config is single-filed.
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
@@ -19,8 +21,6 @@
 ;; (defun linum-on ()
 ;;   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
 ;;     (linum-mode 1)))
-
-(use-package validate :ensure t)
 
 ;; Always load newest byte code.
 (validate-setq load-prefer-newer t)
