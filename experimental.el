@@ -393,13 +393,13 @@
 
 (use-package magit
   :ensure t
-  :pin melpa-stable
+;  :pin melpa-stable
   :bind (("C-x g" . magit-status)
          ("C-c f g" . magit-log-buffer-file)
          ("C-c b" . magit-browse-pull-request))
   :config
   ;; Avoid version skew that breaks Magit's git-rebase-mode.
-  (use-package with-editor :ensure t :pin melpa-stable)
+  (use-package with-editor :ensure t)
   (use-package ido-completing-read+ :ensure t)
   (validate-setq magit-completing-read-function 'magit-ido-completing-read)
   (validate-setq magit-diff-arguments '("--stat" "--no-ext-diff"))
