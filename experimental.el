@@ -992,3 +992,8 @@
                        "url"))
            (magit-get-current-branch))))
 
+(use-package google-this :ensure t
+  :config
+  (google-this-mode 1)
+  (diminish 'google-this-mode)
+  :bind ("C-c T" . google-this))
