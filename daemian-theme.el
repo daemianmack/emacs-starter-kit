@@ -17,7 +17,6 @@
  '(compilation-line-number ((t (:background "green" :foreground "black"))))
  '(cursor ((t (:background "#a6cafe"))))
  '(custom-variable-tag ((t (:foreground "brightblue" :weight bold))))
- '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
  '(diff-added ((t (:foreground "color-22"))))
  '(diff-changed ((t (:foreground "purple"))))
  '(diff-refine-added ((t (:background "color-22"))))
@@ -140,5 +139,7 @@
  '(whitespace-tab ((t (:background "color-52"))))
  '(whitespace-trailing ((t (:inherit whitespace-tab :weight bold))))
  '(widget-field ((t (:background "color-21" :foreground "color-254")))))
+ '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
+ '(digit-groups-default-face ((t (:background "brightblack" :foreground "color-215")))))
 
 (provide-theme 'daemian)
