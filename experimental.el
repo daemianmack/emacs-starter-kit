@@ -27,6 +27,15 @@
 
 (validate-setq require-final-newline nil)
 
+(use-package windmove
+  :config
+  ;; Integrate with tmux splits.
+  (bind-keys
+   ("S-<right>" . (lambda () (interactive) (my/windmove-emacs-or-tmux "right" "tmux select-pane -R")))
+   ("S-<left>"  . (lambda () (interactive) (my/windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
+   ("S-<up>"    . (lambda () (interactive) (my/windmove-emacs-or-tmux "up"    "tmux select-pane -U")))
+   ("S-<down>"  . (lambda () (interactive) (my/windmove-emacs-or-tmux "down"  "tmux select-pane -D")))))
+
 (defun delete-register (name)
   (setq register-alist
         (delq (assoc name register-alist)
@@ -630,17 +639,6 @@
   (make-face 'org-inflight-face)
   (validate-setq org-todo-keyword-faces '(("DOING" . org-inflight-face))))
 
-
-
-;; Integrate with tmux splits.
-(global-set-key (kbd "S-<up>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "up"  "tmux select-pane -U")))
-(global-set-key (kbd "S-<down>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "down"  "tmux select-pane -D")))
-(global-set-key (kbd "S-<right>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
-(global-set-key (kbd "S-<left>")
-                '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
 
 
 (defun wwai-repl ()

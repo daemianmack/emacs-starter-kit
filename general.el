@@ -78,7 +78,7 @@ Accepts WIDTH as a numeric prefix, but defaults to 85."
                          (other-buffer nil nil)))))
 
 
-(defun windmove-emacs-or-tmux (dir tmux-cmd)
+(defun my/windmove-emacs-or-tmux (dir tmux-cmd)
   (interactive)
   (if (ignore-errors (funcall (intern (concat "windmove-" dir))))
       nil                     ;; Moving within emacs
