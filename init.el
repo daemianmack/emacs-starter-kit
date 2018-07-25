@@ -37,3 +37,4 @@
 (setq stack-trace-on-error '(buffer-read-only))
 
 (setq debug-ignored-errors nil)
+(package-install 'use-package)
