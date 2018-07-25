@@ -13,7 +13,7 @@
 (defun is-in-terminal () (not (display-graphic-p)))
 (if (is-in-terminal)
     (load-theme 'daemian t)
-  (load-theme 'twilight-anti-bright t))
+  (load-theme 'daemian-gui t))
 
 
 
