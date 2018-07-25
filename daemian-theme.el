@@ -138,7 +138,8 @@
  '(whitespace-line ((t (:underline t))))
  '(whitespace-tab ((t (:background "color-52"))))
  '(whitespace-trailing ((t (:inherit whitespace-tab :weight bold))))
- '(widget-field ((t (:background "color-21" :foreground "color-254")))))
+ '(widget-field ((t (:background "color-21" :foreground "color-254"))))
+ '(cider-error-highlight-face ((t (:inherit font-lock-warning-face :underline t))))
  '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
  '(digit-groups-default-face ((t (:background "brightblack" :foreground "color-215")))))
 
