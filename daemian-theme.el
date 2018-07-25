@@ -49,7 +49,7 @@
  '(font-lock-string-face ((t (:foreground "color-240"))))
  '(font-lock-type-face ((((class grayscale) (background light)) (:weight bold :foreground "Gray90")) (((class grayscale) (background dark)) (:weight bold :foreground "DimGray")) (((class color) (min-colors 88) (background light)) (:foreground "ForestGreen")) (((class color) (min-colors 88) (background dark)) (:foreground "PaleGreen")) (((class color) (min-colors 16) (background light)) (:foreground "ForestGreen")) (((class color) (min-colors 16) (background dark)) (:foreground "PaleGreen")) (((class color) (min-colors 8)) (:foreground "green")) (t (:underline t :weight bold))))
  '(font-lock-variable-name-face ((t (:foreground "color-125" :weight bold))))
- '(font-lock-warning-face ((t (:inherit (error)))))
+ '(font-lock-warning-face ((t (:inherit error))))
  '(header-line ((t (:inherit mode-line :background "gray20" :weight bold))))
  '(helm-buffer-directory ((t (:inherit helm-buffer-file))))
  '(helm-selection ((t (:background "black" :foreground "brightgreen"))))
