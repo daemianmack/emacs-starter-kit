@@ -407,9 +407,8 @@
   (validate-setq magit-diff-refine-hunk 'all)
   (validate-setq magit-fetch-arguments '("--prune"))
   (validate-setq magit-process-popup-time 10)
-  (validate-setq magit-revert-buffers 't)
-  (validate-setq magit-repository-directories '("~/src"))
-  (validate-setq magit-repository-directories-depth 2)
+  (validate-setq magit-auto-revert-mode 't)
+  (validate-setq magit-repository-directories '(("/Users/daemian/src" . 0)))
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map
