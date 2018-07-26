@@ -38,3 +38,4 @@
 
 (setq debug-ignored-errors nil)
 (package-install 'use-package)
+(setq toggle-debug-on-error t)
