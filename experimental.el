@@ -449,6 +449,7 @@
 
 (add-hook 'prog-mode-hook 'show-paren-mode)
 (add-hook 'prog-mode-hook 'add-watchwords)
+(add-hook 'prog-mode-hook 'digit-groups-mode)
 (add-hook 'prog-mode-hook 'comment-auto-fill)
 
 (use-package rainbow-delimiters :ensure t
