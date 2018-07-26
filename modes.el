@@ -96,5 +96,3 @@
 ; Makes region-killing work in graphical emacs.
 (defun region-active-p ()  (and transient-mark-mode mark-active))
 
-
-(defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)

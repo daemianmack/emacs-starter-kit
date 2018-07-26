@@ -117,11 +117,6 @@
 ;; C-<SPC> to cycle through the mark ring.
 (setq set-mark-command-repeat-pop t)
 
-;; Still needed?
-;; Necessary due to bug in ruby-mode.
-(setq ruby-indent-level 2)
-
-
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 ;; If unable to verify packages upon `package-install`.
 (setq package-check-signature nil)
