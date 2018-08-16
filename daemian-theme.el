@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2018-03-02.")
+  "Created 2018-08-16.")
 
 (custom-theme-set-faces
  'daemian
@@ -140,7 +140,8 @@
  '(whitespace-trailing ((t (:inherit whitespace-tab :weight bold))))
  '(widget-field ((t (:background "color-21" :foreground "color-254"))))
  '(cider-error-highlight-face ((t (:inherit font-lock-warning-face :underline t))))
+ '(digit-groups-default-face ((t (:background "brightblack" :foreground "color-215"))))
  '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
- '(digit-groups-default-face ((t (:background "brightblack" :foreground "color-215")))))
+ '(line-number ((t (:foreground "brightblack")))))
 
 (provide-theme 'daemian)
