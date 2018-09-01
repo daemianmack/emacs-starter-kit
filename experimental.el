@@ -1,8 +1,5 @@
 (use-package validate :ensure t)
 
-;; Dupe this here for convenience until all config is single-filed.
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
 ;; Performance improvement?

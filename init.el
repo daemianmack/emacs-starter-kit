@@ -25,8 +25,8 @@
 
 (put 'downcase-region 'disabled nil)
 
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
+(defvar dotfiles-dir (file-name-directory
+                      (or (buffer-file-name) load-file-name)))
 (setq user-config (concat dotfiles-dir user-login-name ".el"))
 (when (file-exists-p user-config)
   (load user-config))
