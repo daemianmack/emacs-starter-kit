@@ -871,9 +871,9 @@
 ;; comes close enough to maintain context when scrolling across
 ;; pageviews.
 
-;; (validate-setq scroll-conservatively 101)
-;; (validate-setq scroll-margin 100)
-;; (validate-setq maximum-scroll-margin 0.5)
+;; (validate-setq scroll-conservatively 101) ;; default 0
+;; (validate-setq scroll-margin 100)         ;; default 0
+;; (validate-setq maximum-scroll-margin 0.5) ;; default 0.25
 
 (use-package centered-cursor-mode :ensure t
   :config
