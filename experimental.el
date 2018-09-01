@@ -403,7 +403,8 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-global-mode)
+  (projectile-mode)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
   (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
   (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
