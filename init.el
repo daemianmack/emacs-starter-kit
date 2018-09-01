@@ -14,6 +14,7 @@
           (if (not (bolp))
               (newline))
                     (insert (current-time-microseconds))))))
+(setq load-prefer-newer t)
 
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
