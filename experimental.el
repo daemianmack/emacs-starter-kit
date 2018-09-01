@@ -927,7 +927,6 @@
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t)
 (use-package helm :ensure t)
-(use-package kill-ring-search :ensure t)
 (use-package kpm-list :ensure t)
 (use-package markdown-mode+ :ensure t)
 (use-package nav :ensure t)
