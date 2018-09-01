@@ -875,10 +875,25 @@
 ;; (validate-setq scroll-margin 100)         ;; default 0
 ;; (validate-setq maximum-scroll-margin 0.5) ;; default 0.25
 
+(defadvice centered-cursor-mode (around my-centered-cursor-mode-turn-on-maybe)
+  (unless (memq major-mode
+                (list 'cider-repl-mode 'shell-mode))
+    ad-do-it))
+(ad-activate 'centered-cursor-mode)
+
 (use-package centered-cursor-mode :ensure t
   :config
-  (validate-setq global-centered-cursor-mode t)
-  (diminish 'centered-cursor-mode))
+  (diminish 'centered-cursor-mode)
+  (global-centered-cursor-mode)
+  ;; Prevents edge case where scrolling to bottom of a buffer with a
+  ;; vertical split visible causes crazy hitching behavior when
+  ;; nearing final viewport of buffer.
+  (validate-setq ccm-recenter-at-end-of-file t)
+  ;; TODO Bring back `recenter-top-bottom` functionality by advising
+  ;; or otherwise disabling this mode for keystroke. How is it that
+  ;; `back-button-local-backward` doesn't trigger a
+  ;; centered-cursor-mode recenter, but `recenter-top-bottom` does?
+  )
 
 (validate-setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
 
