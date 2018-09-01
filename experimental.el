@@ -27,6 +27,8 @@
 
 (validate-setq require-final-newline nil)
 
+(validate-setq vc-follow-symlinks nil)
+
 (use-package windmove
   :config
   ;; Integrate with tmux splits.
