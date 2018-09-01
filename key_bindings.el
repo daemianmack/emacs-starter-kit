@@ -68,8 +68,6 @@
 
 (global-set-key (kbd "C-c h t") 'highlight-this)
 
-(cljr-add-keybindings-with-prefix "C-c C-f")
-
 (global-set-key (kbd "C-x C-y") 'pt-pbpaste)
 (global-set-key (kbd "C-x M-w") 'pt-pbcopy)
 
