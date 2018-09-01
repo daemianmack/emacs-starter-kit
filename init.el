@@ -1,19 +1,7 @@
-;; Put timestamps in *Messages* buffer to diag start-time slowness.
-(defun current-time-microseconds ()
-  (let* ((nowtime (current-time))
-         (now-ms (nth 2 nowtime)))
-    (concat (format-time-string "[%Y-%m-%dT%T" nowtime) (format ".%d] " now-ms))))
+;; Make startup faster by reducing the frequency of garbage
+;; collection.
+(setq gc-cons-threshold (* 50 1000 1000))
 
-(defadvice message (before test-symbol activate)
-  (if (not (string-equal (ad-get-arg 0) "%s%s"))
-      (let ((deactivate-mark nil)
-            (inhibit-read-only t))
-        (save-excursion
-          (set-buffer "*Messages*")
-          (goto-char (point-max))
-          (if (not (bolp))
-              (newline))
-                    (insert (current-time-microseconds))))))
 (setq load-prefer-newer t)
 
 (require 'package)
@@ -26,11 +14,19 @@
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 (package-initialize)
 
+(eval-when-compile
+  (require 'use-package)
+  (setq use-package-verbose t))
+
+(use-package benchmark-init :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 (put 'downcase-region 'disabled nil)
 
-
 (setq dotfiles-dir (file-name-directory
-		    (or (buffer-file-name) load-file-name)))
+                    (or (buffer-file-name) load-file-name)))
 (setq user-config (concat dotfiles-dir user-login-name ".el"))
 (when (file-exists-p user-config)
   (load user-config))
@@ -38,5 +34,8 @@
 (setq stack-trace-on-error '(buffer-read-only))
 
 (setq debug-ignored-errors nil)
+
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
 (package-install 'use-package)
-(setq toggle-debug-on-error t)
+
