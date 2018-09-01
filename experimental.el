@@ -679,28 +679,22 @@
          retval)
      ,@clean-up))
 
-(defun clojure-custom-setup ()
-  (let ((enable-local-variables :all))
-    (hack-dir-local-variables-non-file-buffer))
+;; (defun clojure-custom-setup ()
+;;   (let ((enable-local-variables :all))
+;;     (hack-dir-local-variables-non-file-buffer))
 
-  ;; inf-clojure config
-  (when inf-clojure-project
-    (progn
-      (when (require 'inf-clojure nil 'noerror)
-        (safe-wrap (inf-clojure-minor-mode)))
-      (make-local-variable 'inf-clojure-buffer)
-      (let ((ext (car (last (split-string (buffer-name (current-buffer)) "\\.")))))
-        (if (equal ext "clj")
-            (setq inf-clojure-buffer "*inf-clj*")
-          (if (equal ext "cljs")
-              (setq inf-clojure-buffer "*inf-cljs*")))))))
+;;   ;; inf-clojure config
+;;   (when inf-clojure-project
+;;     (progn
+;;       (when (require 'inf-clojure nil 'noerror)
+;;         (safe-wrap (inf-clojure-minor-mode)))
+;;       (make-local-variable 'inf-clojure-buffer)
+;;       (let ((ext (car (last (split-string (buffer-name (current-buffer)) "\\.")))))
+;;         (if (equal ext "clj")
+;;             (validate-setq inf-clojure-buffer "*inf-clj*")
+;;           (if (equal ext "cljs")
+;;               (validate-setq inf-clojure-buffer "*inf-cljs*")))))))
 
-(use-package which-key :ensure t
-  :config
-  (which-key-mode)
-  (diminish 'which-key-mode)
-  (validate-setq which-key-separator " ")
-  (validate-setq which-key-idle-delay 0.6))
 
 (use-package highlight-symbol :ensure t
   :init
@@ -712,6 +706,20 @@
   (validate-setq highlight-symbol-on-navigation-p t)
   (validate-setq highlight-symbol-highlight-single-occurrence nil)
   (validate-setq highlight-symbol-occurrence-message '(explicit navigation)))
+
+(use-package which-key :ensure t
+  :config
+  (which-key-mode)
+  (diminish 'which-key-mode)
+  (validate-setq which-key-separator " ")
+  (validate-setq which-key-sort-order 'which-key-prefix-then-key-order)
+  (validate-setq which-key-idle-delay 0.6)
+  (validate-setq which-key-description-replacement-alist
+                 '(("Prefix Command" . "prefix")
+                   ;; Lambdas
+                   ("\\`\\?\\?\\'"   . "λ")
+                   ;; Drop/shorten package prefixes
+                   ("projectile-"    . "proj-"))))
 
 (use-package ag :ensure t
   :config
