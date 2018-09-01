@@ -49,6 +49,15 @@
 (global-set-key (kbd "<f12>") 'bury-buffer)
 (global-set-key (kbd "C-c C-i") 'bury-buffer)
 
+(use-package flycheck :ensure t
+  :init
+  (use-package flycheck-joker :ensure t)
+  (validate-setq flycheck-check-syntax-automatically '(mode-enabled save))
+  ;; "This fn should have a docstring", etc.
+  (validate-setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  :config
+  ;; Warning about POSIX sh compatibility despite BASH shebang. (?)
+  (validate-setq flycheck-shellcheck-excluded-warnings '("SC2039")))
 
 (use-package recentf :ensure t
   :init
