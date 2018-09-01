@@ -911,11 +911,14 @@
   (validate-setq google-translate-translation-directions-alist '(("da" . "en")))
   (validate-setq google-translate-output-destination 'echo-area))
 
+(use-package browse-kill-ring :ensure t
+  :config
+  (validate-setq browse-kill-ring-separator "──"))
+
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
 (use-package beacon :ensure t
   :init (diminish 'beacon-mode))
-(use-package browse-kill-ring :ensure t)
 (use-package clojure-snippets :ensure t)
 (use-package counsel :ensure t)
 (use-package desktop :ensure t)
