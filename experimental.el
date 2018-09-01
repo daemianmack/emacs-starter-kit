@@ -838,6 +838,21 @@
 ;; Don't display `\` when wrapping lines.
 (set-display-table-slot standard-display-table 'wrap ?\ )
 
+(use-package logview :ensure t
+  ;; :config
+  ;; TODO This is the custom.el version for what I want but
+  ;; validate-setq doesn't like its format when porting it here.
+  ;; (validate-setq logview-additional-submodes
+  ;;                '(("mine-strict"
+  ;;                  (format . "TIMESTAMP LEVEL  THREAD - ")
+  ;;                  (levels . "SLF4J"))
+  ;;                 ("mine-dmot"
+  ;;                  (format . "TIMESTAMP LEVEL   THREAD MESSAGE")
+  ;;                  (levels . "SLF4J")
+  ;;                  (timestamp "ISO 8601 datetime + millis")
+  ;;                  (aliases))))
+  )
+
 ;; Scrolling performance notes.
 ;; Problem: scrolling through large portions of long Clojure files
 ;; will hitch the screen every second or so.
