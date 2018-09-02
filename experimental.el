@@ -436,21 +436,7 @@
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map
-                (kbd "C-x g") 'ido-enter-magit-status)))
-  (defadvice magit-status (around magit-fullscreen activate)
-    (window-configuration-to-register :magit-fullscreen)
-    ad-do-it
-    (delete-other-windows))
-  ;; restore previously hidden windows
-  ;; TODO HACK
-  (defadvice magit-quit-window (around magit-restore-screen activate)
-    (let ((current-mode major-mode))
-      ad-do-it
-      ;; we only want to jump to register when the last seen buffer
-      ;; was a magit-status buffer.
-      (when (eq 'magit-status-mode current-mode)
-        (progn (jump-to-register :magit-fullscreen)
-               (delete-register :magit-fullscreen))))))
+                (kbd "C-x g") 'ido-enter-magit-status))))
 
 (defun add-watchwords ()
   (interactive)
@@ -1077,6 +1063,43 @@
         ;; Hide download button.
         paradox-use-homepage-buttons nil ; Can type v instead
         ))
+
+(defun display-buffer-fullframe (buffer alist)
+  "Display BUFFER in fullscreen.
+ALIST is a `display-buffer' ALIST.
+Return the new window for BUFFER."
+  (let ((window (display-buffer-pop-up-window buffer alist)))
+    (when window
+      (delete-other-windows window))
+    window))
+
+;; Configure `display-buffer' behaviour for some special buffers.
+(setq display-buffer-alist
+      `(
+        ;; Set fullscreen for particular windows.
+        (,(rx bos
+              (or "magit: "
+                  "*Annotate"))
+         (display-buffer-fullframe)
+         (reusable-frames . nil))
+        ;; Control display for REPLs and error lists.
+        (,(rx bos
+              (or "*Help"                 ; Help buffers
+                  "*Warnings*"            ; Emacs warnings
+                  "*Compile-Log*"         ; Emacs byte compiler log
+                  "*compilation"          ; Compilation buffers
+                  "*Flycheck errors*"     ; Flycheck error list
+                  "*shell"                ; Shell window
+                  "*cider-repl"))
+         (display-buffer-reuse-window
+          display-buffer-in-side-window)
+         (side            . right)
+         (reusable-frames . visible)
+         (window-width   . 0.5))
+        ;; Let `display-buffer' reuse visible frames for all buffers.  This must
+        ;; be the last entry in `display-buffer-alist', because it overrides any
+        ;; later entry with more specific actions.
+        ("." nil (reusable-frames . visible))))
 
 
 

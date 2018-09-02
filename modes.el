@@ -65,33 +65,5 @@
       (isearch-search-and-update))))
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 
-;; full screen vc-annotate
-(defadvice vc-annotate-status (around vc-annotate-fullscreen activate)
-  (window-configuration-to-register :vc-annotate-fullscreen)
-  ad-do-it
-  (delete-other-windows))
-
-(defun vc-annotate-quit-session ()
-  "Restores the previous window configuration and kills the vc-annotate buffer"
-  (interactive)
-  (kill-buffer)
-  (jump-to-register :vc-annotate-fullscreen))
-
-(defun vc-annotate-quit ()
-  "Restores the previous window configuration and kills the vc-annotate buffer"
-  (interactive)
-  (kill-buffer)
-  (jump-to-register :vc-annotate-fullscreen))
-
-(eval-after-load "vc-annotate"
-  '(progn
-     (defadvice vc-annotate (around fullscreen activate)
-       (window-configuration-to-register :vc-annotate-fullscreen)
-       ad-do-it
-       (delete-other-windows))
-
-     (define-key vc-annotate-mode-map (kbd "q") 'vc-annotate-quit)))
-
 ; Makes region-killing work in graphical emacs.
 (defun region-active-p ()  (and transient-mark-mode mark-active))
-
