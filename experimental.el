@@ -818,6 +818,12 @@
   :config
   (validate-setq iflipb-ignore-buffers nil))
 
+;; Constrain buffer-flipping by major mode.
+(use-package cbm :ensure t
+  :bind (("C-c C-z"   . cbm-cycle)
+         ("C-c C-x C-b" . cbm-switch-buffer)))
+
+
 ;; Would enable globally but messes up magit's status display for some reason.
 ;; https://bitbucket.org/adamsmd/digit-groups/issues/1/conflict-with-egg-mode
 (use-package digit-groups :ensure t)
@@ -1122,3 +1128,8 @@ Add this to `kill-buffer-query-functions'."
   :bind (("C-x C-k" . my-kill-buffer))
   :init
   (add-to-list 'kill-buffer-query-functions 'do-not-kill-important-buffers))
+
+;; Constrain buffer-flipping by major mode.
+(use-package cbm :ensure t
+  :bind (("C-c C-z"   . cbm-cycle)
+         ("C-c C-x C-b" . cbm-switch-buffer)))
