@@ -26,6 +26,12 @@
 
 (validate-setq vc-follow-symlinks nil)
 
+(validate-setq custom-buffer-done-kill nil
+               custom-buffer-verbose-help nil
+               ;; Show real names in `custom` Interface.
+               custom-unlispify-tag-names nil
+               custom-unlispify-menu-entries nil)
+
 (use-package windmove
   :config
   ;; Integrate with tmux splits.
