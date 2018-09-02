@@ -7,14 +7,6 @@
 (global-set-key "\C-x\C-c" 'explain-different-quit-keys)
 (global-set-key "\C-x\M-c" 'save-buffers-kill-emacs)
 
-;; I do, however, kill the hell out of some buffers.
-;; If I add a C- to the second keystroke, kill without confirmation.
-(defun my-kill-buffer ()
-  "Just kill the current buffer without asking, unless it's a modified file"
-  (interactive)
-  (kill-buffer (current-buffer)))
-(global-set-key "\C-x\C-k" 'my-kill-buffer)
-
 ;; Override keystroke for query-replace. I almost always want the -regexp version instead.
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 

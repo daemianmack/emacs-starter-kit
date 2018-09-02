@@ -28,8 +28,6 @@
 (add-hook 'eshell-mode-hook 'shellhist-instrument-eshell)
 ;; Fix junk characters in shell mode
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-;; Let C-xk kill buffers as normal even when there's a client listening.
-(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 ;; Does the above obsolete this?
 (add-hook 'server-switch-hook
           (lambda ()

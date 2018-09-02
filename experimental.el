@@ -1101,6 +1101,24 @@ Return the new window for BUFFER."
         ;; later entry with more specific actions.
         ("." nil (reusable-frames . visible))))
 
+(defconst do-not-kill-buffer-names '("*scratch*" "*Messages*")
+  "Names of buffers that should not be killed.")
 
+(defun do-not-kill-important-buffers ()
+  "Inhibit killing of important buffers.
+Add this to `kill-buffer-query-functions'."
+  (if (not (member (buffer-name) do-not-kill-buffer-names))
+      t
+    (message "Not allowed to kill %s, burying instead" (buffer-name))
+    (bury-buffer)
+    nil))
 
+(defun my-kill-buffer ()
+  "Just kill the current buffer without asking, unless it's a modified file"
+  (interactive)
+  (kill-buffer (current-buffer)))
 
+(use-package my-buffers
+  :bind (("C-x C-k" . my-kill-buffer))
+  :init
+  (add-to-list 'kill-buffer-query-functions 'do-not-kill-important-buffers))
