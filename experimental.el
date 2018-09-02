@@ -926,6 +926,9 @@
   :config
   (validate-setq browse-kill-ring-separator "──"))
 
+(use-package helm :ensure t
+  :config (validate-setq helm-split-window-default-side 'left))
+
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
 (use-package beacon :ensure t
@@ -937,7 +940,6 @@
 (use-package ffap :ensure t)
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t)
-(use-package helm :ensure t)
 (use-package kpm-list :ensure t)
 (use-package markdown-mode+ :ensure t)
 (use-package nav :ensure t)
