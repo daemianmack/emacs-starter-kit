@@ -1059,3 +1059,23 @@
 (use-package helm-descbinds :ensure t
   :init (helm-descbinds-mode))
 
+;; Package manager and init file
+(use-package paradox                    ; Better package menu
+  :ensure t
+  :bind (("C-c a p" . paradox-list-packages)
+         ("C-c a P" . package-list-packages-no-fetch))
+  :config
+  (setq paradox-execute-asynchronously nil ; No async update, please
+        paradox-spinner-type 'progress-bar      ; Fancy spinner
+        ;; Show all possible counts
+        paradox-display-download-count t
+        paradox-display-star-count t
+        ;; Don't star automatically
+        paradox-automatically-star nil
+        ;; Hide download button.
+        paradox-use-homepage-buttons nil ; Can type v instead
+        ))
+
+
+
+
