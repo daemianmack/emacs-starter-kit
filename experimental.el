@@ -621,6 +621,10 @@
    'org-babel-load-languages
    '((ditaa . t)
      (clojure . t)))
+  (unbind-key "S-<up>" org-mode-map)
+  (unbind-key "S-<down>" org-mode-map)
+  (unbind-key "S-<right>" org-mode-map)
+  (unbind-key "S-<left>" org-mode-map)
   :bind
   (:map org-mode-map
         ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
@@ -628,10 +632,6 @@
         ("<C-up>"    . org-shiftup)
         ("<C-down>"  . org-shiftdown))
   :config
-  (unbind-key "S-<up>" org-mode-map)
-  (unbind-key "S-<down>" org-mode-map)
-  (unbind-key "S-<right>" org-mode-map)
-  (unbind-key "S-<left>" org-mode-map)
   (validate-setq org-src-fontify-natively t)
   (validate-setq org-hide-leading-stars t)
   (validate-setq org-return-follows-link t)
