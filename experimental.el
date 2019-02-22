@@ -1196,3 +1196,7 @@ Add this to `kill-buffer-query-functions'."
   :init (use-package gh :ensure t)
   :config (validate-setq gist-view-gist t)
   )
+
+(use-package ialign
+  :ensure t
+  :bind (("C-c l" . ialign)))
