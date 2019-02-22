@@ -943,6 +943,9 @@
   (validate-setq helm-full-frame t)
   :bind (([remap switch-to-buffer] . helm-mini)))
 
+(use-package desktop :ensure t
+  :config
+  (validate-setq desktop-auto-save-timeout 60))
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
