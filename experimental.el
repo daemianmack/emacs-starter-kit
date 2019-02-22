@@ -1171,3 +1171,20 @@ Add this to `kill-buffer-query-functions'."
                  ;; Show real names in `custom` Interface.
                  custom-unlispify-tag-names nil
                  custom-unlispify-menu-entries nil))
+
+(use-package diff-hl                    ; Highlight hunks in fringe
+  :ensure t
+  :init
+  ;; Highlight changes to the current file in the fringe
+  (global-diff-hl-mode)
+  ;; Highlight changed files in the fringe of Dired
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+
+  ;; Fall back to the display margin, if the fringe is unavailable
+  (unless (display-graphic-p)
+    (diff-hl-margin-mode))
+
+  ;; Refresh diff-hl after Magit operations
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+  ;; :config (add-hook 'vc-checkin-hook 'diff-hl-update)
+  (validate-setq diff-hl-side 'left))
