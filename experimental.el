@@ -32,6 +32,9 @@
                custom-unlispify-tag-names nil
                custom-unlispify-menu-entries nil)
 
+;; Eliminate duplicates in the kill ring.
+(validate-setq kill-do-not-save-duplicates t)
+
 (use-package windmove
   :config
   ;; Integrate with tmux splits.
