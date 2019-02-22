@@ -1162,3 +1162,12 @@ Add this to `kill-buffer-query-functions'."
   (validate-setq company-frontends '(company-pseudo-tooltip-frontend))
   (validate-setq company-show-numbers t)
   (validate-setq company-tooltip-align-annotations t))
+
+(use-package cus-edit
+  :config
+  (validate-setq custom-search-field nil
+                 custom-buffer-done-kill nil
+                 custom-buffer-verbose-help nil
+                 ;; Show real names in `custom` Interface.
+                 custom-unlispify-tag-names nil
+                 custom-unlispify-menu-entries nil))
