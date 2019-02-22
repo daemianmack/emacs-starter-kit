@@ -562,6 +562,7 @@
   (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
   (add-hook 'clojure-mode-hook 'clojure-custom-setup)
   (validate-setq inf-clojure-generic-cmd '("localhost" . 5554))
+  (add-hook 'inf-clojure-mode-hook #'eldoc-mode)
   ;; For some reason paredit is missing this in inf-clojure REPLs.
   (add-hook 'paredit-mode-hook
             (lambda ()
