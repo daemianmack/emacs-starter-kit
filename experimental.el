@@ -1188,3 +1188,11 @@ Add this to `kill-buffer-query-functions'."
   (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
   ;; :config (add-hook 'vc-checkin-hook 'diff-hl-update)
   (validate-setq diff-hl-side 'left))
+
+(use-package gist
+  :ensure t
+  ;; :bind (("C-c g g l" . gist-list)
+  ;;        ("C-c g g b" . gist-region-or-buffer))
+  :init (use-package gh :ensure t)
+  :config (validate-setq gist-view-gist t)
+  )
