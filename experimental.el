@@ -49,6 +49,12 @@
         (delq (assoc name register-alist)
               register-alist)))
 
+
+(defun advice-unadvice (sym)
+  "Remove all advices from symbol SYM."
+  (interactive "aFunction symbol: ")
+  (advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
+
 ;; Speed up display of very long lines.
 (setq-default bidi-display-reordering nil)
 
