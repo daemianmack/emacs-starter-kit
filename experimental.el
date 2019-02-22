@@ -939,7 +939,10 @@
   (validate-setq browse-kill-ring-separator "──"))
 
 (use-package helm :ensure t
-  :config (validate-setq helm-split-window-default-side 'left))
+  :config (validate-setq helm-split-window-default-side 'left)
+  (validate-setq helm-full-frame t)
+  :bind (([remap switch-to-buffer] . helm-mini)))
+
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
@@ -1153,3 +1156,9 @@ Add this to `kill-buffer-query-functions'."
 (use-package cbm :ensure t
   :bind (("C-c C-z"   . cbm-cycle)
          ("C-c C-x C-b" . cbm-switch-buffer)))
+(use-package company :ensure t
+  :config
+  (validate-setq company-tooltip-minimum company-tooltip-limit)
+  (validate-setq company-frontends '(company-pseudo-tooltip-frontend))
+  (validate-setq company-show-numbers t)
+  (validate-setq company-tooltip-align-annotations t))
