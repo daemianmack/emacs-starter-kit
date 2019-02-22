@@ -1155,10 +1155,6 @@ Add this to `kill-buffer-query-functions'."
   :init
   (add-to-list 'kill-buffer-query-functions 'do-not-kill-important-buffers))
 
-;; Constrain buffer-flipping by major mode.
-(use-package cbm :ensure t
-  :bind (("C-c C-z"   . cbm-cycle)
-         ("C-c C-x C-b" . cbm-switch-buffer)))
 (use-package company :ensure t
   :config
   (validate-setq company-tooltip-minimum company-tooltip-limit)
