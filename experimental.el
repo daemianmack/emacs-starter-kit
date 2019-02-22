@@ -708,7 +708,7 @@
   (validate-setq highlight-symbol-idle-delay 0.2)
   (validate-setq highlight-symbol-on-navigation-p t)
   (validate-setq highlight-symbol-highlight-single-occurrence nil)
-  (validate-setq highlight-symbol-occurrence-message '(explicit navigation)))
+  (validate-setq highlight-symbol-occurrence-message '(explicit navigation temporary)))
 
 (use-package which-key :ensure t
   :config
