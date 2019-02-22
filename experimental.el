@@ -67,6 +67,7 @@
   (validate-setq flycheck-check-syntax-automatically '(mode-enabled save))
   ;; "This fn should have a docstring", etc.
   (validate-setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  (global-flycheck-mode)
   :config
   ;; Warning about POSIX sh compatibility despite BASH shebang. (?)
   (validate-setq flycheck-shellcheck-excluded-warnings '("SC2039")))
