@@ -138,9 +138,6 @@
 
 (ad-activate 'javarun)
 
-
-(validate-setq dired-dwim-target t)
-
 (defun cider-figwheel-repl ()
   (interactive)
   (save-some-buffers)
@@ -623,10 +620,6 @@ With a prefix argument N, (un)comment that many sexps."
   (bind-keys
    :map swiper-map
    ("C-r" . ivy-previous-line)))
-
-
-(use-package dired+
-  :ensure t)
 
 (defun inf-clojurize-buffer ()
   ;; For now sometimes this is required in a buffer needing a connection to an inf REPL...
