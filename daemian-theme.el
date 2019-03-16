@@ -1,5 +1,9 @@
 (deftheme daemian
-  "Created 2018-09-05.")
+  "Created 2019-03-12.")
+
+(custom-theme-set-variables
+ 'daemian
+ '(iflipb-current-buffer-template "%s"))
 
 (custom-theme-set-faces
  'daemian
@@ -55,6 +59,7 @@
  '(helm-source-header ((t (:inherit helm-header))))
  '(highlight ((t (:background "brightblue" :foreground "black"))))
  '(highlight-symbol-face ((t (:background "color-235" :underline (:color foreground-color :style wave)))))
+ '(iflipb-current-buffer-face ((t (:inherit font-lock-function-name-face))))
  '(isearch ((t (:background "purple" :foreground "white"))))
  '(isearch-fail ((t (:weight ultra-bold :foreground "white" :background "red"))))
  '(italic ((((supports :underline t)) (:underline nil))))
