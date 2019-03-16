@@ -959,7 +959,8 @@
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
 (use-package beacon :ensure t
-  :init (diminish 'beacon-mode))
+  :init (diminish 'beacon-mode)
+  :config (validate-setq beacon-color "#8700d7"))
 (use-package clojure-snippets :ensure t)
 (use-package counsel :ensure t)
 (use-package desktop :ensure t)
