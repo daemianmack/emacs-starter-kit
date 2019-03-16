@@ -636,26 +636,32 @@
   (unbind-key "S-<down>" org-mode-map)
   (unbind-key "S-<right>" org-mode-map)
   (unbind-key "S-<left>" org-mode-map)
-  :bind
-  (:map org-mode-map
-        ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
-        ("<C-left>"  . org-shiftleft)
-        ("<C-up>"    . org-shiftup)
-        ("<C-down>"  . org-shiftdown))
-  :config
-  (validate-setq org-src-fontify-natively t)
-  (validate-setq org-hide-leading-stars t)
-  (validate-setq org-return-follows-link t)
-  (validate-setq org-cycle-separator-lines -1)
-  (validate-setq org-yank-folded-subtrees nil)
-  (validate-setq org-yank-adjusted-subtrees t)
-  (validate-setq org-confirm-babel-evaluate nil)
-  (validate-setq org-babel-clojure-backend 'cider)
-  (validate-setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
-  (validate-setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
+  (setq org-src-fontify-natively t)
+  (setq org-hide-leading-stars t)
+  (setq org-return-follows-link t)
   ;; Show all empty lines when collapsed.
+  (setq org-cycle-separator-lines -1)
+  (setq org-yank-folded-subtrees nil)
+  (setq org-yank-adjusted-subtrees t)
+  (setq org-confirm-babel-evaluate nil)
+  (setq org-babel-clojure-backend 'cider)
+  (setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
+  (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
   (make-face 'org-inflight-face)
-  (validate-setq org-todo-keyword-faces '(("DOING" . org-inflight-face))))
+  (setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
+  (setq org-capture-templates
+        '(("x"
+           "Exercise note"
+           item
+           (file "/Users/daemian/Dropbox/docs/notes/exercise-notes.org")
+           ""
+           :unnarrowed t)))
+  :bind (:map org-mode-map
+              ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
+              ("<C-left>"  . org-shiftleft)
+              ("<C-up>"    . org-shiftup)
+              ("<C-down>"  . org-shiftdown)))
+
 
 
 
