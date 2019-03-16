@@ -35,6 +35,9 @@
 ;; Eliminate duplicates in the kill ring.
 (validate-setq kill-do-not-save-duplicates t)
 
+;; Display registration of multi-key commands faster.
+(validate-setq echo-keystrokes 0.1)
+
 (use-package windmove
   :config
   ;; Integrate with tmux splits.
