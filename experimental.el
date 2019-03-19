@@ -35,6 +35,11 @@
 ;; Eliminate duplicates in the kill ring.
 (validate-setq kill-do-not-save-duplicates t)
 
+(use-package diminish :ensure t
+  :config
+  (diminish 'eldoc-mode)
+  (diminish 'subword-mode))
+
 ;; Display registration of multi-key commands faster.
 (validate-setq echo-keystrokes 0.1)
 
@@ -407,11 +412,6 @@
 )
 
 (use-package adaptive-wrap :ensure t)
-
-(use-package diminish :ensure t
-  :config
-  (diminish 'eldoc-mode)
-  (diminish 'subword-mode))
 
 (use-package projectile
   :ensure t
