@@ -629,7 +629,6 @@
   :init
   (use-package org-cliplink :ensure t)
   (require 'ob-clojure)
-;  (use-package org-babel-clojure :ensure t)
   (require 'cider)
   (org-babel-do-load-languages
    'org-babel-load-languages
