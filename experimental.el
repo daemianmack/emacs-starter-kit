@@ -24,7 +24,7 @@
 
 (validate-setq require-final-newline nil)
 
-(validate-setq vc-follow-symlinks nil)
+(validate-setq vc-follow-symlinks t)
 
 (validate-setq custom-buffer-done-kill nil
                custom-buffer-verbose-help nil
