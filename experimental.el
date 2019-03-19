@@ -643,6 +643,7 @@
   (setq org-return-follows-link t)
   ;; Show all empty lines when collapsed.
   (setq org-cycle-separator-lines -1)
+  (setq org-cycle-global-at-bob t)
   (setq org-yank-folded-subtrees nil)
   (setq org-yank-adjusted-subtrees t)
   (setq org-confirm-babel-evaluate nil)
