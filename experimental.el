@@ -749,13 +749,12 @@ With a prefix argument N, (un)comment that many sexps."
            ""
            :unnarrowed t)))
   :bind (:map org-mode-map
+              ;; These top two keybindings require OSX Mission Control
+              ;; relinquish the bindings.
               ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
               ("<C-left>"  . org-shiftleft)
               ("<C-up>"    . org-shiftup)
               ("<C-down>"  . org-shiftdown)))
-
-
-
 
 (defun wwai-repl ()
   (interactive)
