@@ -1290,3 +1290,6 @@ Add this to `kill-buffer-query-functions'."
 (use-package ialign
   :ensure t
   :bind (("C-c l" . ialign)))
+
+(save-place-mode)
+(validate-setq save-place-file (concat variable-files-dir ".emacs-places"))

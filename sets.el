@@ -72,9 +72,6 @@
 
 (setq list-colors-sort (quote hsv))
 
-(setq-default save-place t)
-(setq save-place-file (concat variable-files-dir ".emacs-places"))
-
 (setq split-height-threshold nil)
 (setq split-width-threshold 200)
 
