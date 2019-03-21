@@ -374,7 +374,7 @@
   (validate-setq cider-show-error-buffer nil)
   (validate-setq cider-use-overlays nil)
   (validate-setq cider-repl-prompt-function 'my-cider-repl-prompt)
-  (validate-setq cider-pprint-fn 'fipp)
+  (validate-setq cider-print-fn 'fipp)
   (validate-setq cider-repl-history-separator "────────────────────────────────────────────────────────")
   (validate-setq cider-repl-display-help-banner nil)
   (validate-setq cider-session-name-template "%j")
