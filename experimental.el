@@ -345,6 +345,7 @@
 
 (use-package cider
   :ensure t
+  :defer t
   :pin melpa-stable
   :bind (("C-c M-o" . cider-repl-clear-buffer-from-orbit)
          ("C-c d"   . cider-repl-reset)
@@ -628,7 +629,8 @@ With a prefix argument N, (un)comment that many sexps."
 
 
 (use-package dired+
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (defun inf-clojurize-buffer ()
   ;; For now sometimes this is required in a buffer needing a connection to an inf REPL...
@@ -686,6 +688,7 @@ With a prefix argument N, (un)comment that many sexps."
 
 (use-package back-button
   :ensure t
+  :defer t
   :config
   (back-button-mode 1)
   (diminish 'back-button-mode " ⊙ "))
@@ -1056,7 +1059,7 @@ With a prefix argument N, (un)comment that many sexps."
 (use-package counsel :ensure t)
 (use-package desktop :ensure t)
 (use-package easy-kill :ensure t)
-(use-package ffap :ensure t)
+(use-package ffap :ensure t :defer t)
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t)
 (use-package kpm-list :ensure t)
@@ -1070,7 +1073,7 @@ With a prefix argument N, (un)comment that many sexps."
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode))
-(use-package yasnippet :ensure t)
+(use-package yasnippet :ensure t :defer t)
 
 (use-package savehist :ensure t
   :init
