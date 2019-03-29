@@ -1048,7 +1048,8 @@ With a prefix argument N, (un)comment that many sexps."
 
 (use-package desktop :ensure t
   :config
-  (validate-setq desktop-auto-save-timeout 60))
+  (validate-setq desktop-auto-save-timeout 60)
+  (validate-setq desktop-restore-eager 2))
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
