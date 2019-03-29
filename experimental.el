@@ -1059,7 +1059,9 @@ With a prefix argument N, (un)comment that many sexps."
 (use-package clojure-snippets :ensure t)
 (use-package counsel :ensure t)
 (use-package desktop :ensure t)
-(use-package easy-kill :ensure t)
+(use-package expand-region
+  :ensure t
+  :config (global-set-key (kbd "C-c =") 'er/expand-region))
 (use-package ffap :ensure t :defer t)
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t)
