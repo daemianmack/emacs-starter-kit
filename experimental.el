@@ -120,6 +120,8 @@
 (validate-setq desktop-restore-forces-onscreen nil)
 
 (global-set-key (kbd "M-y") 'yank-pop)
+
+(validate-setq kill-ring-max 500)
 (global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
 
 (defadvice yank (around yank-indent)
