@@ -2,6 +2,10 @@
 
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
+(set-register ?e (cons 'file (concat dotfiles-dir "experimental.el")))
+(set-register ?n (cons 'file "~/Dropbox/docs/notes/notes.org"))
+(validate-setq register-preview-delay 0.1)
+
 ;; Performance improvement?
 (validate-setq redisplay-dont-pause t)
 
