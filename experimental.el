@@ -210,18 +210,6 @@
 
 (validate-setq dired-dwim-target t)
 
-(defun cider-figwheel-repl ()
-  (interactive)
-  (save-some-buffers)
-  (with-current-buffer (cider-current-repl-buffer)
-    (goto-char (point-max))
-        (insert "(require 'figwheel-sidecar.repl-api)
-             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
-             (figwheel-sidecar.repl-api/cljs-repl \"dev\")")
-        (cider-repl-return)))
-
-(global-set-key (kbd "C-c M-f") #'cider-figwheel-repl)
-
 (validate-setq window-combination-resize t)
 
 (defun crux-rename-file-and-buffer ()
@@ -450,35 +438,6 @@
   (validate-setq cider-session-name-template "%j")
   (validate-setq nrepl-repl-buffer-name-template "*REPL %s*"))
 
-(use-package inferior-lisp
-  ;; (validate-setq inferior-lisp-program "lein repl")
-  ;; (add-hook 'clojure-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key clojure-mode-map
-  ;;                "\C-c\C-k"
-  ;;                '(lambda ()
-  ;;                   (interactive)
-  ;;                   (let ((current-point (point)))
-  ;;                     (goto-char (point-min))
-  ;;                     (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
-  ;;                       (when ns-idx
-  ;;                         (goto-char ns-idx)
-  ;;                         (let ((sym (symbol-at-point)))
-  ;;                           (message (format "Loading %s ..." sym))
-  ;;                           (lisp-eval-string (format "(require '%s :reload)" sym))
-  ;;                           (lisp-eval-string (format "(in-ns '%s)" sym)))))
-  ;;                     (goto-char current-point))))))
-
-  ;; (add-hook 'inferior-lisp-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key inferior-lisp-mode-map
-  ;;                "\C-cl"
-  ;;                '(lambda ()
-  ;;                   (interactive)
-  ;;                   (erase-buffer)
-  ;;                   (lisp-eval-string "")))))
-)
-
 (use-package adaptive-wrap :ensure t)
 
 (use-package diminish :ensure t
@@ -705,40 +664,6 @@ With a prefix argument N, (un)comment that many sexps."
   :ensure t
   :defer t)
 
-(defun inf-clojurize-buffer ()
-  ;; For now sometimes this is required in a buffer needing a connection to an inf REPL...
-  ;; TODO Make this not necessary.
-  (interactive)
-  (make-local-variable 'inf-clojure-buffer)
-  (validate-setq inf-clojure-buffer "*inf-clj*"))
-
-(defun inf-clojure-repl-edit-last-sexp ()
-  "Send the previous sexp to the inferior Clojure process for editing."
-  (interactive)
-  (let ((str (buffer-substring-no-properties
-              (save-excursion (backward-sexp) (point))
-              (point))))
-    (with-current-buffer inf-clojure-buffer
-      (insert str))
-    (inf-clojure-switch-to-repl t)))
-
-(use-package inf-clojure
-  :ensure t
-  :bind (("C-c M-p" . inf-clojure-repl-edit-last-sexp)  ;; Mimic + clobber CIDER's.
-         ("C-c M-o" . inf-clojure-clear-repl-buffer))
-  :config
-  (validate-setq inf-clojure-program "nc localhost 5554")
-  (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
-  (add-hook 'clojure-mode-hook 'clojure-custom-setup)
-  (validate-setq inf-clojure-generic-cmd '("localhost" . 5554))
-  (add-hook 'inf-clojure-mode-hook #'eldoc-mode)
-  ;; For some reason paredit is missing this in inf-clojure REPLs.
-  (add-hook 'paredit-mode-hook
-            (lambda ()
-              (when (>= paredit-version 21)
-                (define-key inf-clojure-mode-map "{" 'paredit-open-curly)
-                (define-key inf-clojure-mode-map "}" 'paredit-close-curly)))))
-
 (defun paredit-newline-in-place()
   (interactive)
   (progn (paredit-newline)
@@ -846,34 +771,6 @@ With a prefix argument N, (un)comment that many sexps."
   (rename-buffer "*inf-cljs*"))
 
 (defvar inf-clojure-project nil)
-
-(defmacro safe-wrap (fn &rest clean-up)
-  `(unwind-protect
-       (let (retval)
-         (condition-case ex
-             (validate-setq retval (progn ,fn))
-           ('error
-            (message (format "Caught exception: [%s]" ex))
-            (validate-setq retval (cons 'exception (list ex)))))
-         retval)
-     ,@clean-up))
-
-;; (defun clojure-custom-setup ()
-;;   (let ((enable-local-variables :all))
-;;     (hack-dir-local-variables-non-file-buffer))
-
-;;   ;; inf-clojure config
-;;   (when inf-clojure-project
-;;     (progn
-;;       (when (require 'inf-clojure nil 'noerror)
-;;         (safe-wrap (inf-clojure-minor-mode)))
-;;       (make-local-variable 'inf-clojure-buffer)
-;;       (let ((ext (car (last (split-string (buffer-name (current-buffer)) "\\.")))))
-;;         (if (equal ext "clj")
-;;             (validate-setq inf-clojure-buffer "*inf-clj*")
-;;           (if (equal ext "cljs")
-;;               (validate-setq inf-clojure-buffer "*inf-cljs*")))))))
-
 
 (use-package highlight-symbol :ensure t
   :init
