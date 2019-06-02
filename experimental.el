@@ -719,8 +719,6 @@ With a prefix argument N, (un)comment that many sexps."
 (use-package org-mode
   :init
   (use-package org-cliplink :ensure t)
-  (require 'ob-clojure)
-  (require 'cider)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((ditaa . t)
