@@ -22,7 +22,7 @@
 (setq desktop-load-locked-desktop t)
 (setq desktop-dirname variable-files-dir)
 (setq desktop-globals-to-save (append '(helm-kill-ring-map
-                                        (kill-ring . 50)
+                                        (kill-ring . 500)
                                         recentf-list
                                         minibuffer-history
                                         register-alist
