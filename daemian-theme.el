@@ -1,9 +1,10 @@
 (deftheme daemian
-  "Created 2019-03-12.")
+  "Created 2019-04-29.")
 
 (custom-theme-set-variables
  'daemian
- '(iflipb-current-buffer-template "%s"))
+ '(iflipb-current-buffer-template "%s")
+ '(tabbar-separator '(" ⦙ ")))
 
 (custom-theme-set-faces
  'daemian
@@ -151,6 +152,15 @@
  '(diff-hl-change ((t (:foreground "purple" :weight bold))))
  '(diff-hl-delete ((t (:inherit diff-removed))))
  '(diff-removed ((t (:foreground "red" :weight bold))))
- '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :weight bold)))))
+ '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :weight bold))))
+ '(tabbar-selected ((t (:inherit font-lock-function-name-face))))
+ '(tabbar-button ((t (:background "color-16" :foreground "color-16"))))
+ '(tabbar-selected-modified ((t (:inherit font-lock-function-name-face :foreground "color-28"))))
+ '(tabbar-unselected ((t (:background "color-233" :foreground "default"))))
+ '(tabbar-separator ((t (:inherit tabbar-default :background "color-233" :foreground "black"))))
+ '(tabbar-default ((t (:background "black-233" :foreground "default"))))
+ '(header-line ((t (:background "color-233" :foreground "color-16"))))
+ '(header-line-highlight ((t (:inherit highlight))))
+ '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal \.\.\. nil)))))
 
 (provide-theme 'daemian)

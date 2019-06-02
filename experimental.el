@@ -1369,3 +1369,10 @@ Add this to `kill-buffer-query-functions'."
 (use-package ialign
   :ensure t
   :bind (("C-c l" . ialign)))
+(use-package tabbar :ensure t
+  :after projectile
+  :config
+  (tabbar-mode)
+  (global-set-key (kbd "H-a") 'tabbar-forward-tab)
+  (global-set-key (kbd "H-z") 'tabbar-backward-tab))
+
