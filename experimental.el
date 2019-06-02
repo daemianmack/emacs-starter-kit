@@ -804,6 +804,7 @@ With a prefix argument N, (un)comment that many sexps."
   (setq org-return-follows-link t)
   ;; Show all empty lines when collapsed.
   (setq org-cycle-separator-lines -1)
+  (setq org-catch-invisible-edits 'show-and-error)
   (setq org-cycle-global-at-bob t)
   (setq org-yank-folded-subtrees nil)
   (setq org-yank-adjusted-subtrees t)
