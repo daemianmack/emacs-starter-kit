@@ -755,7 +755,6 @@ With a prefix argument N, (un)comment that many sexps."
 
 (use-package back-button
   :ensure t
-  :defer t
   :config
   (back-button-mode 1)
   (diminish 'back-button-mode " ⊙ "))
