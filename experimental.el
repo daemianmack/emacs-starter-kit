@@ -659,7 +659,13 @@ With a prefix argument N, (un)comment that many sexps."
   (font-lock-add-keywords 'clojure-mode
                           '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-constant-face)))
   ;; This causes CLJS buffer errors to return REPL control more quickly.
-  (validate-setq max-lisp-eval-depth 20000))
+  (validate-setq max-lisp-eval-depth 20000)
+  (use-package flycheck-clj-kondo :ensure t)
+  (require 'flycheck-clj-kondo)
+  (dolist (checkers '((clj-kondo-clj . clojure-joker)
+                      (clj-kondo-cljs . clojurescript-joker)
+                      (clj-kondo-cljc . clojure-joker)))
+    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers)))))
 
 (use-package whitespace
   :ensure t
@@ -1373,4 +1379,3 @@ Add this to `kill-buffer-query-functions'."
   (tabbar-mode)
   (global-set-key (kbd "H-a") 'tabbar-forward-tab)
   (global-set-key (kbd "H-z") 'tabbar-backward-tab))
-
