@@ -1121,7 +1121,6 @@ With a prefix argument N, (un)comment that many sexps."
   :config (validate-setq beacon-color "#8700d7"))
 (use-package clojure-snippets :ensure t)
 (use-package counsel :ensure t)
-(use-package desktop :ensure t)
 (use-package expand-region
   :ensure t
   :config (global-set-key (kbd "C-c =") 'er/expand-region))
