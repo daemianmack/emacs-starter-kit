@@ -1138,7 +1138,11 @@ With a prefix argument N, (un)comment that many sexps."
 (use-package rings :ensure t)
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
-  :config (diminish 'undo-tree-mode))
+  :config (diminish 'undo-tree-mode)
+  ;; Disable undo-in-region. It sounds like a cool feature, but
+  ;; unfortunately the implementation is very buggy and usually causes
+  ;; you to lose your undo history if you use it by accident.
+  (validate-setq undo-tree-enable-undo-in-region nil))
 (use-package yasnippet :ensure t :defer t)
 
 (use-package savehist :ensure t
