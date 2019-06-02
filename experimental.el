@@ -65,6 +65,10 @@
 (set-register ?n (cons 'file "~/Dropbox/docs/notes/notes.org"))
 (validate-setq register-preview-delay 0.1)
 
+
+ (add-hook 'kill-emacs-query-functions
+           'custom-prompt-customize-unsaved-options)
+
 ;; Performance improvement?
 (validate-setq redisplay-dont-pause t)
 
