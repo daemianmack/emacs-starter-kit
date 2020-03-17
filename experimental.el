@@ -978,6 +978,9 @@ With a prefix argument N, (un)comment that many sexps."
 ;; (validate-setq scroll-conservatively 101) ;; default 0
 ;; (validate-setq scroll-margin 100)         ;; default 0
 ;; (validate-setq maximum-scroll-margin 0.5) ;; default 0.25
+;; TODO try `scroll-lock-mode` ?
+;; or (setq maximum-scroll-margin 0.5 scroll-margin most-positive-fixnum)
+
 
 (defadvice centered-cursor-mode (around my-centered-cursor-mode-turn-on-maybe)
   (unless (memq major-mode
