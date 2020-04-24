@@ -52,6 +52,9 @@
     (define-key map "\e[1;Pc" (kbd "H-<up>"))
     (define-key map "\e[1;Pd" (kbd "H-<down>"))))
 
+(set-register ?e (cons 'file (concat dotfiles-dir "experimental.el")))
+(set-register ?n (cons 'file "~/Dropbox/docs/notes/notes.org"))
+(set-register ?b (cons 'file "~/dotfiles/.bashrc"))
 ;; Performance improvement?
 (validate-setq redisplay-dont-pause t)
 
