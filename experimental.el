@@ -163,6 +163,7 @@
   (diminish 'helm-mode)
   :bind
   ("C-x C-b" . helm-buffers-list)
+  ("H-b" . helm-mini)
   :config
   (validate-setq helm-mode-fuzzy-match t
                  helm-completion-in-region-fuzzy-match t
