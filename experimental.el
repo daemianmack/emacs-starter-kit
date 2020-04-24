@@ -788,6 +788,10 @@ dired, which I don't use."
 (use-package yaml-mode
   :ensure t)
 
+
+;; This has special sauce to avoid a hang on shutdown due to pcache.
+(add-to-list 'load-path "/Users/daemianmack/.emacs.d/elpa/back-button-0.6.6")
+
 (use-package back-button
   :ensure t
   :config
