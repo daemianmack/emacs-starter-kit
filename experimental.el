@@ -125,9 +125,15 @@
 (use-package flycheck :ensure t
   :init
   (use-package flycheck-joker :ensure t)
-  (validate-setq flycheck-check-syntax-automatically '(mode-enabled save))
+  (use-package flycheck-clj-kondo :ensure t)
+  (require 'flycheck-clj-kondo)
+  (dolist (checkers '((clj-kondo-clj . clojure-joker)
+                      (clj-kondo-cljs . clojurescript-joker)
+                      (clj-kondo-cljc . clojure-joker)))
+    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
   ;; "This fn should have a docstring", etc.
   (validate-setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  (validate-setq flycheck-check-syntax-automatically '(mode-enabled save))
   (global-flycheck-mode)
   :config
   ;; Warning about POSIX sh compatibility despite BASH shebang. (?)
