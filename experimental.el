@@ -634,10 +634,55 @@ With a prefix argument N, (un)comment that many sexps."
     (dotimes (_ (or n 1))
       (comment-sexp--raw))))
 
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(defun copy-file-path (&optional @dir-path-only-p)
+  "Copy the current buffer's file path or dired path to `kill-ring'.
+
+Result is full path.
+
+If `universal-argument' is called first, copy only the dir path.
+
+If a buffer is not file and not dired, copy value of
+`default-directory' (which is usually the “current” dir when that
+buffer was created)
+
+Modified from
+`http://ergoemacs.org/emacs/emacs_copy_file_path.html' to ignore
+dired, which I don't use."
+  (interactive "P")
+  (let (($fpath
+         (if (buffer-file-name)
+             (buffer-file-name)
+           (expand-file-name default-directory))))
+    (paste-to-osx
+     (if @dir-path-only-p
+         (progn
+           (message "Directory path copied: 「%s」" (file-name-directory $fpath))
+           (file-name-directory $fpath))
+       (progn
+         (message "File path copied: 「%s」" $fpath)
+         $fpath )))))
+
+(defun clojure-copy-ns ()
+  "Update the namespace of the current buffer.
+    Useful if a file has been renamed."
+  (interactive)
+  (let ((nsname (funcall clojure-expected-ns-function)))
+    (when nsname
+      (message nsname)
+      (kill-new nsname)
+      (paste-to-osx nsname))))
+
 (use-package clojure-mode
   :ensure t
   :bind (("C-c ;" . comment-or-uncomment-sexp))
   :config
+  (bind-keys :map clojure-mode-map ("C-c C-r n c" . clojure-copy-ns))
   (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.cljs" . clojurescript-mode))
   (add-to-list 'auto-mode-alist '("\\.cljc" . clojurec-mode))
