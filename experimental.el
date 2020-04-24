@@ -726,7 +726,6 @@ dired, which I don't use."
   (validate-setq ivy-extra-directories nil)
   (validate-setq enable-recursive-minibuffers t)
   (validate-setq ivy-virtual-abbreviate 'full)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
