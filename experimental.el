@@ -1066,6 +1066,7 @@ dired, which I don't use."
 (set-display-table-slot standard-display-table 'wrap ?\ )
 
 (use-package logview :ensure t
+  :config (validate-setq datetime-timezone 'US/Eastern)
   ;; :config
   ;; TODO This is the custom.el version for what I want but
   ;; validate-setq doesn't like its format when porting it here.
