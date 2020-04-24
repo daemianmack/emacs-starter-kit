@@ -729,6 +729,7 @@ dired, which I don't use."
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
+  (global-set-key (kbd "C-x i") 'counsel-imenu)
   (bind-keys
    :map swiper-map
    ("C-r" . ivy-previous-line)))
