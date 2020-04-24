@@ -305,12 +305,16 @@
           ("^~/Dropbox/" ":DB:")
           ("^~/relevance-smart-tab-organizer/" ":RE:"))))
 
+(defun swoop-top-level-forms ()
+  (interactive)
+  (swoop "^("))
+
 (use-package swoop :ensure t
   :bind (("C-c o"   . swoop)
          ("C-c O"   . swoop-multi)
-         ("C-c M-o" . swoop-pcre-regexp)
-         ("C-c C-o" . swoop-back-to-last-position))
+         ("C-c M-o" . swoop-pcre-regexp))
   :config
+  (global-set-key (kbd "C-c C-o") 'swoop-top-level-forms)
   (bind-keys
    :map swoop-map
    ("<up>"   . swoop-action-goto-line-prev)
