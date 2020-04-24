@@ -1081,57 +1081,6 @@ dired, which I don't use."
   ;;                  (aliases))))
   )
 
-;; Scrolling performance notes.
-;; Problem: scrolling through large portions of long Clojure files
-;; will hitch the screen every second or so.
-
-;; Removing the `smooth-scrolling-package` in favor of
-;; `centered-cursor-mode` seemed to help somewhat -- the hitches occur
-;; but seem less hitchy.
-
-;; The `smart-mode-line` package also seems implicated here; disabling
-;; that may improve matters.
-
-;; If performance continues to suck, consider removing
-;; `smart-mode-line` and/or removing `centered-cursor-mode` in favor
-;; of `scroll-conservatively`, `scroll-margin` and
-;; `maximum-scroll-margin`, which won't provide exact centering but
-;; comes close enough to maintain context when scrolling across
-;; pageviews.
-
-;; (validate-setq scroll-conservatively 101) ;; default 0
-;; (validate-setq scroll-margin 100)         ;; default 0
-;; (validate-setq maximum-scroll-margin 0.5) ;; default 0.25
-;; TODO try `scroll-lock-mode` ?
-;; or (setq maximum-scroll-margin 0.5 scroll-margin most-positive-fixnum)
-
-
-(defadvice centered-cursor-mode (around my-centered-cursor-mode-turn-on-maybe)
-  (unless (memq major-mode
-                (list 'cider-repl-mode 'shell-mode))
-    ad-do-it))
-(ad-activate 'centered-cursor-mode)
-
-(use-package centered-cursor-mode :ensure t
-  :config
-  (diminish 'centered-cursor-mode)
-  (global-centered-cursor-mode)
-  ;; Prevents edge case where scrolling to bottom of a buffer with a
-  ;; vertical split visible causes crazy hitching behavior when
-  ;; nearing final viewport of buffer.
-  (validate-setq ccm-recenter-at-end-of-file t)
-  ;; TODO Bring back `recenter-top-bottom` functionality by advising
-  ;; or otherwise disabling this mode for keystroke. How is it that
-  ;; `back-button-local-backward` doesn't trigger a
-  ;; centered-cursor-mode recenter, but `recenter-top-bottom` does?
-  )
-
-(validate-setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
-
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
-
-(setq mouse-wheel-progressive-speed t)
-
 
 (use-package google-translate :ensure t
   ;; `:demand` necessary to expose related setqs in `:config`.
