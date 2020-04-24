@@ -699,7 +699,8 @@ dired, which I don't use."
   (font-lock-add-keywords 'clojure-mode
                           '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-constant-face)))
   ;; This causes CLJS buffer errors to return REPL control more quickly.
-  (validate-setq max-lisp-eval-depth 20000))
+  (validate-setq max-lisp-eval-depth 20000)
+  (validate-setq clojure-indent-style '(quote always-align)))
 
 (use-package whitespace
   :ensure t
