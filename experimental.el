@@ -832,7 +832,9 @@ dired, which I don't use."
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((ditaa . t)
-     (clojure . t)))
+     (clojure . t)
+     (sql .t)
+     (dot .t)))
   (unbind-key "S-<up>" org-mode-map)
   (unbind-key "S-<down>" org-mode-map)
   (unbind-key "S-<right>" org-mode-map)
