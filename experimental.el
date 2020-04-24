@@ -508,7 +508,6 @@
   (validate-setq magit-diff-arguments '("--stat" "--no-ext-diff"))
   (validate-setq magit-diff-section-arguments '("--no-ext-diff"))
   (validate-setq magit-diff-refine-hunk 'all)
-  (validate-setq magit-fetch-arguments '("--prune"))
   (validate-setq magit-process-popup-time 10)
   (validate-setq magit-auto-revert-mode 't)
   (validate-setq magit-repository-directories '(("/Users/daemian/src" . 0)))
