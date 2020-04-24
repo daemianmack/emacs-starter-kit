@@ -2,6 +2,56 @@
 
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
+(setq mac-command-modifier 'hyper)
+
+;; Enable escape sequences to trigger hyper-key combos.
+;; Requires config in iTerm2:
+;;  Preferences > Profiles > General > Keys > +
+;;  `Keyboard Shortcut` triggers `Escape Sequence` of, e.g., [1;P9
+(progn
+  (let ((map (if (boundp 'input-decode-map)
+                 input-decode-map
+               function-key-map)))
+    (define-key map "\e[1;P9"  (kbd "H-a"))
+    (define-key map "\e[1;P10" (kbd "H-b"))
+    (define-key map "\e[1;P11" (kbd "H-c"))
+    (define-key map "\e[1;P12" (kbd "H-d"))
+    (define-key map "\e[1;P13" (kbd "H-e"))
+    (define-key map "\e[1;P14" (kbd "H-f"))
+    (define-key map "\e[1;P15" (kbd "H-g"))
+    (define-key map "\e[1;P16" (kbd "H-h"))
+    (define-key map "\e[1;P17" (kbd "H-i"))
+    (define-key map "\e[1;P18" (kbd "H-j"))
+    (define-key map "\e[1;P19" (kbd "H-k"))
+    (define-key map "\e[1;P20" (kbd "H-l"))
+    (define-key map "\e[1;P21" (kbd "H-m"))
+    (define-key map "\e[1;P22" (kbd "H-n"))
+    (define-key map "\e[1;P23" (kbd "H-o"))
+    (define-key map "\e[1;P24" (kbd "H-p"))
+    (define-key map "\e[1;P25" (kbd "H-q"))
+    (define-key map "\e[1;P26" (kbd "H-r"))
+    (define-key map "\e[1;P27" (kbd "H-s"))
+    (define-key map "\e[1;P28" (kbd "H-t"))
+    (define-key map "\e[1;P29" (kbd "H-u"))
+    (define-key map "\e[1;P30" (kbd "H-v"))
+    (define-key map "\e[1;P31" (kbd "H-w"))
+    (define-key map "\e[1;P32" (kbd "H-x"))
+    (define-key map "\e[1;P33" (kbd "H-y"))
+    (define-key map "\e[1;P34" (kbd "H-z"))
+    (define-key map "\e[1;P35" (kbd "H-0"))
+    (define-key map "\e[1;P36" (kbd "H-1"))
+    (define-key map "\e[1;P37" (kbd "H-2"))
+    (define-key map "\e[1;P38" (kbd "H-3"))
+    (define-key map "\e[1;P39" (kbd "H-4"))
+    (define-key map "\e[1;P40" (kbd "H-5"))
+    (define-key map "\e[1;P41" (kbd "H-6"))
+    (define-key map "\e[1;P42" (kbd "H-7"))
+    (define-key map "\e[1;P43" (kbd "H-8"))
+    (define-key map "\e[1;Pa" (kbd "H-<right>"))
+    (define-key map "\e[1;Pb" (kbd "H-<left>"))
+    (define-key map "\e[1;Pc" (kbd "H-<up>"))
+    (define-key map "\e[1;Pd" (kbd "H-<down>"))))
+
 ;; Performance improvement?
 (validate-setq redisplay-dont-pause t)
 
