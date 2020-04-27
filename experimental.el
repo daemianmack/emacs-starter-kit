@@ -1210,15 +1210,6 @@ dired, which I don't use."
 
 (use-package dockerfile-mode :ensure t)
 
-(use-package zel
-  :ensure t
-  :demand t
-  :bind (("C-c f f" . zel-find-file-frecent))
-  :config
-  (zel-install)
-  (validate-setq zel-history-file (concat variable-files-dir "zel"))
-  (validate-setq zel--aging-threshold 90000))
-
 (use-package git-link :ensure t
   :config
   (setq-default git-link-default-branch "master")
