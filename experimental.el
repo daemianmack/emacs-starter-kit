@@ -908,17 +908,6 @@ dired, which I don't use."
 ;;               (validate-setq inf-clojure-buffer "*inf-cljs*")))))))
 
 
-(use-package highlight-symbol :ensure t
-  :init
-  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
-  (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode)
-  :config
-  (diminish 'highlight-symbol-mode)
-  (validate-setq highlight-symbol-idle-delay 0.2)
-  (validate-setq highlight-symbol-on-navigation-p t)
-  (validate-setq highlight-symbol-highlight-single-occurrence nil)
-  (validate-setq highlight-symbol-occurrence-message '(explicit navigation temporary)))
-
 (use-package which-key :ensure t
   :config
   (which-key-mode)
@@ -967,19 +956,14 @@ dired, which I don't use."
   :config
   (validate-setq keyfreq-autosave-mode t))
 
-;; Cast as a replacement to `highlight-symbol` but this seems more
-;; useful as a tool for deliberately painting vars with faces to help
-;; unsquirrel dense code and walking among all painted things, whereas
-;; `highlight-symbol` highlights only the thing at point, and without
-;; intervention.
 (use-package symbol-overlay :ensure t
   :bind
-  (("M-i" . symbol-overlay-put))
+  (("M-i" . symbol-put) ;; Enter 'mode' where subcommands available.
+   ;; Globalize nav subcommands.
+   ("M-n" . symbol-overlay-jump-next)
+   ("M-p" . symbol-overlay-jump-prev))
   :config
-  (bind-keys
-   :map symbol-overlay-map
-   (unbind-key "M-u" symbol-overlay-map)
-   (unbind-key "M-o" symbol-overlay-map)))
+  (validate-setq symbol-overlay-idle-time 0.2))
 
 (defun increment-number-at-point ()
   (interactive)

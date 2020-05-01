@@ -58,7 +58,6 @@
  '(helm-selection ((t (:background "black" :foreground "brightgreen"))))
  '(helm-source-header ((t (:inherit helm-header))))
  '(highlight ((t (:background "brightblue" :foreground "black"))))
- '(highlight-symbol-face ((t (:background "color-235" :underline (:color foreground-color :style wave)))))
  '(iflipb-current-buffer-face ((t (:inherit font-lock-function-name-face))))
  '(isearch ((t (:background "purple" :foreground "white"))))
  '(isearch-fail ((t (:weight ultra-bold :foreground "white" :background "red"))))
@@ -152,5 +151,6 @@
  '(diff-hl-delete ((t (:inherit diff-removed))))
  '(diff-removed ((t (:foreground "red" :weight bold))))
  '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :weight bold)))))
+ '(symbol-overlay-default-face ((t (:background "color-235"))))
 
 (provide-theme 'daemian)
