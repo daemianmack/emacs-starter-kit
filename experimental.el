@@ -315,6 +315,7 @@
          ("C-c M-o" . swoop-pcre-regexp))
   :config
   (global-set-key (kbd "C-c C-o") 'swoop-top-level-forms)
+  (validate-setq swoop-window-split-direction 'split-window-horizontally)
   (bind-keys
    :map swoop-map
    ("<up>"   . swoop-action-goto-line-prev)
