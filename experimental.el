@@ -1344,4 +1344,51 @@ Add this to `kill-buffer-query-functions'."
   :bind (("C-c l" . ialign)))
 
 (save-place-mode)
-(validate-setq save-place-file (concat variable-files-dir ".emacs-places"))
+(validate-setq save-place-file (concat variable-files-dir ".emacs-places"))(use-package lsp-mode
+
+  :ensure t
+  :config
+  :ensure t
+
+;; Abortive attempt to configure lsp-mode.
+;;
+;; The thing itself works great and replaces good bits of
+;; clj-refactor, but it also clobbers the clj-kondo and joker linters
+;; set up in flycheck, and those provide more featureful checks.
+;;
+;; The setup described here [1] didn't seem to work, and it doesn't
+;; appear to accommodate multiple other linters, so joker would have
+;; to go.
+;; [1] https://github.com/borkdude/clj-kondo/blob/master/doc/editor-integration.md#lsp-server
+;;
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :hook ((clojure-mode . lsp)
+;;          (clojurec-mode . lsp)
+;;          (clojurescript-mode . lsp))
+;;   :config
+;;   ;; add paths to your local installation of project mgmt tools, like lein
+;;   (setenv "PATH" (concat
+;;                    "/usr/local/bin" path-separator
+;;                    (getenv "PATH")))
+;;   (dolist (m '(clojure-mode
+;;                clojurec-mode
+;;                clojurescript-mode
+;;                clojurex-mode))
+;;      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+;;   (setq lsp-enable-indentation nil
+;;         lsp-clojure-server-command '("bash" "-c" "clojure-lsp")
+;;         lsp-enable-symbol-highlighting nil
+;;         lsp-ui-doc-delay 3
+;;         lsp-session-file (concat variable-files-dir ".lsp-session-v1"))
+;;   (define-key lsp-mode-map (kbd "H-l") lsp-command-map)
+;;   (define-key lsp-mode-map (kbd "H-l i l") 'lsp-clojure-introduce-let)
+;;   (define-key lsp-mode-map (kbd "H-l m l") 'lsp-clojure-move-to-let))
+
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :commands lsp-ui-mode)
+
+;; (use-package company-lsp
+;;   :ensure t
+;;   :commands company-lsp)
