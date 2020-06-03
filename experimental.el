@@ -1239,43 +1239,6 @@ dired, which I don't use."
         paradox-use-homepage-buttons nil ; Can type v instead
         ))
 
-(defun display-buffer-fullframe (buffer alist)
-  "Display BUFFER in fullscreen.
-ALIST is a `display-buffer' ALIST.
-Return the new window for BUFFER."
-  (let ((window (display-buffer-pop-up-window buffer alist)))
-    (when window
-      (delete-other-windows window))
-    window))
-
-;; Configure `display-buffer' behaviour for some special buffers.
-(setq display-buffer-alist
-      `(
-        ;; Set fullscreen for particular windows.
-        (,(rx bos
-              (or "magit: "
-                  "*Annotate"))
-         (display-buffer-fullframe)
-         (reusable-frames . nil))
-        ;; Control display for REPLs and error lists.
-        (,(rx bos
-              (or "*Help"                 ; Help buffers
-                  "*Warnings*"            ; Emacs warnings
-                  "*Compile-Log*"         ; Emacs byte compiler log
-                  "*compilation"          ; Compilation buffers
-                  "*Flycheck errors*"     ; Flycheck error list
-                  "*shell"                ; Shell window
-                  "*cider-repl"))
-         (display-buffer-reuse-window
-          display-buffer-in-side-window)
-         (side            . right)
-         (reusable-frames . visible)
-         (window-width   . 0.5))
-        ;; Let `display-buffer' reuse visible frames for all buffers.  This must
-        ;; be the last entry in `display-buffer-alist', because it overrides any
-        ;; later entry with more specific actions.
-        ("." nil (reusable-frames . visible))))
-
 (defconst do-not-kill-buffer-names '("*scratch*" "*Messages*")
   "Names of buffers that should not be killed.")
 
@@ -1392,3 +1355,14 @@ Add this to `kill-buffer-query-functions'."
 ;; (use-package company-lsp
 ;;   :ensure t
 ;;   :commands company-lsp)
+(use-package dbc :ensure t
+  :custom
+  (dbc-verbose t)
+  :config
+  ;; Intent: nix situation where a buffer is set to side, but
+  ;; then I'm prevented from killing *other* windows due to
+  ;; "delete-window: Attempt to delete main window of frame" errors.
+  ;; Unsure if undesirable side-effects.
+  (validate-setq ignore-window-parameters t)
+  (dbc-add-ruleset "right" '((display-buffer-reuse-window display-buffer-in-side-window) . ((side . right) (window-width . 0.4))))
+  (dbc-add-rule "right" "help" :newname "\\*helpful.*"))
