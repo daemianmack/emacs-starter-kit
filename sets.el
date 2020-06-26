@@ -13,7 +13,12 @@
 (defun is-in-terminal () (not (display-graphic-p)))
 (if (is-in-terminal)
     (load-theme 'daemian t)
-  (load-theme 'daemian-gui t))
+  (progn (load-theme 'daemian-gui t)
+         ;; Maximize borderless. Assumes `emacs-plus` compiled with
+         ;;   --with-no-titlebar option.
+         (setq ns-auto-hide-menu-bar t)
+         (set-frame-position nil 0 0)
+         (set-frame-size nil (display-pixel-width) (display-pixel-height) t)))
 
 
 
