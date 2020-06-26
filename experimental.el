@@ -50,21 +50,10 @@
   :config
   ;; Integrate with tmux splits.
   (bind-keys
-   ("S-<right>" . (lambda () (interactive) (my/windmove-emacs-or-tmux "right" "tmux select-pane -R")))
-   ("S-<left>"  . (lambda () (interactive) (my/windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
-   ("S-<up>"    . (lambda () (interactive) (my/windmove-emacs-or-tmux "up"    "tmux select-pane -U")))
-   ("S-<down>"  . (lambda () (interactive) (my/windmove-emacs-or-tmux "down"  "tmux select-pane -D")))))
-
-(defun delete-register (name)
-  (setq register-alist
-        (delq (assoc name register-alist)
-              register-alist)))
-
-
-(defun advice-unadvice (sym)
-  "Remove all advices from symbol SYM."
-  (interactive "aFunction symbol: ")
-  (advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
+   ("S-<right>" . (lambda () (interactive) (util/windmove-emacs-or-tmux "right" "tmux select-pane -R")))
+   ("S-<left>"  . (lambda () (interactive) (util/windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
+   ("S-<up>"    . (lambda () (interactive) (util/windmove-emacs-or-tmux "up"    "tmux select-pane -U")))
+   ("S-<down>"  . (lambda () (interactive) (util/windmove-emacs-or-tmux "down"  "tmux select-pane -D")))))
 
 ;; Speed up display of very long lines.
 (setq-default bidi-display-reordering nil)
@@ -91,13 +80,6 @@
   :config
   (validate-setq recentf-max-saved-items 100)
   (validate-setq recentf-save-file (concat variable-files-dir ".recentf")))
-
-(defun locate-org-files (search-string)
-  "Adjust `locate-with-filter' to only search `org-mode' files with SEARCH-STRING."
-  (interactive "sSearch string: ")
-  (locate-with-filter search-string ".org$"))
-
-(global-set-key (kbd "C-c i") 'locate-org-files)
 
 ;; TODO ctrl-up, ctrl-down allow in-place preview via
 ;; `helm-follow-action-forward` etc but only from within
@@ -149,50 +131,7 @@
 
 (ad-activate 'javarun)
 
-(defun cider-figwheel-repl ()
-  (interactive)
-  (save-some-buffers)
-  (with-current-buffer (cider-current-repl-buffer)
-    (goto-char (point-max))
-        (insert "(require 'figwheel-sidecar.repl-api)
-             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
-             (figwheel-sidecar.repl-api/cljs-repl \"dev\")")
-        (cider-repl-return)))
-
-(global-set-key (kbd "C-c M-f") #'cider-figwheel-repl)
-
 (validate-setq window-combination-resize t)
-
-(defun crux-rename-file-and-buffer ()
-  "Rename current buffer and if the buffer is visiting a file, rename it too."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (rename-buffer (read-from-minibuffer "New name: " (buffer-name)))
-      (let* ((new-name (read-from-minibuffer "New name: " filename))
-             (containing-dir (file-name-directory new-name)))
-        (make-directory containing-dir t)
-        (cond
-         ((vc-backend filename) (vc-rename-file filename new-name))
-         (t
-          (rename-file filename new-name t)
-          (set-visited-file-name new-name t t)))))))
-
-(defalias 'crux-rename-buffer-and-file #'crux-rename-file-and-buffer)
-
-(defun crux-delete-file-and-buffer ()
-  "Kill the current buffer and deletes the file it is visiting."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (when filename
-      (if (vc-backend filename)
-          (vc-delete-file filename)
-        (when (y-or-n-p (format "Are you sure you want to delete %s? " filename))
-          (delete-file filename delete-by-moving-to-trash)
-          (message "Deleted file %s" filename)
-          (kill-buffer))))))
-
-(defalias 'crux-delete-buffer-and-file #'crux-delete-file-and-buffer)
 
 (use-package smex :ensure t
   :config (setq smex-save-file (concat variable-files-dir "smex-items"))
@@ -211,17 +150,10 @@
 (make-face 'mode-line-process-face)
 (make-face 'mode-line-80col-face)
 
-(defvar my-mode-line-buffer-line-count nil)
-(make-variable-buffer-local 'my-mode-line-buffer-line-count)
-
-(defun my-mode-line-count-lines ()
-  (validate-setq my-mode-line-buffer-line-count
-                 (int-to-string (count-lines (point-min) (point-max)))))
-
-(add-hook 'find-file-hook 'my-mode-line-count-lines)
-(add-hook 'after-save-hook 'my-mode-line-count-lines)
-(add-hook 'after-revert-hook 'my-mode-line-count-lines)
-(add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
+(add-hook 'find-file-hook 'util/mode-line-count-lines)
+(add-hook 'after-save-hook 'util/mode-line-count-lines)
+(add-hook 'after-revert-hook 'util/mode-line-count-lines)
+(add-hook 'dired-after-readin-hook 'util/mode-line-count-lines)
 
 (use-package smart-mode-line :ensure t
   :config
@@ -232,8 +164,8 @@
   (validate-setq sml/modified-char "!")
   (setq-default mode-line-front-space
                 '(:eval (concat (let ((str "%4l"))
-                                  (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
-                                    (setq str (concat str "/" my-mode-line-buffer-line-count)))
+                                  (when (and (not (buffer-modified-p)) util/mode-line-buffer-line-count)
+                                    (setq str (concat str "/" util/mode-line-buffer-line-count)))
                                   str)
                                 ":"
                                 (propertize "%1c" 'face
@@ -251,16 +183,12 @@
           ("^~/Dropbox/" ":DB:")
           ("^~/relevance-smart-tab-organizer/" ":RE:"))))
 
-(defun swoop-top-level-forms ()
-  (interactive)
-  (swoop "^("))
-
 (use-package swoop :ensure t
   :bind (("C-c o"   . swoop)
          ("C-c O"   . swoop-multi)
          ("C-c M-o" . swoop-pcre-regexp))
   :config
-  (global-set-key (kbd "C-c C-o") 'swoop-top-level-forms)
+  (global-set-key (kbd "C-c C-o") 'util/swoop-top-level-forms)
   (validate-setq swoop-window-split-direction 'split-window-horizontally)
   (bind-keys
    :map swoop-map
@@ -268,9 +196,6 @@
    ("<down>" . swoop-action-goto-line-next)
    ("C-p"    . prev-history-element)
    ("C-n"    . next-history-element)))
-
-(defun ido-disable-line-truncation ()
-  (set (make-local-variable 'truncate-lines) nil))
 
 (use-package ido :ensure t
   :config
@@ -294,7 +219,7 @@
   (validate-setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
   (ido-mode 1)
 
-  (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+  (add-hook 'ido-minibuffer-setup-hook 'util/ido-disable-line-truncation)
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map (kbd "M-w") 'ido-preview-backward)
@@ -319,40 +244,6 @@
 
 ;; Expand this to all programming modes.
 (add-hook 'clojure-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
-
-(defun cider-repl-command (cmd)
-  "Execute commands on the cider repl"
-  (cider-switch-to-repl-buffer)
-  (goto-char (point-max))
-  (insert cmd)
-  (cider-repl-return)
-  (cider-switch-to-last-clojure-buffer))
-
-(defun cider-repl-clear-buffer-from-orbit ()
-  (interactive)
-  (cider-switch-to-repl-buffer)
-  (cider-repl-clear-buffer)
-  (cider-switch-to-last-clojure-buffer))
-
-(defun cider-repl-reset ()
-  (interactive)
-  (save-some-buffers)
-  (cider-repl-command "(dev/reset)"))
-
-
-(defun my-cider-repl-prompt (namespace)
-  "Return a prompt string that mentions NAMESPACE."
-  (format "\n%s> " namespace))
-
-(defun clj-find-var-fallback ()
-  "Attempts to jump-to-definition of the symbol-at-point. If
-  CIDER fails, or not available, falls back to dumb-jump"
-  (interactive)
-  (let ((var (cider-symbol-at-point)))
-    (if (and (cider-connected-p) (cider-var-info var))
-        (unless (eq 'symbol (type-of (cider-find-var nil var)))
-          (dumb-jump-go))
-      (dumb-jump-go))))
 
 (use-package cider
   :ensure t
@@ -386,11 +277,39 @@
   (validate-setq cider-repl-use-clojure-font-lock t)
   (validate-setq cider-show-error-buffer nil)
   (validate-setq cider-use-overlays nil)
-  (validate-setq cider-repl-prompt-function 'my-cider-repl-prompt)
   (validate-setq cider-repl-history-separator "────────────────────────────────────────────────────────")
   (validate-setq cider-repl-display-help-banner nil)
   (validate-setq cider-session-name-template "%j")
-  (validate-setq nrepl-repl-buffer-name-template "*REPL %s*"))
+  (validate-setq nrepl-repl-buffer-name-template "*REPL %s*")
+
+  (defun clj-find-var-fallback ()
+    "Attempts to jump-to-definition of the symbol-at-point. If
+  CIDER fails, or not available, falls back to dumb-jump"
+    (interactive)
+    (let ((var (cider-symbol-at-point)))
+      (if (and (cider-connected-p) (cider-var-info var))
+          (unless (eq 'symbol (type-of (cider-find-var nil var)))
+            (dumb-jump-go))
+        (dumb-jump-go))))
+
+  (defun cider-repl-command (cmd)
+    "Execute commands on the cider repl"
+    (cider-switch-to-repl-buffer)
+    (goto-char (point-max))
+    (insert cmd)
+    (cider-repl-return)
+    (cider-switch-to-last-clojure-buffer))
+
+  (defun cider-repl-clear-buffer-from-orbit ()
+    (interactive)
+    (cider-switch-to-repl-buffer)
+    (cider-repl-clear-buffer)
+    (cider-switch-to-last-clojure-buffer))
+
+  (defun cider-repl-reset ()
+    (interactive)
+    (save-some-buffers)
+    (cider-repl-command "(dev/reset)")))
 
   ;; (use-package inferior-lisp
   ;; (validate-setq inferior-lisp-program "lein repl")
@@ -463,185 +382,34 @@
               (define-key ido-completion-map
                 (kbd "C-x g") 'ido-enter-magit-status))))
 
-(defun add-watchwords ()
-  (interactive)
-  (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
-          1 font-lock-warning-face t))))
-
-(defun comment-auto-fill ()
-  (setq-local comment-auto-fill-only-comments t)
-  (auto-fill-mode 1))
-
 (add-hook 'prog-mode-hook 'show-paren-mode)
-(add-hook 'prog-mode-hook 'add-watchwords)
-;(add-hook 'prog-mode-hook 'digit-groups-mode)
-(add-hook 'prog-mode-hook 'comment-auto-fill)
+(add-hook 'prog-mode-hook 'util/add-watchwords)
+(add-hook 'prog-mode-hook 'util/comment-auto-fill)
 
 (use-package rainbow-delimiters :ensure t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-(defun lisp-mode-setup ()
-  (eldoc-mode)
-  (paredit-mode 1)
-  (whitespace-mode))
-
-(add-hook 'lisp-mode-hook 'lisp-mode-setup)
-(add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup)
-
-(defun no-final-newline ()
-  (validate-setq require-final-newline nil)
-  (validate-setq mode-require-final-newline nil))
-
-
-(defun uncomment-sexp (&optional n)
-  "Uncomment a sexp around point."
-  (interactive "P")
-  (let* ((initial-point (point-marker))
-         (inhibit-field-text-motion t)
-         (p)
-         (end (save-excursion
-                (when (elt (syntax-ppss) 4)
-                  (re-search-backward comment-start-skip
-                                      (line-beginning-position)
-                                      t))
-                (setq p (point-marker))
-                (comment-forward (point-max))
-                (point-marker)))
-         (beg (save-excursion
-                (forward-line 0)
-                (while (and (not (bobp))
-                            (= end (save-excursion
-                                     (comment-forward (point-max))
-                                     (point))))
-                  (forward-line -1))
-                (goto-char (line-end-position))
-                (re-search-backward comment-start-skip
-                                    (line-beginning-position)
-                                    t)
-                (ignore-errors
-                  (while (looking-at-p comment-start-skip)
-                    (forward-char -1)))
-                (point-marker))))
-    (unless (= beg end)
-      (uncomment-region beg end)
-      (goto-char p)
-      ;; Indentify the "top-level" sexp inside the comment.
-      (while (and (ignore-errors (backward-up-list) t)
-                  (>= (point) beg))
-        (skip-chars-backward (rx (syntax expression-prefix)))
-        (setq p (point-marker)))
-      ;; Re-comment everything before it.
-      (ignore-errors
-        (comment-region beg p))
-      ;; And everything after it.
-      (goto-char p)
-      (forward-sexp (or n 1))
-      (skip-chars-forward "\r\n[:blank:]")
-      (if (< (point) end)
-          (ignore-errors
-            (comment-region (point) end))
-        ;; If this is a closing delimiter, pull it up.
-        (goto-char end)
-        (skip-chars-forward "\r\n[:blank:]")
-        (when (eq 5 (car (syntax-after (point))))
-          (delete-indentation))))
-    ;; Without a prefix, it's more useful to leave point where
-    ;; it was.
-    (unless n
-      (goto-char initial-point))))
-
-(defun comment-sexp--raw ()
-  "Comment the sexp at point or ahead of point."
-  (pcase (or (bounds-of-thing-at-point 'sexp)
-             (save-excursion
-               (skip-chars-forward "\r\n[:blank:]")
-               (bounds-of-thing-at-point 'sexp)))
-    (`(,l . ,r)
-     (goto-char r)
-     (skip-chars-forward "\r\n[:blank:]")
-     (save-excursion
-       (comment-region l r))
-     (skip-chars-forward "\r\n[:blank:]"))))
-
-;; http://endlessparentheses.com/a-comment-or-uncomment-sexp-command.html
-(defun comment-or-uncomment-sexp (&optional n)
-  "Comment the sexp at point and move past it.
-If already inside (or before) a comment, uncomment instead.
-With a prefix argument N, (un)comment that many sexps."
-  (interactive "P")
-  (if (or (elt (syntax-ppss) 4)
-          (< (save-excursion
-               (skip-chars-forward "\r\n[:blank:]")
-               (point))
-             (save-excursion
-               (comment-forward 1)
-               (point))))
-      (uncomment-sexp n)
-    (dotimes (_ (or n 1))
-      (comment-sexp--raw))))
-
-(defun paste-to-osx (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
-
-(defun copy-file-path (&optional @dir-path-only-p)
-  "Copy the current buffer's file path or dired path to `kill-ring'.
-
-Result is full path.
-
-If `universal-argument' is called first, copy only the dir path.
-
-If a buffer is not file and not dired, copy value of
-`default-directory' (which is usually the “current” dir when that
-buffer was created)
-
-Modified from
-`http://ergoemacs.org/emacs/emacs_copy_file_path.html' to ignore
-dired, which I don't use."
-  (interactive "P")
-  (let (($fpath
-         (if (buffer-file-name)
-             (buffer-file-name)
-           (expand-file-name default-directory))))
-    (paste-to-osx
-     (if @dir-path-only-p
-         (progn
-           (message "Directory path copied: 「%s」" (file-name-directory $fpath))
-           (file-name-directory $fpath))
-       (progn
-         (message "File path copied: 「%s」" $fpath)
-         $fpath )))))
-
-(defun clojure-copy-ns ()
-  "Update the namespace of the current buffer.
-    Useful if a file has been renamed."
-  (interactive)
-  (let ((nsname (funcall clojure-expected-ns-function)))
-    (when nsname
-      (message nsname)
-      (kill-new nsname)
-      (paste-to-osx nsname))))
+(add-hook 'lisp-mode-hook 'util/lisp-mode-setup)
+(add-hook 'emacs-lisp-mode-hook 'util/lisp-mode-setup)
 
 (use-package clojure-mode
   :ensure t
-  :bind (("C-c ;" . comment-or-uncomment-sexp))
+  :bind (("C-c ;" . comment/comment-or-uncomment-sexp))
   :config
+  (load (concat dotfiles-dir "comment-or-uncomment"))
   (diminish 'clojure-mode "clj")
   (diminish 'clojurescript-mode "cljs")
-  (bind-keys :map clojure-mode-map ("C-c C-r n c" . clojure-copy-ns))
+  (bind-keys :map clojure-mode-map ("C-c C-r n c" . util/clojure-copy-ns))
   (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.cljs" . clojurescript-mode))
   (add-to-list 'auto-mode-alist '("\\.cljc" . clojurec-mode))
   (add-to-list 'auto-mode-alist '("\\.edn" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.boot" . clojure-mode))
-  (add-hook 'clojure-mode-hook 'lisp-mode-setup)
+  (add-hook 'clojure-mode-hook 'util/lisp-mode-setup)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
-  (add-hook 'clojure-mode-hook 'no-final-newline)
-  (add-hook 'cider-repl-mode-hook 'lisp-mode-setup)
+  (add-hook 'clojure-mode-hook 'util/no-final-newline)
+  (add-hook 'cider-repl-mode-hook 'util/lisp-mode-setup)
   ;; Indent Clojure's `comment` form like a defun -- don't line up non-first-line args under first-line args.
   (put-clojure-indent 'comment 'defun)
   ;; Font-lock Datomic's logic vars (`?user-id`).
@@ -683,6 +451,7 @@ dired, which I don't use."
    :map swiper-map
    ("C-r" . ivy-previous-line)))
 
+;;todo
 (defun inf-clojurize-buffer ()
   ;; For now sometimes this is required in a buffer needing a connection to an inf REPL...
   ;; TODO Make this not necessary.
@@ -706,7 +475,7 @@ dired, which I don't use."
          ("C-c M-o" . inf-clojure-clear-repl-buffer))
   :config
   (validate-setq inf-clojure-program "nc localhost 5554")
-  (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
+  (add-hook 'inf-clojure-mode-hook 'util/lisp-mode-setup)
   (validate-setq inf-clojure-generic-cmd '("localhost" . 5554))
   (add-hook 'inf-clojure-mode-hook #'eldoc-mode)
   ;; For some reason paredit is missing this in inf-clojure REPLs.
@@ -716,16 +485,17 @@ dired, which I don't use."
                 (define-key inf-clojure-mode-map "{" 'paredit-open-curly)
                 (define-key inf-clojure-mode-map "}" 'paredit-close-curly)))))
 
-(defun paredit-newline-in-place()
-  (interactive)
-  (progn (paredit-newline)
-         (previous-line)))
+
 
 (use-package paredit :ensure t
   :config
   (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
   (bind-keys :map paredit-mode-map
-             ("C-J" . paredit-newline-in-place)))
+             ("C-J" . paredit-newline-in-place))
+  (defun paredit-newline-in-place()
+    (interactive)
+    (progn (paredit-newline)
+           (previous-line))))
 
 (use-package pinentry
   :ensure t
@@ -745,21 +515,6 @@ dired, which I don't use."
   :config
   (back-button-mode 1)
   (diminish 'back-button-mode " ⟲ "))
-
-;; TODO
-;; - Use var for save location.
-;; - Use a filter so we don't trigger hook fn when editing some repo's README.org.
-
-(defun git-log-changes-hook()
-  "Record a diff in git every time we save in org mode. This
-   gives us an edit history without having to org-time-stamp
-   everything."
-  (interactive)
-  ;; TODO This should accept the filename from the buffer object or similar
-  ;; instead of hardcoding a single known file.
-  (shell-command "cd ~/Dropbox/docs/notes/ && \
-                  git add notes.org && \
-                  git commit -m \"$(git diff --cached --unified=0 | tail -n +6)\""))
 
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
@@ -818,29 +573,6 @@ dired, which I don't use."
               ("<C-up>"    . org-shiftup)
               ("<C-down>"  . org-shiftdown)))
 
-(defun wwai-repl ()
-  (interactive)
-  (inf-clojure "bin/run script/repl.clj")
-  (rename-buffer "*inf-clj*"))
-
-(defun wwai-cljs-repl ()
-  (interactive)
-  (inf-clojure "bin/run script/cljs_repl.clj")
-  (rename-buffer "*inf-cljs*"))
-
-(defvar inf-clojure-project nil)
-
-(defmacro safe-wrap (fn &rest clean-up)
-  `(unwind-protect
-       (let (retval)
-         (condition-case ex
-             (validate-setq retval (progn ,fn))
-           ('error
-            (message (format "Caught exception: [%s]" ex))
-            (validate-setq retval (cons 'exception (list ex)))))
-         retval)
-     ,@clean-up))
-
 (use-package which-key :ensure t
   :config
   (which-key-mode)
@@ -863,17 +595,16 @@ dired, which I don't use."
   (validate-setq ag-ignore-list '(".*.map" "resources" "front.*" "**.log" "resources/public/js/compiled"))
   (bind-keys*
    ;; Insert into `projectile` key map.
-   ("C-c p s a" . ag-project)))
-
-;; Clobber ag's buffer-name display tactic in absence of a proper customize option.
-(defun ag/buffer-name (search-string directory regexp)
-  "Return a buffer name formatted according to ag.el conventions."
-  (cond
-   (ag-reuse-buffers "*ag search*")
-   (regexp (format "*ag search regexp:%s dir:%s*" search-string directory))
-   ;; Much shorter format than stock.
-   ;; (:else (format "*ag search text:%s dir:%s*" search-string directory))
-   (:else (format "*ag %s*" search-string))))
+   ("C-c p s a" . ag-project))
+  ;; Clobber ag's buffer-name display tactic in absence of a proper customize option.
+  (defun ag/buffer-name (search-string directory regexp)
+    "Return a buffer name formatted according to ag.el conventions."
+    (cond
+     (ag-reuse-buffers "*ag search*")
+     (regexp (format "*ag search regexp:%s dir:%s*" search-string directory))
+     ;; Much shorter format than stock.
+     ;; (:else (format "*ag search text:%s dir:%s*" search-string directory))
+     (:else (format "*ag %s*" search-string)))))
 
 (use-package dumb-jump :ensure t
   :config
@@ -910,60 +641,10 @@ If STRING is non-nil, `regexp-quote' STRING rather than the symbol.
 If NOERROR is non-nil, just return nil when no symbol is found."
     (let ((symbol (or string (thing-at-point 'symbol))))
       (if symbol (regexp-quote (replace-regexp-in-string "[:]" "" symbol))
-        (unless noerror (user-error "No symbol at point")))))
-
-  
-  )
-
-(defun increment-number-at-point ()
-  (interactive)
-  (skip-chars-backward "0123456789")
-  (or (looking-at "[0123456789]+")
-      (error "No number at point"))
-  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
-
-(defun decrement-number-at-point ()
-  (interactive)
-  (skip-chars-backward "0123456789")
-  (or (looking-at "[0123456789]+")
-      (error "No number at point"))
-  (replace-match (number-to-string (1- (string-to-number (match-string 0))))))
-(global-set-key (kbd "C-c +") 'increment-number-at-point)
-(global-set-key (kbd "C-c -") 'decrement-number-at-point)
-
-
-(defun finder ()
-  "Open the current working directory in finder."
-  (interactive)
-  (shell-command (concat "open " (shell-quote-argument default-directory))))
-
+        (unless noerror (user-error "No symbol at point"))))))
 
 (defvar git-grep-switches "--extended-regexp -I -n"
   "Switches to pass to `git grep'.")
-
-(defun git-grep-fullscreen (regexp &optional files dir confirm)
-  (interactive
-   (let* ((regexp (grep-read-regexp))
-          (files (grep-read-files regexp))
-          (files (if (string= "* .*" files) "*" files))
-          (dir (ido-read-directory-name "Base directory: "
-                                        nil default-directory t))
-          (confirm (equal current-prefix-arg '(4))))
-     (list regexp files dir confirm)))
-  (let ((command (format "cd %s && git --no-pager grep %s %s -e %S -- '%s' "
-                         dir
-                         git-grep-switches
-                         (if (s-lowercase? regexp) " --ignore-case" "")
-                         regexp
-                         files))
-        (grep-use-null-device nil))
-    (when confirm
-      (validate-setq command (read-shell-command "Run git-grep: " command 'git-grep-history)))
-    (window-configuration-to-register ?$)
-    (grep command)
-    (switch-to-buffer "*grep*")
-    (delete-other-windows)
-    (beginning-of-buffer)))
 
 (use-package iflipb :ensure t
   :bind
@@ -1099,20 +780,6 @@ translation it is possible to get suggestion."
 (prefer-coding-system 'utf-8)
 
 
-(defun kill-dired-buffers ()
-     (interactive)
-     (mapc (lambda (buffer)
-           (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
-             (kill-buffer buffer)))
-           (buffer-list)))
-
-(defun clean-buffer-list-now ()
-  (interactive)
-  (let ((orig (eval clean-buffer-list-delay-special)))
-    (validate-setq clean-buffer-list-delay-special 0)
-    (clean-buffer-list)
-    (validate-setq clean-buffer-list-delay-special orig)))
-
 ;; These settings are meant to be useful for midnight mode to run
 ;; automatically but also to allow manually running
 ;; `clean-buffer-list` when annoyed at buffer sprawl.
@@ -1141,7 +808,7 @@ translation it is possible to get suggestion."
                    ;; `magit-diff-visit-file` buffers, e.g, `CHANGELOG.md.~master~3~'
                    "\\`.*~.*~.*~\\'"
                    "\\`dev.clj\\'"))
-  :bind (("C-x M-k" . clean-buffer-list-now)))
+  :bind (("C-x M-k" . util/clean-buffer-list-now)))
 
 ;; Improvements over built-in `Help` facilities.
 (use-package helpful :ensure t
@@ -1159,51 +826,22 @@ translation it is possible to get suggestion."
   (validate-setq git-link-open-in-browser t)
   (defalias 'gh/visit-file 'git-link))
 
-(defun gh/visit-pr ()
-  "Visit the current branch's PR on Github."
-  (interactive)
-  (browse-url
-   (format "https://github.com/%s/pull/new/%s"
-           (replace-regexp-in-string
-            "\\`.+github\\.com:\\(.+\\)\\(\\.git\\)?\\'" "\\1"
-            (magit-get "remote"
-                       "origin"
-                       "url"))
-           (magit-get-current-branch))))
-
 (use-package google-this :ensure t
   :config
   (google-this-mode 1)
   (diminish 'google-this-mode)
   :bind ("C-c T" . google-this))
 
-(defconst do-not-kill-buffer-names '("*scratch*" "*Messages*")
-  "Names of buffers that should not be killed.")
-
-(defun do-not-kill-important-buffers ()
-  "Inhibit killing of important buffers.
-Add this to `kill-buffer-query-functions'."
-  (if (not (member (buffer-name) do-not-kill-buffer-names))
-      t
-    (message "Not allowed to kill %s, burying instead" (buffer-name))
-    (bury-buffer)
-    nil))
-
-(defun my-kill-buffer ()
-  "Just kill the current buffer without asking, unless it's a modified file"
-  (interactive)
-  (kill-buffer (current-buffer)))
-
 (use-package my-buffers
-  :bind (("C-x C-k" . my-kill-buffer))
+  :no-require t
+  :bind (("C-x C-k" . util/my-kill-buffer))
   :init
-  (add-to-list 'kill-buffer-query-functions 'do-not-kill-important-buffers))
+  (add-to-list 'kill-buffer-query-functions 'util/do-not-kill-important-buffers))
 
 (use-package company :ensure t
   :config
   (validate-setq company-tooltip-minimum company-tooltip-limit)
   (validate-setq company-frontends '(company-pseudo-tooltip-frontend))
-  (validate-setq company-show-numbers t)
   (validate-setq company-tooltip-align-annotations t))
 
 (use-package cus-edit
@@ -1253,37 +891,6 @@ Add this to `kill-buffer-query-functions'."
 (use-package iedit :ensure t)
 
 (require 'zone)
-
-(defun set-selective-display-dlw (&optional level)
-"Fold text indented same of more than the cursor.
-If level is set, set the indent level to LEVEL.
-If 'selective-display' is already set to LEVEL, clicking
-F5 again will unset 'selective-display' by setting it to 0."
-  (interactive "P")
-  (if (eq selective-display (1+ (current-column)))
-      (set-selective-display 0)
-    (set-selective-display (or level (1+ (current-column))))))
-
-;;; defuns
-(defvar my-selective-display-width 1
-  "Last non nil value of `selective-display'.")
-
-(defun my-selective-display--incf (offset)
-  "Increments `selective-display' by OFFSET."
-  (setq my-selective-display-width (+ my-selective-display-width offset))
-  (set-selective-display my-selective-display-width))
-
-(defun my-selective-display-increase ()
-  "Increase the cap for `selective-display'."
-  (interactive)
-  (when (< my-selective-display-width 20)
-    (my-selective-display--incf 2)))
-
-(defun my-selective-display-decrease ()
-  "Decrease the cap for `selective-display'."
-  (interactive)
-  (when (> my-selective-display-width 1)
-    (my-selective-display--incf -2)))
 
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
@@ -1347,31 +954,29 @@ F5 again will unset 'selective-display' by setting it to 0."
 
 (use-package ripgrep :ensure t)
 
-(defun xref-pop-marker-stack ()
-  "Pop back to where \\[xref-find-definitions] was last invoked."
-  (interactive)
-  (let ((ring xref--marker-ring))
-    (when (ring-empty-p ring)
-      (user-error "Marker stack is empty"))
-    (let ((marker (ring-remove ring 0)))
-      (switch-to-buffer (or (marker-buffer marker)
-                            (user-error "The marked buffer has been deleted")))
-      (goto-char (marker-position marker))
-      (set-marker marker nil nil))))
-
-(defun my-xref-return ()
-  "Before returning from an xref jump, kill the jumped-to buffer.:"
-  (interactive)
-  ;; TODO Only kill this buffer if this buffer is not same as previous
-  ;; buffer, as when when we jump to definition and end up in same file.
-  (kill-this-buffer)
-  (xref-pop-marker-stack))
-
 (use-package xref :ensure t
   :config
   (bind-keys
-   ("M-," . my-xref-return)))
+   ("M-," . my-xref-return))
+  (defun xref-pop-marker-stack ()
+    "Pop back to where \\[xref-find-definitions] was last invoked."
+    (interactive)
+    (let ((ring xref--marker-ring))
+      (when (ring-empty-p ring)
+        (user-error "Marker stack is empty"))
+      (let ((marker (ring-remove ring 0)))
+        (switch-to-buffer (or (marker-buffer marker)
+                              (user-error "The marked buffer has been deleted")))
+        (goto-char (marker-position marker))
+        (set-marker marker nil nil))))
 
+  (defun my-xref-return ()
+    "Before returning from an xref jump, kill the jumped-to buffer.:"
+    (interactive)
+    ;; TODO Only kill this buffer if this buffer is not same as previous
+    ;; buffer, as when when we jump to definition and end up in same file.
+    (kill-this-buffer)
+    (xref-pop-marker-stack)))
 
 (use-package annotate :ensure t
   :config
@@ -1447,18 +1052,6 @@ F5 again will unset 'selective-display' by setting it to 0."
       (side-notes-toggle-notes 0)))
   (global-set-key (kbd "H-[") 'side-notes-toggle-main-notes)
   (global-set-key (kbd "H-]") 'side-notes-toggle-notes))
-
-(defun er-byte-compile-init-dir ()
-  "Byte-compile all your dotfiles."
-  (interactive)
-  (byte-recompile-directory user-emacs-directory 0))
-
-(defun toggle-selective-display (column)
-  (interactive "P")
-  (set-selective-display
-   (or column
-       (unless selective-display
-         (1+ (current-column))))))
 
 (use-package origami :ensure t
   :config

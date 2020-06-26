@@ -8,7 +8,7 @@
 
 (load (concat dotfiles-dir "modes.el"))
 (load (concat dotfiles-dir "sets.el"))
-(load (concat dotfiles-dir "general.el"))
+(load (concat dotfiles-dir "util.el"))
 (load (concat dotfiles-dir "experimental.el"))
 (load (concat dotfiles-dir "key_bindings.el"))
 
