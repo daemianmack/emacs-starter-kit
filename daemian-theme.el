@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2019-03-12.")
+  "Created 2020-06-26.")
 
 (custom-theme-set-variables
  'daemian
@@ -144,13 +144,24 @@
  '(whitespace-trailing ((t (:inherit whitespace-tab :weight bold))))
  '(widget-field ((t (:background "color-21" :foreground "color-254"))))
  '(cider-error-highlight-face ((t (:inherit font-lock-warning-face :underline t))))
- '(digit-groups-default-face ((t (:background "brightblack" :foreground "color-215"))))
  '(line-number ((t (:foreground "brightblack"))))
- '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
  '(diff-hl-change ((t (:foreground "purple" :weight bold))))
  '(diff-hl-delete ((t (:inherit diff-removed))))
  '(diff-removed ((t (:foreground "red" :weight bold))))
- '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :weight bold)))))
- '(symbol-overlay-default-face ((t (:background "color-235"))))
+ '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :weight bold))))
+ '(logview-level-debug ((t nil)))
+ '(logview-information-entry ((t nil)))
+ '(logview-error-entry ((t (:background "color-124"))))
+ '(logview-level-information ((t (:inherit (success)))))
+ '(org-checkbox ((t (:foreground "brightblack"))))
+ '(neo-file-link-face ((t (:foreground "white"))))
+ '(org-inflight-face ((t (:background "orange" :foreground "red"))))
+ '(annotate-highlight ((t (:background "blue"))))
+ '(annotate-annotation ((t (:background "color-63" :foreground "black"))))
+ '(tab-bar-tab ((t (:inherit tab-bar :background "color-202" :foreground "white" :weight bold))))
+ '(tab-bar-tab-inactive ((t (:background "black" :foreground "color-33"))))
+ '(tab-bar ((t (:foreground "black"))))
+ '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
+ '(whitespace-space ((t nil))))
 
 (provide-theme 'daemian)
