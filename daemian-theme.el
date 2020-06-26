@@ -161,7 +161,8 @@
  '(tab-bar-tab ((t (:inherit tab-bar :background "color-202" :foreground "white" :weight bold))))
  '(tab-bar-tab-inactive ((t (:background "black" :foreground "color-33"))))
  '(tab-bar ((t (:foreground "black"))))
+ '(whitespace-space ((t nil)))
  '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
- '(whitespace-space ((t nil))))
+ '(symbol-overlay-default-face ((t (:background "color-234")))))
 
 (provide-theme 'daemian)
