@@ -137,9 +137,9 @@
 (setq beacon-size 50)
 
 (setq neo-window-width 45)
-(setq neo-window-fixed-size nil)
+(setq neo-window-fixed-size t)
 (setq neo-smart-open t)
-(setq neo-theme 'nerd)
+(setq neo-theme 'arrow)
 (setq neo-vc-integration nil)
 
 (setq rings-protect-buffers-in-rings nil)
