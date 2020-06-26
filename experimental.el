@@ -972,11 +972,6 @@ If NOERROR is non-nil, just return nil when no symbol is found."
   :config
   (validate-setq iflipb-ignore-buffers nil))
 
-;; Constrain buffer-flipping by major mode.
-(use-package cbm :ensure t
-  :bind (("C-c C-z"   . cbm-cycle)
-         ("C-c C-x C-b" . cbm-switch-buffer)))
-
 (use-package key-chord :ensure t
   :init
   (key-chord-mode 1)
@@ -1073,10 +1068,8 @@ translation it is possible to get suggestion."
 (use-package easy-kill :ensure t)
 (use-package ffap :ensure t)
 (use-package find-file-in-project :ensure t)
-(use-package flymake-cursor :ensure t)
-(use-package kpm-list :ensure t)
+(use-package flymake-cursor :ensure t);;todo
 (use-package markdown-mode+ :ensure t)
-(use-package nav :ensure t)
 (use-package neotree :ensure t)
 (use-package project-explorer :ensure t)
 (use-package python-mode :ensure t)
@@ -1183,26 +1176,6 @@ translation it is possible to get suggestion."
   (google-this-mode 1)
   (diminish 'google-this-mode)
   :bind ("C-c T" . google-this))
-
-(use-package helm-descbinds :ensure t
-  :init (helm-descbinds-mode))
-
-;; Package manager and init file
-(use-package paradox                    ; Better package menu
-  :ensure t
-  :bind (("C-c a p" . paradox-list-packages)
-         ("C-c a P" . package-list-packages-no-fetch))
-  :config
-  (setq paradox-execute-asynchronously nil ; No async update, please
-        paradox-spinner-type 'progress-bar      ; Fancy spinner
-        ;; Show all possible counts
-        paradox-display-download-count t
-        paradox-display-star-count t
-        ;; Don't star automatically
-        paradox-automatically-star nil
-        ;; Hide download button.
-        paradox-use-homepage-buttons nil ; Can type v instead
-        ))
 
 (defconst do-not-kill-buffer-names '("*scratch*" "*Messages*")
   "Names of buffers that should not be killed.")
@@ -1359,15 +1332,6 @@ F5 again will unset 'selective-display' by setting it to 0."
             ;; current buffer before stuff outside of this buffer
             (setq company-transformers (quote (company-sort-by-occurrence)))))
 
-;; Live markdown preview: https://github.com/seagle0128/grip-mode
-(use-package grip-mode
-  :ensure t
-  :bind (:map markdown-mode-command-map
-              ("g" . grip-mode)) ;; C-c C-c g
-  :config
-  (if (is-in-terminal)
-      (setq grip-preview-use-webkit nil)))
-
 (use-package restclient :ensure t)
 
 (use-package multiple-cursors :ensure t
@@ -1488,8 +1452,6 @@ F5 again will unset 'selective-display' by setting it to 0."
   "Byte-compile all your dotfiles."
   (interactive)
   (byte-recompile-directory user-emacs-directory 0))
-
-(use-package hideshow :ensure t)
 
 (defun toggle-selective-display (column)
   (interactive "P")
