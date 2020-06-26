@@ -74,20 +74,16 @@
 
 (use-package flycheck :ensure t
   :init
-  (use-package flycheck-joker :ensure t)
   (use-package flycheck-clj-kondo :ensure t)
   (require 'flycheck-clj-kondo)
-  (dolist (checkers '((clj-kondo-clj . clojure-joker)
-                      (clj-kondo-cljs . clojurescript-joker)
-                      (clj-kondo-cljc . clojure-joker)))
-    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
   ;; "This fn should have a docstring", etc.
   (validate-setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (validate-setq flycheck-check-syntax-automatically '(mode-enabled save))
   (global-flycheck-mode)
   :config
   ;; Warning about POSIX sh compatibility despite BASH shebang. (?)
-  (validate-setq flycheck-shellcheck-excluded-warnings '("SC2039")))
+  (validate-setq flycheck-shellcheck-excluded-warnings '("SC2039"))
+  (validate-setq flycheck-indication-mode 'left-margin))
 
 (use-package recentf :ensure t
   :init
@@ -297,7 +293,6 @@
     (validate-setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
   (validate-setq ido-save-directory-list-file (concat variable-files-dir "ido.last"))
   (ido-mode 1)
-  (ido-everywhere 1)
 
   (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
   (add-hook 'ido-setup-hook
@@ -397,7 +392,7 @@
   (validate-setq cider-session-name-template "%j")
   (validate-setq nrepl-repl-buffer-name-template "*REPL %s*"))
 
-(use-package inferior-lisp
+  ;; (use-package inferior-lisp
   ;; (validate-setq inferior-lisp-program "lein repl")
   ;; (add-hook 'clojure-mode-hook
   ;;           '(lambda ()
@@ -424,9 +419,10 @@
   ;;                   (interactive)
   ;;                   (erase-buffer)
   ;;                   (lisp-eval-string "")))))
-)
+  ;;)
 
 (use-package adaptive-wrap :ensure t)
+(use-package visual-fill-column :ensure t)
 
 (use-package projectile
   :ensure t
@@ -461,7 +457,7 @@
   (validate-setq magit-diff-refine-hunk 'all)
   (validate-setq magit-process-popup-time 10)
   (validate-setq magit-auto-revert-mode 't)
-  (validate-setq magit-repository-directories '(("/Users/daemian/src" . 0)))
+  (validate-setq magit-repository-directories '(("/Users/daemianmack/dev" . 0)))
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map
@@ -479,7 +475,7 @@
 
 (add-hook 'prog-mode-hook 'show-paren-mode)
 (add-hook 'prog-mode-hook 'add-watchwords)
-(add-hook 'prog-mode-hook 'digit-groups-mode)
+;(add-hook 'prog-mode-hook 'digit-groups-mode)
 (add-hook 'prog-mode-hook 'comment-auto-fill)
 
 (use-package rainbow-delimiters :ensure t
@@ -535,7 +531,7 @@
                   (>= (point) beg))
         (skip-chars-backward (rx (syntax expression-prefix)))
         (setq p (point-marker)))
-      ;; Re-comment everything before it. 
+      ;; Re-comment everything before it.
       (ignore-errors
         (comment-region beg p))
       ;; And everything after it.
@@ -633,6 +629,8 @@ dired, which I don't use."
   :ensure t
   :bind (("C-c ;" . comment-or-uncomment-sexp))
   :config
+  (diminish 'clojure-mode "clj")
+  (diminish 'clojurescript-mode "cljs")
   (bind-keys :map clojure-mode-map ("C-c C-r n c" . clojure-copy-ns))
   (add-to-list 'auto-mode-alist '("\\.clj" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.cljs" . clojurescript-mode))
@@ -709,7 +707,6 @@ dired, which I don't use."
   :config
   (validate-setq inf-clojure-program "nc localhost 5554")
   (add-hook 'inf-clojure-mode-hook #'lisp-mode-setup)
-  (add-hook 'clojure-mode-hook 'clojure-custom-setup)
   (validate-setq inf-clojure-generic-cmd '("localhost" . 5554))
   (add-hook 'inf-clojure-mode-hook #'eldoc-mode)
   ;; For some reason paredit is missing this in inf-clojure REPLs.
@@ -747,7 +744,7 @@ dired, which I don't use."
   :ensure t
   :config
   (back-button-mode 1)
-  (diminish 'back-button-mode " ⊙ "))
+  (diminish 'back-button-mode " ⟲ "))
 
 ;; TODO
 ;; - Use var for save location.
@@ -790,9 +787,11 @@ dired, which I don't use."
   (unbind-key "S-<down>" org-mode-map)
   (unbind-key "S-<right>" org-mode-map)
   (unbind-key "S-<left>" org-mode-map)
+  (unbind-key "C-c =" org-mode-map)
   (setq org-src-fontify-natively t)
   (setq org-hide-leading-stars t)
   (setq org-return-follows-link t)
+  (setq org-odd-levels-only t)
   ;; Show all empty lines when collapsed.
   (setq org-cycle-separator-lines -1)
   (setq org-cycle-global-at-bob t)
@@ -841,23 +840,6 @@ dired, which I don't use."
             (validate-setq retval (cons 'exception (list ex)))))
          retval)
      ,@clean-up))
-
-;; (defun clojure-custom-setup ()
-;;   (let ((enable-local-variables :all))
-;;     (hack-dir-local-variables-non-file-buffer))
-
-;;   ;; inf-clojure config
-;;   (when inf-clojure-project
-;;     (progn
-;;       (when (require 'inf-clojure nil 'noerror)
-;;         (safe-wrap (inf-clojure-minor-mode)))
-;;       (make-local-variable 'inf-clojure-buffer)
-;;       (let ((ext (car (last (split-string (buffer-name (current-buffer)) "\\.")))))
-;;         (if (equal ext "clj")
-;;             (validate-setq inf-clojure-buffer "*inf-clj*")
-;;           (if (equal ext "cljs")
-;;               (validate-setq inf-clojure-buffer "*inf-cljs*")))))))
-
 
 (use-package which-key :ensure t
   :config
@@ -909,12 +891,29 @@ dired, which I don't use."
 
 (use-package symbol-overlay :ensure t
   :bind
-  (("M-i" . symbol-put) ;; Enter 'mode' where subcommands available.
+  (("M-i" . symbol-overlay-put) ;; Enter 'mode' where subcommands available.
    ;; Globalize nav subcommands.
    ("M-n" . symbol-overlay-jump-next)
    ("M-p" . symbol-overlay-jump-prev))
   :config
-  (validate-setq symbol-overlay-idle-time 0.2))
+  ;; TODO Which one of these do we need to apply this mode to every
+  ;; prog/text buffer?
+  (add-hook 'after-init-hook 'symbol-overlay-mode)
+  (add-hook 'prog-mode-hook 'symbol-overlay-mode)
+  (validate-setq symbol-overlay-idle-time 0.2)
+
+  ;; TODO Correct this. The intent: when point is on `:foo'` highlight
+  ;; all `foo`, navigate same.
+  (defun my-symbol-overlay-get-symbol (&optional string noerror)
+    "Get the symbol at point.
+If STRING is non-nil, `regexp-quote' STRING rather than the symbol.
+If NOERROR is non-nil, just return nil when no symbol is found."
+    (let ((symbol (or string (thing-at-point 'symbol))))
+      (if symbol (regexp-quote (replace-regexp-in-string "[:]" "" symbol))
+        (unless noerror (user-error "No symbol at point")))))
+
+  
+  )
 
 (defun increment-number-at-point ()
   (interactive)
@@ -978,11 +977,6 @@ dired, which I don't use."
   :bind (("C-c C-z"   . cbm-cycle)
          ("C-c C-x C-b" . cbm-switch-buffer)))
 
-
-;; Would enable globally but messes up magit's status display for some reason.
-;; https://bitbucket.org/adamsmd/digit-groups/issues/1/conflict-with-egg-mode
-(use-package digit-groups :ensure t)
-
 (use-package key-chord :ensure t
   :init
   (key-chord-mode 1)
@@ -992,10 +986,18 @@ dired, which I don't use."
   ;; enter search results buffer.
   (key-chord-define-global "jk" 'next-error)
   (key-chord-define-global "JK" 'previous-error)
+  (key-chord-define-global " f" 'avy-goto-char-timer)
+  (key-chord-define-global " n" 'neotree-toggle)
   (key-chord-define-global ",." 'other-window)
   (key-chord-define-global "ZZ" 'save-buffer)
   (key-chord-define-global "zx" 'jump-to-register)
-  (key-chord-define-global "ZX" 'window-configuration-to-register))
+  (key-chord-define-global "ZX" 'window-configuration-to-register)
+  ;; Not sure optimal values for these settings
+  ;; We want to NOT delay typing, and NOT mis-interpret pastes as
+  ;; commands, while keeping commands easy for human fingers to
+  ;; express within the timeout.
+  (validate-setq key-chord-one-key-delay 0.1)
+  (validate-setq key-chord-two-keys-delay 0.02))
 
 ;; Don't display `\` when wrapping lines.
 (set-display-table-slot standard-display-table 'wrap ?\ )
@@ -1023,7 +1025,7 @@ dired, which I don't use."
   :bind (("C-c t" . google-translate-smooth-translate))
   :config
   (require 'google-translate-smooth-ui)
-  (validate-setq google-translate-translation-directions-alist '(("da" . "en")))
+  (validate-setq google-translate-translation-directions-alist '(("pt" . "en")))
   (validate-setq google-translate-output-destination 'echo-area)
   ;; Temporary workaround: https://github.com/atykhonov/google-translate/issues/52#issuecomment-423870290
   (when (and (string-match "0.11.14"
@@ -1033,11 +1035,23 @@ dired, which I don't use."
                   (encode-time 0 0 0 23 9 2018))))
     (defun google-translate--get-b-d1 ()
       ;; TKK='427110.1469889687'
-      (list 427110 1469889687))))
+      (list 427110 1469889687)))
+  ;; Hack around `(args-out-of-range [] 1)` https://github.com/atykhonov/google-translate/issues/98
+  ;; Why is this package so hacky?
+  (defun google-translate-json-suggestion (json)
+    "Retrieve from JSON (which returns by the
+`google-translate-request' function) suggestion. This function
+does matter when translating misspelled word. So instead of
+translation it is possible to get suggestion."
+    (let ((info (aref json 7)))
+      (if (and info (> (length info) 0))
+          (aref info 1)
+        nil)))  )
 
 (use-package browse-kill-ring :ensure t
   :config
-  (validate-setq browse-kill-ring-separator "──"))
+  (validate-setq browse-kill-ring-separator "──")
+  (validate-setq kill-ring-max 500))
 
 (use-package helm :ensure t
   :config (validate-setq helm-split-window-default-side 'left)
@@ -1070,7 +1084,8 @@ dired, which I don't use."
 (use-package rings :ensure t)
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
-  :config (diminish 'undo-tree-mode))
+  :config (diminish 'undo-tree-mode)
+  (validate-setq undo-tree-visualizer-timestamps t))
 (use-package yasnippet :ensure t)
 
 (use-package savehist :ensure t
@@ -1257,57 +1272,198 @@ Add this to `kill-buffer-query-functions'."
   :bind (("C-c l" . ialign)))
 
 (save-place-mode)
-(validate-setq save-place-file (concat variable-files-dir ".emacs-places"))(use-package lsp-mode
+(validate-setq save-place-file (concat variable-files-dir ".emacs-places"))
 
-  :ensure t
+(use-package ido-clever-match :ensure t
+  :config (ido-clever-match-enable))
+
+(use-package iedit :ensure t)
+
+(require 'zone)
+
+(defun set-selective-display-dlw (&optional level)
+"Fold text indented same of more than the cursor.
+If level is set, set the indent level to LEVEL.
+If 'selective-display' is already set to LEVEL, clicking
+F5 again will unset 'selective-display' by setting it to 0."
+  (interactive "P")
+  (if (eq selective-display (1+ (current-column)))
+      (set-selective-display 0)
+    (set-selective-display (or level (1+ (current-column))))))
+
+;;; defuns
+(defvar my-selective-display-width 1
+  "Last non nil value of `selective-display'.")
+
+(defun my-selective-display--incf (offset)
+  "Increments `selective-display' by OFFSET."
+  (setq my-selective-display-width (+ my-selective-display-width offset))
+  (set-selective-display my-selective-display-width))
+
+(defun my-selective-display-increase ()
+  "Increase the cap for `selective-display'."
+  (interactive)
+  (when (< my-selective-display-width 20)
+    (my-selective-display--incf 2)))
+
+(defun my-selective-display-decrease ()
+  "Decrease the cap for `selective-display'."
+  (interactive)
+  (when (> my-selective-display-width 1)
+    (my-selective-display--incf -2)))
+
+(use-package dired
+  :hook (dired-mode . dired-hide-details-mode)
   :config
+  ;; Colourful columns.
+  (use-package diredfl
+    :ensure t
+    :config
+    (diredfl-global-mode 1))
+  (use-package dired-git-info
+    :ensure t
+    :bind (:map dired-mode-map
+                (")" . dired-git-info-mode))))
+
+;; Configure `ispell` which will use hunspell's dictionary at ~/.hunspell_en_US
+(setenv
+ "DICPATH"
+ (concat (getenv "HOME") "/Library/Spelling"))
+(setq ispell-program-name "/usr/local/bin/hunspell")
+
+(setq org-startup-folded 'showeverything)
+(use-package company
   :ensure t
+  :demand t
+  :bind (("M-<tab>" . company-complete))
+  :init (progn
+          ;; start company mode now and run it in all modes
+          (add-hook 'after-init-hook 'global-company-mode)
+          (setq company-idle-delay nil)
 
-;; Abortive attempt to configure lsp-mode.
-;;
-;; The thing itself works great and replaces good bits of
-;; clj-refactor, but it also clobbers the clj-kondo and joker linters
-;; set up in flycheck, and those provide more featureful checks.
-;;
-;; The setup described here [1] didn't seem to work, and it doesn't
-;; appear to accommodate multiple other linters, so joker would have
-;; to go.
-;; [1] https://github.com/borkdude/clj-kondo/blob/master/doc/editor-integration.md#lsp-server
-;;
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :hook ((clojure-mode . lsp)
-;;          (clojurec-mode . lsp)
-;;          (clojurescript-mode . lsp))
-;;   :config
-;;   ;; add paths to your local installation of project mgmt tools, like lein
-;;   (setenv "PATH" (concat
-;;                    "/usr/local/bin" path-separator
-;;                    (getenv "PATH")))
-;;   (dolist (m '(clojure-mode
-;;                clojurec-mode
-;;                clojurescript-mode
-;;                clojurex-mode))
-;;      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
-;;   (setq lsp-enable-indentation nil
-;;         lsp-clojure-server-command '("bash" "-c" "clojure-lsp")
-;;         lsp-enable-symbol-highlighting nil
-;;         lsp-ui-doc-delay 3
-;;         lsp-session-file (concat variable-files-dir ".lsp-session-v1"))
-;;   (define-key lsp-mode-map (kbd "H-l") lsp-command-map)
-;;   (define-key lsp-mode-map (kbd "H-l i l") 'lsp-clojure-introduce-let)
-;;   (define-key lsp-mode-map (kbd "H-l m l") 'lsp-clojure-move-to-let))
+          ;; use TAB to indent or start completion
+          ;; (global-set-key (kbd "TAB") 'company-indent-or-complete-common)
+          ;; don't force a match so we can type some other stuff and not have
+          ;; company block my typing
+          (setq company-require-match nil)
+          ;; show completion number
+          (setq company-show-numbers t)
+          ;; look in comments and strings
+          (setq company-dabbrev-code-everywhere t))
+  :config (progn
+            ;; complete things in my current buffer using company-dabbrev
+            ;; http://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
+            (add-to-list 'company-backends '(company-capf :with company-dabbrev))
+            (add-to-list 'company-backends '(company-capf :with company-dabbrev-code))
+            ;; Sort the company suggestions by preferring things within the
+            ;; current buffer before stuff outside of this buffer
+            (setq company-transformers (quote (company-sort-by-occurrence)))))
 
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :commands lsp-ui-mode)
+;; Live markdown preview: https://github.com/seagle0128/grip-mode
+(use-package grip-mode
+  :ensure t
+  :bind (:map markdown-mode-command-map
+              ("g" . grip-mode)) ;; C-c C-c g
+  :config
+  (if (is-in-terminal)
+      (setq grip-preview-use-webkit nil)))
 
-;; (use-package company-lsp
-;;   :ensure t
-;;   :commands company-lsp)
+(use-package restclient :ensure t)
+
+(use-package multiple-cursors :ensure t
+  :bind
+  ("C-c <" . mc/mark-previous-like-this-word)
+  ("C-c >" . mc/mark-next-like-this-word))
+
+(use-package helm-swoop :ensure t
+  :bind
+  ("C-s" . helm-swoop)
+  :config
+  (validate-setq helm-swoop-speed-or-color t))
+
+(use-package ripgrep :ensure t)
+
+(defun xref-pop-marker-stack ()
+  "Pop back to where \\[xref-find-definitions] was last invoked."
+  (interactive)
+  (let ((ring xref--marker-ring))
+    (when (ring-empty-p ring)
+      (user-error "Marker stack is empty"))
+    (let ((marker (ring-remove ring 0)))
+      (switch-to-buffer (or (marker-buffer marker)
+                            (user-error "The marked buffer has been deleted")))
+      (goto-char (marker-position marker))
+      (set-marker marker nil nil))))
+
+(defun my-xref-return ()
+  "Before returning from an xref jump, kill the jumped-to buffer.:"
+  (interactive)
+  ;; TODO Only kill this buffer if this buffer is not same as previous
+  ;; buffer, as when when we jump to definition and end up in same file.
+  (kill-this-buffer)
+  (xref-pop-marker-stack))
+
+(use-package xref :ensure t
+  :config
+  (bind-keys
+   ("M-," . my-xref-return)))
+
+
+(use-package annotate :ensure t
+  :config
+  (validate-setq annotate-annotation-column 25))
+
+(use-package lsp-mode
+  :ensure t
+  :defer t
+  :hook ((clojure-mode . lsp)
+         (clojurec-mode . lsp)
+         (clojurescript-mode . lsp))
+  :config
+  (diminish 'lsp-mode "lsp")
+  (validate-setq read-process-output-max (* 1024 1024))
+  (validate-setq lsp-prefer-capf t)
+  (setenv "PATH" (concat
+                   "/usr/local/bin" path-separator
+                   (getenv "PATH")))
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+  (setq lsp-enable-indentation nil
+        lsp-clojure-server-command '("bash" "-c" "clojure-lsp")
+        lsp-ui-doc-delay 3
+        lsp-enable-symbol-highlighting nil
+        lsp-session-file (concat variable-files-dir ".lsp-session-v1"))
+  (define-key lsp-mode-map (kbd "H-l") lsp-command-map)
+  (define-key lsp-mode-map (kbd "H-l i l") 'lsp-clojure-introduce-let)
+  (define-key lsp-mode-map (kbd "H-l m l") 'lsp-clojure-move-to-let)
+  (define-key lsp-mode-map (kbd "H-.") 'lsp-find-definition)
+  ;; Don't display diag; clj-kondo does a better job.
+  (validate-setq lsp-diagnostic-package :none)
+  (validate-setq max-specpdl-size 13000)
+  (validate-setq flycheck-checker-error-threshold 4000)
+  (validate-setq lsp-file-watch-threshold 5000)
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.shadow-cljs$")
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.clj-kondo$")
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]resources$"))
+
+;; Separate file for lexical binding.
+;; TODO Will that setting in this file mess anything up?
+(load (concat dotfiles-dir "offscreen-paren-matching"))
+
+;; Keybindings for tab-bar-mode.
+;; tab-bar-mode should be called tabset-mode;
+;; Each "tab" is a view onto some number of buffers in a given layout
+;; and we can cycle through these layouts via navigating "tabs".
+(global-set-key (kbd "H-<left>")  'tab-previous)
+(global-set-key (kbd "H-<right>")  'tab-next)
+(global-set-key (kbd "H-r")  'tab-rename)
+(validate-setq tab-bar-close-button-show nil)
+(validate-setq tab-bar-new-button-show nil)
+
 (use-package dbc :ensure t
-  :custom
-  (dbc-verbose t)
   :config
   ;; Intent: nix situation where a buffer is set to side, but
   ;; then I'm prevented from killing *other* windows due to
@@ -1316,3 +1472,34 @@ Add this to `kill-buffer-query-functions'."
   (validate-setq ignore-window-parameters t)
   (dbc-add-ruleset "right" '((display-buffer-reuse-window display-buffer-in-side-window) . ((side . right) (window-width . 0.4))))
   (dbc-add-rule "right" "help" :newname "\\*helpful.*"))
+
+(use-package side-notes :ensure t
+  :config
+  (setq side-notes-display-alist '((side . right) (window-width . 60)))
+  (defun side-notes-toggle-main-notes ()
+    (interactive)
+    (let ((side-notes-secondary-file "/Users/daemianmack/Dropbox/docs/notes/notes.org")
+          (side-notes-display-alist '((side . right) (window-width . 100))))
+      (side-notes-toggle-notes 0)))
+  (global-set-key (kbd "H-[") 'side-notes-toggle-main-notes)
+  (global-set-key (kbd "H-]") 'side-notes-toggle-notes))
+
+(defun er-byte-compile-init-dir ()
+  "Byte-compile all your dotfiles."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
+
+(use-package hideshow :ensure t)
+
+(defun toggle-selective-display (column)
+  (interactive "P")
+  (set-selective-display
+   (or column
+       (unless selective-display
+         (1+ (current-column))))))
+
+(use-package origami :ensure t
+  :config
+  (global-origami-mode)
+  (global-set-key (kbd "<backtab>") 'origami-toggle-node)
+  (global-set-key (kbd "C-c <backtab>") 'origami-open-node-recursively))
