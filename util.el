@@ -342,11 +342,6 @@ F5 again will unset 'selective-display' by setting it to 0."
        (unless selective-display
          (1+ (current-column))))))
 
-(defun util/byte-compile-init-dir ()
-  "Byte-compile all your dotfiles."
-  (interactive)
-  (byte-recompile-directory user-emacs-directory 0))
-
 (defconst util/do-not-kill-buffer-names '("*scratch*" "*Messages*")
   "Names of buffers that should not be killed.")
 

@@ -2,6 +2,18 @@
 ;; collection.
 (setq gc-cons-threshold (* 50 1000 1000))
 
+
+;; "Emergency mode" -- accommodate less-painful startup routine when
+;; troubleshooting config problems featuring many restarts.
+(use-package emergency-mode
+  :no-require t
+  :config
+  (defun byte-compile-init-dir ()
+    "Byte-compile all your dotfiles."
+    (interactive)
+    (byte-recompile-directory user-emacs-directory 0))
+  (global-whitespace-mode -1))
+
 (setq load-prefer-newer t)
 
 (require 'package)
@@ -65,3 +77,6 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+(message "Done initializing.")
