@@ -21,6 +21,7 @@
          (set-frame-size nil (display-pixel-width) (display-pixel-height) t)))
 
 
+(add-to-list 'completion-styles 'flex)
 
 (setq desktop-path (list variable-files-dir))
 (setq desktop-save t)
@@ -31,7 +32,8 @@
                                         recentf-list
                                         minibuffer-history
                                         register-alist
-                                        file-name-history)))
+                                        file-name-history)
+					desktop-globals-to-save))
 ;; Force desktop reloading on startup even in TTY
 ;; From https://emacs.stackexchange.com/a/45829
 (setq desktop-restore-forces-onscreen nil)
@@ -52,7 +54,6 @@
 
 ;; Disable visual/audio erroring.
 (setq visible-bell t)
-(setq redisplay-dont-pause t)
 (setq ring-bell-function (lambda nil (message "")))
 
 (setq color-theme-is-global t)
@@ -143,5 +144,3 @@
 (setq neo-vc-integration nil)
 
 (setq rings-protect-buffers-in-rings nil)
-
-(setq pe/follow-current t)

@@ -94,7 +94,6 @@
   ("H-b" . helm-mini)
   :config
   (validate-setq helm-mode-fuzzy-match t
-                 helm-completion-in-region-fuzzy-match t
                  helm-follow-mode-persistent t)
   ;; Use Mac OS X's Spotlight.
   (validate-setq helm-locate-command "mdfind -name %s %s"))
@@ -199,8 +198,6 @@
 
 (use-package ido :ensure t
   :config
-  ;; TODO Put ido-preview on Melpa, then :ensure.
-  (use-package ido-preview)
   (use-package ido-ubiquitous
     :ensure t
     :config (ido-ubiquitous-mode 1))
@@ -234,7 +231,6 @@
   (validate-setq ido-create-new-buffer 'always)
   (validate-setq ido-enable-prefix nil)
   (validate-setq ido-enter-matching-directory 'first)
-  (validate-setq cider-print-fn "zprint")
   (validate-setq ido-max-prospects 10)
   (validate-setq ido-max-work-file-list 50)
   (validate-setq ido-mode 'both)
@@ -425,13 +421,13 @@
 
 (use-package paredit :ensure t
   :config
-  (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
   (bind-keys :map paredit-mode-map
              ("C-J" . paredit-newline-in-place))
+  (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
   (defun paredit-newline-in-place()
     (interactive)
     (progn (paredit-newline)
-           (previous-line))))
+           (forward-line -1))))
 
 (use-package pinentry
   :ensure t
@@ -691,7 +687,6 @@ translation it is possible to get suggestion."
 (use-package project-explorer :ensure t)
 (use-package python-mode :ensure t)
 (use-package rainbow-delimiters :ensure t)
-(use-package rings :ensure t)
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode)
@@ -720,6 +715,7 @@ translation it is possible to get suggestion."
 ;; automatically but also to allow manually running
 ;; `clean-buffer-list` when annoyed at buffer sprawl.
 (use-package midnight-mode
+  :no-require t
   :init
   (midnight-mode 1)
   (validate-setq midnight-period 7200) ;; Auto-run frequently -- the "day" occurs every 2 hours.
@@ -820,9 +816,6 @@ translation it is possible to get suggestion."
 
 (save-place-mode)
 (validate-setq save-place-file (concat variable-files-dir ".emacs-places"))
-
-(use-package ido-clever-match :ensure t
-  :config (ido-clever-match-enable))
 
 (use-package iedit :ensure t)
 
@@ -985,7 +978,7 @@ translation it is possible to get suggestion."
     (interactive)
     (let ((side-notes-secondary-file "/Users/daemianmack/Dropbox/docs/notes/notes.org")
           (side-notes-display-alist '((side . right) (window-width . 100))))
-      (side-notes-toggle-notes 0)))
+      (side-notes-toggle-notes)))
   (global-set-key (kbd "H-[") 'side-notes-toggle-main-notes)
   (global-set-key (kbd "H-]") 'side-notes-toggle-notes))
 

@@ -32,13 +32,11 @@
 (when (file-exists-p user-config)
   (load user-config))
 
-(setq stack-trace-on-error '(buffer-read-only))
 
 (setq debug-ignored-errors nil)
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
-(package-install 'use-package)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
