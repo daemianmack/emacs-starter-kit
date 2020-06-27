@@ -188,7 +188,7 @@
          ("C-c M-o" . swoop-pcre-regexp))
   :config
   (global-set-key (kbd "C-c C-o") 'util/swoop-top-level-forms)
-  (validate-setq swoop-window-split-direction 'split-window-horizontally)
+  (validate-setq swoop-window-split-direction: 'split-window-horizontally)
   (bind-keys
    :map swoop-map
    ("<up>"   . swoop-action-goto-line-prev)
@@ -341,8 +341,6 @@
   (use-package ido-completing-read+ :ensure t)
   (validate-setq transient-history-file (concat variable-files-dir "transient-history.el"))
   (validate-setq magit-completing-read-function 'magit-ido-completing-read)
-  (validate-setq magit-diff-arguments '("--stat" "--no-ext-diff"))
-  (validate-setq magit-diff-section-arguments '("--no-ext-diff"))
   (validate-setq magit-diff-refine-hunk 'all)
   (validate-setq magit-process-popup-time 10)
   (validate-setq magit-auto-revert-mode 't)
