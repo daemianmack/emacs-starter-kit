@@ -312,35 +312,6 @@
     (save-some-buffers)
     (cider-repl-command "(dev/reset)")))
 
-  ;; (use-package inferior-lisp
-  ;; (validate-setq inferior-lisp-program "lein repl")
-  ;; (add-hook 'clojure-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key clojure-mode-map
-  ;;                "\C-c\C-k"
-  ;;                '(lambda ()
-  ;;                   (interactive)
-  ;;                   (let ((current-point (point)))
-  ;;                     (goto-char (point-min))
-  ;;                     (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
-  ;;                       (when ns-idx
-  ;;                         (goto-char ns-idx)
-  ;;                         (let ((sym (symbol-at-point)))
-  ;;                           (message (format "Loading %s ..." sym))
-  ;;                           (lisp-eval-string (format "(require '%s :reload)" sym))
-  ;;                           (lisp-eval-string (format "(in-ns '%s)" sym)))))
-  ;;                     (goto-char current-point))))))
-
-  ;; (add-hook 'inferior-lisp-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key inferior-lisp-mode-map
-  ;;                "\C-cl"
-  ;;                '(lambda ()
-  ;;                   (interactive)
-  ;;                   (erase-buffer)
-  ;;                   (lisp-eval-string "")))))
-  ;;)
-
 (use-package adaptive-wrap :ensure t)
 (use-package visual-fill-column :ensure t)
 
@@ -451,42 +422,6 @@
   (bind-keys
    :map swiper-map
    ("C-r" . ivy-previous-line)))
-
-;;todo
-(defun inf-clojurize-buffer ()
-  ;; For now sometimes this is required in a buffer needing a connection to an inf REPL...
-  ;; TODO Make this not necessary.
-  (interactive)
-  (make-local-variable 'inf-clojure-buffer)
-  (validate-setq inf-clojure-buffer "*inf-clj*"))
-
-(defun inf-clojure-repl-edit-last-sexp ()
-  "Send the previous sexp to the inferior Clojure process for editing."
-  (interactive)
-  (let ((str (buffer-substring-no-properties
-              (save-excursion (backward-sexp) (point))
-              (point))))
-    (with-current-buffer inf-clojure-buffer
-      (insert str))
-    (inf-clojure-switch-to-repl t)))
-
-(use-package inf-clojure
-  :ensure t
-  :bind (("C-c M-p" . inf-clojure-repl-edit-last-sexp)  ;; Mimic + clobber CIDER's.
-         ("C-c M-o" . inf-clojure-clear-repl-buffer))
-  :config
-  (validate-setq inf-clojure-program "nc localhost 5554")
-  (add-hook 'inf-clojure-mode-hook 'util/lisp-mode-setup)
-  (validate-setq inf-clojure-generic-cmd '("localhost" . 5554))
-  (add-hook 'inf-clojure-mode-hook #'eldoc-mode)
-  ;; For some reason paredit is missing this in inf-clojure REPLs.
-  (add-hook 'paredit-mode-hook
-            (lambda ()
-              (when (>= paredit-version 21)
-                (define-key inf-clojure-mode-map "{" 'paredit-open-curly)
-                (define-key inf-clojure-mode-map "}" 'paredit-close-curly)))))
-
-
 
 (use-package paredit :ensure t
   :config
