@@ -323,6 +323,10 @@
   (add-to-list 'projectile-globally-ignored-directories "resources/public/js")
   (add-to-list 'projectile-globally-ignored-file-suffixes ".log")
   (add-to-list 'projectile-globally-ignored-directories "js/compiled")
+  (when (require 'magit nil t)
+    (mapc #'projectile-add-known-project
+          (mapcar #'file-name-as-directory (magit-list-repos)))
+    (projectile-save-known-projects))
   :bind
   ("H-p" . projectile-switch-project)
   ("C-x f" . projectile-find-file)
@@ -344,7 +348,7 @@
   (validate-setq magit-diff-refine-hunk 'all)
   (validate-setq magit-process-popup-time 10)
   (validate-setq magit-auto-revert-mode 't)
-  (validate-setq magit-repository-directories '(("/Users/daemianmack/dev" . 0)))
+  (validate-setq magit-repository-directories '(("/Users/daemianmack/dev" . 3)))
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map
