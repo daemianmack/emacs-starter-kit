@@ -308,9 +308,6 @@
     (save-some-buffers)
     (cider-repl-command "(dev/reset)")))
 
-(use-package adaptive-wrap :ensure t)
-(use-package visual-fill-column :ensure t)
-
 (use-package projectile
   :ensure t
   :init
