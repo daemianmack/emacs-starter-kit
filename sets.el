@@ -10,16 +10,6 @@
 (setq initial-scratch-message nil)
 
 (add-to-list 'custom-theme-load-path dotfiles-dir)
-(defun is-in-terminal () (not (display-graphic-p)))
-(if (is-in-terminal)
-    (load-theme 'daemian t)
-  (progn (load-theme 'daemian-gui t)
-         ;; Maximize borderless. Assumes `emacs-plus` compiled with
-         ;;   --with-no-titlebar option.
-         (setq ns-auto-hide-menu-bar t)
-         (set-frame-position nil 0 0)
-         (set-frame-size nil (display-pixel-width) (display-pixel-height) t)))
-
 
 (add-to-list 'completion-styles 'flex)
 

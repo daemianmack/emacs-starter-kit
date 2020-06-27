@@ -24,14 +24,24 @@
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-(put 'downcase-region 'disabled nil)
-
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
 (setq user-config (concat dotfiles-dir user-login-name ".el"))
 (when (file-exists-p user-config)
   (load user-config))
 
+;; Load theme here after loading custom stuff. Something in Emacs 28
+;; causes startup issues where loading themes prior to code in main
+;; use-package file causes a "Attempt to set a constant symbol: nil"
+;; error that halts code loading.
+(if (util/is-in-terminal)
+    (load-theme 'daemian t)
+  (progn (load-theme 'daemian-gui t)
+         ;; Maximize borderless. Assumes `emacs-plus` compiled with
+         ;;   --with-no-titlebar option.
+         (setq ns-auto-hide-menu-bar t)
+         (set-frame-position nil 0 0)
+         (set-frame-size nil (display-pixel-width) (display-pixel-height) t)))
 
 (setq debug-ignored-errors nil)
 

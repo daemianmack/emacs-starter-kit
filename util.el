@@ -1,3 +1,5 @@
+(defun util/is-in-terminal () (not (display-graphic-p)))
+
 (defun util/backward-kill-word-or-kill-region (&optional arg)
   "Let existence of an active region determine whether we `backward-kill-word`, or kill said region."
   (interactive "p")
