@@ -313,12 +313,13 @@
 
 (use-package projectile
   :ensure t
+  :init
+  (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
+  (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
   :config
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
-  (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
-  (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
   (add-to-list 'projectile-globally-ignored-directories "resources/public/js")
   (add-to-list 'projectile-globally-ignored-file-suffixes ".log")
   (add-to-list 'projectile-globally-ignored-directories "js/compiled")
@@ -338,6 +339,7 @@
   ;; Avoid version skew that breaks Magit's git-rebase-mode.
   (use-package with-editor :ensure t)
   (use-package ido-completing-read+ :ensure t)
+  (validate-setq transient-history-file (concat variable-files-dir "transient-history.el"))
   (validate-setq magit-completing-read-function 'magit-ido-completing-read)
   (validate-setq magit-diff-arguments '("--stat" "--no-ext-diff"))
   (validate-setq magit-diff-section-arguments '("--no-ext-diff"))
