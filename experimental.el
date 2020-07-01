@@ -58,9 +58,6 @@
 ;; Speed up display of very long lines.
 (setq-default bidi-display-reordering nil)
 
-(global-set-key (kbd "<f12>") 'bury-buffer)
-(global-set-key (kbd "C-c C-i") 'bury-buffer)
-
 (use-package flycheck :ensure t
   :init
   (use-package flycheck-clj-kondo :ensure t)
@@ -582,9 +579,22 @@ If NOERROR is non-nil, just return nil when no symbol is found."
 (use-package iflipb :ensure t
   :bind
   (("C-z"   . iflipb-next-buffer)
-   ("C-M-z" . iflipb-previous-buffer))
+   ("C-M-z" . iflipb-previous-buffer)
+   ;; Evocative of "C-c i", bury-buffer.
+   ("C-c M-i" . iflipb-kill-buffer))
   :config
-  (validate-setq iflipb-ignore-buffers nil))
+  (validate-setq iflipb-ignore-buffers nil)
+  ;; Monkeypatch to call `my-kill-buffer` instead of the asky default.
+  (defun iflipb-kill-buffer ()
+    "Same as `kill-buffer' but keep the iflipb buffer list state."
+    (interactive)
+    (call-interactively #'util/my-kill-buffer)
+    (if (iflipb-first-iflipb-buffer-switch-command)
+        (setq last-command 'util/my-kill-buffer)
+      (if (< iflipb-current-buffer-index (length (iflipb-interesting-buffers)))
+          (iflipb-select-buffer iflipb-current-buffer-index)
+        (iflipb-select-buffer (1- iflipb-current-buffer-index)))
+      (setq last-command 'iflipb-kill-buffer))))
 
 (use-package key-chord :ensure t
   :init
@@ -767,7 +777,9 @@ translation it is possible to get suggestion."
 
 (use-package my-buffers
   :no-require t
-  :bind (("C-x C-k" . util/my-kill-buffer))
+  :bind (("C-x C-k" . util/my-kill-buffer)
+         ("<f12>"   . bury-buffer)
+         ("C-c C-i" . bury-buffer))
   :init
   (add-to-list 'kill-buffer-query-functions 'util/do-not-kill-important-buffers))
 
