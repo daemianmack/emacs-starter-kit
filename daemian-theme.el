@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2020-06-26.")
+  "Created 2020-07-01.")
 
 (custom-theme-set-faces
  'daemian
@@ -22,14 +22,6 @@
  '(diff-refine-added ((t (:background "color-22"))))
  '(diff-refine-changed ((t (:foreground "purple"))))
  '(diff-refine-removed ((t (:background "color-52"))))
- '(diredp-dir-name ((t (:inherit font-lock-function-name-face))))
- '(diredp-dir-priv ((t (:foreground "Red" :weight bold))))
- '(diredp-exec-priv ((t nil)))
- '(diredp-no-priv ((t nil)))
- '(diredp-read-priv ((t nil)))
- '(diredp-write-priv ((t nil)))
- '(ediff-current-diff-A ((t (:inherit smerge-mine))))
- '(ediff-current-diff-B ((t (:inherit smerge-other))))
  '(escape-glyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(flx-highlight-face ((t (:weight bold :foreground "green" :background "brightblack"))))
@@ -158,7 +150,7 @@
  '(tab-bar-tab-inactive ((t (:background "black" :foreground "color-33"))))
  '(tab-bar ((t (:foreground "black"))))
  '(whitespace-space ((t nil)))
- '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
- '(symbol-overlay-default-face ((t (:background "color-234")))))
+ '(symbol-overlay-default-face ((t (:background "color-234"))))
+ '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default")))))
 
 (provide-theme 'daemian)
