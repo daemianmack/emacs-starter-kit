@@ -977,9 +977,12 @@ translation it is possible to get suggestion."
   (setq side-notes-display-alist '((side . right) (window-width . 60)))
   (defun side-notes-toggle-main-notes ()
     (interactive)
-    (let ((side-notes-secondary-file "/Users/daemianmack/Dropbox/docs/notes/notes.org")
+    ;; Here we force one global "secondary" notes file by issuing the
+    ;; universal argument to an interactive call.
+    (let ((current-prefix-arg 4)
+          (side-notes-secondary-file "/Users/daemianmack/Dropbox/docs/notes/notes.org")
           (side-notes-display-alist '((side . right) (window-width . 100))))
-      (side-notes-toggle-notes)))
+      (call-interactively 'side-notes-toggle-notes)))
   (global-set-key (kbd "H-[") 'side-notes-toggle-main-notes)
   (global-set-key (kbd "H-]") 'side-notes-toggle-notes))
 
