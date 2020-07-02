@@ -733,7 +733,7 @@ translation it is possible to get suggestion."
   (midnight-delay-set 'midnight-delay 5) ;; Kill at this offset in the "day".
   (validate-setq clean-buffer-list-delay-special 600) ;; Don't kill buffers displayed in the last n seconds.
   (validate-setq clean-buffer-list-kill-regexps
-                 '("\\`magit.*\\'"
+                 '("\\`magit:.*\\'"
                    "\\`\\*helm.*\\*\\'"
                    "\\`\\*info.*\\'"
                    "\\`\\*ag .*\\*\\'"
