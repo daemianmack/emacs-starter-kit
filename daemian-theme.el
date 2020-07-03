@@ -1,6 +1,10 @@
 (deftheme daemian
   "Created 2020-07-01.")
 
+ (custom-theme-set-variables
+ 'daemian
+ '(iflipb-current-buffer-template "%s"))
+
 (custom-theme-set-faces
  'daemian
  '(button ((t (:inherit (link)))))
