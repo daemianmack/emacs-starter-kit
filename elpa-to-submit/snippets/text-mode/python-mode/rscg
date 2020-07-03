@@ -1,1 +1,0 @@
-response = self.client.get($1)$0
