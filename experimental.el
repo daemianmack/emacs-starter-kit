@@ -131,10 +131,6 @@
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
 (yas-load-directory "~/.emacs.d/snippets")
 
-(validate-setq desktop-restore-frames t)
-(validate-setq desktop-restore-in-current-display t)
-(validate-setq desktop-restore-forces-onscreen nil)
-
 (global-set-key (kbd "M-y") 'yank-pop)
 (global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
 
@@ -704,7 +700,34 @@ translation it is possible to get suggestion."
 
 (use-package desktop :ensure t
   :config
-  (validate-setq desktop-auto-save-timeout 60))
+  (desktop-save-mode 1)
+  (validate-setq desktop-auto-save-timeout 60)
+  (validate-setq desktop-restore-eager 0)
+  (validate-setq desktop-path (list variable-files-dir))
+  (validate-setq desktop-save t)
+  (validate-setq desktop-load-locked-desktop t)
+  (validate-setq desktop-dirname variable-files-dir)
+  (validate-setq desktop-globals-to-save (append '(helm-kill-ring-map
+                                                   (kill-ring . 50)
+                                                   recentf-list
+                                                   minibuffer-history
+                                                   register-alist
+                                                   file-name-history)
+                                                 desktop-globals-to-save))
+  (validate-setq desktop-restore-frames t)
+  (validate-setq desktop-restore-in-current-display t)
+  (validate-setq desktop-restore-forces-onscreen nil)
+  ;; Force desktop reloading on startup even in TTY
+  ;; From https://emacs.stackexchange.com/a/45829
+  (validate-setq desktop-restore-forces-onscreen nil)
+  (add-hook 'desktop-after-read-hook
+            (lambda ()
+              (frameset-restore
+               desktop-saved-frameset
+               :reuse-frames (eq desktop-restore-reuses-frames t)
+               :cleanup-frames (not (eq desktop-restore-reuses-frames 'keep))
+               :force-display desktop-restore-in-current-display
+               :force-onscreen desktop-restore-forces-onscreen))))
 
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
