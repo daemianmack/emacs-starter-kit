@@ -10,8 +10,12 @@
 
 (use-package display-line-numbers :ensure t
   :config
-  (global-display-line-numbers-mode)
-  (validate-setq display-line-numbers-width 3))
+  (validate-setq display-line-numbers-width 3)
+  :hook ((prog-mode-hook text-mode-hook conf-mode-hook) . display-line-numbers-mode))
+
+;; circumvents a couple startup optimizations
+;; by eager-loading a couple packages associated with text modes, like flyspell
+(setq initial-major-mode 'fundamental-mode)
 
 ;; No longer using linum in favor of `display-line-numbers` mode, but
 ;; these forms may provide inspiration for controlling which buffers
@@ -21,6 +25,30 @@
 ;; (defun linum-on ()
 ;;   (unless (or (minibufferp) (member major-mode linum-disabled-modes-list))
 ;;     (linum-mode 1)))
+
+(validate-setq scroll-conservatively 101)
+
+(setq fast-but-imprecise-scrolling t)
+
+;; Try really hard to keep the cursor from getting stuck in the read-only prompt
+;; portion of the minibuffer.
+(setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+
+(use-package compilation
+  :defer t
+  :config
+  (validate-setq compilation-always-kill t ; kill compilation process before starting another
+                 compilation-ask-about-save nil ; save all buffers on `compile'
+                 compilation-scroll-output 'first-error))
+
+(use-package highlight-numbers :ensure t
+              :hook ((prog-mode conf-mode) . highlight-numbers-mode)
+              :config (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
+
+
+;; Show absolute line numbers for narrowed regions makes it easier to tell the
+;; buffer is narrowed, and where you are, exactly.
+(setq-default display-line-numbers-widen t)
 
 ;; Always load newest byte code.
 (validate-setq load-prefer-newer t)
@@ -59,22 +87,21 @@
 (setq-default bidi-display-reordering nil)
 
 (use-package flycheck :ensure t
-  :init
+  :config
   (use-package flycheck-clj-kondo :ensure t)
   (require 'flycheck-clj-kondo)
   ;; "This fn should have a docstring", etc.
   (validate-setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (validate-setq flycheck-check-syntax-automatically '(mode-enabled save))
   (global-flycheck-mode)
-  :config
+
   ;; Warning about POSIX sh compatibility despite BASH shebang. (?)
   (validate-setq flycheck-shellcheck-excluded-warnings '("SC2039"))
   (validate-setq flycheck-indication-mode 'left-margin))
 
 (use-package recentf :ensure t
-  :init
-  (recentf-mode 1)
   :config
+  (recentf-mode 1)
   (validate-setq recentf-max-saved-items 100)
   (validate-setq recentf-save-file (concat variable-files-dir ".recentf")))
 
@@ -249,12 +276,11 @@
     :config
     (validate-setq eval-sexp-fu-flash-duration 0.05))
   (use-package clj-refactor       :ensure t
-    :init
+    :config
     (diminish 'clj-refactor-mode)
     (cljr-add-keybindings-with-prefix "C-c M-r")
     (validate-setq cljr-favor-prefix-notation nil)
     (validate-setq cljr-warn-on-eval nil)
-    :config
     (validate-setq cljr-auto-clean-ns nil)
     (validate-setq cljr-auto-sort-ns nil))
 
@@ -307,7 +333,6 @@
 
 (use-package projectile
   :ensure t
-  :init
   :config
   (projectile-mode)
   (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
@@ -328,6 +353,7 @@
   ("H-s" . projectile-ripgrep))
 
 (use-package magit
+  :defer t
   :ensure t
 ;  :pin melpa-stable
   :bind (("C-x g" . magit-status)
@@ -441,6 +467,7 @@
 (add-to-list 'load-path "/Users/daemianmack/.emacs.d/elpa/back-button-0.6.6")
 
 (use-package back-button
+  :defer t
   :ensure t
   :config
   (back-button-mode 1)
@@ -458,7 +485,7 @@
 ;;   ctrl-shift-right [1;6C
 ;;   ctrl-shift-left  [1;6D
 (use-package org-mode
-  :init
+  :config
   (use-package org-cliplink :ensure t)
   (require 'ob-clojure)
   (require 'cider)
@@ -639,8 +666,6 @@ If NOERROR is non-nil, just return nil when no symbol is found."
 
 
 (use-package google-translate :ensure t
-  ;; `:demand` necessary to expose related setqs in `:config`.
-  :demand t
   :bind (("C-c t" . google-translate-smooth-translate))
   :config
   (require 'google-translate-smooth-ui)
@@ -695,14 +720,13 @@ translation it is possible to get suggestion."
 (use-package flymake-cursor :ensure t);;todo
 (use-package markdown-mode+ :ensure t)
 (use-package neotree :ensure t)
-(use-package project-explorer :ensure t)
-(use-package python-mode :ensure t)
 (use-package rainbow-delimiters :ensure t)
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode)
   (validate-setq undo-tree-visualizer-timestamps t))
-(use-package yasnippet :ensure t)
+(use-package yasnippet :ensure t
+  :defer t)
 
 (use-package savehist :ensure t
   :init
@@ -800,7 +824,7 @@ translation it is possible to get suggestion."
 
 (use-package diff-hl                    ; Highlight hunks in fringe
   :ensure t
-  :init
+  :config
   ;; Highlight changes to the current file in the fringe
   (global-diff-hl-mode)
   ;; Highlight changed files in the fringe of Dired
@@ -819,9 +843,9 @@ translation it is possible to get suggestion."
   :ensure t
   ;; :bind (("C-c g g l" . gist-list)
   ;;        ("C-c g g b" . gist-region-or-buffer))
-  :init (use-package gh :ensure t)
-  :config (validate-setq gist-view-gist t)
-  )
+  :config
+  (use-package gh :ensure t)
+  (validate-setq gist-view-gist t))
 
 (use-package ialign
   :ensure t

@@ -36,6 +36,22 @@
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+(use-package gcmh :ensure t
+  :init
+  (gcmh-mode 1)
+  :config
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 16 1024 1024)  ; 16mb
+        ))
+
+;; Unset file-name-handler-alist temporarily -- speeds up loading packages.
+(defvar orig--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+;; Reset it after startup.
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq file-name-handler-alist orig--file-name-handler-alist)))
+
 (defvar dotfiles-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
 (setq user-config (concat dotfiles-dir user-login-name ".el"))
