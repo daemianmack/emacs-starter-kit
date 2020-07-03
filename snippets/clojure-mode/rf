@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: clojure.tools.namespace.repl/refresh
+# key: rf
+# --
+(clojure.tools.namespace.repl/refresh)

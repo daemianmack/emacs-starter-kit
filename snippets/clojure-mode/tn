@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: require clojure.tools.namespace.repl
+# key: tn
+# --
+(require 'clojure.tools.namespace.repl)

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dev/run-all-my-tests
+# key: rat
+# --
+(dev/run-all-my-tests)

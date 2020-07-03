@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: test-vars
+# key: tv
+# --
+(test-vars [#'$0])
