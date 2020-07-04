@@ -480,51 +480,53 @@
 ;;   ctrl-shift-down  [1;6B
 ;;   ctrl-shift-right [1;6C
 ;;   ctrl-shift-left  [1;6D
-(use-package org-mode
-  :config
-  (use-package org-cliplink :ensure t)
-  (require 'ob-clojure)
-  (require 'cider)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((ditaa . t)
-     (clojure . t)
-     (sql .t)
-     (dot .t)))
-  (unbind-key "S-<up>" org-mode-map)
-  (unbind-key "S-<down>" org-mode-map)
-  (unbind-key "S-<right>" org-mode-map)
-  (unbind-key "S-<left>" org-mode-map)
-  (unbind-key "C-c =" org-mode-map)
-  (setq org-src-fontify-natively t)
-  (setq org-hide-leading-stars t)
-  (setq org-return-follows-link t)
-  (setq org-odd-levels-only t)
-  ;; Show all empty lines when collapsed.
-  (setq org-cycle-separator-lines -1)
-  (setq org-cycle-global-at-bob t)
-  (setq org-yank-folded-subtrees nil)
-  (setq org-yank-adjusted-subtrees t)
-  (setq org-confirm-babel-evaluate nil)
-  (setq org-babel-clojure-backend 'cider)
-  (setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
-  (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
-  (make-face 'org-inflight-face)
-  (setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
-  (setq org-capture-templates
-        '(("x"
-           "Exercise note"
-           item
-           (file "/Users/daemian/Dropbox/docs/notes/exercise-notes.org")
-           ""
-           :unnarrowed t)))
+(use-package org
+  :defer 5
   :bind (:map org-mode-map
               ;; These top two keybindings require OSX Mission Control
               ;; relinquish the bindings.
               ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
               ("<C-left>"  . org-shiftleft)
               ("<C-up>"    . org-shiftup)
-              ("<C-down>"  . org-shiftdown)))
+              ("<C-down>"  . org-shiftdown))
+  :config
+  (use-package org-cliplink :ensure t)
+  (require 'ob-clojure)
+  (require 'cider)
+  (unbind-key "S-<up>" org-mode-map)
+  (unbind-key "S-<down>" org-mode-map)
+  (unbind-key "S-<right>" org-mode-map)
+  (unbind-key "S-<left>" org-mode-map)
+  (unbind-key "C-c =" org-mode-map)
+  (progn
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((ditaa . t)
+       (clojure . t)
+       (sql .t)
+       (dot .t)))
+    (setq org-src-fontify-natively t)
+    (setq org-hide-leading-stars t)
+    (setq org-return-follows-link t)
+    (setq org-odd-levels-only t)
+    ;; Show all empty lines when collapsed.
+    (setq org-cycle-separator-lines -1)
+    (setq org-cycle-global-at-bob t)
+    (setq org-yank-folded-subtrees nil)
+    (setq org-yank-adjusted-subtrees t)
+    (setq org-confirm-babel-evaluate nil)
+    (setq org-babel-clojure-backend 'cider)
+    (setq org-babel-ditaa-java-cmd "java -Dapple.awt.UIElement=true")
+    (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
+    (make-face 'org-inflight-face)
+    (setq org-todo-keyword-faces '(("DOING" . org-inflight-face)))
+    (setq org-capture-templates
+          '(("x"
+             "Exercise note"
+             item
+             (file "/Users/daemian/Dropbox/docs/notes/exercise-notes.org")
+             ""
+             :unnarrowed t)))))
 
 (use-package which-key :ensure t
   :config
