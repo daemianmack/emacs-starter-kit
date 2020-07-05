@@ -1,5 +1,5 @@
 (setq load-path
-      (append
+      (cons
        (concat dotfiles-dir "elpa")
        load-path))
 
