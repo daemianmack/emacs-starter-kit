@@ -122,15 +122,6 @@
   ;; Use Mac OS X's Spotlight.
   (validate-setq helm-locate-command "mdfind -name %s %s"))
 
-(require 'yasnippet)
-(require 'clojure-snippets)
-(yas-global-mode 1)
-(diminish 'yas-minor-mode)
-(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
-;; Inherit local/ in a given mode by referencing it in that mode's .yas-parents.
-(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
-(yas-load-directory "~/.emacs.d/snippets")
-
 (global-set-key (kbd "M-y") 'yank-pop)
 (global-set-key (kbd "C-c M-y") 'helm-show-kill-ring)
 
@@ -431,6 +422,7 @@
   (validate-setq ivy-extra-directories nil)
   (validate-setq enable-recursive-minibuffers t)
   (validate-setq ivy-virtual-abbreviate 'full)
+  (use-package counsel :ensure t)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
@@ -736,9 +728,6 @@ translation it is possible to get suggestion."
 (use-package beacon :ensure t
   :init (diminish 'beacon-mode)
   :config (validate-setq beacon-color "#8700d7"))
-(use-package clojure-snippets :ensure t)
-(use-package counsel :ensure t)
-(use-package desktop :ensure t)
 (use-package easy-kill :ensure t)
 (use-package ffap :ensure t)
 (use-package find-file-in-project :ensure t)
@@ -751,7 +740,15 @@ translation it is possible to get suggestion."
   :config (diminish 'undo-tree-mode)
   (validate-setq undo-tree-visualizer-timestamps t))
 (use-package yasnippet :ensure t
-  :defer t)
+  :defer t
+  :config
+  (require 'clojure-snippets)
+  (yas-global-mode 1)
+  (diminish 'yas-minor-mode)
+  (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+  ;; Inherit local/ in a given mode by referencing it in that mode's .yas-parents.
+  (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/local")
+  (yas-load-directory "~/.emacs.d/snippets"))
 
 (use-package savehist :ensure t
   :init

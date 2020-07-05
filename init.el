@@ -5,14 +5,11 @@
 
 ;; "Emergency mode" -- accommodate less-painful startup routine when
 ;; troubleshooting config problems featuring many restarts.
-(use-package emergency-mode
-  :no-require t
-  :config
-  (defun byte-compile-init-dir ()
-    "Byte-compile all your dotfiles."
-    (interactive)
-    (byte-recompile-directory user-emacs-directory 0))
-  (global-whitespace-mode -1))
+(defun byte-compile-init-dir ()
+  "Byte-compile all your dotfiles."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
+(global-whitespace-mode -1)
 
 (setq load-prefer-newer t)
 
