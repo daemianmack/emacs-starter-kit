@@ -736,7 +736,7 @@ translation it is possible to get suggestion."
 (use-package yasnippet :ensure t
   :defer t
   :config
-  (require 'clojure-snippets)
+  (use-package clojure-snippets :ensure t)
   (yas-global-mode 1)
   (diminish 'yas-minor-mode)
   (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
