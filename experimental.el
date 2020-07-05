@@ -34,12 +34,9 @@
 ;; portion of the minibuffer.
 (setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 
-(use-package compilation
-  :defer t
-  :config
-  (validate-setq compilation-always-kill t ; kill compilation process before starting another
-                 compilation-ask-about-save nil ; save all buffers on `compile'
-                 compilation-scroll-output 'first-error))
+(setq compilation-always-kill t ; kill compilation process before starting another
+      compilation-ask-about-save nil   ; save all buffers on `compile'
+      compilation-scroll-output 'first-error)
 
 (use-package highlight-numbers :ensure t
               :hook ((prog-mode conf-mode) . highlight-numbers-mode)
