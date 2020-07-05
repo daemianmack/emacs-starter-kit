@@ -565,16 +565,13 @@
   (validate-setq keyfreq-autosave-mode t))
 
 (use-package symbol-overlay :ensure t
+  :hook  (prog-mode . symbol-overlay-mode)
   :bind
   (("M-i" . symbol-overlay-put) ;; Enter 'mode' where subcommands available.
    ;; Globalize nav subcommands.
    ("M-n" . symbol-overlay-jump-next)
    ("M-p" . symbol-overlay-jump-prev))
   :config
-  ;; TODO Which one of these do we need to apply this mode to every
-  ;; prog/text buffer?
-  (add-hook 'after-init-hook 'symbol-overlay-mode)
-  (add-hook 'prog-mode-hook 'symbol-overlay-mode)
   (validate-setq symbol-overlay-idle-time 0.2)
 
   ;; TODO Correct this. The intent: when point is on `:foo'` highlight
