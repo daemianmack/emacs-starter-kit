@@ -153,6 +153,8 @@
  '(tab-bar ((t (:foreground "black"))))
  '(whitespace-space ((t nil)))
  '(symbol-overlay-default-face ((t (:background "gray12"))))
+ '(line-number-current-line ((t (:background "color-234" :foreground "color-34"))))
+ '(rainbow-delimiters-base-error-face ((t (:inherit rainbow-delimiters-base-face :background "red" :foreground "brightwhite"))))
  '(default ((t (\.\.\. nil :weight normal :height 1 :width normal :foundry "default" :family "default")))))
 
 (provide-theme 'daemian)

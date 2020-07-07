@@ -11,7 +11,7 @@
 (use-package display-line-numbers :ensure t
   :config
   (validate-setq display-line-numbers-width 3)
-  :hook ((prog-mode-hook text-mode-hook conf-mode-hook) . display-line-numbers-mode))
+  :hook ((prog-mode text-mode conf-mode) . display-line-numbers-mode))
 
 ;; circumvents a couple startup optimizations
 ;; by eager-loading a couple packages associated with text modes, like flyspell
@@ -39,8 +39,8 @@
       compilation-scroll-output 'first-error)
 
 (use-package highlight-numbers :ensure t
-              :hook ((prog-mode conf-mode) . highlight-numbers-mode)
-              :config (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
+  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
+  :config (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
 
 
 ;; Show absolute line numbers for narrowed regions makes it easier to tell the
@@ -363,7 +363,7 @@
 (add-hook 'prog-mode-hook 'util/comment-auto-fill)
 
 (use-package rainbow-delimiters :ensure t
-  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (add-hook 'lisp-mode-hook 'util/lisp-mode-setup)
 (add-hook 'emacs-lisp-mode-hook 'util/lisp-mode-setup)
@@ -728,7 +728,6 @@ translation it is possible to get suggestion."
 (use-package flymake-cursor :ensure t);;todo
 (use-package markdown-mode+ :ensure t)
 (use-package neotree :ensure t)
-(use-package rainbow-delimiters :ensure t)
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode)
