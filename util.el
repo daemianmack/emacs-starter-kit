@@ -185,7 +185,8 @@ Version 2015-11-30"
 (defun util/lisp-mode-setup ()
   (eldoc-mode)
   (paredit-mode 1)
-  (whitespace-mode))
+  (whitespace-mode)
+  (rainbow-delimiters-mode))
 
 (defun util/no-final-newline ()
   (validate-setq require-final-newline nil)
