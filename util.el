@@ -53,12 +53,12 @@ defaults to 85."
                          (other-buffer nil nil)))))
 
 
-(defun util/windmove-emacs-or-tmux (dir tmux-cmd)
+(defun util/windmove-emacs-or-tmux (dir tmux-dir)
   "Allow movement between split windows or into tmux panes sharing the tmux screen."
   (interactive)
   (if (ignore-errors (funcall (intern (concat "windmove-" dir))))
       nil                     ;; Moving within emacs
-    (shell-command tmux-cmd)) ;; At edges, send command to tmux
+    (shell-command (concat "tmux select-pane " tmux-dir))) ;; At edges, drive tmux
   )
 
 (defun util/pt-pbpaste ()

@@ -77,11 +77,17 @@
 (use-package windmove
   :config
   ;; Integrate with tmux splits.
+  ;; Giving these names allows symbol-seeking things like
+  ;; `iflipb-first-iflipb-buffer-switch-command` to not barf.
+  (defun pane-right () (interactive) (util/windmove-emacs-or-tmux "right" "-R"))
+  (defun pane-left  () (interactive) (util/windmove-emacs-or-tmux "left"  "-L"))
+  (defun pane-up    () (interactive) (util/windmove-emacs-or-tmux "up"    "-U"))
+  (defun pane-down  () (interactive) (util/windmove-emacs-or-tmux "down"  "-D"))
   (bind-keys
-   ("S-<right>" . (lambda () (interactive) (util/windmove-emacs-or-tmux "right" "tmux select-pane -R")))
-   ("S-<left>"  . (lambda () (interactive) (util/windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
-   ("S-<up>"    . (lambda () (interactive) (util/windmove-emacs-or-tmux "up"    "tmux select-pane -U")))
-   ("S-<down>"  . (lambda () (interactive) (util/windmove-emacs-or-tmux "down"  "tmux select-pane -D")))))
+   ("S-<right>" . pane-right)
+   ("S-<left>"  . pane-left)
+   ("S-<up>"    . pane-up)
+   ("S-<down>" .  pane-down)))
 
 ;; Speed up display of very long lines.
 (setq-default bidi-display-reordering nil)
