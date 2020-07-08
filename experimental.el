@@ -36,7 +36,8 @@
 
 (setq compilation-always-kill t ; kill compilation process before starting another
       compilation-ask-about-save nil   ; save all buffers on `compile'
-      compilation-scroll-output 'first-error)
+      compilation-scroll-output 'first-error
+      next-error-recenter '(4))
 
 (use-package highlight-numbers :ensure t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
@@ -296,7 +297,8 @@
       (if (and (cider-connected-p) (cider-var-info var))
           (unless (eq 'symbol (type-of (cider-find-var nil var)))
             (dumb-jump-go))
-        (dumb-jump-go))))
+        (dumb-jump-go))
+      (recenter)))
 
   (defun cider-repl-command (cmd)
     "Execute commands on the cider repl"
