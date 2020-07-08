@@ -66,7 +66,9 @@
 (use-package diminish :ensure t
   :config
   (diminish 'eldoc-mode)
-  (diminish 'subword-mode))
+  (diminish 'subword-mode)
+  (diminish 'gcmh-mode)
+  (diminish 'auto-fill-mode))
 
 ;; Display registration of multi-key commands faster.
 (validate-setq echo-keystrokes 0.1)
@@ -351,6 +353,7 @@
   (validate-setq magit-completing-read-function 'magit-ido-completing-read)
   (validate-setq magit-diff-refine-hunk 'all)
   (validate-setq magit-process-popup-time 10)
+  (diminish 'auto-revert-mode)
   (validate-setq magit-auto-revert-mode 't)
   (validate-setq magit-repository-directories '(("/Users/daemianmack/dev" . 3)))
   (add-hook 'ido-setup-hook
@@ -572,6 +575,7 @@
    ("M-n" . symbol-overlay-jump-next)
    ("M-p" . symbol-overlay-jump-prev))
   :config
+  (diminish 'symbol-overlay-mode)
   (validate-setq symbol-overlay-idle-time 0.2)
 
   ;; TODO Correct this. The intent: when point is on `:foo'` highlight
@@ -720,8 +724,9 @@ translation it is possible to get suggestion."
 (use-package align-cljlet :ensure t)
 (use-package avy :ensure t)
 (use-package beacon :ensure t
-  :init (diminish 'beacon-mode)
-  :config (validate-setq beacon-color "#8700d7"))
+  :config
+  (diminish 'beacon-mode)
+  (validate-setq beacon-color "#8700d7"))
 (use-package easy-kill :ensure t)
 (use-package ffap :ensure t)
 (use-package find-file-in-project :ensure t)
@@ -824,6 +829,7 @@ translation it is possible to get suggestion."
 
 (use-package company :ensure t
   :config
+  (diminish 'company-mode)
   (validate-setq company-tooltip-minimum company-tooltip-limit)
   (validate-setq company-frontends '(company-pseudo-tooltip-frontend))
   (validate-setq company-tooltip-align-annotations t))
