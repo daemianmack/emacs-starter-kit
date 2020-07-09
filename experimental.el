@@ -438,6 +438,9 @@
    :map swiper-map
    ("C-r" . ivy-previous-line)))
 
+;; `paredit-forward-slurp-sexp`,`paredit-forward-barf-sexp` commands
+;; use ctrl-right-arrow and ctrl-left-arrow respectively; disable OSX'
+;; mission control shortcuts to free these up.
 (use-package paredit :ensure t
   :config
   (bind-keys :map paredit-mode-map
