@@ -67,7 +67,6 @@
 (use-package diminish :ensure t
   :config
   (diminish 'eldoc-mode)
-  (diminish 'subword-mode)
   (diminish 'gcmh-mode)
   (diminish 'auto-fill-mode))
 
@@ -1056,3 +1055,8 @@ translation it is possible to get suggestion."
   (global-origami-mode)
   (global-set-key (kbd "<backtab>") 'origami-toggle-node)
   (global-set-key (kbd "C-c <backtab>") 'origami-open-node-recursively))
+
+(use-package subword
+  :config
+  (diminish 'subword-mode)
+  (global-subword-mode 1))
