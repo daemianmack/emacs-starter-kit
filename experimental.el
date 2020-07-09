@@ -579,11 +579,20 @@
   :bind
   (("M-i" . symbol-overlay-put) ;; Enter 'mode' where subcommands available.
    ;; Globalize nav subcommands.
-   ("M-n" . symbol-overlay-jump-next)
-   ("M-p" . symbol-overlay-jump-prev))
+   ("M-n" . my-symbol-overlay-jump-next)
+   ("M-p" . my-symbol-overlay-jump-prev))
   :config
   (diminish 'symbol-overlay-mode)
   (validate-setq symbol-overlay-idle-time 0.2)
+  ;; TODO Use advice to do this.
+  (defun my-symbol-overlay-jump-next ()
+    (interactive)
+    (symbol-overlay-jump-next)
+    (recenter))
+  (defun my-symbol-overlay-jump-prev ()
+    (interactive)
+    (symbol-overlay-jump-prev)
+    (recenter))
 
   ;; TODO Correct this. The intent: when point is on `:foo'` highlight
   ;; all `foo`, navigate same.
