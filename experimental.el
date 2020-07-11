@@ -951,27 +951,26 @@ translation it is possible to get suggestion."
 
 (use-package xref :ensure t
   :config
-  (bind-keys
-   ("M-," . my-xref-return))
   (defun xref-pop-marker-stack ()
-    "Pop back to where \\[xref-find-definitions] was last invoked."
+    "Pop back to where \\[xref-find-definitions] was last invoked.
+Kills the has-def-buffer buffer if different from the source buffer."
     (interactive)
-    (let ((ring xref--marker-ring))
-      (when (ring-empty-p ring)
-        (user-error "Marker stack is empty"))
-      (let ((marker (ring-remove ring 0)))
-        (switch-to-buffer (or (marker-buffer marker)
-                              (user-error "The marked buffer has been deleted")))
-        (goto-char (marker-position marker))
-        (set-marker marker nil nil))))
-
-  (defun my-xref-return ()
-    "Before returning from an xref jump, kill the jumped-to buffer.:"
-    (interactive)
-    ;; TODO Only kill this buffer if this buffer is not same as previous
-    ;; buffer, as when when we jump to definition and end up in same file.
-    (kill-this-buffer)
-    (xref-pop-marker-stack)))
+    (let ((has-def-buffer (window-buffer)))
+      (let ((ring xref--marker-ring))
+        (when (ring-empty-p ring)
+          (user-error "Marker stack is empty"))
+        (let ((marker (ring-remove ring 0)))
+          (switch-to-buffer (or (marker-buffer marker)
+                                (user-error "The marked buffer has been deleted")))
+          (goto-char (marker-position marker))
+          (set-marker marker nil nil)
+          ;; The goal of this function override: we previously jumped
+          ;; to a definition from a jump-source buffer to some
+          ;; `has-def-buffer`. If these are two different buffers,
+          ;; kill the extraneous `has-def-buffer`.
+          (when (not (equal (window-buffer)
+                            has-def-buffer))
+            (kill-buffer has-def-buffer)))))))
 
 (use-package annotate :ensure t
   :config
