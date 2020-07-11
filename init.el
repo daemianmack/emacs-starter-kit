@@ -55,6 +55,14 @@
 (when (file-exists-p user-config)
   (load user-config))
 
+;; 24-bit "truecolor" in emacs...
+;; - tmux settings relevant
+;; - Follow https://web.archive.org/web/20200710161453/https://github.com/syl20bnr/spacemacs/wiki/Terminal
+;;   to set `TERM=xterm-24bit`.
+;; Test this works in emacs via `(display-color-cells):
+;;  8-bit color mode will respond with 256
+;;  24-bit color mode will respond with 16777216
+
 ;; Load theme here after loading custom stuff. Something in Emacs 28
 ;; causes startup issues where loading themes prior to code in main
 ;; use-package file causes a "Attempt to set a constant symbol: nil"
