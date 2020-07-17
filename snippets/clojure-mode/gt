@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gt
+# key: gt
+# --
+(.getTime (java.util.Date.))

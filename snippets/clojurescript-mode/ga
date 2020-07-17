@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ga
+# key: ga
+# --
+(goog.object/getAllPropertyNames $0)

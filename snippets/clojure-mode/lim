@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: lim
+# key: lim
+# --
+
+(log/info :mine {:$0 })
