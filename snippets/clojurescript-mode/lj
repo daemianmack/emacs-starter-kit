@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: lj
+# key: lj
+# binding: direct-keybinding
+# --
+(.log js/console (pr-str [$0]))

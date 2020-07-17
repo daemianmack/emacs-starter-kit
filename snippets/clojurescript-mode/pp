@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pp
+# key: pp
+# binding: direct-keybinding
+# --
+(cljs.pprint/pprint $0)
