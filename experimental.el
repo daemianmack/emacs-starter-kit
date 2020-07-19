@@ -121,6 +121,7 @@
   :bind
   ("C-x C-b" . helm-buffers-list)
   ("H-b" . helm-mini)
+  ("H-<up>" . helm-all-mark-rings)
   :config
   (validate-setq helm-mode-fuzzy-match t
                  helm-follow-mode-persistent t)
@@ -469,7 +470,9 @@
   :ensure t
   :config
   (back-button-mode 1)
-  (diminish 'back-button-mode " ⟲ "))
+  (diminish 'back-button-mode " ⟲ ")
+  (advice-add 'back-button-pop-local-mark :after #'recenter)
+  (advice-add 'pop-global-mark :after #'recenter))
 
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
