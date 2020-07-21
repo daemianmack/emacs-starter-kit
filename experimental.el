@@ -869,11 +869,12 @@ translation it is possible to get suggestion."
   (validate-setq diff-hl-side 'left))
 
 (use-package gist
+  :defer t
   :ensure t
   ;; :bind (("C-c g g l" . gist-list)
   ;;        ("C-c g g b" . gist-region-or-buffer))
   :config
-  (use-package gh :ensure t)
+  (use-package gh :ensure t :defer t)
   (validate-setq gist-view-gist t))
 
 (use-package ialign
