@@ -263,7 +263,10 @@
   :pin melpa-stable
   :bind (("C-c M-o" . cider-repl-clear-buffer-from-orbit)
          ("C-c d"   . cider-repl-reset)
-         ("M-."     . clj-find-var-fallback))
+         ("M-."     . clj-find-var-fallback)
+         ;; Configure iTerm to send ctrl+ret as escape sequence `^[[[`
+         :map cider-repl-mode-map
+         ("M-[ [" . cider-repl-newline-and-indent))
   :config
   (use-package cider-eval-sexp-fu :ensure t
     :config
@@ -444,13 +447,8 @@
 ;; mission control shortcuts to free these up.
 (use-package paredit :ensure t
   :config
-  (bind-keys :map paredit-mode-map
-             ("C-J" . paredit-newline-in-place))
   (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
-  (defun paredit-newline-in-place()
-    (interactive)
-    (progn (paredit-newline)
-           (forward-line -1))))
+  )
 
 (use-package pinentry
   :ensure t
