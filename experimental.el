@@ -641,7 +641,6 @@ If NOERROR is non-nil, just return nil when no symbol is found."
   (key-chord-define-global "jk" 'next-error)
   (key-chord-define-global "JK" 'previous-error)
   (key-chord-define-global " f" 'avy-goto-char-timer)
-  (key-chord-define-global " n" 'neotree-toggle)
   (key-chord-define-global ",." 'other-window)
   (key-chord-define-global "ZZ" 'save-buffer)
   (key-chord-define-global "zx" 'jump-to-register)
@@ -752,7 +751,11 @@ translation it is possible to get suggestion."
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t);;todo
 (use-package markdown-mode+ :ensure t)
-(use-package neotree :ensure t)
+(use-package project-explorer :ensure t
+  :config
+  (validate-setq pe/follow-current t)
+  :bind
+  ("H-n" . project-explorer-toggle))
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode)
