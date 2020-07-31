@@ -8,7 +8,6 @@
 
 (beacon-mode 1)
 (column-number-mode t)
-(global-subword-mode 1)
 (global-undo-tree-mode)
 (winner-mode 1)
 

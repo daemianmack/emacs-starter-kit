@@ -67,7 +67,6 @@
 (use-package diminish :ensure t
   :config
   (diminish 'eldoc-mode)
-  (diminish 'subword-mode)
   (diminish 'gcmh-mode)
   (diminish 'auto-fill-mode))
 
@@ -122,6 +121,7 @@
   :bind
   ("C-x C-b" . helm-buffers-list)
   ("H-b" . helm-mini)
+  ("H-<up>" . helm-all-mark-rings)
   :config
   (validate-setq helm-mode-fuzzy-match t
                  helm-follow-mode-persistent t)
@@ -263,7 +263,10 @@
   :pin melpa-stable
   :bind (("C-c M-o" . cider-repl-clear-buffer-from-orbit)
          ("C-c d"   . cider-repl-reset)
-         ("M-."     . clj-find-var-fallback))
+         ("M-."     . clj-find-var-fallback)
+         ;; Configure iTerm to send ctrl+ret as escape sequence `^[[[`
+         :map cider-repl-mode-map
+         ("M-[ [" . cider-repl-newline-and-indent))
   :config
   (use-package cider-eval-sexp-fu :ensure t
     :config
@@ -439,15 +442,13 @@
    :map swiper-map
    ("C-r" . ivy-previous-line)))
 
+;; `paredit-forward-slurp-sexp`,`paredit-forward-barf-sexp` commands
+;; use ctrl-right-arrow and ctrl-left-arrow respectively; disable OSX'
+;; mission control shortcuts to free these up.
 (use-package paredit :ensure t
   :config
-  (bind-keys :map paredit-mode-map
-             ("C-J" . paredit-newline-in-place))
   (diminish 'paredit-mode " )( ") ;; ¯\_(ツ)_/¯
-  (defun paredit-newline-in-place()
-    (interactive)
-    (progn (paredit-newline)
-           (forward-line -1))))
+  )
 
 (use-package pinentry
   :ensure t
@@ -467,7 +468,9 @@
   :ensure t
   :config
   (back-button-mode 1)
-  (diminish 'back-button-mode " ⟲ "))
+  (diminish 'back-button-mode " ⟲ ")
+  (advice-add 'back-button-pop-local-mark :after #'recenter)
+  (advice-add 'pop-global-mark :after #'recenter))
 
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
@@ -580,11 +583,20 @@
   :bind
   (("M-i" . symbol-overlay-put) ;; Enter 'mode' where subcommands available.
    ;; Globalize nav subcommands.
-   ("M-n" . symbol-overlay-jump-next)
-   ("M-p" . symbol-overlay-jump-prev))
+   ("M-n" . my-symbol-overlay-jump-next)
+   ("M-p" . my-symbol-overlay-jump-prev))
   :config
   (diminish 'symbol-overlay-mode)
   (validate-setq symbol-overlay-idle-time 0.2)
+  ;; TODO Use advice to do this.
+  (defun my-symbol-overlay-jump-next ()
+    (interactive)
+    (symbol-overlay-jump-next)
+    (recenter))
+  (defun my-symbol-overlay-jump-prev ()
+    (interactive)
+    (symbol-overlay-jump-prev)
+    (recenter))
 
   ;; TODO Correct this. The intent: when point is on `:foo'` highlight
   ;; all `foo`, navigate same.
@@ -629,7 +641,6 @@ If NOERROR is non-nil, just return nil when no symbol is found."
   (key-chord-define-global "jk" 'next-error)
   (key-chord-define-global "JK" 'previous-error)
   (key-chord-define-global " f" 'avy-goto-char-timer)
-  (key-chord-define-global " n" 'neotree-toggle)
   (key-chord-define-global ",." 'other-window)
   (key-chord-define-global "ZZ" 'save-buffer)
   (key-chord-define-global "zx" 'jump-to-register)
@@ -740,7 +751,11 @@ translation it is possible to get suggestion."
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t);;todo
 (use-package markdown-mode+ :ensure t)
-(use-package neotree :ensure t)
+(use-package project-explorer :ensure t
+  :config
+  (validate-setq pe/follow-current t)
+  :bind
+  ("H-n" . project-explorer-toggle))
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode)
@@ -1056,3 +1071,8 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (global-origami-mode)
   (global-set-key (kbd "<backtab>") 'origami-toggle-node)
   (global-set-key (kbd "C-c <backtab>") 'origami-open-node-recursively))
+
+(use-package subword
+  :config
+  (diminish 'subword-mode)
+  (global-subword-mode 1))
