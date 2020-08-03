@@ -751,11 +751,6 @@ translation it is possible to get suggestion."
 (use-package find-file-in-project :ensure t)
 (use-package flymake-cursor :ensure t);;todo
 (use-package markdown-mode+ :ensure t)
-(use-package project-explorer :ensure t
-  :config
-  (validate-setq pe/follow-current t)
-  :bind
-  ("H-n" . project-explorer-toggle))
 (use-package saveplace :ensure t)
 (use-package undo-tree :ensure t
   :config (diminish 'undo-tree-mode)
@@ -1075,4 +1070,22 @@ Kills the has-def-buffer buffer if different from the source buffer."
 (use-package subword
   :config
   (diminish 'subword-mode)
-  (global-subword-mode 1))
+  (global-subword-mode 1))(use-package treemacs :ensure t
+(use-package treemacs :ensure t
+  :bind
+  ("H-n" . treemacs)
+  :config
+  (use-package treemacs-projectile :ensure t)
+  (use-package treemacs-magit :ensure t)
+  (treemacs-git-mode 'deferred)
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (validate-setq treemacs-recenter-after-file-follow 'always)
+  (treemacs-modify-theme "Default"
+    :config
+    (progn
+      (treemacs-create-icon :icon "" :extensions (dir-closed) :fallback (propertize "‣ " 'face 'treemacs-term-node-face))
+      (treemacs-create-icon :icon "" :extensions (dir-open)   :fallback (propertize "▾ " 'face 'treemacs-term-node-face))))
+  (setq treemacs-indentation-string (propertize " │ " 'face 'magit-diff-context)
+        treemacs-indentation 1)
+  (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?))
