@@ -485,6 +485,9 @@
       ( " { "  . shrink-window-horizontally)
       ( " } "  . enlarge-window-horizontally))))
 
+(add-hook 'window-configuration-change-hook 'recenter)
+(add-hook 'window-buffer-change-functions 'recenter)
+
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
 ;;   ctrl-shift-arrow ;; clock stuff
