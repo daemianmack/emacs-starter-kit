@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2020-07-11.")
+  "Created 2020-08-02.")
 
 (custom-theme-set-variables
  'daemian
@@ -19,7 +19,7 @@
  '(compilation-column-number ((t (:background "#00cd00" :foreground "#000000"))))
  '(compilation-info ((t (:background "#a020f0" :foreground "#e5e5e5" :weight bold))))
  '(compilation-line-number ((t (:background "#00cd00" :foreground "#000000"))))
- '(cursor ((t (:background "#a6cafe"))))
+ '(cursor ((t (:background "#00cd00"))))
  '(custom-variable-tag ((t (:foreground "#5c5cff" :weight bold))))
  '(diff-added ((t (:foreground "#005f00"))))
  '(diff-changed ((t (:foreground "#a020f0"))))
@@ -152,7 +152,7 @@
  '(tab-bar ((t (:foreground "#000000"))))
  '(whitespace-space ((t nil)))
  '(symbol-overlay-default-face ((t (:background "#1f1f1f"))))
- '(line-number-current-line ((t (:background "gray11" :foreground "#00af00"))))
+ '(line-number-current-line ((t (:background "#1c1c1c" :foreground "#00af00"))))
  '(rainbow-delimiters-base-error-face ((t (:inherit rainbow-delimiters-base-face :background "#cd0000" :foreground "#ffffff"))))
  '(helm-swoop-target-word-face ((t (:weight bold))))
  '(helm-swoop-line-number-face ((t (:inherit line-number-current-line))))
