@@ -3,7 +3,8 @@
 
 (custom-theme-set-variables
  'daemian
- '(iflipb-current-buffer-template "%s"))
+ '(iflipb-current-buffer-template "%s")
+ '(smartrep-mode-line-active-bg "#4271ae"))
 
 (custom-theme-set-faces
  'daemian

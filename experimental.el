@@ -467,10 +467,23 @@
   :defer t
   :ensure t
   :config
+  (validate-setq back-button-local-backward-keystrokes  '("C-x <left>"))
+  (validate-setq back-button-local-forward-keystrokes   '("C-x <right>"))
+  (validate-setq back-button-global-backward-keystrokes '("C-x <C-left>"))
+  (validate-setq back-button-global-forward-keystrokes  '("C-x <C-right>"))
   (back-button-mode 1)
   (diminish 'back-button-mode " ⟲ ")
   (advice-add 'back-button-pop-local-mark :after #'recenter)
-  (advice-add 'pop-global-mark :after #'recenter))
+  (advice-add 'pop-global-mark :after #'recenter)
+  (validate-setq back-button-smartrep-prefix ""))
+
+(use-package smartrep :ensure t
+  :config
+  (smartrep-define-key global-map "C-x"
+    '(("," . back-button-local-backward)
+      ("." . back-button-local-forward)
+      ( " { "  . shrink-window-horizontally)
+      ( " } "  . enlarge-window-horizontally))))
 
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
