@@ -1086,7 +1086,8 @@ Kills the has-def-buffer buffer if different from the source buffer."
 (use-package subword
   :config
   (diminish 'subword-mode)
-  (global-subword-mode 1))(use-package treemacs :ensure t
+  (global-subword-mode 1))
+
 (use-package treemacs :ensure t
   :bind
   ("H-n" . treemacs)
