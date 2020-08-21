@@ -1052,6 +1052,10 @@ Kills the has-def-buffer buffer if different from the source buffer."
 (global-set-key (kbd "H-r")  'tab-rename)
 (validate-setq tab-bar-close-button-show nil)
 (validate-setq tab-bar-new-button-show nil)
+(defalias 'orig-tab-bar-tab-name-current (symbol-function 'tab-bar-tab-name-current))
+(defun tab-bar-tab-name-current ()
+  "Pad default display of tab name."
+  (format " %s " (funcall 'orig-tab-bar-tab-name-current)))
 
 (use-package dbc :ensure t
   :config
