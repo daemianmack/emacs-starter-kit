@@ -970,7 +970,7 @@ translation it is possible to get suggestion."
 
 (use-package helm-swoop :ensure t
   :bind
-  ("C-s" . helm-swoop)
+  ("C-s" . helm-swoop-without-pre-input)
   :config
   (validate-setq helm-swoop-speed-or-color t))
 
