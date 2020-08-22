@@ -284,7 +284,7 @@
 
   (define-key cider-repl-mode-map (kbd "C-c M-o") 'cider-repl-clear-buffer)
 
-  (validate-setq cider-print-fn 'zprint)
+  (validate-setq cider-print-fn 'pprint)
   (validate-setq cider-eval-spinner-type 'box-in-box)
   (validate-setq cider-font-lock-dynamically '(var))
   (validate-setq cider-overlays-use-font-lock t)
@@ -970,7 +970,7 @@ translation it is possible to get suggestion."
 
 (use-package helm-swoop :ensure t
   :bind
-  ("C-s" . helm-swoop)
+  ("C-s" . helm-swoop-without-pre-input)
   :config
   (validate-setq helm-swoop-speed-or-color t))
 
@@ -1037,7 +1037,9 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (validate-setq lsp-file-watch-threshold 5000)
   (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.shadow-cljs$")
   (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.clj-kondo$")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]resources$"))
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]resources$")
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]logs")
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]node_modules"))
 
 ;; Separate file for lexical binding.
 ;; TODO Will that setting in this file mess anything up?
@@ -1052,6 +1054,10 @@ Kills the has-def-buffer buffer if different from the source buffer."
 (global-set-key (kbd "H-r")  'tab-rename)
 (validate-setq tab-bar-close-button-show nil)
 (validate-setq tab-bar-new-button-show nil)
+(defalias 'orig-tab-bar-tab-name-current (symbol-function 'tab-bar-tab-name-current))
+(defun tab-bar-tab-name-current ()
+  "Pad default display of tab name."
+  (format " %s " (funcall 'orig-tab-bar-tab-name-current)))
 
 (use-package dbc :ensure t
   :config
