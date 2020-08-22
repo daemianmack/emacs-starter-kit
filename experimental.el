@@ -1112,3 +1112,8 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (setq treemacs-indentation-string (propertize " │ " 'face 'magit-diff-context)
         treemacs-indentation 1)
   (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?))
+
+;; Change character used to draw vertical border
+(set-display-table-slot standard-display-table
+                        'vertical-border
+                        (make-glyph-code ?┊))
