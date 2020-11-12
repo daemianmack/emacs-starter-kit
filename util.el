@@ -274,6 +274,12 @@ dired, which I don't use."
       (error "No number at point"))
   (replace-match (number-to-string (1- (string-to-number (match-string 0))))))
 
+(defun util/round-to-nearest-percentage (n m)
+  "Round N to nearest multiple of float M."
+  (let ((mlt (/ 1 m)))
+    (/ (fround (* n mlt))
+       mlt)))
+
 (defun util/finder ()
   "Open the current working directory in finder."
   (interactive)
