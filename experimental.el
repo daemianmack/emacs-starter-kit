@@ -466,12 +466,12 @@
 (use-package back-button
   :defer t
   :ensure t
+  :init (back-button-mode 1)
   :config
   (validate-setq back-button-local-backward-keystrokes  '("C-x <left>"))
   (validate-setq back-button-local-forward-keystrokes   '("C-x <right>"))
   (validate-setq back-button-global-backward-keystrokes '("C-x <C-left>"))
   (validate-setq back-button-global-forward-keystrokes  '("C-x <C-right>"))
-  (back-button-mode 1)
   (diminish 'back-button-mode " ⟲ ")
   (advice-add 'back-button-pop-local-mark :after #'recenter)
   (advice-add 'pop-global-mark :after #'recenter)
