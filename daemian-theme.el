@@ -164,7 +164,9 @@
  '(treemacs-git-untracked-face ((t (:inherit (font-lock-string-face)))))
  '(treemacs-git-ignored-face ((t (:inherit (font-lock-comment-face)))))
  '(ivy-minibuffer-match-highlight ((t (:inherit (highlight)))))
- '(hl-line ((t (:extend t :background "#1c1c1c" :weight bold))))
- '(default ((t (\. \. \. nil :weight normal :height 1 :width normal :foundry "default" :family "default")))))
+ '(hl-line ((t (:background "#0d0d0d"))))
+ '(default ((t (\. \. \. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
+ '(diredfl-dir-name ((t (:foreground "#5c5cff"))))
+ '(diredfl-file-name ((t (:foreground "default")))))
 
 (provide-theme 'daemian)
