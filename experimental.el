@@ -1045,8 +1045,8 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.shadow-cljs$")
   (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.clj-kondo$")
   (add-to-list 'lsp-file-watch-ignored "[/\\\\]resources$")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]logs")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]node_modules"))
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]logs$")
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]node_modules$"))
 
 ;; Separate file for lexical binding.
 ;; TODO Will that setting in this file mess anything up?
