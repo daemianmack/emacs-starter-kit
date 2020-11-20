@@ -538,6 +538,7 @@
        (sql .t)
        (dot .t)))
     (setq org-src-fontify-natively t)
+    (setq org-ellipsis "↯")
     (setq org-return-follows-link t)
     (setq org-odd-levels-only t)
     ;; Show all empty lines when collapsed.
