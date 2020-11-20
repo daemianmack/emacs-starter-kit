@@ -108,7 +108,9 @@
   :config
   (recentf-mode 1)
   (validate-setq recentf-max-saved-items 100)
-  (validate-setq recentf-save-file (concat variable-files-dir ".recentf")))
+  (validate-setq recentf-save-file (concat variable-files-dir ".recentf"))
+  ;; Persist to disk more frequently.
+  (add-hook 'midnight-hook 'recentf-save-list))
 
 ;; TODO ctrl-up, ctrl-down allow in-place preview via
 ;; `helm-follow-action-forward` etc but only from within
