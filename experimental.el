@@ -499,6 +499,7 @@
 ;;   ctrl-shift-down  [1;6B
 ;;   ctrl-shift-right [1;6C
 ;;   ctrl-shift-left  [1;6D
+;;   ctrl+RET         [[[
 (use-package org
   :defer 5
   :bind (:map org-mode-map
@@ -507,7 +508,9 @@
               ("<C-right>" . org-shiftright) ;; Ctrl+<arrow> to cycle TODO states.
               ("<C-left>"  . org-shiftleft)
               ("<C-up>"    . org-shiftup)
-              ("<C-down>"  . org-shiftdown))
+              ("<C-down>"  . org-shiftdown)
+              ;; e.g. ctrl+RET on a heading to insert a child heading
+              ("M-[ ["      . org-insert-subheading))
   :config
   (use-package org-cliplink :ensure t)
   (use-package org-superstar :ensure t
