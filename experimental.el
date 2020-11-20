@@ -1151,3 +1151,13 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (setq dired-sidebar-theme 'ascii)
   (setq dired-sidebar-use-term-integration t)
   (setq dired-sidebar-use-custom-font t))
+
+(use-package elfeed :ensure t
+  :init
+  (use-package elfeed-goodies :ensure t
+    :config
+    (elfeed-goodies/setup))
+  :config
+  (validate-setq elfeed-search-filter "@6-months-ago")
+  (validate-setq elfeed-feeds
+                 '("https://stackoverflow.com/feeds/user/8746216" "https://clojuredesign.club/index.xml" "http://ask.datomic.com/index.php/feed/qa.rss" "https://clojureverse.org/posts.rss" "https://clojureverse.org/latest.rss" "https://www.reddit.com/r/clojure.rss" "https://ask.clojure.org/index.php/feed/questions.rss")))
