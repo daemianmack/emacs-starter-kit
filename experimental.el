@@ -540,7 +540,7 @@
        (sql .t)
        (dot .t)))
     (setq org-src-fontify-natively t)
-    (setq org-ellipsis "↯")
+    (setq org-ellipsis "⤸")
     (setq org-return-follows-link t)
     (setq org-odd-levels-only t)
     ;; Show all empty lines when collapsed.
@@ -560,7 +560,11 @@
              item
              (file (expand-file-name "~/Dropbox/docs/notes/exercise-notes.org"))
              ""
-             :unnarrowed t)))))
+             :unnarrowed t)))
+    (setq org-agenda-files (list (expand-file-name "~/Dropbox/docs/notes/")))
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (setq org-outline-path-complete-in-steps nil)
+    (setq org-completion-use-ido nil)))
 
 (use-package which-key :ensure t
   :config
