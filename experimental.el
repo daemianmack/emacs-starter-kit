@@ -368,7 +368,7 @@
   (validate-setq magit-process-popup-time 10)
   (diminish 'auto-revert-mode)
   (validate-setq magit-auto-revert-mode 't)
-  (validate-setq magit-repository-directories '(("/Users/daemianmack/dev" . 3)))
+  (validate-setq magit-repository-directories `((,(expand-file-name "~/dev") . 3)))
   (add-hook 'ido-setup-hook
             (lambda ()
               (define-key ido-completion-map
@@ -463,7 +463,7 @@
 
 
 ;; This has special sauce to avoid a hang on shutdown due to pcache.
-(add-to-list 'load-path "/Users/daemianmack/.emacs.d/elpa/back-button-0.6.6")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/back-button-0.6.6"))
 
 (use-package back-button
   :defer t
@@ -523,7 +523,7 @@
     ;; Hide away leading stars on terminal.
     (setq org-superstar-leading-fallback ?\s)
     (setq org-superstar-headline-bullets-list
-          '("•" "◼" "○" "□" "∙" "▫""⁂"))
+          '("●" "■" "○" "□" "∙" "▫""⁂"))
     (org-superstar-restart))
   (require 'ob-clojure)
   (require 'cider)
@@ -558,7 +558,7 @@
           '(("x"
              "Exercise note"
              item
-             (file "/Users/daemian/Dropbox/docs/notes/exercise-notes.org")
+             (file (expand-file-name "~/Dropbox/docs/notes/exercise-notes.org"))
              ""
              :unnarrowed t)))))
 
@@ -1092,7 +1092,7 @@ Kills the has-def-buffer buffer if different from the source buffer."
     ;; Here we force one global "secondary" notes file by issuing the
     ;; universal argument to an interactive call.
     (let ((current-prefix-arg 4)
-          (side-notes-secondary-file "/Users/daemianmack/Dropbox/docs/notes/notes.org")
+          (side-notes-secondary-file (expand-file-name "~/Dropbox/docs/notes/notes.org"))
           (side-notes-display-alist '((side . right) (window-width . 100))))
       (call-interactively 'side-notes-toggle-notes)))
   (global-set-key (kbd "H-[") 'side-notes-toggle-main-notes)
