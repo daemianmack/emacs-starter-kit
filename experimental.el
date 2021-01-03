@@ -516,6 +516,13 @@
               ("M-[ ["      . org-insert-subheading))
   :config
   (use-package org-cliplink :ensure t)
+  ;; TODO Get this licensed/debugged, put on MELPA
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/org-pretty-table"))
+  (use-package org-pretty-table)
+  (use-package org-recent-headings :ensure t
+    :config (org-recent-headings-mode)
+    (add-to-list 'helm-mini-default-sources 'helm-org-recent-headings-source t)
+    (use-package helm-org-recent-headings :ensure t))
   (use-package org-superstar :ensure t
     :init (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
     :config
