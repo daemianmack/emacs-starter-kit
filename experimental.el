@@ -926,7 +926,6 @@ translation it is possible to get suggestion."
 (save-place-mode)
 (validate-setq save-place-file (concat variable-files-dir ".emacs-places"))
 
-(use-package iedit :ensure t)
 
 (require 'zone)
 
