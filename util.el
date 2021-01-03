@@ -1,11 +1,44 @@
 (defun util/is-in-terminal () (not (display-graphic-p)))
 
+(defun smarter-backward-kill-word ()
+  "Deletes the previous word, respecting:
+1. If the cursor is at the beginning of line, delete the '\n'.
+2. If there is only whitespace, delete only to beginning of line.
+3. If there is whitespace, delete whitespace and check 4-5.
+4. If there are other characters instead of words, delete one only char.
+5. If it's a word at point, delete it."
+  (interactive)
+
+  (if (bolp)
+      ;; 1
+      (delete-char -1)
+
+    (if (string-match-p "^[[:space:]]+$"
+                        (buffer-substring-no-properties
+                         (line-beginning-position) (point)))
+        ;; 2
+        (delete-horizontal-space)
+
+      (when (thing-at-point 'whitespace)
+        ;; 3
+        (delete-horizontal-space))
+
+      (if (thing-at-point 'word)
+          ;; 5
+          (let ((start (car (bounds-of-thing-at-point 'word)))
+                (end (cdr (bounds-of-thing-at-point 'word))))
+            (if (> end start)
+                (delete-region start end)
+              (delete-char -1)))
+        ;; 4
+        (delete-char -1)))))
+
 (defun util/backward-kill-word-or-kill-region (&optional arg)
   "Let existence of an active region determine whether we `backward-kill-word`, or kill said region."
   (interactive "p")
   (if (region-active-p)
       (kill-region (region-beginning) (region-end))
-    (backward-kill-word arg)))
+    (smarter-backward-kill-word)))
 
 
 ;; Flips the left and right windows. Taken from
