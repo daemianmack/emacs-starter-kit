@@ -926,9 +926,6 @@ translation it is possible to get suggestion."
 (save-place-mode)
 (validate-setq save-place-file (concat variable-files-dir ".emacs-places"))
 
-
-(require 'zone)
-
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
   :config
