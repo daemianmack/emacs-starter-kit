@@ -361,7 +361,6 @@
   :config
   ;; Avoid version skew that breaks Magit's git-rebase-mode.
   (use-package with-editor :ensure t)
-  (use-package ido-completing-read+ :ensure t)
   (validate-setq transient-history-file (concat variable-files-dir "transient-history.el"))
   (validate-setq magit-completing-read-function 'magit-ido-completing-read)
   (validate-setq magit-diff-refine-hunk 'all)
