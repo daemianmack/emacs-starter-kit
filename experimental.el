@@ -217,9 +217,6 @@
 
 (use-package ido :ensure t
   :config
-  (use-package ido-ubiquitous
-    :ensure t
-    :config (ido-ubiquitous-mode 1))
   (use-package flx-ido
     :ensure t
     :config
