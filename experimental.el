@@ -978,7 +978,11 @@ translation it is possible to get suggestion."
 (use-package multiple-cursors :ensure t
   :bind
   ("C-c <" . mc/mark-previous-like-this-word)
-  ("C-c >" . mc/mark-next-like-this-word))
+  ("C-c >" . mc/mark-next-like-this-word)
+  :init
+  (validate-setq mc/always-run-for-all t)
+  (validate-setq mc/list-file (concat variable-files-dir ".mc-lists.el"))
+  (validate-setq mc/edit-lines-empty-lines 'ignore))
 
 (use-package helm-swoop :ensure t
   :bind
