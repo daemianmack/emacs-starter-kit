@@ -336,6 +336,8 @@
   (projectile-mode)
   (validate-setq projectile-cache-file (concat variable-files-dir "projectile.cache"))
   (validate-setq projectile-known-projects-file (concat variable-files-dir "projectile-bookmarks.eld"))
+  (validate-setq projectile-completion-system 'helm)
+  (validate-setq projectile-switch-project-action 'helm-projectile)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (diminish 'projectile-mode) ;; Supplanted by smart-mode-line.
   (add-to-list 'projectile-globally-ignored-directories "resources/public/js")
