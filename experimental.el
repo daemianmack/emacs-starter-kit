@@ -511,6 +511,7 @@
               ("<C-left>"  . org-shiftleft)
               ("<C-up>"    . org-shiftup)
               ("<C-down>"  . org-shiftdown)
+              ("C-c ,"     . org-time-stamp-inactive)
               ;; e.g. ctrl+RET on a heading to insert a child heading
               ("M-[ ["      . org-insert-subheading))
   :config
@@ -541,7 +542,7 @@
        (dot .t)
        (shell .t)))
     (setq org-src-fontify-natively t)
-    (setq org-ellipsis "⤸")
+    (setq org-ellipsis "⬎")
     (setq org-return-follows-link t)
     (setq org-odd-levels-only t)
     ;; Show all empty lines when collapsed.
@@ -565,7 +566,9 @@
     (setq org-agenda-files (list (expand-file-name "~/Dropbox/docs/notes/")))
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
     (setq org-outline-path-complete-in-steps nil)
-    (setq org-completion-use-ido nil)))
+    (setq org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "[%a %b %d %H:%M]"))
+    (setq org-attach-id-dir (concat dotfiles-dir "org-mode-data"))
+    (setq org-startup-folded 'content)))
 
 (use-package which-key :ensure t
   :config
@@ -944,9 +947,9 @@ translation it is possible to get suggestion."
 (setenv
  "DICPATH"
  (concat (getenv "HOME") "/Library/Spelling"))
+
 (setq ispell-program-name "/usr/local/bin/hunspell")
 
-(setq org-startup-folded 'showeverything)
 (use-package company
   :ensure t
   :demand t
