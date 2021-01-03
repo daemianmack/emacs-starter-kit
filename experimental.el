@@ -1,5 +1,9 @@
 (use-package validate :ensure t)
 
+;; For the love \ of all that is holy
+;; 2c mode \ go away forever
+(global-set-key [f2] nil)
+
 (setq variable-files-dir (concat dotfiles-dir "var/"))
 
 (set-register ?e (cons 'file (concat dotfiles-dir "experimental.el")))
