@@ -897,22 +897,15 @@ translation it is possible to get suggestion."
                  custom-unlispify-tag-names nil
                  custom-unlispify-menu-entries nil))
 
-(use-package diff-hl                    ; Highlight hunks in fringe
-  :ensure t
+(use-package git-gutter :ensure t
   :config
-  ;; Highlight changes to the current file in the fringe
-  (global-diff-hl-mode)
-  ;; Highlight changed files in the fringe of Dired
-  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-
-  ;; Fall back to the display margin, if the fringe is unavailable
-  (unless (display-graphic-p)
-    (diff-hl-margin-mode))
-
-  ;; Refresh diff-hl after Magit operations
-  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
-  ;; :config (add-hook 'vc-checkin-hook 'diff-hl-update)
-  (validate-setq diff-hl-side 'left))
+  (use-package git-gutter+ :ensure t
+    :config
+    (use-package git-commit :ensure t))
+  (validate-setq git-gutter:modified-sign "▌")
+  (validate-setq git-gutter:added-sign "▌")
+  (validate-setq git-gutter:deleted-sign "▌")
+  (git-gutter-mode))
 
 (use-package gist
   :defer t
