@@ -993,7 +993,7 @@ translation it is possible to get suggestion."
   :bind
   ("C-c <" . mc/mark-previous-like-this-word)
   ("C-c >" . mc/mark-next-like-this-word)
-  :init
+  :config
   (validate-setq mc/always-run-for-all t)
   (validate-setq mc/list-file (concat variable-files-dir ".mc-lists.el"))
   (validate-setq mc/edit-lines-empty-lines 'ignore))
