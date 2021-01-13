@@ -268,8 +268,10 @@
          ("C-c d"   . cider-repl-reset)
          ("M-."     . clj-find-var-fallback)
          ;; Configure iTerm to send ctrl+ret as escape sequence `^[[[`
+         ;;   and shift+ret as escape sequence `^[ [{`
          :map cider-repl-mode-map
-         ("M-[ [" . cider-repl-newline-and-indent))
+         ("M-[ [" . cider-repl-newline-and-indent)
+         ("M-[ {" . cider-repl-newline-and-indent))
   :config
   (use-package cider-eval-sexp-fu :ensure t
     :config
