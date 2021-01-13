@@ -290,7 +290,7 @@
 
   (define-key cider-repl-mode-map (kbd "C-c M-o") 'cider-repl-clear-buffer)
 
-  (validate-setq cider-print-fn 'pprint)
+  (validate-setq cider-print-fn 'zprint)
   (validate-setq cider-eval-spinner-type 'box-in-box)
   (validate-setq cider-font-lock-dynamically '(var))
   (validate-setq cider-overlays-use-font-lock t)
