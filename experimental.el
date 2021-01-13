@@ -294,6 +294,7 @@
   (validate-setq cider-eval-spinner-type 'box-in-box)
   (validate-setq cider-font-lock-dynamically '(var))
   (validate-setq cider-overlays-use-font-lock t)
+  (validate-setq cider-repl-prompt-function 'cider-repl-prompt-lastname)
   (validate-setq cider-repl-history-file "~/.lein/cider-repl-history")
   (validate-setq cider-repl-result-prefix "")
   (validate-setq cider-repl-use-clojure-font-lock t)
