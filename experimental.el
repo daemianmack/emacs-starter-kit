@@ -415,7 +415,8 @@
                           '(("?[:alnum:][[:alnum:][:punct:]]+" . font-lock-constant-face)))
   ;; This causes CLJS buffer errors to return REPL control more quickly.
   (validate-setq max-lisp-eval-depth 20000)
-  (validate-setq clojure-indent-style '(quote always-align)))
+  (validate-setq clojure-indent-style '(quote always-align))
+  (validate-setq clojure-thread-all-but-last t))
 
 (use-package whitespace
   :ensure t
