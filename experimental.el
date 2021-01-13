@@ -271,7 +271,8 @@
          ;;   and shift+ret as escape sequence `^[ [{`
          :map cider-repl-mode-map
          ("M-[ [" . cider-repl-newline-and-indent)
-         ("M-[ {" . cider-repl-newline-and-indent))
+         ("M-[ {" . cider-repl-newline-and-indent)
+         (";" . right-char))
   :config
   (use-package cider-eval-sexp-fu :ensure t
     :config
