@@ -492,7 +492,9 @@
     '(("," . back-button-local-backward)
       ("." . back-button-local-forward)
       ( " { "  . shrink-window-horizontally)
-      ( " } "  . enlarge-window-horizontally))))
+      ( " } "  . enlarge-window-horizontally)
+      ( " ^ "  . enlarge-window)
+      ( " _ "  . shrink-window))))
 
 (add-hook 'window-configuration-change-hook 'recenter)
 (add-hook 'window-buffer-change-functions 'recenter)
