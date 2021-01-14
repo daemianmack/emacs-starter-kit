@@ -182,6 +182,7 @@
  '(ediff-current-diff-B ((t (:extend t :background "darkgreen"))))
  '(annotate-highlight-secondary ((t (:underline (:color "khaki" :style line)))))
  '(annotate-annotation-secondary ((t (:inherit default :background "gray8" :foreground "darkmagenta"))))
+ '(font-lock-sensitive-face ((t (:foreground "#000000"))))
  '(default ((t (\. \. \. nil :weight normal :height 1 :width normal :foundry "default" :family "default")))))
 
 (provide-theme 'daemian)

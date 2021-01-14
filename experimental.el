@@ -497,6 +497,15 @@
 (add-hook 'window-configuration-change-hook 'recenter)
 (add-hook 'window-buffer-change-functions 'recenter)
 
+
+(defvar font-lock-sensitive-face 'font-lock-sensitive-face)
+(defface font-lock-sensitive-face
+  '(
+    ;;(t :inverse-video t)
+    )
+  "Custom face"
+  :group 'basic-faces)
+
 ;; Change org keybindings from the default of...
 ;;   shift-arrow      ;; cycle TODO states
 ;;   ctrl-shift-arrow ;; clock stuff
@@ -577,6 +586,11 @@
              (file (expand-file-name "~/Dropbox/docs/notes/exercise-notes.org"))
              ""
              :unnarrowed t)))
+    ;; Spoilerize lines with `#!`.
+    (add-hook 'org-mode-hook
+              (lambda ()
+                (font-lock-add-keywords nil
+                                        '(("#!.*$" 0 font-lock-sensitive-face)))))
     (setq org-agenda-files (list (expand-file-name "~/Dropbox/docs/notes/")))
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
     (setq org-outline-path-complete-in-steps nil)
