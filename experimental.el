@@ -588,6 +588,14 @@
              (file (expand-file-name "~/Dropbox/docs/notes/exercise-notes.org"))
              ""
              :unnarrowed t)))
+
+    (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "⏜")
+                                           ("#+END_SRC" . "⏝")
+                                           ("#+begin_src" . "➘")
+                                           ("#+end_src" . "➚")
+                                           (">=" . "≥")
+                                           ("=>" . "⇨")))
+    (add-hook 'org-mode-hook 'prettify-symbols-mode)
     ;; Spoilerize lines with `#!`.
     (add-hook 'org-mode-hook
               (lambda ()
