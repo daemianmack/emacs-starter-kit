@@ -946,7 +946,7 @@ translation it is possible to get suggestion."
   (validate-setq git-gutter:modified-sign "▌")
   (validate-setq git-gutter:added-sign "▌")
   (validate-setq git-gutter:deleted-sign "▌")
-  (git-gutter-mode))
+  (global-git-gutter-mode +1))
 
 (use-package gist
   :defer t
