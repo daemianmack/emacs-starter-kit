@@ -1058,6 +1058,7 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (validate-setq annotate-annotation-column 25))
 
 (use-package lsp-mode
+  :ensure t
   :hook ((clojure-mode       . lsp-deferred)
          (lsp-mode           . lsp-enable-which-key-integration)
          (clojurec-mode      . lsp-deferred)
@@ -1107,7 +1108,6 @@ Kills the has-def-buffer buffer if different from the source buffer."
 
 (with-eval-after-load 'lsp-ui
   ;; Figure out a keybinding for showing this on purpose
-  (validate-setq lsp-ui-doc nil)
   (lsp-ui-doc-mode nil)
   (validate-setq lsp-ui-sideline-enable nil)
   (validate-setq lsp-ui-sideline-show-code-actions nil))
