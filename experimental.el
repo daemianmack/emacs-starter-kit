@@ -1034,42 +1034,59 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (validate-setq annotate-annotation-column 25))
 
 (use-package lsp-mode
-  :ensure t
-  :defer t
-  :hook ((clojure-mode . lsp)
-         (clojurec-mode . lsp)
-         (clojurescript-mode . lsp))
+  :hook ((clojure-mode       . lsp-deferred)
+         (lsp-mode           . lsp-enable-which-key-integration)
+         (clojurec-mode      . lsp-deferred)
+         (clojurescript-mode . lsp-deferred)
+         )
+  :bind (("H-l i l" . lsp-clojure-introduce-let)
+         ("H-l m l" . lsp-clojure-move-to-let)
+         ("H-l e l" . lsp-clojure-expand-let)
+         ("H-."     . lsp-find-definition))
+  :commands (lsp lsp-deferred)
   :config
-  (diminish 'lsp-mode "lsp")
+  (use-package helm-lsp :ensure t :commands helm-lsp-workspace-symbol)
+  (use-package lsp-ui :ensure t
+    :config
+    (validate-setq lsp-ui-doc nil)
+    (validate-setq lsp-ui-sideline-enable nil)
+    (validate-setq lsp-ui-sideline-show-code-actions nil))
+  (use-package lsp-treemacs :ensure t
+    :commands lsp-treemacs-errors-list)
+  (use-package company-lsp
+    :ensure t
+    :commands company-lsp))
+
+;; Figure out a keybinding for showing ui peek find refs
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.clj-kondo$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.clj-kondo$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.cpcache$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]classes$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]resources$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]logs$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]node_modules$")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.shadow-cljs$")
+  (validate-setq lsp-session-file (concat variable-files-dir ".lsp-session-v1"))
+  (validate-setq lsp-enable-semantic-highlighting t)
+  (validate-setq lsp-enable-indentation nil)
+  (validate-setq lsp-enable-on-type-formatting nil)
+  (validate-setq lsp-enable-symbol-highlighting nil)
+  (validate-setq lsp-headerline-breadcrumb-enable nil)
+  (validate-setq lsp-lens-enable nil)
+  (validate-setq lsp-semantic-tokens-enable nil)
+  (validate-setq lsp-eldoc-enable-hover nil)
+  (validate-setq lsp-modeline-code-actions-enable nil)
+  (validate-setq gc-cons-threshold (* 100 1024 1024))
   (validate-setq read-process-output-max (* 1024 1024))
-  (validate-setq lsp-prefer-capf t)
-  (setenv "PATH" (concat
-                   "/usr/local/bin" path-separator
-                   (getenv "PATH")))
-  (dolist (m '(clojure-mode
-               clojurec-mode
-               clojurescript-mode
-               clojurex-mode))
-     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
-  (setq lsp-enable-indentation nil
-        lsp-clojure-server-command '("bash" "-c" "clojure-lsp")
-        lsp-ui-doc-delay 3
-        lsp-enable-symbol-highlighting nil
-        lsp-session-file (concat variable-files-dir ".lsp-session-v1"))
-  (define-key lsp-mode-map (kbd "H-l") lsp-command-map)
-  (define-key lsp-mode-map (kbd "H-l i l") 'lsp-clojure-introduce-let)
-  (define-key lsp-mode-map (kbd "H-l m l") 'lsp-clojure-move-to-let)
-  (define-key lsp-mode-map (kbd "H-.") 'lsp-find-definition)
-  ;; Don't display diag; clj-kondo does a better job.
-  (validate-setq lsp-diagnostic-package :none)
-  (validate-setq max-specpdl-size 13000)
-  (validate-setq flycheck-checker-error-threshold 4000)
-  (validate-setq lsp-file-watch-threshold 5000)
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.shadow-cljs$")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]\\.clj-kondo$")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]resources$")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]logs$")
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]node_modules$"))
+  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
+
+(with-eval-after-load 'lsp-ui
+  ;; Figure out a keybinding for showing this on purpose
+  (validate-setq lsp-ui-doc nil)
+  (lsp-ui-doc-mode nil)
+  (validate-setq lsp-ui-sideline-enable nil)
+  (validate-setq lsp-ui-sideline-show-code-actions nil))
 
 ;; Separate file for lexical binding.
 ;; TODO Will that setting in this file mess anything up?
