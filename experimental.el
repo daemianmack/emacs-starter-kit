@@ -431,8 +431,7 @@
 (use-package ivy
   :ensure t
   :config
-  (validate-setq ivy-use-virtual-buffers t)
-  )
+  (validate-setq ivy-use-virtual-buffers t))
 
 (use-package swiper
   :ensure t
@@ -898,13 +897,6 @@ translation it is possible to get suggestion."
   :init
   (add-to-list 'kill-buffer-query-functions 'util/do-not-kill-important-buffers))
 
-(use-package company :ensure t
-  :config
-  (diminish 'company-mode)
-  (validate-setq company-tooltip-minimum company-tooltip-limit)
-  (validate-setq company-frontends '(company-pseudo-tooltip-frontend))
-  (validate-setq company-tooltip-align-annotations t))
-
 (use-package cus-edit
   :config
   (validate-setq custom-search-field nil
@@ -962,30 +954,38 @@ translation it is possible to get suggestion."
 
 (use-package company
   :ensure t
-  :demand t
-  :bind (("M-<tab>" . company-complete))
+  ;;:demand t
+  :commands (company-complete)
+  :bind (([remap indent-for-tab-command] . company-indent-or-complete-common)
+         ([tab] . company-indent-or-complete-common))
   :init (progn
           ;; start company mode now and run it in all modes
-          (add-hook 'after-init-hook 'global-company-mode)
-          (setq company-idle-delay nil)
-
-          ;; use TAB to indent or start completion
-          ;; (global-set-key (kbd "TAB") 'company-indent-or-complete-common)
-          ;; don't force a match so we can type some other stuff and not have
-          ;; company block my typing
-          (setq company-require-match nil)
-          ;; show completion number
-          (setq company-show-numbers t)
-          ;; look in comments and strings
-          (setq company-dabbrev-code-everywhere t))
+          (add-hook 'after-init-hook 'global-company-mode))
   :config (progn
+            (diminish 'company-mode)
+
             ;; complete things in my current buffer using company-dabbrev
             ;; http://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
-            (add-to-list 'company-backends '(company-capf :with company-dabbrev))
-            (add-to-list 'company-backends '(company-capf :with company-dabbrev-code))
+            (add-to-list 'company-backends '(company-capf :with company-dabbrev company-dabbrev-code))
+
+            (validate-setq company-idle-delay nil)
+
+            ;; don't force a match so we can type some other stuff and not have
+            ;; company block my typing
+            (validate-setq company-require-match nil)
+            ;; show completion number
+            (validate-setq company-show-numbers ''t)
             ;; Sort the company suggestions by preferring things within the
             ;; current buffer before stuff outside of this buffer
-            (setq company-transformers (quote (company-sort-by-occurrence)))))
+            (validate-setq company-transformers (quote (company-sort-by-occurrence)))
+            (validate-setq company-tooltip-minimum company-tooltip-limit)
+            (validate-setq company-frontends '(company-pseudo-tooltip-frontend))
+            (validate-setq company-tooltip-align-annotations t)
+
+            (with-eval-after-load 'company-dabbrev-code
+              ;; look in comments and strings
+              (validate-setq company-dabbrev-code-everywhere t)
+              (validate-setq company-dabbrev-time-limit 0.5))))
 
 (use-package restclient :ensure t)
 
