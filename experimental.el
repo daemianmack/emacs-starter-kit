@@ -549,7 +549,7 @@
     ;; Hide away leading stars on terminal.
     (setq org-superstar-leading-fallback ?\s)
     (setq org-superstar-headline-bullets-list
-          '("●" "■" "○" "□" "∙" "▫""⁂"))
+          '("•" "▪" "○" "◻" "◦" "▫""⁂"))
     (org-superstar-restart))
   (require 'ob-clojure)
   (require 'cider)
