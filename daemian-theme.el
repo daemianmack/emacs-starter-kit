@@ -1,5 +1,5 @@
 (deftheme daemian
-  "Created 2021-01-09.")
+  "Created 2021-02-26.")
 
 (custom-theme-set-variables
  'daemian
@@ -184,6 +184,8 @@
  '(annotate-annotation-secondary ((t (:inherit default :background "gray8" :foreground "darkmagenta"))))
  '(font-lock-sensitive-face ((t (:foreground "#000000"))))
  '(org-ellipsis ((t (:background "#171717" :foreground "#8b1c62" :weight bold))))
- '(default ((t (\. \. \. nil :weight normal :height 1 :width normal :foundry "default" :family "default")))))
+ '(org-code ((t (:background "gray13" :foreground "gray40"))))
+ '(default ((t (\. \. \. nil :weight normal :height 1 :width normal :foundry "default" :family "default"))))
+ '(bold ((t (:foreground "#E77E40" :weight bold)))))
 
 (provide-theme 'daemian)
