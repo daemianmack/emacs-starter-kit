@@ -1073,7 +1073,6 @@ Kills the has-def-buffer buffer if different from the source buffer."
   (use-package helm-lsp :ensure t :commands helm-lsp-workspace-symbol)
   (use-package lsp-ui :ensure t
     :config
-    (validate-setq lsp-ui-doc nil)
     (validate-setq lsp-ui-sideline-enable nil)
     (validate-setq lsp-ui-sideline-show-code-actions nil))
   (use-package lsp-treemacs :ensure t
